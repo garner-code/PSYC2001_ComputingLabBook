@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction to R | Data Analysis Skills for Psychology in R</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction to R | Data Analysis Skills for Psychology in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction to R | Data Analysis Skills for Psychology in R" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+
+<meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
+
+
+<meta name="date" content="2025-10-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="data-wrangling-and-visualisation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#bugs-are-important"><i class="fa fa-check"></i><b>0.3</b> Bugs are important</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#setting-up-r-and-rstudio"><i class="fa fa-check"></i><b>0.4</b> Setting up R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>1.2</b> Getting started</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>1.3.1</b> Activity - using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>1.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---getting-to-know-scripts"><i class="fa fa-check"></i><b>1.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>1.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>1.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity: Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity: Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity: Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity-run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity: Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-load-your-packages"><i class="fa fa-check"></i><b>2.1.1</b> Activity: Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity: find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>2.5.1</b> Activity: Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>2.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>2.6.1</b> Activity: View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-summarise-the-data"><i class="fa fa-check"></i><b>2.7.1</b> Activity: Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-and-replace--999-values"><i class="fa fa-check"></i><b>2.8.1</b> Activity: Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-pipe-with-pipes"><i class="fa fa-check"></i><b>2.9.1</b> Activity: Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-save-the-cleaned-data"><i class="fa fa-check"></i><b>2.10.1</b> Activity: Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2"><i class="fa fa-check"></i><b>2.11</b> Data visualization using <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>2.11.1</b> Activity: Create a boxplot in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-histogram"><i class="fa fa-check"></i><b>2.11.2</b> Activity: More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>3.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>3.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>3.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>3.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---start-plotting"><i class="fa fa-check"></i><b>3.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-visualised-now-what"><i class="fa fa-check"></i><b>3.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-descriptive"><i class="fa fa-check"></i><b>3.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>3.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>3.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test"><i class="fa fa-check"></i><b>3.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>3.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="3.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>3.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html"><i class="fa fa-check"></i><b>4</b> Testing for differences between groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>4.1.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="4.1.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it"><i class="fa fa-check"></i><b>4.1.2</b> Activity - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.2</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---creating-a-new-likes-variable"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.2.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.2.2</b> Activity - Defining factors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#adapting-our-previous-code-to-make-new-histograms"><i class="fa fa-check"></i><b>4.3.1</b> Adapting our previous code to make new histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Next step: descriptive statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>4.5</b> Independent samples t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Performing an independent samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.6</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.7" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#bonus---visualising-group-differences"><i class="fa fa-check"></i><b>4.7</b> Bonus - Visualising group differences</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>4.8</b> You are Free!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis Skills for Psychology in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-r" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Credit:</strong> This chapter heavily borrows from the work of Emily Nordmann at the University of Glasgow. Thanks, Emily!
+<a href="https://psyteachr.github.io/ads-v3/01-intro.html" class="uri">https://psyteachr.github.io/ads-v3/01-intro.html</a></p>
+</div>
+<p>To perform data analysis in Psychology, one needs some powerful software to help you get data into shape, and to apply all the fancy statistical tests that you will learn about in this course. In this course, we will be using the programming language R and the software R Studio to do this.</p>
+<div id="r-and-r-studio" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> R and R Studio<a href="introduction-to-r.html#r-and-r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this course, you need two different bits of software, <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>. R is a programming language that you will write code in and R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn’t look as good and it would be much harder without things like spell-checking and formatting.</p>
+<p>In a similar way, you can use R without R Studio but we wouldn’t recommend it. The key thing to remember is that although you will do all of your work using R Studio for this course, you are actually using two pieces of software which means that from time-to-time, both of them may have separate updates.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:baseR"></span>
+<img src="images/Introduction_to_R/Basic_R.png" alt="This is what using R without RStudio looks like. Noone wants that." width="70%" />
+<p class="caption">
+Figure 1.1: This is what using R without RStudio looks like. Noone wants that.
+</p>
+</div>
+</div>
+<div id="getting-started" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Getting started<a href="introduction-to-r.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should have downloaded the files you need for this week’s computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder somewhere sensible, e.g. from ‘Downloads’ to ‘Documents’. Ask your tutor if you are unsure about any of those steps.</p>
+<p>Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:folder"></span>
+<img src="images/Introduction_to_R/folder.png" alt="Every lab folder will contain the files you need for the session, and sometimes folders with extra things in them" width="70%" />
+<p class="caption">
+Figure 1.2: Every lab folder will contain the files you need for the session, and sometimes folders with extra things in them
+</p>
+</div>
+<p>Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in ‘.Rproj’. This will open RStudio.</p>
+<div style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;">
+<p><strong>Why should I open RStudio by clicking on the ‘.Rproj’ file?</strong> Indeed, this may seem like a strange request. .Rproj files automatically tells R where your files are located. This is called ‘setting the working directory’. What this means is that you won’t have to manually tell R where on the computer your needed files live (why will become clearer next week). This also means you get to save a lot of typing in future computing lab tutorials.</p>
+</div>
+</div>
+<div id="getting-to-know-r-studio" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Getting to know R Studio<a href="introduction-to-r.html#getting-to-know-r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R Studio has a console that you can try out code in (appearing as the bottom left window in Figure <a href="introduction-to-r.html#fig:img-rstudio">1.3</a>. If you have opened a script, then there is a script editor (top left, more on scripts shortly below). There is also a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows files, plots, packages, and help documentation (bottom right).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-rstudio"></span>
+<img src="images/Introduction_to_R/rstudio-console.png" alt="The RStudio interface: ah, that's better!" width="1090" />
+<p class="caption">
+Figure 1.3: The RStudio interface: ah, that’s better!
+</p>
+</div>
+<div id="activity---using-the-console" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Activity - using the console<a href="introduction-to-r.html#activity---using-the-console" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First let’s get used to the console where you can try out code. You can think of the console as a very fancy calculator. You can do some impressive calculations, but like a calculator, once you close it down, everything you did is lost.</p>
+<p>Click on the Console (anywhere), and type the following:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<p>Then press enter. You should see that R has calculated the answer for you.</p>
+<p>You can try other calculations, for example (you should also do this one):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction-to-r.html#cb2-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<p>Important! If you are ever unsure about what a piece of code is doing, you should try running it (or bits of it) in the console, to see what answers each bit of code gives you. This is a great way to learn what code does and to debug your own code when it doesn’t work.</p>
+</div>
+</div>
+<div id="scripts" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Scripts<a href="introduction-to-r.html#scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The console is great for small calculations and testing code, but it isn’t very good for doing analyses that you want to keep. For this, we use scripts. A script is simply a text file that contains code. You know you have an R script when the filename ends in ‘.R’. You can write code in a script and then run it in the console. This means that you can save your code and come back to it later. It also means that anyone, anywhere else in the world can reproduce your analysis by running your script. This is a key part of open science and reproducible research.</p>
+<div id="activity---getting-to-know-scripts" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Activity - Getting to know scripts<a href="introduction-to-r.html#activity---getting-to-know-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Open the script <code>your-first-script.R</code> in R Studio. You can do this by clicking on the file in the Files tab (bottom right window) or by using File &gt; Open File… from the top menu.</li>
+</ul>
+<p>You can see at the top of the script there are some comments. Comments are lines of text that start with a <code>#</code> symbol. R ignores these lines when it runs the code, but they are useful for you to write notes to yourself about what the code is doing. You should always include comments in your code to explain what it is doing. This helps you remember what you did when you come back to it later, and it helps others understand your code if you share it with them.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-scripts"></span>
+<img src="images/Introduction_to_R/script_ann.png" alt="Scripts can run your code as many times as you please." width="558" />
+<p class="caption">
+Figure 1.4: Scripts can run your code as many times as you please.
+</p>
+</div>
+<ul>
+<li><p>Try typing <code>2 + 2</code> into the script, below the comment that says <span style="color:#228B22"># Type 2 + 2 here</span>.</p></li>
+<li><p>Now try running that bit of code in the script. You can do this by highlighting the line(s) of code you want to run and then clicking the ‘Run’ button at the top of the script window (see Figure 1: Run button). You should see that the answer appears in the console.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-highlightcode"></span>
+<img src="images/Introduction_to_R/highlight-code.jpg" alt="Highlight your code and then run it." width="582" />
+<p class="caption">
+Figure 1.5: Highlight your code and then run it.
+</p>
+</div>
+<div style="border-left: 4px solid #030ffc; background-color: #a4d3f5; padding: 10px; margin: 10px 0;">
+<p><strong>Important life hack!</strong> Another way to do this is to highlight the code you want to run and then press <code>Ctrl + Enter</code> (or <code>Cmd + Enter</code> on a Mac). Try this now.</p>
+</div>
+<p>You should now see the result in the console.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-result"></span>
+<img src="images/Introduction_to_R/result_ann.png" alt="We all want results." width="556" />
+<p class="caption">
+Figure 1.6: We all want results.
+</p>
+</div>
+<ul>
+<li>Remember to save your script regularly by clicking the save icon (or using <code>Ctrl + S</code> or <code>Cmd + S</code> on a Mac). Save it, save it now!</li>
+</ul>
+</div>
+</div>
+<div id="sec-get-help" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Functions and arguments<a href="introduction-to-r.html#sec-get-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Functions</strong> in R allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of <strong>arguments</strong>. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format <code>?function</code>.</p>
+<p>Before, we calculated <code>(5 + 4 + 3) / 3</code> in the console. You may have noticed that we add three numbers and then divide by the total number of numbers we have. You may have also noticed that this is the formula for calculating the mean (or average) of a set of numbers.</p>
+<p>Often in Psychology, we want to calculate the mean when we have many more than three numbers. This is where functions come in handy. Let’s look at the function <code>mean()</code>.</p>
+<div id="activity---using-a-function" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Activity - using a function<a href="introduction-to-r.html#activity---using-a-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Look up the help documentation for <code>mean()</code> by typing <code>?mean</code> in the console. You will see that there is a <strong>Description</strong> of the function, a guide to it’s <strong>Usage</strong>, and the <strong>Arguments</strong> you need to make the function work.</li>
+</ul>
+<p>In the <strong>Usage</strong> section, we see that <code>mean()</code> takes the following form:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" tabindex="-1"></a><span class="do">## Default S3 method:</span></span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...)</span></code></pre></div>
+<p>In the <strong>Arguments</strong> section, there are explanations for each of the arguments. <code>x</code> is the set of numbers that we want to calculate the mean for. Do not worry about <code>trim</code> and <code>na.rm</code>. For now, they can remain as mythical arguments in the interest of simplicity.</p>
+<ul>
+<li>Let’s use the <code>mean</code> function. Highlight the following line of code in your script and run it:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-r.html#cb4-1" tabindex="-1"></a><span class="co"># run the below line of code to see what answer you get</span></span>
+<span id="cb4-2"><a href="introduction-to-r.html#cb4-2" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p>The output in the console should match the answer you got when you calculated (5 + 4 + 3) / 3 by hand. This is but a simple example, but I am sure you can imagine the power of functions when you have many more numbers to work with.</p>
+<p>You’ll see in the code above that we have put the numbers together in some brackets preceded by the letter c <code>c()</code>. This is another function that combines the numbers into something called a vector. You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). We will learn more about vectors later in this course.</p>
+<div style="border-left: 4px solid #2196F3; background-color: #9cd5ff; padding: 10px; margin: 10px 0;">
+<p><strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask “What does the mean() function in R do?” and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.</p>
+</div>
+</div>
+<div id="argument-names" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Argument names<a href="introduction-to-r.html#argument-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the above example, we wrote out the argument name when using the mean (i.e., <code>x</code>), however, this is not strictly necessary. The following two lines of code would both produce the same result:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-to-r.html#cb5-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb5-2"><a href="introduction-to-r.html#cb5-2" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p>Importantly, if you do not write out the argument names, R will use the default order of arguments, so, health warning, make sure you check the order when there is more than 1 argument!</p>
+<p>If you write out the argument names then you can write the arguments in whatever order you like:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction-to-r.html#cb6-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">trim=</span><span class="dv">0</span>, <span class="at">x=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>), <span class="at">na.rm=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p>When you are first learning R, you may find it useful to write out the argument names as it can help you remember and understand what each part of the function is doing. However, as your skills progress you may find it quicker to omit the argument names and you will also see examples of code online that do not use argument names so it is important to be able to understand which argument each argument is referring to (or look up the help documentation to check).</p>
+<p>In this course, we will always write out the argument names the first time we use each function, however, in subsequent uses they may be omitted.</p>
+</div>
+</div>
+<div id="base-r-and-packages" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Base R and packages<a href="introduction-to-r.html#base-r-and-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you install R you will have access to a range of functions including options for data wrangling and statistical analysis. The functions that are included in the default installation are typically referred to as <strong>Base R</strong> and there is a useful cheat sheet that shows many Base R functions <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">here</a>.</p>
+<p>However, the power of R is that it is extendable and open source - put simply, if a function doesn’t exist or doesn’t work very well, anyone can create a new <strong>package</strong> that contains data and code to allow you to perform new tasks. You may find it useful to think of Base R as the default apps that come on your phone and packages as additional apps that you need to download separately.</p>
+</div>
+<div id="installing-and-loading-packages" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Installing and loading packages<a href="introduction-to-r.html#installing-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> The UNSW psychology computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine.</p>
+</div>
+<div id="activity-install-the-tidyverse" class="section level3 hasAnchor" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Activity: Install the tidyverse<a href="introduction-to-r.html#activity-install-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to use a package, you must first install it. The following code installs the package <code>tidyverse</code>, a package we will use very frequently in this course.</p>
+<p>If you are interested in learning more about tidyverse and how incredibly useful it is in R, consider going through some of the chapters and exercises in <a href="https://r4ds.hadley.nz/">R for Data Science</a>. It’s also a great reference whenever you need help using functions from the tidyverse. If you want to learn more coding skills in R, we highly recommend working your way through this book.</p>
+<ul>
+<li>If you are working on your own computer, use the below code to install the tidyverse. You can either copy this command into the console, or into your script for highlighting and running <strong>Do not do this if you are working on a University machine</strong>.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>You only need to install a package once, however, each time you start R you need to load the packages you want to use, in a similar way that you need to install an app on your phone once, but you need to open it every time you want to use it.</p>
+<p>To load packages we use the function <code>library()</code>. Typically you would start any analysis script by loading all of the packages you need, but we will come back to that in the later labs.</p>
+</div>
+<div id="activity-load-the-tidyverse" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Activity: Load the tidyverse<a href="introduction-to-r.html#activity-load-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Run the below code in the console to load the tidyverse. You can do this regardless of whether you are using your own computer or a University machine.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>You will get what looks like an error message - it’s not. It’s just R telling you what it’s done.</p>
+<p>Now that we’ve loaded the <code>tidyverse</code> package we can use any of the functions it contains but remember, you need to run the <code>library()</code> function every time you start R.</p>
+</div>
+</div>
+<div id="objects" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> Objects<a href="introduction-to-r.html#objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A large part of your coding for data analysis will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using <code>&lt;-</code>.</p>
+<div id="activity-create-some-objects" class="section level3 hasAnchor" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> Activity: Create some objects<a href="introduction-to-r.html#activity-create-some-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. You should see that <code>name</code>, <code>age</code>, <code>today</code>, <code>new_year</code>, and <code>data</code> appear in the environment pane.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-r.html#cb9-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;emily&quot;</span></span>
+<span id="cb9-2"><a href="introduction-to-r.html#cb9-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">18</span> </span>
+<span id="cb9-3"><a href="introduction-to-r.html#cb9-3" tabindex="-1"></a>today <span class="ot">&lt;-</span><span class="fu">Sys.Date</span>()</span>
+<span id="cb9-4"><a href="introduction-to-r.html#cb9-4" tabindex="-1"></a>new_year <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>)</span>
+<span id="cb9-5"><a href="introduction-to-r.html#cb9-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-objects-enviro"></span>
+<img src="images/Introduction_to_R/objects-enviro.png" alt="Objects in the environment" width="366" />
+<p class="caption">
+Figure 1.7: Objects in the environment
+</p>
+</div>
+<p>Note that in these examples, <code>name</code>,<code>age</code>, and <code>new_year</code> would always contain the values <code>emily</code>, <code>33</code>, and the date of New Year’s Day 2020, however, <code>today</code> will draw the date from the operating system. <code>data</code> has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See <code>?rnorm</code> for more information on how this function works.</p>
+<div style="border-left: 4px solid #2196F3; background-color: #8cc6f5; padding: 10px; margin: 10px 0;">
+<p><strong>Warning:</strong> You may also see objects referred to as ‘variables’. There is a difference between the two in programming terms, however, they are used synonymously very frequently.</p>
+</div>
+<p>As a side note, if you ever have to teach programming and statistics, don’t use your age as an example because everytime you have to update your teaching materials you get a reminder of the fragility of existence and your advancing age.</p>
+<p>Importantly, objects can be involved in calculations and can interact with each other. For example, copy and paste this code into your script and run it. Check your answer matches what you see below.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introduction-to-r.html#cb10-1" tabindex="-1"></a>age <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
+<pre><code>## [1] 43</code></pre>
+<p>Finally, and <strong>importantly</strong>, you can store the result of these operations in a new object:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introduction-to-r.html#cb12-1" tabindex="-1"></a>decade <span class="ot">&lt;-</span> age <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Tip:</strong> You may find it helpful to read <code>&lt;-</code> as <code>contains</code>, e.g., <code>name</code> contains the text <code>emily</code>.</p>
+</div>
+</div>
+</div>
+<div id="datatypes" class="section level2 hasAnchor" number="1.9">
+<h2><span class="header-section-number">1.9</span> Datatypes<a href="introduction-to-r.html#datatypes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will constantly be creating objects throughout this course and you will learn more about them and how they behave as we go along. For now it is enough to understand that they are a way of saving values, that these values can be numbers, text, or the result of operations, and that they can be used in further operations to create new variables. For now, we can have a look at the datatypes of our objects using the function <code>typeof</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="co">#These are both doubles (i.e numbers!)</span></span>
+<span id="cb13-2"><a href="introduction-to-r.html#cb13-2" tabindex="-1"></a><span class="fu">typeof</span>(age)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-r.html#cb15-1" tabindex="-1"></a><span class="fu">typeof</span>(new_year)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-r.html#cb17-1" tabindex="-1"></a><span class="co">#This is a chr (i.e contains letters!)</span></span>
+<span id="cb17-2"><a href="introduction-to-r.html#cb17-2" tabindex="-1"></a><span class="fu">typeof</span>(name)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. We will learn about using these datatypes (as well as some of the others) throughout this course, so don’t fret if you don’t understand it yet!</p>
+</div>
+</div>
+<div id="looking-after-the-environment" class="section level2 hasAnchor" number="1.10">
+<h2><span class="header-section-number">1.10</span> Looking after the environment<a href="introduction-to-r.html#looking-after-the-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you’ve been writing a lot of code you may find that the environment pane (or workspace) has become cluttered with many objects. This can make it difficult to figure out which object you need and therefore you run the risk of using the wrong data. If you’re working on a new dataset, or if you’ve tried lots of different code before getting the final version, it is good practice to remember to clear the environment to avoid using the wrong object. You can do this in several ways.</p>
+<ol style="list-style-type: decimal">
+<li>To remove individual objects, you can type <code>rm(object_name)</code> in the console. Complete the code in your script to remove the object <code>data</code> that we created earlier.</li>
+<li>To clear all objects from the environment run <code>rm(list = ls())</code> in the console.</li>
+<li>To clear all objects from the environment you can also click the broom icon in the environment pane. Do it, do it now!</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/Introduction_to_R/broom.png" alt="Clearing the workspace" width="386" />
+<p class="caption">
+Figure 1.8: Clearing the workspace
+</p>
+</div>
+</div>
+<div id="the-power-of-scripts" class="section level2 hasAnchor" number="1.11">
+<h2><span class="header-section-number">1.11</span> The power of scripts<a href="introduction-to-r.html#the-power-of-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that you have cleared your Environment, you can learn the true power of scripts. They allow you to recreate your entire analysis from scratch, just by running the script.</p>
+<div id="final-activity-run-the-script" class="section level3 hasAnchor" number="1.11.1">
+<h3><span class="header-section-number">1.11.1</span> Final Activity: Run the script<a href="introduction-to-r.html#final-activity-run-the-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last activity for the day…highlight all the code in your script and run it. You should see all of the objects you created earlier reappear in the environment pane.</p>
+</div>
+</div>
+<div id="you-are-free" class="section level2 hasAnchor" number="1.12">
+<h2><span class="header-section-number">1.12</span> You are Free!<a href="introduction-to-r.html#you-are-free" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Congratulations you have survived the first coding lab for this course. We look forward to seeing you next week for more coding fun.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/Introduction_to_R/Psychology_student_reaction.jpg" alt="We know how you really feel" width="396" />
+<p class="caption">
+Figure 1.9: We know how you really feel
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-wrangling-and-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01_Introduction-to-R.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

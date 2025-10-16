@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Data Analysis Skills for Psychology in R</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Data Analysis Skills for Psychology in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Analysis Skills for Psychology in R" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+
+<meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
+
+
+<meta name="date" content="2025-10-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introduction-to-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#bugs-are-important"><i class="fa fa-check"></i><b>0.3</b> Bugs are important</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#setting-up-r-and-rstudio"><i class="fa fa-check"></i><b>0.4</b> Setting up R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>1.2</b> Getting started</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>1.3.1</b> Activity - using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>1.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---getting-to-know-scripts"><i class="fa fa-check"></i><b>1.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>1.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>1.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity: Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity: Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity: Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity-run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity: Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-load-your-packages"><i class="fa fa-check"></i><b>2.1.1</b> Activity: Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity: find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>2.5.1</b> Activity: Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>2.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>2.6.1</b> Activity: View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-summarise-the-data"><i class="fa fa-check"></i><b>2.7.1</b> Activity: Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-and-replace--999-values"><i class="fa fa-check"></i><b>2.8.1</b> Activity: Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-pipe-with-pipes"><i class="fa fa-check"></i><b>2.9.1</b> Activity: Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-save-the-cleaned-data"><i class="fa fa-check"></i><b>2.10.1</b> Activity: Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2"><i class="fa fa-check"></i><b>2.11</b> Data visualization using <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>2.11.1</b> Activity: Create a boxplot in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-histogram"><i class="fa fa-check"></i><b>2.11.2</b> Activity: More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>3.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>3.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>3.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>3.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---start-plotting"><i class="fa fa-check"></i><b>3.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-visualised-now-what"><i class="fa fa-check"></i><b>3.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-descriptive"><i class="fa fa-check"></i><b>3.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>3.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>3.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test"><i class="fa fa-check"></i><b>3.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>3.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="3.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>3.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html"><i class="fa fa-check"></i><b>4</b> Testing for differences between groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>4.1.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="4.1.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it"><i class="fa fa-check"></i><b>4.1.2</b> Activity - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.2</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---creating-a-new-likes-variable"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.2.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.2.2</b> Activity - Defining factors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#adapting-our-previous-code-to-make-new-histograms"><i class="fa fa-check"></i><b>4.3.1</b> Adapting our previous code to make new histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Next step: descriptive statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>4.5</b> Independent samples t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Performing an independent samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.6</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.7" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#bonus---visualising-group-differences"><i class="fa fa-check"></i><b>4.7</b> Bonus - Visualising group differences</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>4.8</b> You are Free!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis Skills for Psychology in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Data Analysis Skills for Psychology in R</h1>
+<p class="author"><em>Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond</em></p>
+<p class="date"><em>2025-10-17</em></p>
+</div>
+<div id="course-information" class="section level1 unnumbered hasAnchor">
+<h1>Course Information<a href="index.html#course-information" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="the-purpose-of-this-coursebook" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> The purpose of this coursebook<a href="index.html#the-purpose-of-this-coursebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Welcome to the computing tutorials for PSYC2001. This coursebook has been designed to support your learning of statistics through hands-on practice with R. It accompanies the tutorial folders available on Moodle, and will guide you step-by-step through the data analysis components of the course. The focus is not just on memorising, but on learning how to think about data, ask good questions, and use R as a tool to answer them.</p>
+</div>
+<div id="structure-of-the-coursebook" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> Structure of the Coursebook<a href="index.html#structure-of-the-coursebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each chapter introduces a key concept in statistics. You will see worked examples with code that runs in R. These examples show you how to apply data analysis statistical techniques step by step. Throughout the chapters, you will find exercises to help you complete code in your own scripts. Completing the code in your own scripts is important, because you will need these coding skills to complete your assignment for the course, and beyond! Throughout this course book there will be questions that encourage you to think about about or apply what you’ve learned in new situation.</p>
+</div>
+<div id="bugs-are-important" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> Bugs are important<a href="index.html#bugs-are-important" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Learning to code involves making lots of errors. When a piece of code doesn’t work, it’s because you have a ‘bug’ in your code. This can feel disheartening at first, because we often think that bugs are a sign of failure. But bugs are actually an important part of learning to code. They help you to understand how the code works, and they help you to learn how to debug your code. So, don’t be afraid of bugs! Embrace them as part of the learning process. In fact, once you’ve been coding long enough, you’ll become deeply suspicious when you don’t find bugs.</p>
+</div>
+<div id="setting-up-r-and-rstudio" class="section level2 hasAnchor" number="0.4">
+<h2><span class="header-section-number">0.4</span> Setting up R and RStudio<a href="index.html#setting-up-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All of the UNSW School of Psychology computers have R and R Studio installed. However, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up.</p>
+<p>Both R and RStudio are freely available so you may wish to install them on your own machine. There is a useful <a href="https://psyteachr.github.io/hack-your-data/r_instructions.html">guide to installing them both here</a> that you can use. Note that the PSYC2001 staff are unable to help you if you have specific technical issues setting up R and RStudio on your own machine. But the tutors can support you using R and RStudio on the School of Psychology computers in the computer labs. If you are having specific technical issues setting this up on your own machine, then you should submit an issue to UNSW IT Services.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

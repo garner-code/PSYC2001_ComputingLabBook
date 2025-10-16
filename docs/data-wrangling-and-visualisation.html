@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Data wrangling and visualisation | Data Analysis Skills for Psychology in R</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Data wrangling and visualisation | Data Analysis Skills for Psychology in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Data wrangling and visualisation | Data Analysis Skills for Psychology in R" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown/images/cover_temp.png" />
+
+<meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
+
+
+<meta name="date" content="2025-10-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="sec-testing-first-hypothesis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#bugs-are-important"><i class="fa fa-check"></i><b>0.3</b> Bugs are important</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#setting-up-r-and-rstudio"><i class="fa fa-check"></i><b>0.4</b> Setting up R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>1.2</b> Getting started</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>1.3.1</b> Activity - using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>1.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---getting-to-know-scripts"><i class="fa fa-check"></i><b>1.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>1.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>1.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity: Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity: Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity: Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity-run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity: Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-load-your-packages"><i class="fa fa-check"></i><b>2.1.1</b> Activity: Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity: find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>2.5.1</b> Activity: Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>2.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>2.6.1</b> Activity: View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-summarise-the-data"><i class="fa fa-check"></i><b>2.7.1</b> Activity: Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-and-replace--999-values"><i class="fa fa-check"></i><b>2.8.1</b> Activity: Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-pipe-with-pipes"><i class="fa fa-check"></i><b>2.9.1</b> Activity: Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-save-the-cleaned-data"><i class="fa fa-check"></i><b>2.10.1</b> Activity: Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2"><i class="fa fa-check"></i><b>2.11</b> Data visualization using <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>2.11.1</b> Activity: Create a boxplot in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-histogram"><i class="fa fa-check"></i><b>2.11.2</b> Activity: More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>3.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>3.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>3.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>3.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---start-plotting"><i class="fa fa-check"></i><b>3.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-visualised-now-what"><i class="fa fa-check"></i><b>3.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-descriptive"><i class="fa fa-check"></i><b>3.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>3.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>3.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test"><i class="fa fa-check"></i><b>3.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>3.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="3.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>3.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html"><i class="fa fa-check"></i><b>4</b> Testing for differences between groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>4.1.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="4.1.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it"><i class="fa fa-check"></i><b>4.1.2</b> Activity - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.2</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---creating-a-new-likes-variable"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.2.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.2.2</b> Activity - Defining factors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#adapting-our-previous-code-to-make-new-histograms"><i class="fa fa-check"></i><b>4.3.1</b> Adapting our previous code to make new histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Next step: descriptive statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>4.5</b> Independent samples t-test</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Performing an independent samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.6</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.7" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#bonus---visualising-group-differences"><i class="fa fa-check"></i><b>4.7</b> Bonus - Visualising group differences</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>4.8</b> You are Free!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis Skills for Psychology in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-wrangling-and-visualisation" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Data wrangling and visualisation<a href="data-wrangling-and-visualisation.html#data-wrangling-and-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Data analysis in Psychology and any other discipline is 90% data wrangling and 10% actual analysis. This week we will start to understand how to manipulate and visualise data using R.</p>
+<p>As usual, download the zipped lab folder from the Moodle page for this week and unzip it somewhere sensible on your computer. Double click the <code>.Rproj</code> file to open RStudio, and open the<code>.R</code> script file to get started.</p>
+<div id="checking-installation-and-loading-packages" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Checking installation and loading packages<a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we can <strong>begin</strong> any script we first need to make sure that the <strong>required packages are installed</strong> in our version of RStudio. Next, we can <strong>load the required packages</strong> to be used in the script, using the <code>library()</code> function. Copy and paste the code block below into your script in RStudio and try running it.</p>
+<p>R Coders always start their scripts by loading all the packages need to run all the code contained within the script.</p>
+<div id="activity-load-your-packages" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Activity: Load your packages<a href="data-wrangling-and-visualisation.html#activity-load-your-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-wrangling-and-visualisation.html#cb19-1" tabindex="-1"></a><span class="co"># Check if packages are installed, if not install.</span></span>
+<span id="cb19-2"><a href="data-wrangling-and-visualisation.html#cb19-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(here)) <span class="fu">install.packages</span>(<span class="st">&#39;here&#39;</span>) <span class="co">#checks if a package is installed and installs it if required.</span></span>
+<span id="cb19-3"><a href="data-wrangling-and-visualisation.html#cb19-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
+<span id="cb19-4"><a href="data-wrangling-and-visualisation.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="data-wrangling-and-visualisation.html#cb19-5" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
+<span id="cb19-6"><a href="data-wrangling-and-visualisation.html#cb19-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Note that in the code above, we’ve added a fancy <code>if</code> statement to check if the packages are installed. If they are not installed, it will install them for you. This is a good practice to ensure that your code runs smoothly on any computer without needing to manually install packages. Particularly if you are using the computers in the School of Psychology (UNSW), where we have already installed the packages you need (and we ask you not to install any more!).</p>
+</div>
+</div>
+<div id="what-do-packages-do" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> What do packages do?<a href="data-wrangling-and-visualisation.html#what-do-packages-do" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should be able to see that we have installed and loaded <strong>2 different packages</strong>. Let’s first go over the basics of what a package is. In its simplest terms, a <strong>package is a toolbox</strong> that someone has created for us in R that <strong>makes our life easier</strong>. These packages build on the basic code that comes with the R programming language (what <strong>RStudio</strong> uses to run), called <code>base R</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/Data_wrangling_and_visualisation/Opening_an_R_package.gif" alt="The equivalent of loading an R package" width="50%" />
+<p class="caption">
+Figure 2.1: The equivalent of loading an R package
+</p>
+</div>
+</div>
+<div id="what-do-these-packages-do" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> What do these packages do?<a href="data-wrangling-and-visualisation.html#what-do-these-packages-do" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is always a <strong>good idea to check the documentation</strong> for a package before you use it. We can do this by using the <strong>help syntax</strong>, which is the <code>?</code>. The package we are trying to get help with is called <code>here</code>.</p>
+<div id="activity-find-out-about-packages" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Activity: find out about packages<a href="data-wrangling-and-visualisation.html#activity-find-out-about-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy and paste the below line of code to find out more about the <code>here</code> package. This will open a help page that tells us the <strong>purpose</strong> of the package and how it works.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-wrangling-and-visualisation.html#cb20-1" tabindex="-1"></a>?here <span class="co">#? loads the documentation for a specified package.</span></span></code></pre></div>
+<div style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;">
+<p><strong>Handy hint:</strong> If you find the help page too overwhelming, try scrolling to the bottom and looking for the <strong>‘Examples’</strong> section. This will show you some simple code that uses the package.</p>
+</div>
+</div>
+</div>
+<div id="organisation-and-csv-files" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Organisation and CSV files<a href="data-wrangling-and-visualisation.html#organisation-and-csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should notice that the zipped folder you downloaded contains a few extra files and folders, compared to last lab. Generally, the file and folder structure will follow what you have here for the remaining labs.</p>
+<p>Here is a quick guide to what is there:</p>
+<ul>
+<li>An R Project file called <strong>‘2_Data_wrangling_and_visualization.Rproj’</strong> Use this to open RStudio.</li>
+<li>A script called <strong>‘data_wrangling_and_visualization.R’</strong>.</li>
+<li>A text file called <strong>README.txt’</strong>, which contains information about the data. It is
+exceptionally good practice to make sure that your projects contain a README file that explains what the data is about. Hint: always read the README file.</li>
+<li>A folder called <strong>Data</strong>, containing a .csv file called <strong>‘PSYC2001_social-media-data.csv’</strong></li>
+<li>A folder called <strong>Output</strong>, which is where all your output will go.</li>
+</ul>
+<p>These are the <strong>key ingredients needed to organise all projects in R</strong>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/Data_wrangling_and_visualisation/folder-structure.png" alt="Project Organisation" width="100%" />
+<p class="caption">
+Figure 2.2: Project Organisation
+</p>
+</div>
+<p>You will notice that the data for today, called <code>PSYC2001_social-media-data.csv</code>, is a <strong>csv file</strong> (short for a <em>Comma Separated Value</em> file). Read the README.txt file to learn more about the data, if you haven’t already. And if you haven’t already, why not? Always read the README file.</p>
+<p>csv files are a common and handy way to store data, because they can be read by heaps of different programs, like Excel, Google Sheets, and R. They are simple text files where each line represents a row of data, and the values in each row are separated by commas. Try double clicking on the csv file now to see what happens. You’ll see that Excel offers to open it for you. Click ok to open the file in Excel and take a look at how the data looks. Then say ‘that’s very kind of you Excel, but we are more powerful than you. We R.’</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="images/Data_wrangling_and_visualisation/Data_in_excel.jpg" alt="Social Media Data in Excel" width="100%" />
+<p class="caption">
+Figure 2.3: Social Media Data in Excel
+</p>
+</div>
+</div>
+<div id="importing-your-data-in-r" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Importing your Data in R<a href="data-wrangling-and-visualisation.html#importing-your-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are now going to load our first dataset into R. To do this we will need to <strong>import the dataset</strong> using a function capable of importing csv files.</p>
+<div id="sec-import-data" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Activity: Import the data<a href="data-wrangling-and-visualisation.html#sec-import-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will be using <strong>two different functions</strong> to achieve this. The <code>read.csv()</code> function is used to import our csv dataset and it comes from the <code>utils</code> package which is part of <code>base R</code>. But the <code>read.csv()</code> function needs to know where the file lives on the computer. To do this, we use the <code>here()</code> function from the <code>here</code> package. This function tells R the <strong>location of the project</strong> we are working from, to make locating the data easier.</p>
+<p>Let’s first confirm that <code>here()</code> knows our current location on this PC (called the <strong>‘Working Directory’</strong>), by typing the following code into the <strong>console</strong> and hitting enter:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-wrangling-and-visualisation.html#cb21-1" tabindex="-1"></a><span class="fu">here</span>()</span></code></pre></div>
+<p>This should return the file path to the folder where the <code>.Rproj</code> file is located.</p>
+<p>Because <code>here</code> can return where the folder lives (i.e. the file path), we can use this to easily find where our file is located and read it in. Thanks, <code>here</code>!</p>
+<p>You will see in your script that we’ve started this line of code for you. Copy and paste what is missing into your script and run it (or type it yourself, if you are seeking digital liberty).</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-wrangling-and-visualisation.html#cb22-1" tabindex="-1"></a>social_media <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data.csv&quot;</span>)) <span class="co">#reads in csv files</span></span></code></pre></div>
+<p>If you are still unsure what we mean by ‘file path’ then please google it, google it now.</p>
+<p><strong>Now that we have read in our data, we have saved our data to an object called <code>social_media</code>.</strong> You can see this in the Environment tab in the top right section of your screen. Importantly, this particular object is a <strong>dataframe</strong>. A dataframe is a special type of object in R that is used to store data tables. It is similar to an Excel spreadsheet, or a data frame in Python’s pandas library. Dataframes are very useful for data analysis because they allow us to easily manipulate and analyze data.</p>
+<div style="border-left: 4px solid #FF9800; background-color: #FFF3E0; padding: 10px; margin: 10px 0;">
+<p><strong>Warning:</strong> If you have an error, that’s all part of coding! But do make sure you ask your tutor for help :)</p>
+</div>
+</div>
+</div>
+<div id="having-a-look-at-our-data" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Having a look at our data<a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our data should now be <strong>imported into R!</strong></p>
+<p>Recall from the <code>README.txt</code> file (<strong>you definitely should have read this by now</strong>) that this dataset was collected as part of an experiment investigating social media use in young Australian adults. Sixty young adults answered questions about their <strong>social media usage</strong> as well as their <strong>political attitudes</strong>. Data about their <strong>social media usage</strong> (e.g., likes) was collected while they used their preferred platforms under various conditions.</p>
+<p>The variables in the data are:</p>
+<ul>
+<li><code>id</code> – a unique identifier (S1–S60)</li>
+<li><code>age</code> – age in years</li>
+<li><code>time_on_social</code> – average hours/day on social media (self-report diary)</li>
+<li><code>urban</code> – urban (1) or rural (2) area (based on postcode density)
+-<code>good_mood_likes</code> – likes/10 min during a good mood (from platform + diary)</li>
+<li><code>bad_mood_likes</code> – as above, but during bad mood</li>
+<li><code>followers</code> – average number of followers across platforms</li>
+</ul>
+<p>The next 3 columns are political attitude subscales:</p>
+<ul>
+<li><code>informed</code> – how politically informed they feel (e.g., read news daily)</li>
+<li><code>campaign</code> – how much they engage in campaign-related discussion</li>
+<li><code>activism</code> – involvement in activism (e.g., protests, petitions)</li>
+</ul>
+<p>We should now check that we have <strong>imported into Rstudio matches this description (and what we saw when we opened it in excel)</strong>. There are a couple of ways to do this.</p>
+<div id="sec-data-view" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Activity: View the data. Always, always, view the data.<a href="data-wrangling-and-visualisation.html#sec-data-view" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is incredibly important to have a look at the data you are analysing. This will quickly tell you if what you are planning to do is sensible, or if things are likely to go horribly wrong. The main thing to remember when running analysis is: <strong>garbage in, garbage out</strong>. If your data is rubbish, your results will be rubbish. So always check your data first.</p>
+<ul>
+<li>The first way is to <strong>manually click</strong> through to the dataset. You can do this by:
+<ol style="list-style-type: decimal">
+<li>Clicking on <strong>Environment</strong> in the top right section of your screen.</li>
+<li>Clicking on <strong>social_media</strong>.</li>
+<li>You should see a new tab pop up with the data in a <strong>table-like format</strong> (this is called a <strong>dataframe</strong>).</li>
+<li>Make sure that this new tab looks similar to what you saw when you opened Excel file.</li>
+</ol></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="images/Data_wrangling_and_visualisation/Directing_students_to_view_data_in_R.gif" alt="Navigating to dataset" width="200%" />
+<p class="caption">
+Figure 2.4: Navigating to dataset
+</p>
+</div>
+<ul>
+<li>We can also do this <strong>programmatically</strong> using the code below. We’re taking you through some different ways of viewing data.</li>
+</ul>
+<p>Type the below into the console and run it.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-wrangling-and-visualisation.html#cb23-1" tabindex="-1"></a><span class="co"># Method 1 - Type in the name of the object</span></span>
+<span id="cb23-2"><a href="data-wrangling-and-visualisation.html#cb23-2" tabindex="-1"></a>social_media</span></code></pre></div>
+<p>This will print the entire dataset to the console. This is not ideal for large datasets, but it works ok-ish for small ones like this.</p>
+<p>Now adjust the next bit of code in your script so that it exactly matches what you see below, and run it. You can also see from the comments how the data will appear.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-wrangling-and-visualisation.html#cb24-1" tabindex="-1"></a><span class="co"># Method 2 - Use the View function</span></span>
+<span id="cb24-2"><a href="data-wrangling-and-visualisation.html#cb24-2" tabindex="-1"></a><span class="fu">View</span>(social_media) <span class="co">#view automatically displays the dataset in a tab.</span></span></code></pre></div>
+<p>Sometimes, you only want to get a sense of what the data looks like, without printing the whole thing to the console or opening a new tab. The next two methods do just that.</p>
+<p>Copy and paste both of the below lines of code into your script and run them.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-wrangling-and-visualisation.html#cb25-1" tabindex="-1"></a><span class="co"># Method 3 - Use the head function</span></span>
+<span id="cb25-2"><a href="data-wrangling-and-visualisation.html#cb25-2" tabindex="-1"></a><span class="fu">head</span>(social_media) <span class="co">#head displays the first 6 rows of each variable.</span></span></code></pre></div>
+<pre><code>##   id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed
+## 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3
+## 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6
+## 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9
+## 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6
+## 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0
+## 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4
+##   polit_campaign polit_activism
+## 1            3.2            3.6
+## 2            2.2            2.6
+## 3            2.7            3.0
+## 4            2.3            2.6
+## 5            2.9            3.3
+## 6            3.4            3.9</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-wrangling-and-visualisation.html#cb27-1" tabindex="-1"></a><span class="co"># Method 4 - Use the str function</span></span>
+<span id="cb27-2"><a href="data-wrangling-and-visualisation.html#cb27-2" tabindex="-1"></a><span class="fu">str</span>(social_media) <span class="co">#displays an overall summary of the object and variable structure.</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  10 variables:
+##  $ id             : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
+##  $ age            : num  15.2 16 16.8 15.6 17.1 15.7 19.7 18.6 19.6 15.5 ...
+##  $ time_on_social : num  3.06 2.18 1.92 2.61 3.24 2.44 1.46 1.52 1.92 2.1 ...
+##  $ urban          : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ good_mood_likes: num  22.8 46 50.8 29.9 37.1 26.9 14.8 26 6.5 45.7 ...
+##  $ bad_mood_likes : num  46.5 48.3 46.1 29.2 52.4 20.2 35.1 35.8 12.2 32.8 ...
+##  $ followers      : num  173.3 144.3 76.5 171.7 109.5 ...
+##  $ polit_informed : num  2.3 1.6 1.9 1.6 2 2.4 1.7 1.6 1.5 2.2 ...
+##  $ polit_campaign : num  3.2 2.2 2.7 2.3 2.9 3.4 2.4 2.2 2.1 3.1 ...
+##  $ polit_activism : num  3.6 2.6 3 2.6 3.3 3.9 2.7 2.6 2.4 3.5 ...</code></pre>
+<p>You should now have a good idea of what <code>PSYC2001_social-media.csv</code> looks like in RStudio. You should also be able to see that its a lot like what we saw in excel.</p>
+<p>You will also notice that the last function, <code>str()</code>, displays a <strong>summary</strong> of the object. This includes:</p>
+<ul>
+<li>The <strong>object type</strong> (a <strong>dataframe</strong>)</li>
+<li>The <strong>number of observations/rows</strong> (60)</li>
+<li>The <strong>number of variables/columns</strong> (10)</li>
+<li>The <strong>datatype</strong>: <strong>chr</strong> for <strong><code>id</code></strong>, and <strong>num</strong> for all other variables</li>
+</ul>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Please discuss with your deskmate and tutor what you think <strong>chr</strong> and <strong>num</strong> mean.</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="images/Data_wrangling_and_visualisation/Students_thinking.gif" alt="You thinking" width="50%" />
+<p class="caption">
+Figure 2.5: You thinking
+</p>
+</div>
+</div>
+</div>
+<div id="checking-the-quality-of-our-data" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Checking the quality of our data<a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once we have imported our dataset into R, it’s important to check the quality of the data. One simple way to do this is by using the <code>summary()</code> function.</p>
+<div id="activity-summarise-the-data" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Activity: Summarise the data<a href="data-wrangling-and-visualisation.html#activity-summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy and paste the below line of code into your script and run it.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling-and-visualisation.html#cb29-1" tabindex="-1"></a><span class="fu">summary</span>(social_media) <span class="co">#summary provides a quick overview of the data in each variable. </span></span></code></pre></div>
+<pre><code>##       id                 age        time_on_social         urban     good_mood_likes
+##  Length:60          Min.   :13.90   Min.   :-999.000   Min.   :1.0   Min.   : 6.50  
+##  Class :character   1st Qu.:15.70   1st Qu.:   1.920   1st Qu.:1.0   1st Qu.:31.60  
+##  Mode  :character   Median :16.50   Median :   2.365   Median :1.5   Median :45.90  
+##                     Mean   :16.87   Mean   : -30.845   Mean   :1.5   Mean   :43.04  
+##                     3rd Qu.:17.43   3rd Qu.:   3.042   3rd Qu.:2.0   3rd Qu.:53.40  
+##                     Max.   :23.00   Max.   :   4.320   Max.   :2.0   Max.   :89.20  
+##  bad_mood_likes    followers      polit_informed  polit_campaign  polit_activism 
+##  Min.   :12.20   Min.   : 61.40   Min.   :0.600   Min.   :0.800   Min.   :0.900  
+##  1st Qu.:39.08   1st Qu.: 76.47   1st Qu.:1.500   1st Qu.:2.100   1st Qu.:2.400  
+##  Median :49.30   Median :116.30   Median :1.800   Median :2.550   Median :2.900  
+##  Mean   :49.84   Mean   :124.76   Mean   :1.858   Mean   :2.602   Mean   :2.977  
+##  3rd Qu.:58.75   3rd Qu.:153.75   3rd Qu.:2.200   3rd Qu.:3.100   3rd Qu.:3.500  
+##  Max.   :91.20   Max.   :336.50   Max.   :3.400   Max.   :4.800   Max.   :5.500</code></pre>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Do you notice anything unusual in the output of this data ? Discuss with your neighbour and tutor.</p>
+</div>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Hint:</strong> Take a closer look at the <code>time_on_social</code> variable.</p>
+</div>
+</div>
+</div>
+<div id="cleaning-the-data" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Cleaning the data<a href="data-wrangling-and-visualisation.html#cleaning-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It should now be clear that this data is unusual because it has a <strong>minimum value</strong> of <code>-999</code> in the <code>time_on_social</code> variable which is measured in hours (we can’t have negative time !).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="images/Data_wrangling_and_visualisation/Back_To_The_Future.gif" alt="Negative time would be back to the future!" width="50%" />
+<p class="caption">
+Figure 2.6: Negative time would be back to the future!
+</p>
+</div>
+<p>A good question to ask now is - <strong>why are these values in the dataset?</strong></p>
+<p>Sometimes when collecting data, we can’t get a response from every participant. Instead of leaving a blank, researchers will sometimes put in a placeholder value like <code>-999</code> to show that the data is missing. These aren’t real numbers; they just mean the data wasn’t recorded. But <code>-999</code> isn’t the standard way to show missing data in R. R uses <code>NA</code> to represent missing values, and that’s important because most R functions know how to handle <code>NA</code> properly but they don’t know to ignore <code>-999</code>.</p>
+<div id="activity-find-and-replace--999-values" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Activity: Find and replace <code>-999</code> values<a href="data-wrangling-and-visualisation.html#activity-find-and-replace--999-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lets first have a look at how many <code>-999</code> values are present in the data. We can do this by using the <code>filter()</code> function from the <code>tidyverse</code> package which is used to keep (or remove) rows based on certain conditions.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-wrangling-and-visualisation.html#cb31-1" tabindex="-1"></a>social_media_filtered <span class="ot">&lt;-</span> <span class="fu">filter</span>(social_media, time_on_social <span class="sc">==</span> <span class="sc">-</span><span class="dv">999</span>) <span class="co">#keep all rows where `time_on_social` is equal to -999</span></span>
+<span id="cb31-2"><a href="data-wrangling-and-visualisation.html#cb31-2" tabindex="-1"></a><span class="fu">View</span>(social_media_filtered) <span class="co">#view the filtered dataframe</span></span></code></pre></div>
+<p>Handily, we can then use the <code>count()</code> function from the <code>tidyverse</code> package to sum the number of rows in the resulting dataframe.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-wrangling-and-visualisation.html#cb32-1" tabindex="-1"></a><span class="fu">count</span>(social_media_filtered) <span class="co">#count the number of rows in the filtered dataframe)</span></span></code></pre></div>
+<pre><code>##   n
+## 1 2</code></pre>
+</div>
+</div>
+<div id="introducing-piping" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Introducing Piping<a href="data-wrangling-and-visualisation.html#introducing-piping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A short aside to introduce a <strong>very special operation called a ‘pipe’</strong> or <code>%&gt;%</code>. This operation is part of the <code>tidyverse</code> package and allows you to pass the result from one function to the next seamlessly in a sort of assembly-line like fashion. <strong>Throughout the rest of the course we will be using ‘piping’ as it is easier to follow and code</strong>. For instance, lets repeat what we just did above but with pipes instead.</p>
+<div id="activity-pipe-with-pipes" class="section level3 hasAnchor" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Activity: Pipe with pipes<a href="data-wrangling-and-visualisation.html#activity-pipe-with-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy and paste the below code into your script and run it.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-wrangling-and-visualisation.html#cb34-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> <span class="co">#pass the values from social_media to the filter function</span></span>
+<span id="cb34-2"><a href="data-wrangling-and-visualisation.html#cb34-2" tabindex="-1"></a>  <span class="fu">filter</span>(time_on_social <span class="sc">==</span> <span class="sc">-</span><span class="dv">999</span>) <span class="sc">%&gt;%</span> <span class="co">#keep all rows that are equal to -999 and pass the result to count</span></span>
+<span id="cb34-3"><a href="data-wrangling-and-visualisation.html#cb34-3" tabindex="-1"></a>  <span class="fu">count</span>() <span class="co">#count the number of remaining columns</span></span></code></pre></div>
+<pre><code>##   n
+## 1 2</code></pre>
+<p>The answer should be satifsyingly the same as before. When coding, it is often a good idea to check you get the same answer by doing things in different ways. Then you know your code is doing the right thing and you can sleep well at night.</p>
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> Piping is not friends with every function. Some functions will not accept inputs from pipes (no matter how nice they are !). This will become clearer as we code throughout this course.</p>
+</div>
+<p>Now lets use a piping method to clean this data up by replacing <code>-999</code> values with more R readable <code>NA</code> values. <code>NA</code> stands for ‘Not Available’ and is the standard way to represent missing data in R. We can do this using the <code>mutate()</code> and <code>na_if()</code> functions from the <code>tidyverse</code> package. The <code>mutate()</code> function is used to alter or make new columns in a dataframe based on the conditions we specify and <code>na_if()</code> is used to replace given values with <code>NA</code> in a dataframe.</p>
+<p>Copy and paste the below code into your script and run it.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-wrangling-and-visualisation.html#cb36-1" tabindex="-1"></a>social_media_NA <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="data-wrangling-and-visualisation.html#cb36-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_on_social =</span> <span class="fu">na_if</span>(time_on_social,<span class="sc">-</span><span class="dv">999</span>)) <span class="co">#mutate alters columns and rows. na_if replaces -999 with NA</span></span></code></pre></div>
+<p>Now, very importantly, lets check that this worked by using the <code>summary()</code> function again.</p>
+<p>Re-use the summary() function in your code below the relevant comment. The one that
+says:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-wrangling-and-visualisation.html#cb37-1" tabindex="-1"></a><span class="do">## Now run the summary() function again</span></span></code></pre></div>
+</div>
+</div>
+<div id="exporting-data" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> Exporting Data<a href="data-wrangling-and-visualisation.html#exporting-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It would be a good idea to save this dataset for future tutorials, so that we don’t have to replace <code>-999</code> values with <code>NA</code> values every single time.</p>
+<p>We can do this with the <code>write.csv()</code> function from <code>baseR</code>. This function takes a dataframe in R and saves it as a .csv file on your computer. Later, we can simply read that csv back into R, and it will already be cleaned.</p>
+<div id="activity-save-the-cleaned-data" class="section level3 hasAnchor" number="2.10.1">
+<h3><span class="header-section-number">2.10.1</span> Activity: Save the cleaned data<a href="data-wrangling-and-visualisation.html#activity-save-the-cleaned-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy and paste this code into your script and run it. Then open the Output folder to check that it worked. You can do this by clicking on the folder in the Files tab in the bottom right section of RStudio.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-wrangling-and-visualisation.html#cb38-1" tabindex="-1"></a><span class="fu">write.csv</span>(social_media_NA, <span class="fu">here</span>(<span class="st">&quot;Output&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#creates a csv file from the dataframe social_media_NA</span></span></code></pre></div>
+</div>
+</div>
+<div id="data-visualization-using-ggplot2" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> Data visualization using <code>ggplot2</code><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Visualizing data is a crucial step in data analysis. You should never run a statistical analysis without first visualising your data. It helps us understand the distribution of our data, identify patterns, and communicate our findings effectively. It also helps us identify whether the data is suitable for the analysis we want to perform, or whether some weird values remain that could influence the result of our statistical tests, and even worse, our interpretations!</p>
+<p>So, let’s look at some data! We’re going to start by visualising the <code>time_on_social</code> variable.</p>
+<p>To do this we will need to use the <code>ggplot()</code> function. This is the main function from the <code>ggplot2</code> package which handily, comes for free with the <code>tidyverse</code> package. <code>ggplot()</code> provides the canvas of the graph you want to make.
+To make the basic canvas <code>ggplot()</code> requires two things:</p>
+<ol style="list-style-type: decimal">
+<li><p>The data that you want it to plot.</p></li>
+<li><p>The variables to go on the x and y axes.</p></li>
+</ol>
+<p>Importantly, <code>ggplot()</code> only provides the canvas. It does not draw anything by itself. You have to add layers to the canvas created by <code>ggplot()</code> by using other functions that can create bars, points or lines !</p>
+<div id="sec-make-bp" class="section level3 hasAnchor" number="2.11.1">
+<h3><span class="header-section-number">2.11.1</span> Activity: Create a boxplot in <code>ggplot()</code><a href="data-wrangling-and-visualisation.html#sec-make-bp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, let’s test what happens when we use <code>ggplot()</code> by itself. Complete the code
+in your script so that it matches the code block below and run it.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-wrangling-and-visualisation.html#cb39-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="data-wrangling-and-visualisation.html#cb39-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="co">#ggplot uses aesthetic (aes()) to understand what</span></span>
+<span id="cb39-3"><a href="data-wrangling-and-visualisation.html#cb39-3" tabindex="-1"></a><span class="co"># should be on the x and y axis</span></span></code></pre></div>
+<p>You should now see a blank canvas with only the y-axis labelled. This is because we have not added any layers to the canvas yet.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="images/Data_wrangling_and_visualisation/blank_canvas.png" alt="A blank canvas awaits our data-viz artistry" width="50%" />
+<p class="caption">
+Figure 2.7: A blank canvas awaits our data-viz artistry
+</p>
+</div>
+<p>So let’s add some layers to the canvas to make a graph. Here we use <code>geom_boxplot()</code> which creates a boxplot for us.</p>
+<p>What is a boxplot, we hear you ask? A boxplot is a graph that shows the spread of data points where the lower part of the “box” represents the bottom quartile (where 25% of the data lies), the upper part of the box represents the upper quartile (where 75% of the data lies) and the middle of the box represents the median (the middle value). The “whiskers” (vertical lines) extend to the smallest and largest values not considered outliers.</p>
+<p>Complete the code in your script so that it exactly matches the below, and then run it. Note there is a warning that 2 non-finite values have been removed. That’s just <code>ggplot</code> telling us ’hey, you got two NAs in here I had to take out. Did you know that?`</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-wrangling-and-visualisation.html#cb40-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="data-wrangling-and-visualisation.html#cb40-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
+<span id="cb40-3"><a href="data-wrangling-and-visualisation.html#cb40-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co"># adds a boxplot layer to the canvas</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/boxplot_ugly-1.png" width="672" /></p>
+<p>Ok, that’s a start, but there are a few things we can do to make this graph look better. First, the x-axis is numeric, but our data is categorical (we only have one category). So we can tell <code>ggplot()</code> to treat the x-axis as categorical by using the <code>scale_x_discrete()</code> function.</p>
+<p>Update your code in your script by adding the <code>scale_x_discrete()</code> function. This is adding another layer to your plot. Run the code again.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-wrangling-and-visualisation.html#cb42-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="data-wrangling-and-visualisation.html#cb42-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
+<span id="cb42-3"><a href="data-wrangling-and-visualisation.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co">#creates a boxplot</span></span>
+<span id="cb42-4"><a href="data-wrangling-and-visualisation.html#cb42-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>() <span class="co">#this tells ggplot that the x-axis is categorical.</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Ok, that is starting to look better. But let’s do one more thing. We can add labels to the axes using the <code>labs()</code> function.</p>
+<p>Update your code in your script by adding the <code>ylab()</code> function. Make sure your code now exactly matches what is below. Run the code again to see what you get.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-wrangling-and-visualisation.html#cb44-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="data-wrangling-and-visualisation.html#cb44-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes())</span></span>
+<span id="cb44-3"><a href="data-wrangling-and-visualisation.html#cb44-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co">#creates a boxplot</span></span>
+<span id="cb44-4"><a href="data-wrangling-and-visualisation.html#cb44-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>() <span class="sc">+</span> <span class="co">#this tells ggplot that the x-axis is categorical.</span></span>
+<span id="cb44-5"><a href="data-wrangling-and-visualisation.html#cb44-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Time on social media (hours)&quot;</span>) <span class="co">#adds a y-axis label</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/boxplot_better-1.png" width="672" /></p>
+<p>There, that’s much better!</p>
+<div style="border-left: 4px solid #FF9800; background-color: #FFF3E0; padding: 10px; margin: 10px 0;">
+<p><strong>Warning:</strong> We receive a warning here because <code>ggplot()</code> is able to recognise and remove ‘NA’ values. Be <strong>careful</strong> as not all R functions are able to do this.</p>
+</div>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What approximately is the median value? The lower quartile? The upper quartile? Is there another way that we could get this information in a more exact form ? Discuss this with your deskmate and your tutor.</p>
+</div>
+</div>
+<div id="sec-make-histogram" class="section level3 hasAnchor" number="2.11.2">
+<h3><span class="header-section-number">2.11.2</span> Activity: More data-viz, more better - Creating a histogram in <code>ggplot()</code><a href="data-wrangling-and-visualisation.html#sec-make-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>ggplot()</code> can be customised with so many other functions that we have shown here to make truly <a href="https://r-graph-gallery.com/ggplot2-package.html">beautiful looking plots</a>. We will be learning how to do this throughout the next few weeks.</p>
+<p>For now lets see if you can put some of the skills you have learned so far to good use. See if you can work out how to make a histogram of the <code>time_on_social</code> variable using the function <code>geom_histogram()</code>. Note that a histogram is a graph that shows the distribution of a single numeric variable by dividing the data into bins and counting how many data points fall into each bin. The data is plotted along the x-axis, whereas the boxplot plotted the data along the y-axis. There, no more hints!</p>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Hint:</strong> You will only need to provide an x variable this time !</p>
+</div>
+<p>OK, one more hint.</p>
+<p>Complete the below code in your script. We have been a little cheeky and have not given you the answer this time.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-wrangling-and-visualisation.html#cb46-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="data-wrangling-and-visualisation.html#cb46-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> )) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
+<span id="cb46-3"><a href="data-wrangling-and-visualisation.html#cb46-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="co">#creates a histogram</span></span>
+<span id="cb46-4"><a href="data-wrangling-and-visualisation.html#cb46-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on social media&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> <span class="co">#short for &quot;labels&quot;, use to label axes and titles.</span></span>
+<span id="cb46-5"><a href="data-wrangling-and-visualisation.html#cb46-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#changes the theme of the plot to a classic theme. makes it prettier!</span></span></code></pre></div>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What conclusions would you draw about the shape of the data, given your histogram? Please discuss with your deskmate and tutor.</p>
+</div>
+</div>
+</div>
+<div id="you-are-free-1" class="section level2 hasAnchor" number="2.12">
+<h2><span class="header-section-number">2.12</span> You are Free!<a href="data-wrangling-and-visualisation.html#you-are-free-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Well done! You have completed everything you need to for this week. If you have finished in a record time please consult with your tutor about what to do next. Otherwise we will see you next lab!</p>
+<p>Also, make sure to save your script when you’re done. This is your record of what you’ve done today, and you can refer back to it later. (One more hint for the road: you will refer back to it in future labs).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="images/Data_wrangling_and_visualisation/Ight_Imma_Head_Out.jpg" alt="Students reaction to this information." width="50%" />
+<p class="caption">
+Figure 2.8: Students reaction to this information.
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-testing-first-hypothesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02_Data-wrangling-and-visualisation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

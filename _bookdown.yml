@@ -1,0 +1,12 @@
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "01_Introduction-to-R.Rmd",
+  "02_Data-wrangling-and-visualisation.Rmd",
+  "03_Testing-our-first-hypothesis.Rmd",
+  "04_Testing-between-groups.Rmd"
+]
+output_dir: "docs"
