@@ -5,7 +5,7 @@ Bart Cooley
 Marios Panayi  
 Peter Lovibond  
 
-ADD LICENSE DETAILS
+License: GGPLV3
 
 This repository contains the bookdown project that is a guide to data analysis skills for psychologists, using R and R Studio.  
 
