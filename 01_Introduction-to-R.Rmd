@@ -29,8 +29,10 @@ knitr::include_graphics("images/Introduction_to_R/folder.png")
 
 Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in '.Rproj'. This will open RStudio.
 
+'Rproj' stands for 'R project'. A project can be thought of as all the files that live in the same folder as the '.Rproj' file. Having a reference to where these files are (which is what the '.Rproj' file gives you) will come in very handy in the next tutorial, and beyond.
+
 ::: {style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;"}
-<strong>Why should I open RStudio by clicking on the '.Rproj' file?</strong> Indeed, this may seem like a strange request. .Rproj files automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer next week). This also means you get to save a lot of typing in future computing lab tutorials.
+<strong>Why should I open RStudio by clicking on the '.Rproj' file?</strong> Indeed, this may seem like a strange request. An .Rproj file automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.
 :::
 
 ## Getting to know R Studio
@@ -57,7 +59,7 @@ Click on the Console (anywhere), and type the following:
 
 Then press enter. You should see that R has calculated the answer for you. 
 
-You can try other calculations, for example (you should also do this one): 
+You can try other calculations, for example (you should also type this one into the console, and get the answer): 
 
 ```{r console2, eval=FALSE}
 
@@ -109,7 +111,7 @@ knitr::include_graphics("images/Introduction_to_R/result_ann.png")
 
 ## Functions and arguments {#sec-get-help}
 
-**Functions** in R allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of **arguments**. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format `?function`. 
+**Functions** allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of **arguments**. An argument isn't a sign of discontent, but rather, is a way of giving a function the bits of information it needs to work. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format `?function`. 
 
 Before, we calculated `(5 + 4 + 3) / 3` in the console. You may have noticed that we add three numbers and then divide by the total number of numbers we have. You may have also noticed that this is the formula for calculating the mean (or average) of a set of numbers.
 
@@ -140,7 +142,9 @@ mean(x=c(5, 4, 3))
 
 The output in the console should match the answer you got when you calculated (5 + 4 + 3) / 3 by hand. This is but a simple example, but I am sure you can imagine the power of functions when you have many more numbers to work with.
 
-You'll see in the code above that we have put the numbers together in some brackets preceded by the letter c `c()`. This is another function that combines the numbers into something called a vector. You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). We will learn more about vectors later in this course.
+You'll see in the code above that we have put the numbers together in some brackets preceded by the letter c `c()`. You can think of `c` as standing for concatenate. `c()` is actually a function, that combines the numbers into something called a vector. 
+
+You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). Its handy to keep things in vectors as it means you can work on all the things in the vector at the same time, such as adding 2 to every element using `c(1,2,3) + 2`. Try typing that into the console (and hitting enter) to see what happens.
 
 ::: {style="border-left: 4px solid #2196F3; background-color: #9cd5ff; padding: 10px; margin: 10px 0;"}
 <strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask "What does the mean() function in R do?" and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.
@@ -183,7 +187,7 @@ However, the power of R is that it is extendable and open source - put simply, i
 <strong>Info:</strong> The UNSW psychology computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine.
 :::
 
-### Activity: Install the tidyverse
+### Activity - Install the tidyverse
 
 In order to use a package, you must first install it. The following code installs the package `tidyverse`, a package we will use very frequently in this course.
 
@@ -199,7 +203,7 @@ You only need to install a package once, however, each time you start R you need
 
 To load packages we use the function `library()`. Typically you would start any analysis script by loading all of the packages you need, but we will come back to that in the later labs.
 
-### Activity: Load the tidyverse
+### Activity - Load the tidyverse
 
 * Run the below code in the console to load the tidyverse. You can do this regardless of whether you are using your own computer or a University machine.  
 
@@ -215,7 +219,7 @@ Now that we've loaded the `tidyverse` package we can use any of the functions it
 
 A large part of your coding for data analysis will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using `<-`.
 
-### Activity: Create some objects
+### Activity - Create some objects
 
 * Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. You should see that `name`, `age`, `today`, `new_year`, and `data` appear in the environment pane.  
 
@@ -224,8 +228,9 @@ A large part of your coding for data analysis will involve creating and manipula
 name <- "emily"
 age <- 15 + 18 
 today <-Sys.Date()
-new_year <- as.Date("2020-01-01")
+new_year <- as.Date("2025-01-01")
 data <- rnorm(n = 10, mean = 15, sd = 3)
+M_values <- mean(c(5,4,3))
 
 ```
 
@@ -235,7 +240,7 @@ knitr::include_graphics("images/Introduction_to_R/objects-enviro.png")
 
 ```
 
-Note that in these examples, `name`,`age`, and `new_year` would always contain the values `emily`, `33`, and the date of New Year's Day 2020, however, `today` will draw the date from the operating system. `data` has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See `?rnorm` for more information on how this function works.
+Note that in these examples, `name`,`age`, and `new_year` would always contain the values `emily`, `33`, and the date of New Year's Day 2025, however, `today` will draw the date from the operating system. `data` has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See `?rnorm` for more information on how this function works. You should recognise by now what has been saved to `M_values`.
 
 ::: {style="border-left: 4px solid #2196F3; background-color: #8cc6f5; padding: 10px; margin: 10px 0;"}
 <strong>Warning:</strong> You may also see objects referred to as 'variables'. There is a difference between the two in programming terms, however, they are used synonymously very frequently.
@@ -267,7 +272,7 @@ decade <- age + 10
 
 You will constantly be creating objects throughout this course and you will learn more about them and how they behave as we go along. For now it is enough to understand that they are a way of saving values, that these values can be numbers, text, or the result of operations, and that they can be used in further operations to create new variables. 
 
-### Activity - Explore Datatypes
+### Activity - Explore datatypes
 
 For now, we can have a look at the datatypes of our objects using the function `typeof`. 
 
@@ -308,7 +313,7 @@ knitr::include_graphics("images/Introduction_to_R/broom.png")
 
 Now that you have cleared your Environment, you can learn the true power of scripts. They allow you to recreate your entire analysis from scratch, just by running the script.
 
-### Final Activity: Run the script
+### Final Activity - Run the script
 
 The last activity for the day...highlight all the code in your script and run it. You should see all of the objects you created earlier reappear in the environment pane.
 

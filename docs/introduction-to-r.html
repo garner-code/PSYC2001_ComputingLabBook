@@ -168,18 +168,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
 <li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
 <ul>
-<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity: Install the tidyverse</a></li>
-<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity: Load the tidyverse</a></li>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity - Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity - Load the tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity: Create some objects</a></li>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
 </ul></li>
-<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---explore-datatypes"><i class="fa fa-check"></i><b>1.9.1</b> Activity - Explore datatypes</a></li>
+</ul></li>
 <li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
 <li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
 <ul>
-<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity-run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity: Run the script</a></li>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity---run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity - Run the script</a></li>
 </ul></li>
 <li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
 </ul></li>
@@ -329,8 +332,9 @@ Figure 1.2: Every lab folder will contain the files you need for the session, an
 </p>
 </div>
 <p>Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in ‘.Rproj’. This will open RStudio.</p>
+<p>‘Rproj’ stands for ‘R project’. A project can be thought of as all the files that live in the same folder as the ‘.Rproj’ file. Having a reference to where these files are (which is what the ‘.Rproj’ file gives you) will come in very handy in the next tutorial, and beyond.</p>
 <div style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;">
-<p><strong>Why should I open RStudio by clicking on the ‘.Rproj’ file?</strong> Indeed, this may seem like a strange request. .Rproj files automatically tells R where your files are located. This is called ‘setting the working directory’. What this means is that you won’t have to manually tell R where on the computer your needed files live (why will become clearer next week). This also means you get to save a lot of typing in future computing lab tutorials.</p>
+<p><strong>Why should I open RStudio by clicking on the ‘.Rproj’ file?</strong> Indeed, this may seem like a strange request. An .Rproj file automatically tells R where your files are located. This is called ‘setting the working directory’. What this means is that you won’t have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.</p>
 </div>
 </div>
 <div id="getting-to-know-r-studio" class="section level2 hasAnchor" number="1.3">
@@ -348,7 +352,7 @@ Figure 1.3: The RStudio interface: ah, that’s better!
 <p>Click on the Console (anywhere), and type the following:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <p>Then press enter. You should see that R has calculated the answer for you.</p>
-<p>You can try other calculations, for example (you should also do this one):</p>
+<p>You can try other calculations, for example (you should also type this one into the console, and get the answer):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction-to-r.html#cb2-1" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
 <p>Important! If you are ever unsure about what a piece of code is doing, you should try running it (or bits of it) in the console, to see what answers each bit of code gives you. This is a great way to learn what code does and to debug your own code when it doesn’t work.</p>
 </div>
@@ -395,7 +399,7 @@ Figure 1.6: We all want results.
 </div>
 <div id="sec-get-help" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Functions and arguments<a href="introduction-to-r.html#sec-get-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Functions</strong> in R allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of <strong>arguments</strong>. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format <code>?function</code>.</p>
+<p><strong>Functions</strong> allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of <strong>arguments</strong>. An argument isn’t a sign of discontent, but rather, is a way of giving a function the bits of information it needs to work. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format <code>?function</code>.</p>
 <p>Before, we calculated <code>(5 + 4 + 3) / 3</code> in the console. You may have noticed that we add three numbers and then divide by the total number of numbers we have. You may have also noticed that this is the formula for calculating the mean (or average) of a set of numbers.</p>
 <p>Often in Psychology, we want to calculate the mean when we have many more than three numbers. This is where functions come in handy. Let’s look at the function <code>mean()</code>.</p>
 <div id="activity---using-a-function" class="section level3 hasAnchor" number="1.5.1">
@@ -413,7 +417,8 @@ Figure 1.6: We all want results.
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-r.html#cb4-1" tabindex="-1"></a><span class="co"># run the below line of code to see what answer you get</span></span>
 <span id="cb4-2"><a href="introduction-to-r.html#cb4-2" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
 <p>The output in the console should match the answer you got when you calculated (5 + 4 + 3) / 3 by hand. This is but a simple example, but I am sure you can imagine the power of functions when you have many more numbers to work with.</p>
-<p>You’ll see in the code above that we have put the numbers together in some brackets preceded by the letter c <code>c()</code>. This is another function that combines the numbers into something called a vector. You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). We will learn more about vectors later in this course.</p>
+<p>You’ll see in the code above that we have put the numbers together in some brackets preceded by the letter c <code>c()</code>. You can think of <code>c</code> as standing for concatenate. <code>c()</code> is actually a function, that combines the numbers into something called a vector.</p>
+<p>You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). Its handy to keep things in vectors as it means you can work on all the things in the vector at the same time, such as adding 2 to every element using <code>c(1,2,3) + 2</code>. Try typing that into the console (and hitting enter) to see what happens.</p>
 <div style="border-left: 4px solid #2196F3; background-color: #9cd5ff; padding: 10px; margin: 10px 0;">
 <p><strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask “What does the mean() function in R do?” and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.</p>
 </div>
@@ -440,8 +445,8 @@ Figure 1.6: We all want results.
 <div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
 <p><strong>Info:</strong> The UNSW psychology computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine.</p>
 </div>
-<div id="activity-install-the-tidyverse" class="section level3 hasAnchor" number="1.7.1">
-<h3><span class="header-section-number">1.7.1</span> Activity: Install the tidyverse<a href="introduction-to-r.html#activity-install-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="activity---install-the-tidyverse" class="section level3 hasAnchor" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Activity - Install the tidyverse<a href="introduction-to-r.html#activity---install-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In order to use a package, you must first install it. The following code installs the package <code>tidyverse</code>, a package we will use very frequently in this course.</p>
 <p>If you are interested in learning more about tidyverse and how incredibly useful it is in R, consider going through some of the chapters and exercises in <a href="https://r4ds.hadley.nz/">R for Data Science</a>. It’s also a great reference whenever you need help using functions from the tidyverse. If you want to learn more coding skills in R, we highly recommend working your way through this book.</p>
 <ul>
@@ -451,8 +456,8 @@ Figure 1.6: We all want results.
 <p>You only need to install a package once, however, each time you start R you need to load the packages you want to use, in a similar way that you need to install an app on your phone once, but you need to open it every time you want to use it.</p>
 <p>To load packages we use the function <code>library()</code>. Typically you would start any analysis script by loading all of the packages you need, but we will come back to that in the later labs.</p>
 </div>
-<div id="activity-load-the-tidyverse" class="section level3 hasAnchor" number="1.7.2">
-<h3><span class="header-section-number">1.7.2</span> Activity: Load the tidyverse<a href="introduction-to-r.html#activity-load-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="activity---load-the-tidyverse" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Activity - Load the tidyverse<a href="introduction-to-r.html#activity---load-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Run the below code in the console to load the tidyverse. You can do this regardless of whether you are using your own computer or a University machine.</li>
 </ul>
@@ -464,23 +469,24 @@ Figure 1.6: We all want results.
 <div id="objects" class="section level2 hasAnchor" number="1.8">
 <h2><span class="header-section-number">1.8</span> Objects<a href="introduction-to-r.html#objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A large part of your coding for data analysis will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using <code>&lt;-</code>.</p>
-<div id="activity-create-some-objects" class="section level3 hasAnchor" number="1.8.1">
-<h3><span class="header-section-number">1.8.1</span> Activity: Create some objects<a href="introduction-to-r.html#activity-create-some-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="activity---create-some-objects" class="section level3 hasAnchor" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> Activity - Create some objects<a href="introduction-to-r.html#activity---create-some-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. You should see that <code>name</code>, <code>age</code>, <code>today</code>, <code>new_year</code>, and <code>data</code> appear in the environment pane.</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-r.html#cb9-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;emily&quot;</span></span>
 <span id="cb9-2"><a href="introduction-to-r.html#cb9-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">18</span> </span>
 <span id="cb9-3"><a href="introduction-to-r.html#cb9-3" tabindex="-1"></a>today <span class="ot">&lt;-</span><span class="fu">Sys.Date</span>()</span>
-<span id="cb9-4"><a href="introduction-to-r.html#cb9-4" tabindex="-1"></a>new_year <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>)</span>
-<span id="cb9-5"><a href="introduction-to-r.html#cb9-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<span id="cb9-4"><a href="introduction-to-r.html#cb9-4" tabindex="-1"></a>new_year <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2025-01-01&quot;</span>)</span>
+<span id="cb9-5"><a href="introduction-to-r.html#cb9-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb9-6"><a href="introduction-to-r.html#cb9-6" tabindex="-1"></a>M_values <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-objects-enviro"></span>
 <img src="images/Introduction_to_R/objects-enviro.png" alt="Objects in the environment" width="366" />
 <p class="caption">
 Figure 1.7: Objects in the environment
 </p>
 </div>
-<p>Note that in these examples, <code>name</code>,<code>age</code>, and <code>new_year</code> would always contain the values <code>emily</code>, <code>33</code>, and the date of New Year’s Day 2020, however, <code>today</code> will draw the date from the operating system. <code>data</code> has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See <code>?rnorm</code> for more information on how this function works.</p>
+<p>Note that in these examples, <code>name</code>,<code>age</code>, and <code>new_year</code> would always contain the values <code>emily</code>, <code>33</code>, and the date of New Year’s Day 2025, however, <code>today</code> will draw the date from the operating system. <code>data</code> has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See <code>?rnorm</code> for more information on how this function works. You should recognise by now what has been saved to <code>M_values</code>.</p>
 <div style="border-left: 4px solid #2196F3; background-color: #8cc6f5; padding: 10px; margin: 10px 0;">
 <p><strong>Warning:</strong> You may also see objects referred to as ‘variables’. There is a difference between the two in programming terms, however, they are used synonymously very frequently.</p>
 </div>
@@ -497,7 +503,11 @@ Figure 1.7: Objects in the environment
 </div>
 <div id="datatypes" class="section level2 hasAnchor" number="1.9">
 <h2><span class="header-section-number">1.9</span> Datatypes<a href="introduction-to-r.html#datatypes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You will constantly be creating objects throughout this course and you will learn more about them and how they behave as we go along. For now it is enough to understand that they are a way of saving values, that these values can be numbers, text, or the result of operations, and that they can be used in further operations to create new variables. For now, we can have a look at the datatypes of our objects using the function <code>typeof</code>.</p>
+<p>You will constantly be creating objects throughout this course and you will learn more about them and how they behave as we go along. For now it is enough to understand that they are a way of saving values, that these values can be numbers, text, or the result of operations, and that they can be used in further operations to create new variables.</p>
+<div id="activity---explore-datatypes" class="section level3 hasAnchor" number="1.9.1">
+<h3><span class="header-section-number">1.9.1</span> Activity - Explore datatypes<a href="introduction-to-r.html#activity---explore-datatypes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For now, we can have a look at the datatypes of our objects using the function <code>typeof</code>.</p>
+<p>You will see the below lines of code in your script. Run them and make sure you get the same answers as you see here.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="co">#These are both doubles (i.e numbers!)</span></span>
 <span id="cb13-2"><a href="introduction-to-r.html#cb13-2" tabindex="-1"></a><span class="fu">typeof</span>(age)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -508,6 +518,7 @@ Figure 1.7: Objects in the environment
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
 <p><strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. We will learn about using these datatypes (as well as some of the others) throughout this course, so don’t fret if you don’t understand it yet!</p>
+</div>
 </div>
 </div>
 <div id="looking-after-the-environment" class="section level2 hasAnchor" number="1.10">
@@ -528,8 +539,8 @@ Figure 1.8: Clearing the workspace
 <div id="the-power-of-scripts" class="section level2 hasAnchor" number="1.11">
 <h2><span class="header-section-number">1.11</span> The power of scripts<a href="introduction-to-r.html#the-power-of-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that you have cleared your Environment, you can learn the true power of scripts. They allow you to recreate your entire analysis from scratch, just by running the script.</p>
-<div id="final-activity-run-the-script" class="section level3 hasAnchor" number="1.11.1">
-<h3><span class="header-section-number">1.11.1</span> Final Activity: Run the script<a href="introduction-to-r.html#final-activity-run-the-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="final-activity---run-the-script" class="section level3 hasAnchor" number="1.11.1">
+<h3><span class="header-section-number">1.11.1</span> Final Activity - Run the script<a href="introduction-to-r.html#final-activity---run-the-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The last activity for the day…highlight all the code in your script and run it. You should see all of the objects you created earlier reappear in the environment pane.</p>
 </div>
 </div>
