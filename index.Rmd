@@ -6,12 +6,12 @@ site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
-url: https://bookdown.org/yihui/bookdown
+url: https://garner-code.github.io/PSYC2001_ComputingLabBook/
 cover-image: images/cover_temp.png
 description: |
   This book contains the complete guide for computing tutorials for PSYC2001 at UNSW.
 link-citations: yes
-github-repo: rstudio/bookdown-demo # KG change this
+github-repo: https://github.com/garner-code/PSYC2001_ComputingLabBook # KG change this
 ---
 
 # Course Information {-}
