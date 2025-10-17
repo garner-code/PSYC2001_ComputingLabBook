@@ -27,12 +27,12 @@ Once the folder is unzipped and moved, open it up to take a peek at the contents
 knitr::include_graphics("images/Introduction_to_R/folder.png")
 ```
 
-Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in '.Rproj'. This will open RStudio.
+Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in `.Rproj`. This will open RStudio.
 
-'Rproj' stands for 'R project'. A project can be thought of as all the files that live in the same folder as the '.Rproj' file. Having a reference to where these files are (which is what the '.Rproj' file gives you) will come in very handy in the next tutorial, and beyond.
+**Rproj** stands for **R project**. A project can be thought of as all the files that live in the same folder as the `.Rproj` file. Having a reference to where these files are (which is what the `.Rproj` file gives you) will come in very handy in the next tutorial, and beyond.
 
 ::: {style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;"}
-<strong>Why should I open RStudio by clicking on the '.Rproj' file?</strong> Indeed, this may seem like a strange request. An .Rproj file automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.
+<strong>Why should I open RStudio by clicking on the `.Rproj` file?</strong> Indeed, this may seem like a strange request. An `.Rproj` file automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.
 :::
 
 ## Getting to know R Studio
@@ -73,7 +73,7 @@ Important! If you are ever unsure about what a piece of code is doing, you shoul
 
 The console is great for small calculations and testing code, but it isn't very good for doing analyses that you want to keep. For this, we use scripts. A script is simply a text file that contains code. You know you have an R script when the filename ends in '.R'. You can write code in a script and then run it in the console. This means that you can save your code and come back to it later. It also means that anyone, anywhere else in the world can reproduce your analysis by running your script. This is a key part of open science and reproducible research.
 
-### Activity - Getting to know scripts
+### Activity - Getting to know scripts {#sec-run-code}
 
 * Open the script `your-first-script.R` in R Studio. You can do this by clicking on the file in the Files tab (bottom right window) or by using File > Open File... from the top menu.
 
