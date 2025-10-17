@@ -19,7 +19,7 @@ knitr::include_graphics("images/Introduction_to_R/Basic_R.png")
 
 ## Getting started
 
-You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder somewhere sensible, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
+You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
 
 Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -
 
@@ -290,7 +290,7 @@ typeof(name)
 ```
 
 ::: {style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;"}
-<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
+<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. Integers are always whole numbers, whereas objects of type double can have decimals. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
 :::
 
 
