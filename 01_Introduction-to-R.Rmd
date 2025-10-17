@@ -1,16 +1,14 @@
 # Introduction to R 
 
-::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
-<strong>Credit:</strong> This chapter heavily borrows from the work of Emily Nordmann at the University of Glasgow. Thanks, Emily!
-https://psyteachr.github.io/ads-v3/01-intro.html
-:::
-
 To perform data analysis in Psychology, one needs some powerful software to help you get data into shape, and to apply all the fancy statistical tests that you will learn about in this course. In this course, we will be using the programming language R and the software R Studio to do this.
 
 ## R and R Studio
 
-For this course, you need two different bits of software, [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a programming language that you will write code in and R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn't look as good and it would be much harder without things like spell-checking and formatting. 
+For this course, you need two different bits of software, [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a programming language that you will write code in and R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad* to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn't look as good and it would be much harder without things like spell-checking and formatting. 
 
+::: {style="border-left: 4px solid #32a2a8; background-color: #cbf3f5; padding: 10px; margin: 10px 0;"}
+If you haven't used a plain text editor, open either NotePad (Windows) or TextEdit (Mac) and do a bit of typing. Now imagine writing an assignment in it. 
+:::
 
 In a similar way, you can use R without R Studio but we wouldn't recommend it. The key thing to remember is that although you will do all of your work using R Studio for this course, you are actually using two pieces of software which means that from time-to-time, both of them may have separate updates.
 
@@ -318,4 +316,7 @@ knitr::include_graphics("images/Introduction_to_R/Psychology_student_reaction.jp
 
 ```
 
-
+::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
+<strong>Credit:</strong> This chapter heavily borrows from the work of Emily Nordmann at the University of Glasgow. Thanks, Emily!
+https://psyteachr.github.io/ads-v3/01-intro.html
+:::
