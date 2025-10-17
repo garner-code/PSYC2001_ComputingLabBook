@@ -18,18 +18,24 @@ github-repo: https://github.com/garner-code/PSYC2001_ComputingLabBook # KG chang
 
 ## The purpose of this coursebook
 
-Welcome to the computing tutorials for PSYC2001. This coursebook has been designed to support your learning of statistics through hands-on practice with R. It accompanies the tutorial folders available on Moodle, and will guide you step-by-step through the data analysis components of the course. The focus is not just on memorising, but on learning how to think about data, ask good questions, and use R as a tool to answer them. 
+Welcome to the computing tutorials for PSYC2001. This coursebook has been designed to support your learning of statistics through hands-on practice with R. It accompanies the lab tutorial folders available on Moodle, and will guide you step-by-step through the data analysis components of the course. The focus is not just on memorising, but on learning how to think about data, ask good questions, and use R as a tool to answer them. 
 
 ## Structure of the Coursebook
 
-Each chapter introduces a key concept in statistics. You will see worked examples with code that runs in R. These examples show you how to apply data analysis statistical techniques step by step. Throughout the chapters, you will find exercises to help you complete code in your own scripts. Completing the code in your own scripts is important, because you will need these coding skills to complete your assignment for the course, and beyond! Throughout this course book there will be questions that encourage you to think about about or apply what you've learned in new situation. 
+Each chapter introduces a key concept in statistics. You will see worked examples with code that runs in R. These examples show you how to apply data analysis and statistical techniques, step by step. Throughout the chapters, you will find exercises to help you complete code in your own scripts. Completing the code in your own scripts is important, because you will need these coding skills to complete your assignment for the course, and beyond! Throughout this course book there will be questions that encourage you to think about about or apply what you've learned in new situation. 
 
 ## Bugs are important
 
 Learning to code involves making lots of errors. When a piece of code doesn't work, it's because you have a 'bug' in your code. This can feel disheartening at first, because we often think that bugs are a sign of failure. But bugs are actually an important part of learning to code. They help you to understand how the code works, and they help you to learn how to debug your code. So, don't be afraid of bugs! Embrace them as part of the learning process. In fact, once you've been coding long enough, you'll become deeply suspicious when you don't find bugs.
 
+```{r img-bugs, echo=FALSE, fig.align='center', fig.cap="Remember, we like bugs! They help us solve the issues with our code (Image courtesy of Copilot)", echo=FALSE, fig.align='center'}
+
+knitr::include_graphics("images/Index/we-like-bugs.png")
+
+```
+
 ## Setting up R and RStudio
 
 All of the UNSW School of Psychology computers have R and R Studio installed. However, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up. 
 
-Both R and RStudio are freely available so you may wish to install them on your own machine. There is a useful [guide to installing them both here](https://psyteachr.github.io/hack-your-data/r_instructions.html) that you can use. Note that the PSYC2001 staff are unable to help you if you have specific technical issues setting up R and RStudio on your own machine. But the tutors can support you using R and RStudio on the School of Psychology computers in the computer labs. If you are having specific technical issues setting this up on your own machine, then you should submit an issue to UNSW IT Services.
+Both R and RStudio are freely available so you may wish to install them on your own machine. There is a useful [guide to installing them both here](https://psyteachr.github.io/hack-your-data/r_instructions.html) that you can use. Note that the PSYC2001 staff are unable to help you if you have specific technical issues setting up R and RStudio on your own machine. But the tutors can support you using R and RStudio on the School of Psychology computers in the computer labs. If you are having specific technical issues setting this up on your own machine, then you should submit an issue to [UNSW IT Services](https://www.unsw.edu.au/myit/services/software-applications/software-study).

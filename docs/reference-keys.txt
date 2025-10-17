@@ -1,3 +1,4 @@
+fig:img-bugs
 fig:baseR
 fig:folder
 fig:img-rstudio
