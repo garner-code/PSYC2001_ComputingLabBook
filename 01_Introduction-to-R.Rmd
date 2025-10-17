@@ -91,7 +91,7 @@ knitr::include_graphics("images/Introduction_to_R/script_ann.png")
 
 ```{r img-highlightcode, echo=FALSE, fig.align='center', fig.cap="Highlight your code and then run it.", echo=FALSE, fig.align='center'}
 
-knitr::include_graphics("images/Introduction_to_R/highlight-code.jpg")
+knitr::include_graphics("images/Introduction_to_R/highlight-code.png")
 
 ```
 
