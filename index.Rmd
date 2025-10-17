@@ -28,7 +28,7 @@ Each chapter introduces a key concept in statistics. You will see worked example
 
 Learning to code involves making lots of errors. When a piece of code doesn't work, it's because you have a 'bug' in your code. This can feel disheartening at first, because we often think that bugs are a sign of failure. But bugs are actually an important part of learning to code. They help you to understand how the code works, and they help you to learn how to debug your code. So, don't be afraid of bugs! Embrace them as part of the learning process. In fact, once you've been coding long enough, you'll become deeply suspicious when you don't find bugs.
 
-```{r img-bugs, echo=FALSE, fig.align='center', fig.cap="Remember, we like bugs! They help us solve the issues with our code (Image courtesy of Copilot)", echo=FALSE, fig.align='center'}
+```{r img-bugs, echo=FALSE, fig.align='center', fig.cap="Remember, we like bugs! They help us solve the issues with our code (Image courtesy of Copilot)", echo=FALSE, fig.align='center', out.width="50%", out.height="50%"}
 
 knitr::include_graphics("images/Index/we-like-bugs.png")
 
