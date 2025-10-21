@@ -1,12 +1,15 @@
 # Testing our first hypothesis {#sec-testing-first-hypothesis}
 
-Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a psychologist :)
+Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a research psychologist :)
 
 
 ## Checking installation and loading packages
 
-As usual we first always check and load in our required packages. Amend the code in
-your script so that it matches the code below. Then make sure it runs just fine.
+As usual we first always check and load in our required packages. 
+
+### Activity - Load packages using the `library()` function
+
+Your script contains the code to install the packages, if required. However, the bit that contains the code to load the packages using the `library()` function is missing. Add the 2 extra lines of code to your script, and then make sure everything runs just fine.
 
 ```{r message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -24,9 +27,9 @@ Today we are going to address one of the key questions of the study about social
 
 There is some evidence to suggest that passive social media use is associated with lower mood in adolescents, whereas active social media use is related to positive mood [Dienlin & Johannes, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7366938/). However, a lot of the existing evidence comes from self-report, rather than measuring social media behaviour directly.
 
-To address this question, the researchers used the participants' metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
+To address this question, the researchers used the participants' metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, the researchers were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
 
-Hopefully it's clear by now that we will be addressing this question using the `good_mood_likes` and `bad_mood_likes` varaibles.  Remember, these variables stand for the following:
+Hopefully it's clear by now that we will be addressing this question using the `good_mood_likes` and `bad_mood_likes` variables.  Remember, these variables stand for the following:
 
 -   `good_mood_likes` – average number of likes made over 10 min during a good mood (from platform + diary)
 -   `bad_mood_likes` – as above, but during bad mood
@@ -88,7 +91,9 @@ knitr::include_graphics("images/Testing_our_first_hypothesis/Statistics_professo
 
 One great way to look at the distribution of your variables is by using a density plot. A density plot is a smoothed version of a histogram which allows us to understand what the full distribution might look like if we had all the data in the world. More information on that [is here](https://www.data-to-viz.com/graph/density.html) if you are interested.
 
-In order to make plotting easy we first have to wrangle our data a bit. Remember, data analysis is 90% wrangling, 10% analysis! What we want to do here is convert our data from wideform (which is more digestible for us mere humans) into longform format (which programs like R generally like more). You can read more on that [here](https://www.statology.org/long-vs-wide-data/), but to make it simple, we just need to get the key variables from our dataframe object that currently look like this:
+In order to make plotting easy we first have to wrangle our data a bit. Remember, data analysis is 90% wrangling, 10% analysis! 
+
+Our data is in something called **wideform** format. When data is in wideform, it means that each participant has their own row, and each variable has a column. Visually, this is more digestible for us mere humans.
 
 **Wideform data**
 ```{r, wide, echo=FALSE}
@@ -97,7 +102,7 @@ head(social_media %>% select(id, good_mood_likes, bad_mood_likes))
 
 ```
 
-And convert it into longform so that it looks like this:
+However, many functions in R, particularly those from the `tidyverse` package, require data to be in **longform**. (Fun fact: longform data is also referred to as 'tidy' or 'narrow' data, hence the `tidyverse`). In longform data, each variable has its own column, but each row represents a single observation. Because we have two observations from each participant (`good_mood_likes` and `bad_mood_likes`), then each participant takes up two rows of the longform data frame. So the longform version of our data looks like this:
 
 **Longform data**
 ```{r, long, echo=FALSE}
@@ -106,15 +111,17 @@ head(social_media %>% select(id, good_mood_likes, bad_mood_likes) %>%
   pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes"))
 ```
 
+See how the values from row 1 of the wideform data (22.8 and 46.5) are now on the first and second row of the longform data, in the `likes` column.
+
 As you can see, instead of having each subject's good and bad mood likes in separate columns, we now have a single column for likes and a second column which indicates whether the likes were made in a good or bad mood. So each subject now has two rows in the dataset. This makes it much easier to plot, and to do many other things!
 
 ::: {style="border-left: 4px solid #046324; background-color: #9ff5bc; padding: 10px; margin: 10px 0;"}
-<strong>Helpful fact</strong> You may notice that the printout of the longform data has a few extra details, compared to the wideform data. The longform data is called 'A tibble' which is a special type of dataframe that comes from the `tidyverse` package. It basically means that you used the tidyverse to make a new dataframe, and the tidyverse package turned it into a tibble for you. Tibbles have a few extra features that make them easier to work with, but they are still dataframes at their core.
+<strong>Helpful fact</strong> You may notice that the printout of the longform data has a few extra details, compared to the wideform data. The longform data is called 'A tibble' which is a special type of data frame that comes from the `tidyverse` package. It basically means that you used the tidyverse to make a new dataframe, and the tidyverse package turned it into a tibble for you. Tibbles have a few extra features that make them easier to work with, but they are still dataframes at their core.
 :::
 
 ### Activity - Get back on the pipes! {#sec-get-back-on-the-pipes}
 
-Its time to get back on the pipes! We get our data into longform by taking the following steps:  
+Its time to get back on the pipes! The code we use to get our data into longform takes the following steps:  
 
 - First we use the `select()` function to easily choose which columns we do (or don't) want to keep in our dataframe. Here we keep only the columns "id", "good_mood_likes" and "bad_mood_likes".
 
@@ -138,7 +145,7 @@ This is how the using the `pivot_longer` function looks.
 ```{r Pivoting_data, eval=FALSE}
 
 social_media %>% 
-  select("id","good_mood_likes","bad_mood_likes") %>% # choose which columns we want keep in our dataframe
+  select("id","good_mood_likes","bad_mood_likes") %>% # choose columns
   pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes") #take columns ending with "likes" and move the column names into "mood" and column values into "likes"
 
 ```
@@ -146,7 +153,7 @@ social_media %>%
 ```{r Pivoting_data_for real, message=FALSE, echo=FALSE, results='hide'}
 
 social_media_likes  <- social_media %>% 
-  select("id","good_mood_likes","bad_mood_likes") %>% # choose which columns we want keep in our dataframe
+  select("id","good_mood_likes","bad_mood_likes") %>% # choose columns
   pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes") #take columns ending with "likes" and move the column names into "mood" and column values into "likes"
 
 ```
@@ -157,20 +164,28 @@ The `pivot_longer()` function takes three important arguments.
 - The `names_to` argument tells R what to call the new column which will contain the names of the columns we are pivoting (i.e good or bad mood). Here we call this new column "mood", as this is a good title for a column that will list whether the data were recorded when someone was either in a "good mood" or a "bad mood".  
 - The `values_to` argument tells R what to call the new column which will contain the values from the columns we are pivoting (i.e the rate of likes). Here we call this new column "likes", because, erm, it contains the rate of likes.  
 
-Highlight and run this code in your script to see the work of pivot_longer!
+Highlight and run this code in your script to see the work of `pivot_longer()`!
 
-**Now, very important, save the results of your nifty coding work to a new dataframe so that you can 
-do impressive things to the results, like making density plots!** Amend the above code in your 
-script so that your dataframe is saved to an object called `social_media_likes`. Then run the code to create the new dataframe.
+::: {style="border-left: 4px solid #ebd834; background-color: #f5efbf; padding: 10px; margin: 10px 0;"}
+<strong>Remember</strong> Running code bit by bit to see what results you get is absolutely the best way to learn and understand what code is doing. Now that you have seen what `select()` and `pivot_longer()` actually do, you are perfectly placed to assign the results to a new object, so that you can use the results of your deft wrangling for other purposes. 
+:::
 
-Let's make sure that this data still looks okay by using the `head()` function. Complete the code in your script so that it looks exactly like below, and run it to check the result is the same as you see here.
+**Now, very important, assign the ouput of your nifty coding work to a new object so that you can 
+do impressive things to the results, like making density plots!** Amend the above code in your script so that your data frame is saved to an object called `social_media_likes`. Then run the code to create the new object.
+
+If you need a reminder on how to assign things to objects, take a quick peek back at Section \@ref(sec-make-objects).
+
+Once you have assigned the data frame to an object called `social_media_likes`, make sure that the data frame assigned to the object looks as you would expect, by using the `head()` function. Complete the code in your script so that it looks exactly like below, and run it to check the result is the same as you see here.
 
 ```{r View_of_the_data}
 head(social_media_likes)
 ```
 
+Checking your results like this is one of the key ways to make sure you don't introduce bugs to your code, as you write your scripts.
 
 Et voila!
+
+It takes time to get comfortable changing data from wideform to longform. For now, if you know the difference between the two, and you were able to follow the code above, then you are doing great!
 
 ### Activity - start plotting
 
@@ -178,8 +193,7 @@ Now, we can have done the wrangling (90%), we can get onto visualising and analy
 
 We get a density plot in R by using the `geom_density` function with `ggplot()`.
 
-To do this, we need to add a bit more information to the `ggplot()` function, compared to when
-we created a boxplot in Section \@ref(sec-make-bp). 
+To do this, we need to add a bit more information to the `ggplot()` function, compared to when we created a boxplot in Section \@ref(sec-make-bp). 
 
 To make a density plot we need to tell it what variable we want to plot on the x-axis (likes), and we also want to tell it to use different density plots with different colours for the different moods. We tell `ggplot()` these things by calling the `aes()` function. You can think of `aes()` as setting the **aesthetics** of the plot. We tell `aes()` that we want to `group` the data by mood, and to `fill` in the density plots with different colours, depending on which mood is being plotted.
 
@@ -188,8 +202,7 @@ Run the below code in your script to see what happens.
 ```{r, ugly density, message = FALSE}
 
 social_media_likes %>% 
-  ggplot(aes(x = likes, group = mood, fill = mood)) + # set the aesthetics that will be worked 
-  # with on the canvas
+  ggplot(aes(x = likes, group = mood, fill = mood)) + # set canvas aesthetics 
   geom_density() # use the data to draw a density plot 
 
 ```
@@ -201,8 +214,7 @@ Amend your code so that the density plots are semi-transparent. You can do this 
 ```{r semi-transparent density, message = FALSE}
 
 social_media_likes %>% 
-  ggplot(aes(x = likes, group = mood, fill = mood)) + # set the aesthetics that will be worked 
-  # with on the canvas
+  ggplot(aes(x = likes, group = mood, fill = mood)) + # set canvas aesthetics
   geom_density(alpha=0.5) # use the data to draw a density plot and make it 50% transparent
 
 ```
@@ -217,14 +229,16 @@ ggplot(aes(x = likes, group = mood, fill = mood)) +
   theme_classic() #themes can be provided to ggplot which give it a bunch of aesthetics to change. One of these is theme_classic
 ```
 
+For future you: a whole world of glorious movie inspired themes await you [here](https://github.com/MatthewBJane/ThemePark). 
+
 
 ### Activity - So you've visualised your data, now what? {#sec-visualised-now-what}
 
 Great, we've visualised the data! So, now what? I hear you cry?
 
 We visualised the data so we could check the following things before running our statistical test:  
-- are the distributions of likes in each mood roughly normal?
-- are there any obvious outliers that might affect the results of our statistical test?
+1. Are the distributions of likes in each mood roughly normal?  
+2. Are there any obvious outliers that might affect the results of our statistical test?  
 
 What do you think? You can discuss this with your neighbour and tutor.
 
@@ -232,7 +246,7 @@ What do you think? You can discuss this with your neighbour and tutor.
 
 Before we can move onto conducting t-tests, the next step is to understand the descriptive statistics. For the data we are looking at **the most relevant descriptive statistics are the mean and standard deviation**. This is because we want to conduct a t-test to compare the average likes in different moods. The t-test asks if the difference between the means is larger than we would expect by chance, given the variability in the data (i.e. the standard deviation). That's why we need to know the mean and standard deviation of likes in each mood.
 
-Tidyverse to the rescue! We can easily get this information in R by using the  `summarise()` function. The summarise function will take a dataframe and calculate summary statistics for it, and we get to define what summary statistics we want. The power!
+`tidyverse` to the rescue! We can easily get this information in R by using the  `summarise()` function. The summarise function will take a dataframe and calculate summary statistics for it, and we get to define what summary statistics we want. The power!
 
 Because we want to know the mean and standard deviation of likes in each mood, we need to use the `group_by()` function to tell R to split the data by mood first. 
 
@@ -249,7 +263,7 @@ social_media_likes %>%
 
 ```
 
-We can also save this as a new dataframe if we want to use it later. Amend your code so that the results are saved to a new dataframe object called `social_media_descriptives`. Then run the code to create the new dataframe.
+We can also save this as a new data frame if we want to use it later. Amend your code so that the results are assigned to a new data frame object called `social_media_descriptives`. You can use the same method as when you assigned your data frame to `social_media_likes`. Then run the code to create the new data frame.
 
 ::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> What are the mean number of likes in each different mood? What is the standard deviation? How do they compare to what you expected when you made your hypotheses?
@@ -257,7 +271,7 @@ We can also save this as a new dataframe if we want to use it later. Amend your 
 
 ## Testing hypotheses manually
 
-Now that we have had a look at the structure and descriptives statistics of our data we can have a go at using a t-test to compare the number of likes participants made in a good and bad mood. We could of course do this manually, by hand (as we have in the statistics tutorials). We have shown this below using the first 10 values for good and bad mood likes. 
+Now that we have had a look at the structure and descriptive statistics of our data we can have a go at using a t-test to compare the number of likes participants made in a good and bad mood. We could of course do this manually, by hand (as we have in the statistics tutorials). We have shown this below using the first 10 values for good and bad mood likes. 
 
 ```{r, echo=FALSE, out.width="75%", fig.align='center', fig.cap="t-test table"}
 knitr::include_graphics("images/Testing_our_first_hypothesis/Manual_t-test_table.jpg")
@@ -321,7 +335,7 @@ Now we have some answers! Use your new found knowledge of t-tests to interpret t
 
 If you have cracked all the activities above, well done, you are coding like a fiend. Time for bonus knowledge.
 
-Now that we have the output of a paired t-test we can compare it to a one sample t-test. The results of both of these tests should be identical (this has been covered in the lectures). For those that haven't attended the lectures, a) attend the lectures because if not you will miss out on so much more knowledge, and b) this is because a paired t-test is basically a one-sample t-test of matched difference scores ([more on that here](https://statisticsbyjim.com/hypothesis-testing/t-tests-1-sample-2-sample-paired-t-tests/))
+Now that we have the output of a paired t-test we can compare it to a one sample t-test on difference scores. The results of both of these tests should be identical (this has been covered in the lectures). For those that haven't attended the lectures, a) attend the lectures because if not you will miss out on so much more knowledge, and b) this is because a paired t-test is basically a one-sample t-test of matched difference scores ([more on that here](https://statisticsbyjim.com/hypothesis-testing/t-tests-1-sample-2-sample-paired-t-tests/))
 
 Let's conduct a one-sample t-test of the difference scores between good and bad mood likes. 
 
@@ -364,7 +378,6 @@ Now that we have correctly calculated and saved our difference score we can use 
 
 t.test(x=social_media_diff$likes_diff) # putting in only an x argument makes this a one-sample t-test
 ```
-
 
 Ahhhh, its so beautiful when you get consistent results!
 

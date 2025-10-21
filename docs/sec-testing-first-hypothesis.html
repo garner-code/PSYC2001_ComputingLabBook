@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2025-10-17" />
+<meta name="date" content="2025-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-make-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
 </ul></li>
 <li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a>
 <ul>
@@ -237,7 +237,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---load-packages-using-the-library-function"><i class="fa fa-check"></i><b>3.1.1</b> Activity - Load packages using the <code>library()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
@@ -312,11 +315,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sec-testing-first-hypothesis" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Testing our first hypothesis<a href="sec-testing-first-hypothesis.html#sec-testing-first-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a psychologist :)</p>
+<p>Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a research psychologist :)</p>
 <div id="checking-installation-and-loading-packages-1" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Checking installation and loading packages<a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As usual we first always check and load in our required packages. Amend the code in
-your script so that it matches the code below. Then make sure it runs just fine.</p>
+<p>As usual we first always check and load in our required packages.</p>
+<div id="activity---load-packages-using-the-library-function" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Activity - Load packages using the <code>library()</code> function<a href="sec-testing-first-hypothesis.html#activity---load-packages-using-the-library-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your script contains the code to install the packages, if required. However, the bit that contains the code to load the packages using the library function is missing. Add the 2 extra lines of code to your script, and then make sure everything runs just fine.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="sec-testing-first-hypothesis.html#cb49-1" tabindex="-1"></a><span class="co"># Check if packages are installed, if not install.</span></span>
 <span id="cb49-2"><a href="sec-testing-first-hypothesis.html#cb49-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(here)) <span class="fu">install.packages</span>(<span class="st">&#39;here&#39;</span>) <span class="co">#checks if a package is installed and installs it if required.</span></span>
 <span id="cb49-3"><a href="sec-testing-first-hypothesis.html#cb49-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
@@ -324,12 +329,13 @@ your script so that it matches the code below. Then make sure it runs just fine.
 <span id="cb49-5"><a href="sec-testing-first-hypothesis.html#cb49-5" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
 <span id="cb49-6"><a href="sec-testing-first-hypothesis.html#cb49-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
+</div>
 <div id="developing-our-hypotheses" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Developing our hypotheses<a href="sec-testing-first-hypothesis.html#developing-our-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Today we are going to address one of the key questions of the study about social media use – <strong>how does mood influence active social media use?</strong> Active social media use involves interacting with content (i.e. liking posts) rather than just observing posts.</p>
 <p>There is some evidence to suggest that passive social media use is associated with lower mood in adolescents, whereas active social media use is related to positive mood <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7366938/">Dienlin &amp; Johannes, 2020</a>. However, a lot of the existing evidence comes from self-report, rather than measuring social media behaviour directly.</p>
 <p>To address this question, the researchers used the participants’ metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.</p>
-<p>Hopefully it’s clear by now that we will be addressing this question using the <code>good_mood_likes</code> and <code>bad_mood_likes</code> varaibles. Remember, these variables stand for the following:</p>
+<p>Hopefully it’s clear by now that we will be addressing this question using the <code>good_mood_likes</code> and <code>bad_mood_likes</code> variables. Remember, these variables stand for the following:</p>
 <ul>
 <li><code>good_mood_likes</code> – average number of likes made over 10 min during a good mood (from platform + diary)</li>
 <li><code>bad_mood_likes</code> – as above, but during bad mood</li>
@@ -377,7 +383,8 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <div id="density-plots-are-useful-and-pretty" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Density plots are useful (and pretty)<a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One great way to look at the distribution of your variables is by using a density plot. A density plot is a smoothed version of a histogram which allows us to understand what the full distribution might look like if we had all the data in the world. More information on that <a href="https://www.data-to-viz.com/graph/density.html">is here</a> if you are interested.</p>
-<p>In order to make plotting easy we first have to wrangle our data a bit. Remember, data analysis is 90% wrangling, 10% analysis! What we want to do here is convert our data from wideform (which is more digestible for us mere humans) into longform format (which programs like R generally like more). You can read more on that <a href="https://www.statology.org/long-vs-wide-data/">here</a>, but to make it simple, we just need to get the key variables from our dataframe object that currently look like this:</p>
+<p>In order to make plotting easy we first have to wrangle our data a bit. Remember, data analysis is 90% wrangling, 10% analysis!</p>
+<p>Our data is in something called <strong>wideform</strong> format. When data is in wideform, it means that each participant has their own row, and each variable has a column. Visually, this is more digestible for us mere humans.</p>
 <p><strong>Wideform data</strong></p>
 <pre><code>##   id good_mood_likes bad_mood_likes
 ## 1 S1            22.8           46.5
@@ -386,7 +393,7 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 ## 4 S4            29.9           29.2
 ## 5 S5            37.1           52.4
 ## 6 S6            26.9           20.2</code></pre>
-<p>And convert it into longform so that it looks like this:</p>
+<p>However, many functions in R, particularly those from the <code>tidyverse</code> package, require data to be in <strong>longform</strong>. (Fun fact, longform data is also referred to as ‘tidy’ or ‘narrow’ data, hence the tidyverse). In longform data, each variable has its own column, but each row represents a single observation. Because we have two observations from each participant (<code>good_mood_likes</code> and <code>bad_mood_likes</code>), then each participant takes up two rows of the longform data frame. So the longform version of our data looks like this:</p>
 <p><strong>Longform data</strong></p>
 <pre><code>## # A tibble: 6 × 3
 ##   id    mood            likes
@@ -403,7 +410,7 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 </div>
 <div id="sec-get-back-on-the-pipes" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Activity - Get back on the pipes!<a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Its time to get back on the pipes! We get our data into longform by taking the following steps:</p>
+<p>Its time to get back on the pipes! The code we use to get our data into longform takes the following steps:</p>
 <ul>
 <li>First we use the <code>select()</code> function to easily choose which columns we do (or don’t) want to keep in our dataframe. Here we keep only the columns “id”, “good_mood_likes” and “bad_mood_likes”.</li>
 </ul>
@@ -415,7 +422,7 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <p>Now that we have the columns we want to work with, we use the <code>pivot_longer()</code> function. This function will do all the heavy lifting turning our data from wideform to longform. Phew!</p>
 <p>This is how the using the <code>pivot_longer</code> function looks.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sec-testing-first-hypothesis.html#cb54-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="sec-testing-first-hypothesis.html#cb54-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;good_mood_likes&quot;</span>,<span class="st">&quot;bad_mood_likes&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># choose which columns we want keep in our dataframe</span></span>
+<span id="cb54-2"><a href="sec-testing-first-hypothesis.html#cb54-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;good_mood_likes&quot;</span>,<span class="st">&quot;bad_mood_likes&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
 <span id="cb54-3"><a href="sec-testing-first-hypothesis.html#cb54-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">ends_with</span>(<span class="st">&quot;likes&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;mood&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;likes&quot;</span>) <span class="co">#take columns ending with &quot;likes&quot; and move the column names into &quot;mood&quot; and column values into &quot;likes&quot;</span></span></code></pre></div>
 <p>The <code>pivot_longer()</code> function takes three important arguments.</p>
 <ul>
@@ -426,10 +433,13 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <li>The <code>values_to</code> argument tells R what to call the new column which will contain the values from the columns we are pivoting (i.e the rate of likes). Here we call this new column “likes”, because, erm, it contains the rate of likes.</li>
 </ul>
 <p>Highlight and run this code in your script to see the work of pivot_longer!</p>
-<p><strong>Now, very important, save the results of your nifty coding work to a new dataframe so that you can
-do impressive things to the results, like making density plots!</strong> Amend the above code in your
-script so that your dataframe is saved to an object called <code>social_media_likes</code>. Then run the code to create the new dataframe.</p>
-<p>Let’s make sure that this data still looks okay by using the <code>head()</code> function. Complete the code in your script so that it looks exactly like below, and run it to check the result is the same as you see here.</p>
+<div style="border-left: 4px solid #ebd834; background-color: #f5efbf; padding: 10px; margin: 10px 0;">
+<p><strong>Remember</strong> Running code bit by bit to see what results you get is absolutely the best way to learn and understand what code is doing. Now that you have seen what <code>select()</code> and <code>pivot_longer()</code> actually do, you are perfectly placed to assign the results to a new object, so that you can use the results of your deft wrangling for other purposes.</p>
+</div>
+<p><strong>Now, very important, assign the ouput of your nifty coding work to a new object so that you can
+do impressive things to the results, like making density plots!</strong> Amend the above code in your script so that your data frame is saved to an object called <code>social_media_likes</code>. Then run the code to create the new object.</p>
+<p>If you need a reminder on how to assign things to objects, take a quick peek back at Section <a href="introduction-to-r.html#sec-make-objects">1.8.1</a>.</p>
+<p>Once you have assigned the data frame to an object called <code>social_media_likes</code>, make sure that the data frame assigned to the object looks as you would expect, by using the <code>head()</code> function. Complete the code in your script so that it looks exactly like below, and run it to check the result is the same as you see here.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="sec-testing-first-hypothesis.html#cb55-1" tabindex="-1"></a><span class="fu">head</span>(social_media_likes)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   id    mood            likes
@@ -440,27 +450,26 @@ script so that your dataframe is saved to an object called <code>social_media_li
 ## 4 S2    bad_mood_likes   48.3
 ## 5 S3    good_mood_likes  50.8
 ## 6 S3    bad_mood_likes   46.1</code></pre>
+<p>Checking your results like this is one of the key ways to make sure you don’t introduce bugs to your code, as you write your scripts.</p>
 <p>Et voila!</p>
+<p>It takes time to get comfortable changing data from wideform to longform. For now, if you know the difference between the two, and you were able to follow the code above, then you are doing great!</p>
 </div>
 <div id="activity---start-plotting" class="section level3 hasAnchor" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Activity - start plotting<a href="sec-testing-first-hypothesis.html#activity---start-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, we can have done the wrangling (90%), we can get onto visualising and analysis!</p>
 <p>We get a density plot in R by using the <code>geom_density</code> function with <code>ggplot()</code>.</p>
-<p>To do this, we need to add a bit more information to the <code>ggplot()</code> function, compared to when
-we created a boxplot in Section <a href="data-wrangling-and-visualisation.html#sec-make-bp">2.11.1</a>.</p>
+<p>To do this, we need to add a bit more information to the <code>ggplot()</code> function, compared to when we created a boxplot in Section <a href="data-wrangling-and-visualisation.html#sec-make-bp">2.11.1</a>.</p>
 <p>To make a density plot we need to tell it what variable we want to plot on the x-axis (likes), and we also want to tell it to use different density plots with different colours for the different moods. We tell <code>ggplot()</code> these things by calling the <code>aes()</code> function. You can think of <code>aes()</code> as setting the <strong>aesthetics</strong> of the plot. We tell <code>aes()</code> that we want to <code>group</code> the data by mood, and to <code>fill</code> in the density plots with different colours, depending on which mood is being plotted.</p>
 <p>Run the below code in your script to see what happens.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="sec-testing-first-hypothesis.html#cb57-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a href="sec-testing-first-hypothesis.html#cb57-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set the aesthetics that will be worked </span></span>
-<span id="cb57-3"><a href="sec-testing-first-hypothesis.html#cb57-3" tabindex="-1"></a>  <span class="co"># with on the canvas</span></span>
-<span id="cb57-4"><a href="sec-testing-first-hypothesis.html#cb57-4" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
+<span id="cb57-2"><a href="sec-testing-first-hypothesis.html#cb57-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
+<span id="cb57-3"><a href="sec-testing-first-hypothesis.html#cb57-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
 <p><img src="_main_files/figure-html/ugly%20density-1.png" width="672" /></p>
 <p>So…this is OK. But some things are left to be desired. It would be nice if good_mood_likes didn’t occlude bad_mood_likes, because we want to see how both distributions look.</p>
 <p>Amend your code so that the density plots are semi-transparent. You can do this by adding an <code>alpha</code> argument inside the <code>geom_density()</code> function. You can think of <code>alpha</code> as a value that tells you how transparent something should be. Set <code>alpha = 0.5</code> to make the plots 50% transparent. Make your code match what you see below and run it to get the sweet results.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sec-testing-first-hypothesis.html#cb58-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb58-2"><a href="sec-testing-first-hypothesis.html#cb58-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set the aesthetics that will be worked </span></span>
-<span id="cb58-3"><a href="sec-testing-first-hypothesis.html#cb58-3" tabindex="-1"></a>  <span class="co"># with on the canvas</span></span>
-<span id="cb58-4"><a href="sec-testing-first-hypothesis.html#cb58-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="co"># use the data to draw a density plot and make it 50% transparent</span></span></code></pre></div>
+<span id="cb58-2"><a href="sec-testing-first-hypothesis.html#cb58-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics</span></span>
+<span id="cb58-3"><a href="sec-testing-first-hypothesis.html#cb58-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="co"># use the data to draw a density plot and make it 50% transparent</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/semi-transparent%20density-1.png" width="672" /></p>
 <p>Ahhh, that’s better! Then the last step, if you are striving for data viz beauty, is to add the classic theme (or <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">another</a>, if that’s your jam) to your code. For example:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sec-testing-first-hypothesis.html#cb59-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
@@ -468,6 +477,7 @@ we created a boxplot in Section <a href="data-wrangling-and-visualisation.html#s
 <span id="cb59-3"><a href="sec-testing-first-hypothesis.html#cb59-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb59-4"><a href="sec-testing-first-hypothesis.html#cb59-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#themes can be provided to ggplot which give it a bunch of aesthetics to change. One of these is theme_classic</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/Create%20a%20density%20plot-1.png" width="672" /></p>
+<p>For future you: a whole world of glorious movie inspired themes await you <a href="https://github.com/MatthewBJane/ThemePark">here</a>.</p>
 </div>
 <div id="sec-visualised-now-what" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Activity - So you’ve visualised your data, now what?<a href="sec-testing-first-hypothesis.html#sec-visualised-now-what" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -561,26 +571,26 @@ Figure 3.4: Handy t-test help
 <div id="bonus-activity---one-sample-t-tests" class="section level2 hasAnchor" number="3.9">
 <h2><span class="header-section-number">3.9</span> Bonus Activity - One-sample t-tests<a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you have cracked all the activities above, well done, you are coding like a fiend. Time for bonus knowledge.</p>
-<p>Now that we have the output of a paired t-test we can compare it to a one sample t-test. The results of both of these tests should be identical (this has been covered in the lectures). For those that haven’t attended the lectures, a) attend the lectures because if not you will miss out on so much more knowledge, and b) this is because a paired t-test is basically a one-sample t-test of matched difference scores (<a href="https://statisticsbyjim.com/hypothesis-testing/t-tests-1-sample-2-sample-paired-t-tests/">more on that here</a>)</p>
+<p>Now that we have the output of a paired t-test we can compare it to a one sample t-test on difference scores. The results of both of these tests should be identical (this has been covered in the lectures). For those that haven’t attended the lectures, a) attend the lectures because if not you will miss out on so much more knowledge, and b) this is because a paired t-test is basically a one-sample t-test of matched difference scores (<a href="https://statisticsbyjim.com/hypothesis-testing/t-tests-1-sample-2-sample-paired-t-tests/">more on that here</a>)</p>
 <p>Let’s conduct a one-sample t-test of the difference scores between good and bad mood likes.</p>
 <p>First you will need to use the <code>mutate()</code> function on the original <code>social_media</code> dataframe to create a difference score column. Run this code in your script to see what happens. This will show you the <code>mutate()</code> function in action.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-testing-first-hypothesis.html#cb66-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb66-2"><a href="sec-testing-first-hypothesis.html#cb66-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes_diff =</span> good_mood_likes <span class="sc">-</span> bad_mood_likes) <span class="co">#create a new column which is the difference between</span></span>
 <span id="cb66-3"><a href="sec-testing-first-hypothesis.html#cb66-3" tabindex="-1"></a><span class="co"># good and bad mood likes</span></span></code></pre></div>
-<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
-## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2
-## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2
-## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7
-## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3
-## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9
-## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4
-##   polit_activism likes_diff
-## 1            3.6      -23.7
-## 2            2.6       -2.3
-## 3            3.0        4.7
-## 4            2.6        0.7
-## 5            3.3      -15.3
-## 6            3.9        6.7</code></pre>
+<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3
+## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3
+## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5
+## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7
+## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5
+## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5
+##   polit_informed polit_campaign polit_activism likes_diff
+## 1            2.3            3.2            3.6      -23.7
+## 2            1.6            2.2            2.6       -2.3
+## 3            1.9            2.7            3.0        4.7
+## 4            1.6            2.3            2.6        0.7
+## 5            2.0            2.9            3.3      -15.3
+## 6            2.4            3.4            3.9        6.7</code></pre>
 <p>Now, we’re going to need to save that dataframe to an object called social_media_diff, so that we can use it in the
 <code>t.test()</code> function. Update the code you just ran so that it starts with <code>social_media_diff &lt;-</code> and run it to save the dataframe.</p>
 <p>Now that we have correctly calculated and saved our difference score we can use the <code>t.test()</code> function to perform our one-sample t.test. Run this code in your script, and compare the output to the output of the paired t-test you did earlier. Are they the same?</p>

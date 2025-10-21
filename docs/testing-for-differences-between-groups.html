@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2025-10-17" />
+<meta name="date" content="2025-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---create-some-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-make-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
 </ul></li>
 <li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a>
 <ul>
@@ -237,7 +237,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---load-packages-using-the-library-function"><i class="fa fa-check"></i><b>3.1.1</b> Activity - Load packages using the <code>library()</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
@@ -348,28 +351,28 @@ into your script and run it to load in the data.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="testing-for-differences-between-groups.html#cb71-1" tabindex="-1"></a>social_media <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#reads in CSV files</span></span></code></pre></div>
 <p>Lets double check its the data we think it is by using the <code>head()</code> function. See that we’ve added in an argument to say we want to see the first 10 lines of the data. Amend your code in your script to look at the number of rows your very own eyes want to see.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="testing-for-differences-between-groups.html#cb72-1" tabindex="-1"></a><span class="fu">head</span>(social_media, <span class="dv">10</span>) <span class="co"># you can even say how many lines you want to see! Try changing the number, and see what happens.</span></span></code></pre></div>
-<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed
-## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3
-## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6
-## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9
-## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6
-## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0
-## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4
-## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7
-## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6
-## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5
-## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2
-##    polit_campaign polit_activism
-## 1             3.2            3.6
-## 2             2.2            2.6
-## 3             2.7            3.0
-## 4             2.3            2.6
-## 5             2.9            3.3
-## 6             3.4            3.9
-## 7             2.4            2.7
-## 8             2.2            2.6
-## 9             2.1            2.4
-## 10            3.1            3.5</code></pre>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2
+##    polit_informed polit_campaign polit_activism
+## 1             2.3            3.2            3.6
+## 2             1.6            2.2            2.6
+## 3             1.9            2.7            3.0
+## 4             1.6            2.3            2.6
+## 5             2.0            2.9            3.3
+## 6             2.4            3.4            3.9
+## 7             1.7            2.4            2.7
+## 8             1.6            2.2            2.6
+## 9             1.5            2.1            2.4
+## 10            2.2            3.1            3.5</code></pre>
 </div>
 </div>
 <div id="wrangling-our-data" class="section level2 hasAnchor" number="4.2">
@@ -383,28 +386,28 @@ into your script and run it to load in the data.</p>
 <p>Run the following line of code in your script to see the output.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="testing-for-differences-between-groups.html#cb74-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb74-2"><a href="testing-for-differences-between-groups.html#cb74-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span></code></pre></div>
-<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed
-## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3
-## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6
-## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9
-## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6
-## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0
-## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4
-## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7
-## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6
-## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5
-## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2
-##    polit_campaign polit_activism likes
-## 1             3.2            3.6 34.65
-## 2             2.2            2.6 47.15
-## 3             2.7            3.0 48.45
-## 4             2.3            2.6 29.55
-## 5             2.9            3.3 44.75
-## 6             3.4            3.9 23.55
-## 7             2.4            2.7 24.95
-## 8             2.2            2.6 30.90
-## 9             2.1            2.4  9.35
-## 10            3.1            3.5 39.25</code></pre>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2
+##    polit_informed polit_campaign polit_activism likes
+## 1             2.3            3.2            3.6 34.65
+## 2             1.6            2.2            2.6 47.15
+## 3             1.9            2.7            3.0 48.45
+## 4             1.6            2.3            2.6 29.55
+## 5             2.0            2.9            3.3 44.75
+## 6             2.4            3.4            3.9 23.55
+## 7             1.7            2.4            2.7 24.95
+## 8             1.6            2.2            2.6 30.90
+## 9             1.5            2.1            2.4  9.35
+## 10            2.2            3.1            3.5 39.25</code></pre>
 <p>You can see that <code>mutate()</code> has created an extra column called likes. You can manually check that the first couple of values are correct, by adding the <code>good_mood_likes</code> and <code>bad_mood_likes</code> values together and dividing by 2.</p>
 <div style="border-left: 4px solid #8273e6; background-color: #c2baf5; padding: 10px; margin: 10px 0;">
 <p><strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch mistakes early on.</p>

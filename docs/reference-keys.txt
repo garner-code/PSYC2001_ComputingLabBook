@@ -45,7 +45,7 @@ installing-and-loading-packages
 activity---install-the-tidyverse
 activity---load-the-tidyverse
 objects
-activity---create-some-objects
+sec-make-objects
 datatypes
 sec-data-type
 looking-after-the-environment
@@ -81,6 +81,7 @@ sec-make-histogram
 you-are-free-1
 sec-testing-first-hypothesis
 checking-installation-and-loading-packages-1
+activity---load-packages-using-the-library-function
 developing-our-hypotheses
 activity---defining-our-hypotheses
 visualising-our-data

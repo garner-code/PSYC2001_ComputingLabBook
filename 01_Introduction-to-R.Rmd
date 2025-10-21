@@ -219,7 +219,7 @@ Now that we've loaded the `tidyverse` package we can use any of the functions it
 
 A large part of your coding for data analysis will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using `<-`.
 
-### Activity - Create some objects
+### Activity - Create some objects {#sec-make-objects}
 
 * Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. You should see that `name`, `age`, `today`, `new_year`, and `data` appear in the environment pane.  
 
