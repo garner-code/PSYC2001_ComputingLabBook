@@ -4,7 +4,11 @@ This week we will be learning how to conduct an independent samples t-test. This
 
 ## Checking installation and loading packages
 
-As usual we first always check and load in our required packages.
+As usual we first always check and load in our required packages. 
+
+### Activity - load packages using `library()`
+
+Just like in Chapter \@ref(sec-testing-first-hypothesis), your script contains the code to install the packages, if required. Add the two lines of code that use the `library()` function to load `here` and `tidyverse`. Run all the code.
 
 ```{r  message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -16,6 +20,7 @@ library(tidyverse)
 
 ```
 
+## How does where you live impact how you use social media?
 
 In Chapter \@ref(sec-testing-first-hypothesis), we performed an analysis to learn how mood impacts active social media behaviour. However, that is not the only factor that influences social media use. For example, [Sapienza et al (2023)](https://academic.oup.com/pnasnexus/article/2/11/pgad357/7442564) found that people in rural areas are more likely to use their smartphone for social media and gaming, whereas urban dwellers are more likely to use their phone for navigation and business.
 
@@ -63,11 +68,11 @@ There are a couple of things we need to do to get our data into shape. The first
 
 ### Activity - Creating a new `likes` variable
 
-We need to create a new variable called `likes` which is the average of `good_mood_likes` and `bad_mood_likes`. To do this, we are going to use the `mutate()` function from the `tidyverse` package. You can think of using `mutate()` as a way to create a new column in your dataframe, using information from other columns.
+We need to create a new variable called `likes` which is the average of `good_mood_likes` and `bad_mood_likes`. To do this, we are going to use the `mutate()` function from the `tidyverse` package. You can think of using `mutate()` as a way to create a new column in your data frame, using information from other columns.
 
-To use `mutate()` we need to use the pipe operator `%>%` which we also used in Section \@ref(sec-get-back-on-the-pipes). The pipe operator takes the output of one function and uses it as the input for the next function. This is very useful when we want to do multiple things to a dataframe in a single line of code.
+To use `mutate()` we need to use the pipe operator `%>%` which we also used in Section \@ref(sec-get-back-on-the-pipes). The pipe operator takes the output of one function and uses it as the input for the next function. This is very useful when we want to do multiple things to a data frame in a single line of code.
 
-We are going to use the pipe operator to take the `social_media` dataframe and then use `mutate()` to create our new variable `likes`. Because we want the average likes, we will add `good_mood_likes` and `bad_mood_likes` together and then divide by 2. 
+We are going to use the pipe operator to take the `social_media` data frame and then use `mutate()` to create our new variable `likes`. Because we want the average likes, we will add `good_mood_likes` and `bad_mood_likes` together and then divide by 2. 
 
 Run the following line of code in your script to see the output.
 
@@ -94,7 +99,7 @@ You can see that `mutate()` has created an extra column called likes. You can ma
 <strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch mistakes early on.
 :::
 
-Looking at the dataframe above, we can see that the first value for `good_mood_likes` is 22.8 and the first value for `bad_mood_likes` is 46.5. Lets add them together and divide by 2, to check the answer is the same as the first value for `likes`, which is 34.65.
+Looking at the data frame above, we can see that the first value for `good_mood_likes` is 22.8 and the first value for `bad_mood_likes` is 46.5. Lets add them together and divide by 2, to check the answer is the same as the first value for `likes`, which is 34.65.
 
 Type the below into your console and check you get the same answer:
 
@@ -106,7 +111,7 @@ Type the below into your console and check you get the same answer:
 
 Woohoo!
 
-Now, this dataframe has all we need for our analysis, and a lot more! Let's make things simpler for ourselves by only keeping the variables we need. We can do this by once again using the pipe operator, along with the `select()` function.
+Now, this data frame has all we need for our analysis, and a lot more! Let's make things simpler for ourselves by only keeping the variables we need. We can do this by once again using the pipe operator, along with the `select()` function.
 
 Update the code in your script so that it looks like this:
 
@@ -114,14 +119,14 @@ Update the code in your script so that it looks like this:
 
 social_media_likes <- social_media %>% 
   mutate(likes =(bad_mood_likes + good_mood_likes)/2 ) %>% # creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes
-  select(id, urban, likes, followers) #selects only the specified columns from the dataframe
+  select(id, urban, likes, followers) #selects only the specified columns from the data frame
 ```
 
 Check that you got what you want by using the `head()` function again.
 
 ### Activity - Defining factors
 
-Now that we have this dataframe object it is important to check that R can understand the data properly. Lets use the `str()` function that we learned about in Section \@ref(sec-data-view) to examine what R thinks about each column. Complete the code in your script and run it, to make sure you get the same results.
+Now that we have this data frame object it is important to check that R can understand the data properly. Lets use the `str()` function that we learned about in Section \@ref(sec-data-view) to examine what R thinks about each column. Complete the code in your script and run it, to make sure you get the same results.
 
 ```{r}
 str(social_media_likes) #provides a summary of the data structure.
@@ -160,9 +165,9 @@ If you remember from Section \@ref(sec-visualised-now-what), we learned that we 
 
 Today, we are going to examine our variables using histograms. Just as we did in Section \@ref(sec-make-histogram). We have copied the code from Section \@ref(sec-make-histogram) below, and have added a few options into the `geom_histogram()` function so that you can get a nice looking histogram. This code is also in your script. 
 
-### Adapting our previous code to make new histograms
+### Activity - Adapting our previous code to make new histograms
 
-Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for `likes` using the `social_media_likes` dataframe. Also remember to adjust the axis labels! 
+Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for `likes` (`x=`) using the `social_media_likes` data frame (and not the `social_media_NA` data frame). Also remember to adjust the axis labels (the `x=` and `y=` arguments for labs()`)! 
 
 *You have to accept it. Determinism beats free will.
 
@@ -191,7 +196,7 @@ social_media_likes %>%
 
 What would you say about this data, now you have looked at the histogram? Does it look normally distributed? Are there any outliers?
 
-Now, can you make a density plot for `followers`? Copy and paste the code you used to make the histogram for `likes` and make the teeny changes required. Go on, you are a coder, and you are strong.
+Now, can you make a density plot for `followers`? Copy and paste the code you used to make the histogram for `followers` and make the teeny changes required. Go on, you are a coder, and you are strong.
 
 ```{r, do-hist-follow, echo=FALSE, message=FALSE}
 
@@ -211,6 +216,7 @@ Indeed, the `followers` variable looks different to the `likes` variable. This i
 
 Because the `followers` variable is not normally distributed, we will need to be a bit cautious when interpreting the results of our t-test later on. But we can still proceed, as the t-test is quite robust to violations of normality. You would just make sure to mention this in your write-up, so that your readers also know.
 
+However, we would reconsider this choice if `followers` contained a massive outlier, such as if we sampled someone with 10 million followers. 
 
 ## Next step: descriptive statistics
 
@@ -223,23 +229,25 @@ Here is the code we wrote last week to get descriptive statistics of the rate of
 ```{r old-summary, eval=FALSE}
 
 social_media_likes %>% 
-  group_by(mood) %>% #split the data by mood
+  group_by(mood) %>% #group the data by mood
   summarise(mean = mean(likes),
             sd = sd(likes)) #calculate the mean number of likes
 
 ```
+
+### Activity - Adapt the code to get the mean and standard deviations for likes and followers
 
 We want to adapt this code to get the mean and standard deviation for `likes` and `followers`, this time grouping by `urban`. You will find the below code in your script. Complete it to get the descriptive statistics you need.
 
 ```{r social_descriptives, eval=FALSE}
 
 social_media_descriptives <- social_media_likes %>% # save to new object called social_media_descriptives
-  group_by() %>% # group the data by urban
+  group_by(???) %>% # group the data by urban
   summarise(
     mean_followers = mean(followers), # calculate the mean number of followers for urban and rural groups separately
-    mean_likes = mean(likes),
-    sd_followers = sd(), 
-    sd_likes = sd()
+    mean_likes = mean(likes), # same for likes
+    sd_followers = sd(???), # calculate the sd of followers
+    sd_likes = sd(???) # calculate the sd of likes
   )
 
 social_media_descriptives
@@ -265,13 +273,13 @@ Look at the mean values you have generated for urban and rural dwellers. Do they
 
 ## Independent samples t-test
 
-Now we are down to the very last few percents of our 10% of analysis efforts. Let's perform an independent samples t-test to see if there are statistically significant differences between urban and rural dwellers in terms of their `likes` and `followers`.
+Now we are down to the very last few percents of our 10% of analysis efforts. Let's perform some independent samples t-tests to see if there are statistically significant differences between urban and rural dwellers in terms of their `likes` or `followers`.
 
-### Activity - Performing an independent samples t-test
+### Activity - Performing independent samples t-tests
 
 In Section \@ref(sec-conducting-paired-t-test) we learned how to conduct a paired samples t-test. To do this, we had to deal with niggly base R demands and use the wideform data instead of our carefully wrangled longform data. Fortunately, the `t.test()` function is a bit more forgiving when it comes to independent samples t-tests, and we can use our longform data combined with a nifty thing that base R knows about, which is formulas. Huzzah.
 
-This is how we use the formula method in `t.test()`. The syntax is `t.test(outcome ~ group, data = dataframe)`. So, for our data, we want to test if `likes` differ by `urban`, using the `social_media_likes` dataframe. 
+This is how we use the formula method in `t.test()`. The syntax is `t.test(DV ~ group, data = data frame)`. So, for our data, we want to test if the dependent variable (DV) `likes` differs by the groups coded in `urban` , using the `social_media_likes` data frame. 
 
 Note that you don't need to set the `paired` argument to `FALSE`, as the `t.test()` function assumes this whenever you use the formula method. So never use the formula method for a paired samples t-test. That would be a disaster.
 
@@ -291,7 +299,7 @@ Now complete the following line of code in your own script, to test if `follower
 
 ```{r, mock_t, eval=FALSE}
 
-t.test(???, data=social_media_likes) # conducts an independent samples t-test to see if followers differ by urban/rural status
+t.test(???~urban, data=social_media_likes) # conducts an independent samples t-test to see if followers differ by urban/rural status
 ```
 
 Check your output with what you see below to make sure you got it right. Also, make sure to interpret what the output is telling you!
@@ -312,10 +320,10 @@ knitr::include_graphics("images/Testing_between_groups/Exams-hard.jpg")
 This is how we would write up the results of an independent samples t-test.
 
 ::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
-<strong>Results:</strong> An independent samples t-test indicated that the number of likes was greater for rural (M = 52.1 , SD = 12.7) compared to urban dwellers  (M = 40.8 , SD = 14.5) and this difference was statistically significant (t(58) = 3.22, p = 0.002). Conversely, the number of followers was greater for urban (Mean = 143.9, SD = 62.0) than for urban dwellers (M = 105.6, SD = 40.9) which was statistically significant (t(58) = 2.82, p = 0.007).
+<strong>Results:</strong> An independent samples t-test indicated that the number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).
 :::
 
-## Bonus - Visualising group differences
+## Bonus Activity - Visualising group differences
 
 If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences. Which you might need to do in a certain upcoming assignment.
 
@@ -337,7 +345,7 @@ social_media_likes %>%
 
 Now we return to another critical part of coding. Copying and pasting what you have, and changing just a few bits. 
 
-Now, can you change the code above to make a boxplot for `followers` instead of `likes`? You will need to change what you give for the `y` argument in `aes()`, and the y-axis label. You can also change the colours if you want to. Copy and paste the original code in your script and make your changes. You should get something that looks like this:
+Now, can you change the code above to make a boxplot for `followers` instead of `likes`? You will need to change what you give for the `y` argument in `aes()`, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found [here](https://r-graph-gallery.com/42-colors-names.html).Copy and paste the original code in your script and make your changes. You should get something that looks like this:
 
 ```{r, follow_bp, echo=FALSE}
 
