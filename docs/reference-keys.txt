@@ -1,5 +1,6 @@
 fig:img-bugs
 fig:baseR
+fig:downloaded
 fig:folder
 fig:img-rstudio
 fig:img-scripts

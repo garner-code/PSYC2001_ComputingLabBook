@@ -19,15 +19,21 @@ knitr::include_graphics("images/Introduction_to_R/Basic_R.png")
 
 ## Getting started
 
-You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
+You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, by right-clicking over the file and selecting 'Extract Here' if you are on a PC, or 'Open with... Archive Utility' if you are on a Mac. Then move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
+
+```{r downloaded, out.width='70%', fig.cap='Download the chapter folder and right click on it to unzip the contents', echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/Introduction_to_R/downloaded_crop.png")
+```
 
 Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -
 
-```{r folder, out.width='70%', fig.cap='Every lab folder will contain the files you need for the session, and sometimes folders with extra things in them', echo=FALSE, fig.align='center'}
-knitr::include_graphics("images/Introduction_to_R/folder.png")
+```{r folder, out.width='70%', fig.cap='Every lab folder will contain all the files you need for the session', echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/Introduction_to_R/Rproj_Windows_view_crop.png")
 ```
 
-Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in `.Rproj`. This will open RStudio.
+Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location. 
+
+Next, navigate to the folder in your file explorer, so you can see the contents. Double click on the file that is of type R Project (e.g. for this lab, it is called '1_Introduction_to_R' and in the image above you can see it is of the Type 'R Project'. This will open RStudio. Every lab will have an R Project file, and you should always open RStudio by double clicking on it.
 
 **Rproj** stands for **R project**. A project can be thought of as all the files that live in the same folder as the `.Rproj` file. Having a reference to where these files are (which is what the `.Rproj` file gives you) will come in very handy in the next tutorial, and beyond.
 

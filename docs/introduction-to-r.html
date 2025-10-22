@@ -339,15 +339,22 @@ Figure 1.1: This is what using R without RStudio looks like. Noone wants that.
 </div>
 <div id="getting-started" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Getting started<a href="introduction-to-r.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You should have downloaded the files you need for this week’s computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder to somewhere sensible on the computer, e.g. from ‘Downloads’ to ‘Documents’. Ask your tutor if you are unsure about any of those steps.</p>
-<p>Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:folder"></span>
-<img src="images/Introduction_to_R/folder.png" alt="Every lab folder will contain the files you need for the session, and sometimes folders with extra things in them" width="70%" />
+<p>You should have downloaded the files you need for this week’s computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, by right-clicking over the file and selecting ‘Extract Here’ if you are on a PC, or ‘Open with… Archive Utility’ if you are on a Mac. Then move the folder to somewhere sensible on the computer, e.g. from ‘Downloads’ to ‘Documents’. Ask your tutor if you are unsure about any of those steps.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:downloaded"></span>
+<img src="images/Introduction_to_R/downloaded_crop.png" alt="Download the chapter folder and right click on it to unzip the contents" width="70%" />
 <p class="caption">
-Figure 1.2: Every lab folder will contain the files you need for the session, and sometimes folders with extra things in them
+Figure 1.2: Download the chapter folder and right click on it to unzip the contents
 </p>
 </div>
-<p>Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in <code>.Rproj</code>. This will open RStudio.</p>
+<p>Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:folder"></span>
+<img src="images/Introduction_to_R/Rproj_Windows_view_crop.png" alt="Every lab folder will contain all the files you need for the session" width="70%" />
+<p class="caption">
+Figure 1.3: Every lab folder will contain all the files you need for the session
+</p>
+</div>
+<p>Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location.</p>
+<p>Next, navigate to the folder in your file explorer, so you can see the contents. Double click on the file that is of type R Project (e.g. for this lab, it is called ‘1_Introduction_to_R’ and in the image above you can see it is of the Type ‘R Project’. This will open RStudio. Every lab will have an R Project file, and you should always open RStudio by double clicking on it.</p>
 <p><strong>Rproj</strong> stands for <strong>R project</strong>. A project can be thought of as all the files that live in the same folder as the <code>.Rproj</code> file. Having a reference to where these files are (which is what the <code>.Rproj</code> file gives you) will come in very handy in the next tutorial, and beyond.</p>
 <div style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;">
 <p><strong>Why should I open RStudio by clicking on the <code>.Rproj</code> file?</strong> Indeed, this may seem like a strange request. An <code>.Rproj</code> file automatically tells R where your files are located. This is called ‘setting the working directory’. What this means is that you won’t have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.</p>
@@ -355,11 +362,11 @@ Figure 1.2: Every lab folder will contain the files you need for the session, an
 </div>
 <div id="getting-to-know-r-studio" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Getting to know R Studio<a href="introduction-to-r.html#getting-to-know-r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R Studio has a console that you can try out code in (appearing as the bottom left window in Figure <a href="introduction-to-r.html#fig:img-rstudio">1.3</a>. If you have opened a script, then there is a script editor (top left, more on scripts shortly below). There is also a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows files, plots, packages, and help documentation (bottom right).</p>
+<p>R Studio has a console that you can try out code in (appearing as the bottom left window in Figure <a href="introduction-to-r.html#fig:img-rstudio">1.4</a>. If you have opened a script, then there is a script editor (top left, more on scripts shortly below). There is also a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows files, plots, packages, and help documentation (bottom right).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-rstudio"></span>
 <img src="images/Introduction_to_R/rstudio-console.png" alt="The RStudio interface: ah, that's better!" width="1036" />
 <p class="caption">
-Figure 1.3: The RStudio interface: ah, that’s better!
+Figure 1.4: The RStudio interface: ah, that’s better!
 </p>
 </div>
 <div id="activity---using-the-console" class="section level3 hasAnchor" number="1.3.1">
@@ -385,7 +392,7 @@ Figure 1.3: The RStudio interface: ah, that’s better!
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-scripts"></span>
 <img src="images/Introduction_to_R/script_ann.png" alt="Scripts can run your code as many times as you please." width="597" />
 <p class="caption">
-Figure 1.4: Scripts can run your code as many times as you please.
+Figure 1.5: Scripts can run your code as many times as you please.
 </p>
 </div>
 <ul>
@@ -395,7 +402,7 @@ Figure 1.4: Scripts can run your code as many times as you please.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-highlightcode"></span>
 <img src="images/Introduction_to_R/highlight-code.png" alt="Highlight your code and then run it." width="597" />
 <p class="caption">
-Figure 1.5: Highlight your code and then run it.
+Figure 1.6: Highlight your code and then run it.
 </p>
 </div>
 <div style="border-left: 4px solid #030ffc; background-color: #a4d3f5; padding: 10px; margin: 10px 0;">
@@ -405,7 +412,7 @@ Figure 1.5: Highlight your code and then run it.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-result"></span>
 <img src="images/Introduction_to_R/result_ann.png" alt="We all want results." width="602" />
 <p class="caption">
-Figure 1.6: We all want results.
+Figure 1.7: We all want results.
 </p>
 </div>
 <ul>
@@ -499,7 +506,7 @@ Figure 1.6: We all want results.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:img-objects-enviro"></span>
 <img src="images/Introduction_to_R/objects-enviro.png" alt="Objects in the environment" width="366" />
 <p class="caption">
-Figure 1.7: Objects in the environment
+Figure 1.8: Objects in the environment
 </p>
 </div>
 <p>Note that in these examples, <code>name</code>,<code>age</code>, and <code>new_year</code> would always contain the values <code>emily</code>, <code>33</code>, and the date of New Year’s Day 2025, however, <code>today</code> will draw the date from the operating system. <code>data</code> has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See <code>?rnorm</code> for more information on how this function works. You should recognise by now what has been saved to <code>M_values</code>.</p>
@@ -548,7 +555,7 @@ Figure 1.7: Objects in the environment
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="images/Introduction_to_R/broom.png" alt="Clearing the workspace" width="386" />
 <p class="caption">
-Figure 1.8: Clearing the workspace
+Figure 1.9: Clearing the workspace
 </p>
 </div>
 </div>
@@ -566,7 +573,7 @@ Figure 1.8: Clearing the workspace
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="images/Introduction_to_R/Psychology_student_reaction.jpg" alt="We know how you really feel" width="396" />
 <p class="caption">
-Figure 1.9: We know how you really feel
+Figure 1.10: We know how you really feel
 </p>
 </div>
 <div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
