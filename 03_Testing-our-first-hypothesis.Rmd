@@ -160,7 +160,7 @@ social_media_likes  <- social_media %>%
 
 The `pivot_longer()` function takes three important arguments.  
 
-- The `cols` argument tells R which columns contain the key variables that we need to turn into longform. Here we use the `ends_with()` function to tell R to take all columns which end with "likes", nifty!   
+- The `cols` argument tells R which columns contain the key variables that we need to turn into longform. Here we use the `ends_with()` function to tell R to take all columns which end with "likes", nifty! Note that we didn't necessarily need to use the `ends_with()` function. We just did it because it's handy. We could have used `cols = c("good_mood_likes", "bad_mood_likes")` instead, which would have done the same thing.
 - The `names_to` argument tells R what to call the new column which will contain the names of the columns we are pivoting (i.e good or bad mood). Here we call this new column "mood", as this is a good title for a column that will list whether the data were recorded when someone was either in a "good mood" or a "bad mood".  
 - The `values_to` argument tells R what to call the new column which will contain the values from the columns we are pivoting (i.e the rate of likes). Here we call this new column "likes", because, erm, it contains the rate of likes.  
 

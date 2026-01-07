@@ -117,3 +117,15 @@ activity---performing-independent-samples-t-tests
 writing-up-results-and-conclusions
 bonus-activity---visualising-group-differences
 you-are-free-3
+fig:unnamed-chunk-4
+correlation-in-r
+checking-installation-and-loading-packages-3
+investigating-correlational-relationships
+activity-1---formulate-your-research-question
+activity-2---how-much-political-attitude
+activity-3---looking-for-straight-lines
+conducting-correlations
+writing-up-results-and-conclusions-1
+activity-4---exploring-the-data
+writing-up-results-and-conclusions-2
+you-are-free-4

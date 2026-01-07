@@ -19,6 +19,8 @@ knitr::include_graphics("images/Introduction_to_R/Basic_R.png")
 
 ## Getting started
 
+### Activity - Setting up your working folder
+
 You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, by right-clicking over the file and selecting 'Extract Here' if you are on a PC, or 'Open with... Archive Utility' if you are on a Mac. Then move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
 
 ```{r downloaded, out.width='70%', fig.cap='Download the chapter folder and right click on it to unzip the contents', echo=FALSE, fig.align='center'}
@@ -51,7 +53,7 @@ knitr::include_graphics("images/Introduction_to_R/rstudio-console.png")
 
 ```
 
-### Activity - using the console
+### Activity - Using the console
 
 First let's get used to the console where you can try out code. You can think of the console as a very fancy calculator. You can do some impressive calculations, but like a calculator, once you close it down, everything you did is lost.
 

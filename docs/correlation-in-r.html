@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Data Analysis Skills for Psychology in R</title>
+  <title>Chapter 5 Correlation in R | Data Analysis Skills for Psychology in R</title>
   <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Data Analysis Skills for Psychology in R" />
+  <meta property="og:title" content="Chapter 5 Correlation in R | Data Analysis Skills for Psychology in R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
   <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
   <meta name="github-repo" content="https://github.com/garner-code/PSYC2001_ComputingLabBook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Data Analysis Skills for Psychology in R" />
+  <meta name="twitter:title" content="Chapter 5 Correlation in R | Data Analysis Skills for Psychology in R" />
   
   <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
   <meta name="twitter:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="testing-for-differences-between-groups.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -333,18 +333,178 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="correlation-in-r" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Correlation in R<a href="correlation-in-r.html#correlation-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="checking-installation-and-loading-packages-3" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Checking installation and loading packages<a href="correlation-in-r.html#checking-installation-and-loading-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As usual we first always check and load in our required packages.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="correlation-in-r.html#cb1-1" tabindex="-1"></a><span class="co"># Check if packages are installed, if not install.</span></span>
+<span id="cb1-2"><a href="correlation-in-r.html#cb1-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(here)) <span class="fu">install.packages</span>(<span class="st">&#39;here&#39;</span>) <span class="co">#checks if a package is installed and installs it if required.</span></span>
+<span id="cb1-3"><a href="correlation-in-r.html#cb1-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
+<span id="cb1-4"><a href="correlation-in-r.html#cb1-4" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ggplot2)) <span class="fu">install.packages</span>(<span class="st">&#39;ggplot2&#39;</span>)</span>
+<span id="cb1-5"><a href="correlation-in-r.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="correlation-in-r.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
+<span id="cb1-7"><a href="correlation-in-r.html#cb1-7" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="correlation-in-r.html#cb1-8" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+</div>
+<div id="investigating-correlational-relationships" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Investigating correlational relationships<a href="correlation-in-r.html#investigating-correlational-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This week, we are going to explore relationships between continuous variables, using correlation.</p>
+<p>We have previously looked at how mood and location influence social media use. Now we’re going to look at the relationship between social media use, age and political activism. It has previously been shown that social media use has a positive relationship with levels of political activism in other countries such as Jordan <a href="https://www.mdpi.com/2076-0760/12/7/402">(Alodat et al, 2023)</a>. However, we don’t know if this is true for young adults in Australia. This is what we will test today.</p>
+<p>Today we will be using the <code>time_on_social</code>, <code>age</code>, <code>polit_informed</code>, <code>polit_campaign</code> and <code>polit_activism</code> variables.</p>
+<p>Remember, these variables stand for the following:</p>
+<ul>
+<li>age – age in years</li>
+<li>time_on_social – average hours/day on social media (self-report diary)</li>
+</ul>
+<p>Political attitude subscales:</p>
+<ul>
+<li>informed – how politically informed they feel (e.g., read news daily)</li>
+<li>campaign – how much they engage in campaign-related discussion</li>
+<li>activism – involvement in activism (e.g., protests, petitions)</li>
+</ul>
+</div>
+<div id="activity-1---formulate-your-research-question" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Activity 1 - Formulate your research question<a href="correlation-in-r.html#activity-1---formulate-your-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we begin we first need to load in our dataset for today. Are you able to load in the <code>PSYC2001_social-media-data.csv</code> dataset ?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="correlation-in-r.html#cb2-1" tabindex="-1"></a>social_media <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#reads in CSV files</span></span></code></pre></div>
+<p>Will young adults who spend a lot of time on social media be more politically active ? Or the opposite? Or neither ?</p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What is a reasonable null and alternate hypothesis? The class will come up with a hypothesis.</p>
+</div>
+</div>
+<div id="activity-2---how-much-political-attitude" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Activity 2 - How much political attitude?<a href="correlation-in-r.html#activity-2---how-much-political-attitude" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘attitude’ score for each participant. Each subscale score carries a different weighting towards the total ‘attitude’ score.</p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Why would each subscale carry a different weighting?</p>
+</div>
+<p>The formula for calculating attitude is:</p>
+<p><span class="math display">\[Attitude = 0.25 \times informed + 0.35 \times campaign + 0.4 \times activism\]</span></p>
+<p>Using this formula are you able to figure out how to create the attitude variables ?</p>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Hint:</strong> Use the mutate function !</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="correlation-in-r.html#cb3-1" tabindex="-1"></a>social_media_attitutde <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="correlation-in-r.html#cb3-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">attitude =</span> <span class="fl">0.25</span><span class="sc">*</span>polit_informed <span class="sc">+</span></span>
+<span id="cb3-3"><a href="correlation-in-r.html#cb3-3" tabindex="-1"></a>                    <span class="fl">0.35</span><span class="sc">*</span>polit_campaign <span class="sc">+</span></span>
+<span id="cb3-4"><a href="correlation-in-r.html#cb3-4" tabindex="-1"></a>                    <span class="fl">0.4</span><span class="sc">*</span>polit_activism)</span></code></pre></div>
+<p>Lets save this data so that we can use it next week:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="correlation-in-r.html#cb4-1" tabindex="-1"></a><span class="fu">write.csv</span>(social_media_attitutde, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Output&quot;</span>, <span class="st">&quot;PSYC2001-social-media-attitutde.csv&quot;</span>))</span></code></pre></div>
+</div>
+<div id="activity-3---looking-for-straight-lines" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Activity 3 - looking for straight lines<a href="correlation-in-r.html#activity-3---looking-for-straight-lines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now lets visualise this in R.</p>
+<p>We’re going to explore our data to see if it is suitable for a pearson correlation analysis. Remember, we use a pearson correlation analysis when we think a straight line is a good enough description of the relationship between our variables.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/No%20visualisation%20is%20bad.jpg?raw=true" alt="MFW people don't visualise their data" width="50%" />
+<p class="caption">
+Figure 5.1: MFW people don’t visualise their data
+</p>
+</div>
+<p>Let’s use <code>ggplot</code> to make scatter plots to show the relationships between age, time_on_social and attitude. You should wind up with 3 scatterplots.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="correlation-in-r.html#cb5-1" tabindex="-1"></a>social_media_attitutde <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="correlation-in-r.html#cb5-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> age, <span class="at">x =</span> time_on_social)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="correlation-in-r.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="correlation-in-r.html#cb5-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on social&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="correlation-in-r.html#cb5-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20time_on_social-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="correlation-in-r.html#cb6-1" tabindex="-1"></a>social_media_attitutde <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="correlation-in-r.html#cb6-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> age, <span class="at">x =</span> attitude)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="correlation-in-r.html#cb6-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="correlation-in-r.html#cb6-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Attitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="correlation-in-r.html#cb6-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20attitude-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="correlation-in-r.html#cb7-1" tabindex="-1"></a>social_media_attitutde <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="correlation-in-r.html#cb7-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social, <span class="at">x =</span> attitude)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="correlation-in-r.html#cb7-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="correlation-in-r.html#cb7-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on social&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Attitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="correlation-in-r.html#cb7-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20time_on_social%20and%20attitude-1.png" width="672" /></p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Do the relationships look linear or non-linear? Which correlation analyses would you be more cautious about running?</p>
+</div>
+</div>
+<div id="conducting-correlations" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Conducting correlations<a href="correlation-in-r.html#conducting-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s find out if there is a statistically significant correlation between <code>time_on_social</code> and <code>attitude</code>. To do this we can use the <code>cor.test()</code> function. This function takes in a formula
+of where the right hand side specifies the two numeric variables to be correlated.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="correlation-in-r.html#cb8-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">formula =</span> <span class="sc">~</span>time_on_social <span class="sc">+</span> attitude, <span class="at">data =</span> social_media_attitutde, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>) <span class="co">#formula contains both numeric variables on the right hand side.</span></span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  time_on_social and attitude
+## t = 4.4667, df = 56, p-value = 3.904e-05
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.2930241 0.6807091
+## sample estimates:
+##       cor 
+## 0.5125282</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="correlation-in-r.html#cb10-1" tabindex="-1"></a><span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation. </span></span></code></pre></div>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Have a look at the output in the console. What is the relationship between <code>time_on_social</code> and <code>attitude</code>? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?</p>
+</div>
+</div>
+<div id="writing-up-results-and-conclusions-1" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Writing up results and conclusions<a href="correlation-in-r.html#writing-up-results-and-conclusions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now lets have a go at writing up the results of the correlation that we have conducted:</p>
+<div style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;">
+<p><strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p &lt; 0.01).</p>
+</div>
+<p>Please have a go at writing the conclusion:</p>
+<div style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;">
+<p><strong>Conclusions:</strong> Your conclusion will go here !</p>
+</div>
+</div>
+<div id="activity-4---exploring-the-data" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Activity 4 - Exploring the data<a href="correlation-in-r.html#activity-4---exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we can harness the power of R to perform multiple correlations all at the same time ahhhhhhhhhh !</p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> First what other relationships do you think could exist between variables in this dataset ? Make two hypotheses and discuss them with your tutor.</p>
+</div>
+<p>Create a scatterplot of the variables you have hypothesised using the code blocks below:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="correlation-in-r.html#cb11-1" tabindex="-1"></a>social_media_attitutde <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="correlation-in-r.html#cb11-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="correlation-in-r.html#cb11-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="correlation-in-r.html#cb11-4" tabindex="-1"></a>  <span class="fu">labs</span>() <span class="sc">+</span>...</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="correlation-in-r.html#cb12-1" tabindex="-1"></a>social_media_attitutde <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="correlation-in-r.html#cb12-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="correlation-in-r.html#cb12-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="correlation-in-r.html#cb12-4" tabindex="-1"></a>  <span class="fu">labs</span>() <span class="sc">+</span>...</span></code></pre></div>
+<p>Now compute correlations between these your chosen variables.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="correlation-in-r.html#cb13-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> , <span class="at">y =</span>  <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="correlation-in-r.html#cb14-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> , <span class="at">y =</span>  <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+</div>
+<div id="writing-up-results-and-conclusions-2" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Writing up results and conclusions<a href="correlation-in-r.html#writing-up-results-and-conclusions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Have a go at writing up the results and conclusions for the correlations you have just conducted. Make sure to use the previous results as a guide.</p>
+<div style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;">
+<p><strong>Results:</strong> Your results will go here !</p>
+</div>
+<p>Now have a try at the conclusion.</p>
+<div style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;">
+<p><strong>Conclusions:</strong> Your conclusion will go here !</p>
+</div>
+</div>
+<div id="you-are-free-4" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> You are Free!<a href="correlation-in-r.html#you-are-free-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/Statistical%20trauma.gif?raw=true" alt="It almost over (I promise)" width="50%" />
+<p class="caption">
+Figure 5.2: It almost over (I promise)
+</p>
+</div>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="testing-for-differences-between-groups.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -376,7 +536,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_Correlation-analysis.Rmd",
 "text": "Edit"
 },
 "history": {

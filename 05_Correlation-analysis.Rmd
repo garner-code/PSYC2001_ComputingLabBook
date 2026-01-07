@@ -1,0 +1,221 @@
+# Correlation Analysis
+
+This week, we are going to explore relationships between continuous variables, using correlation. We will take a look at how to combine composite variables into a single score, visualise relationships between variables using scatterplots, and conduct Pearson correlation analyses in R.
+
+## Checking installation and loading packages
+
+As usual we first always check and load in our required packages.
+
+```{r message = FALSE, warning= FALSE}
+# Check if packages are installed, if not install.
+if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
+if(!require(tidyverse)) install.packages('tidyverse')
+if(!require(ggplot2)) install.packages('ggplot2')
+
+library(here) #loads in the specified package
+library(tidyverse)
+library(ggplot2)
+
+```
+
+
+## Investigating correlational relationships
+
+We have previously looked at how mood and location influence social media use. Now we’re going to look at the relationship between social media use, age and political activism. It has previously been shown that social media use has a positive relationship with levels of political activism in other countries such as Jordan [(Alodat et al, 2023)](https://www.mdpi.com/2076-0760/12/7/402). However, we don’t know if this is true for young adults in Australia. This is what we will test today.
+
+Today we will be using the `time_on_social`, `age`, `polit_informed`, `polit_campaign` and `polit_activism` variables.
+
+Remember, these variables stand for the following:
+
+- age – age in years
+- time_on_social – average hours/day on social media (self-report diary)
+
+Political attitude subscales:
+
+- informed – how politically informed they feel (e.g., read news daily)
+- campaign – how much they engage in campaign-related discussion
+- activism – involvement in activism (e.g., protests, petitions)
+
+## Activity 1 - Formulate your research question
+
+Before we begin we first need to load in our dataset for today. Are you able to load in the `PSYC2001_social-media-data.csv` dataset ? 
+
+```{r }
+social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV files
+```
+
+
+Will young adults who spend a lot of time on social media be more politically active ? Or the opposite? Or neither ? 
+
+
+::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> What is a reasonable null and alternate hypothesis? The class will come up with a hypothesis.
+:::
+
+## Activity 2 - How much political attitude?
+
+Let's now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘attitude’ score for each participant. Each subscale score carries a different weighting towards the total ‘attitude’ score.
+
+::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> Why would each subscale carry a different weighting?
+:::
+
+The formula for calculating attitude is:
+
+$$Attitude = 0.25 \times informed + 0.35 \times campaign + 0.4 \times activism$$
+
+Using this formula are you able to figure out how to create the attitude variables ? 
+
+::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
+<strong>Hint:</strong> Use the mutate function !
+:::
+  
+
+```{r Activity 4}
+social_media_attitutde <- social_media %>% 
+  mutate(attitude = 0.25*polit_informed +
+                    0.35*polit_campaign +
+                    0.4*polit_activism)
+
+```
+
+Lets save this data so that we can use it next week: 
+
+```{r}
+write.csv(social_media_attitutde, file = here("Output", "PSYC2001-social-media-attitutde.csv"))
+```
+
+
+## Activity 3 - looking for straight lines
+
+Now lets visualise this in R. 
+
+We’re going to explore our data to see if it is suitable for a pearson correlation analysis. Remember, we use a pearson correlation analysis when we think a straight line is a good enough description of the relationship between our variables.
+
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="MFW people don't visualise their data"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/No%20visualisation%20is%20bad.jpg?raw=true")
+```
+
+
+Let's use `ggplot` to  make scatter plots to show the relationships between age, time_on_social and attitude. You should wind up with 3 scatterplots.
+
+```{r Scatterplot of age and time_on_social, warning=FALSE}
+social_media_attitutde %>% 
+  ggplot(aes(y = age, x = time_on_social)) +
+  geom_point(colour = "orange") +
+  labs(x = "Age", y = "Time on social") +
+  theme_classic() 
+```
+
+```{r Scatterplot of age and attitude, warning=FALSE}
+social_media_attitutde %>% 
+  ggplot(aes(y = age, x = attitude)) +
+  geom_point(colour = "blue") +
+  labs(x = "Age", y = "Attitude") +
+  theme_classic() 
+```
+
+```{r Scatterplot of time_on_social and attitude, warning=FALSE}
+social_media_attitutde %>% 
+  ggplot(aes(y = time_on_social, x = attitude)) +
+  geom_point(colour = "red") +
+  labs(x = "Time on social", y = "Attitude") +
+  theme_classic() 
+```
+
+::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> Do the relationships look linear or non-linear? Which correlation analyses would you be more cautious about running?
+:::
+  
+## Conducting correlations
+
+Let’s find out if there is a statistically significant correlation between `time_on_social` and `attitude`. To do this we can use the `cor.test()` function. This function takes in a formula 
+of where the right hand side specifies the two numeric variables to be correlated.
+
+```{r Correlations between time_on_social and attitude}
+cor.test(formula = ~time_on_social + attitude, data = social_media_attitutde, use = "complete.obs") #formula contains both numeric variables on the right hand side.
+#use = "complete.obs" removes all NA values from the correlation. 
+```
+
+
+::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
+:::
+
+
+## Writing up results and conclusions
+
+Now lets have a go at writing up the results of the correlation that we have conducted: 
+
+::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+<strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p < 0.01).
+:::
+
+Please have a go at writing the conclusion:
+
+::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+<strong>Conclusions:</strong> Your conclusion will go here !
+:::
+
+## Activity 4 - Exploring the data
+
+Now we can harness the power of R to perform multiple correlations all at the same time ahhhhhhhhhh !
+
+::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> First what other relationships do you think could exist between variables in this dataset ? Make two hypotheses and discuss them with your tutor.
+:::
+
+Create a scatterplot of the variables you have hypothesised using the code blocks below:
+
+```{r Scatterplot 1, eval = FALSE}
+social_media_attitutde %>% 
+  ggplot() +
+  geom_point() +
+  labs() +...
+```
+
+```{r Scatterplot 2, eval = FALSE}
+social_media_attitutde %>% 
+  ggplot() +
+  geom_point() +
+  labs() +...
+```
+
+Now compute correlations between these your chosen variables. 
+
+```{r Correlation 1, eval = FALSE}
+cor.test(x = , y =  use = "complete.obs")
+
+```
+
+```{r Correlation 2, eval = FALSE}
+cor.test(x = , y =  use = "complete.obs")
+
+```
+
+## Writing up results and conclusions
+
+Have a go at writing up the results and conclusions for the correlations you have just conducted. Make sure to use the previous results as a guide.
+
+::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+<strong>Results:</strong> Your results will go here !
+:::
+
+Now have a try at the conclusion. 
+
+::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+<strong>Conclusions:</strong> Your conclusion will go here !
+:::
+
+## You are Free!
+
+Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data. 
+
+
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="It almost over (I promise)"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/Statistical%20trauma.gif?raw=true")
+```
+
+
+
+
