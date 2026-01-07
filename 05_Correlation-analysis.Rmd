@@ -1,20 +1,22 @@
 # Correlation Analysis
 
-This week, we are going to explore relationships between continuous variables, using correlation. We will take a look at how to combine composite variables into a single score, visualise relationships between variables using scatterplots, and conduct Pearson correlation analyses in R.
+This week, we are going to explore relationships between continuous variables, using correlation. We will take a look at how to combine composite variables into a single score, as this is something we often do in the pusuit of understanding the human psyche. We will also visualise relationships between variables using scatterplots, and conduct Pearson correlation analyses in R.
 
 ## Checking installation and loading packages
 
-As usual we first always check and load in our required packages.
+As usual we first always check and load in our required packages. This week, as usual, we will need the packages `here` and `tidyverse`. 
 
-```{r message = FALSE, warning= FALSE}
+### Activity - write the code to load packages from the library
+
+We are not giving you the code to copy and paste. You are ready to fly, and write it yourself, now you have mastery of the codeship. You are welcome to decide yourself whether you would like to check if the packages are installed before you load them.
+
+```{r message = FALSE, warning= FALSE, echo=FALSE}
 # Check if packages are installed, if not install.
 if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
 if(!require(tidyverse)) install.packages('tidyverse')
-if(!require(ggplot2)) install.packages('ggplot2')
 
 library(here) #loads in the specified package
 library(tidyverse)
-library(ggplot2)
 
 ```
 
@@ -32,39 +34,83 @@ Remember, these variables stand for the following:
 
 Political attitude subscales:
 
-- informed – how politically informed they feel (e.g., read news daily)
-- campaign – how much they engage in campaign-related discussion
-- activism – involvement in activism (e.g., protests, petitions)
+- polit_informed – how politically informed they feel (e.g., read news daily)
+- polit_campaign – how much they engage in campaign-related discussion
+- polit_activism – involvement in activism (e.g., protests, petitions)
 
-## Activity 1 - Formulate your research question
+### Activity - How might political attitudes relate to social media use?
 
-Before we begin we first need to load in our dataset for today. Are you able to load in the `PSYC2001_social-media-data.csv` dataset ? 
+Before we begin we first need to load in our dataset for today. Are you able to load in the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`? Again, we will not provide the code, as you can copy and paste the required code from a previous week. Keep flying! :) 
 
-```{r }
-social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV files
+```{r, echo=FALSE}
+social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV file
 ```
 
-
-Will young adults who spend a lot of time on social media be more politically active ? Or the opposite? Or neither ? 
-
+Now that you have loaded the data, what do you think about the relationship between political attitudes and time spent on social media? Will young adults who spend a lot of time on social media be more politically active? Or the opposite? Or neither? 
 
 ::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> What is a reasonable null and alternate hypothesis? The class will come up with a hypothesis.
+<strong>Question:</strong> What is a reasonable null and alternate hypothesis? Work with your tutor and class to form a hypothesis.
 :::
 
-## Activity 2 - How much political attitude?
+## Building a composite score that measures political attitude
 
-Let's now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘attitude’ score for each participant. Each subscale score carries a different weighting towards the total ‘attitude’ score.
+Let's now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘political attitude’ score for each participant. Each subscale score carries a different weighting towards the total political attitude score.
 
 ::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> Why would each subscale carry a different weighting?
+<strong>Pause for thought:</strong> Why would each subscale carry a different weighting? Think about what was discussed in the lectures about composite scores.
 :::
 
-The formula for calculating attitude is:
+### Activity - Get some political attitude
 
-$$Attitude = 0.25 \times informed + 0.35 \times campaign + 0.4 \times activism$$
+The formula for calculating political attitude is:
 
-Using this formula are you able to figure out how to create the attitude variables ? 
+$$\mathrm{PoliticalAttitude} = 0.25 \times \mathrm{polit\_informed} + 0.35 \times \mathrm{polit\_campaign} + 0.4 \times \mathrm{polit\_activism}$$
+Now you have this formula, are you able to figure out how to write the code that creates the political attitude scores? 
+
+### Activity - putting the formula together in code form
+
+**Your first hint** is that you are able to take any variable (column) from a data frame and multiply all the observations it contains by a single number. Let's go through an example so you can see what we mean. To go through this example, we need to access the observations that are saved to a variable (column), so we can see what happens when we multiply them by a single number. If you remember, we accessed observations in a column, back in the day, using the `$` operator, when we performed a paired-samples t-test in Section \@ref(sec-conducting-paired-t-test).
+
+Run the following line of code in your script, to see what is printed out into the console. Check it matches what you see below.
+
+```{r, access numbers using dollar symbol}
+
+social_media$polit_informed
+
+```
+
+That's one way to see the observations in a variable. The second way is to use the `select` function from tidyverse. (There are always many ways to solve problems when coding, and knowing the different methods is useful, as different solutions will be more or less useful, depending on the context of what you are doing). 
+
+Run the following line of code in your script, and check you see the same numbers as before. Note that the numbers will be printed out in a tibble format, as tidyverse has automatically kept the data frame structure when using the `select()` function.
+
+```{r, access numbers using select function, eval=FALSE}
+
+social_media %>% select(polit_informed)
+
+```
+
+Now, to make things neater, let's just look at the first 5 observations of this variable. In your own script, complete the line of code you see below so that you pipe the output of the `select()` function to be used as input to the `head()` function. 
+
+```{r, access first 5 numbers using head function, eval=FALSE}
+
+social_media %>% select(polit_informed) %>%
+
+```
+
+**Note that** if you look up the help for the `head()` function by typing `?head` into the console, you will see that the `head()` function returns the first or last parts of a vector (variable), matrix, table, data frame or function. The thing that `head()` is returning the first or last parts of is called `x` in the help file. Piping the output of the `select()` function to the `head()` function means that the output will automatically be used as the input `x` to the `head()` function. Thus you will just be able to use `head()` without specifying what `x` is - aka you do not need to write anything between the brackets.
+
+Run your completed line of code and make sure that the 6 numbers output into the console match the first 6 numbers that you saw when you ran `social_media$polit_informed` and `social_media %>% select(polit_informed)`. 
+
+
+```{r, access first 5 numbers for real, echo=FALSE}
+
+social_media %>% select(polit_informed) %>% head()
+
+```
+
+If you wanted, you could get a similar result by using `head(social_media$polit_informed)`, but without the tibble/data frame bells and whistles that come with using `select()`.
+
+OK, now we know we are accessing the 
 
 ::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
 <strong>Hint:</strong> Use the mutate function !
@@ -82,7 +128,7 @@ social_media_attitutde <- social_media %>%
 Lets save this data so that we can use it next week: 
 
 ```{r}
-write.csv(social_media_attitutde, file = here("Output", "PSYC2001-social-media-attitutde.csv"))
+write.csv(social_media_attitutde, file = here("Data", "PSYC2001-social-media-attitutde.csv"))
 ```
 
 
