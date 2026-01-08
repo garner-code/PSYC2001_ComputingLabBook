@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-01-07" />
+<meta name="date" content="2026-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -317,7 +317,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="correlation-analysis.html"><a href="correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="correlation-analysis.html"><a href="correlation-analysis.html#activity---get-some-political-attitude"><i class="fa fa-check"></i><b>5.3.1</b> Activity - Get some political attitude</a></li>
-<li class="chapter" data-level="5.3.2" data-path="correlation-analysis.html"><a href="correlation-analysis.html#activity---putting-the-formula-together-in-code-form"><i class="fa fa-check"></i><b>5.3.2</b> Activity - putting the formula together in code form</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="correlation-analysis.html"><a href="correlation-analysis.html#activity-3---looking-for-straight-lines"><i class="fa fa-check"></i><b>5.4</b> Activity 3 - looking for straight lines</a></li>
 <li class="chapter" data-level="5.5" data-path="correlation-analysis.html"><a href="correlation-analysis.html#conducting-correlations"><i class="fa fa-check"></i><b>5.5</b> Conducting correlations</a></li>
@@ -610,20 +609,13 @@ Figure 3.4: Handy t-test help
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-testing-first-hypothesis.html#cb66-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb66-2"><a href="sec-testing-first-hypothesis.html#cb66-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes_diff =</span> good_mood_likes <span class="sc">-</span> bad_mood_likes) <span class="co">#create a new column which is the difference between</span></span>
 <span id="cb66-3"><a href="sec-testing-first-hypothesis.html#cb66-3" tabindex="-1"></a><span class="co"># good and bad mood likes</span></span></code></pre></div>
-<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
-## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2
-## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2
-## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7
-## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3
-## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9
-## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4
-##   polit_activism likes_diff
-## 1            3.6      -23.7
-## 2            2.6       -2.3
-## 3            3.0        4.7
-## 4            2.6        0.7
-## 5            3.3      -15.3
-## 6            3.9        6.7</code></pre>
+<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign polit_activism likes_diff
+## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2            3.6      -23.7
+## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2            2.6       -2.3
+## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7            3.0        4.7
+## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3            2.6        0.7
+## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9            3.3      -15.3
+## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4            3.9        6.7</code></pre>
 <p>Now, we’re going to need to save that dataframe to an object called social_media_diff, so that we can use it in the
 <code>t.test()</code> function. Update the code you just ran so that it starts with <code>social_media_diff &lt;-</code> and run it to save the dataframe.</p>
 <p>Now that we have correctly calculated and saved our difference score we can use the <code>t.test()</code> function to perform our one-sample t.test. Run this code in your script, and compare the output to the output of the paired t-test you did earlier. Are they the same?</p>

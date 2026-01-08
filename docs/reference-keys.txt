@@ -128,7 +128,6 @@ investigating-correlational-relationships
 activity---how-might-political-attitudes-relate-to-social-media-use
 building-a-composite-score-that-measures-political-attitude
 activity---get-some-political-attitude
-activity---putting-the-formula-together-in-code-form
 activity-3---looking-for-straight-lines
 conducting-correlations
 writing-up-results-and-conclusions-1
