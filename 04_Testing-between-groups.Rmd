@@ -8,7 +8,9 @@ As usual we first always check and load in our required packages.
 
 ### Activity - load packages using `library()`
 
-Just like in Chapter \@ref(sec-testing-first-hypothesis), your script contains the code to install the packages, if required. Add the two lines of code that use the `library()` function to load `here` and `tidyverse`. Run all the code.
+Just like in Chapter \@ref(sec-testing-first-hypothesis), your script contains the code to install the packages, if required. 
+
+> Add the two lines of code that use the `library()` function to load `here` and `tidyverse` to your own script. Run all the code.
 
 ```{r  message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -26,10 +28,10 @@ In Chapter \@ref(sec-testing-first-hypothesis), we performed an analysis to lear
 
 However, we do not know if people living in urban and rural areas engage with social media differently, regardless of how long they spend on their chosen platforms. Today we will address this question using the `urban`, `good_mood_likes`, `bad_mood_likes`, and `followers` variables. Remember, these variables stand for the following:
 
--   `urban` – urban (1) or rural (2) area (based on postcode density)
--   `good_mood_likes` – average number of likes made over 10 min during a good mood (from platform + diary)
--   `bad_mood_likes` – as above, but during bad mood
--   `followers` – average number of followers across platforms
+  `urban` – urban (1) or rural (2) area (based on postcode density)  
+  `good_mood_likes` – average number of likes made over 10 min during a good mood (from platform + diary)  
+  `bad_mood_likes` – as above, but during bad mood  
+  `followers` – average number of followers across platforms  
 
 
 ### Activity - Formulate your research question
@@ -48,14 +50,17 @@ What do you think? Will urban and rural dwellers engage differently with social 
 
 Today we will be averaging across mood to get the number of likes for urban and rural dwellers. This means we first need to create a new variable called `likes` which is the average of the likes in a good and bad mood.
 
-We first load in our`PSYC2001_social-media-data-cleaned.csv` dataset. Copy and paste this code
-into your script and run it to load in the data.
+We first load in our`PSYC2001_social-media-data-cleaned.csv` dataset. 
+
+> Copy and paste this code into your script and run it to load in the data.
 
 ```{r }
 social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV files
 ```
 
-Lets double check its the data we think it is by using the `head()` function. See that we've added in an argument to say we want to see the first 10 lines of the data. Amend your code in your script to look at the number of rows your very own eyes want to see.
+Lets double check its the data we think it is by using the `head()` function. See that we've added in an argument to say we want to see the first 10 lines of the data. 
+
+> Amend your code in your script to look at the number of rows your very own eyes want to see.
 
 ```{r check data}
 
@@ -66,7 +71,7 @@ head(social_media, 10) # you can even say how many lines you want to see! Try ch
 
 There are a couple of things we need to do to get our data into shape. The first is to create our new variable `likes` which is the average of `good_mood_likes` and `bad_mood_likes`. The second is to define the urban factor correctly. More on that to come!
 
-### Activity - Creating a new `likes` variable
+### Activity - Creating a new `likes` variable {#sec-new-likes}
 
 We need to create a new variable called `likes` which is the average of `good_mood_likes` and `bad_mood_likes`. To do this, we are going to use the `mutate()` function from the `tidyverse` package. You can think of using `mutate()` as a way to create a new column in your data frame, using information from other columns.
 
@@ -74,7 +79,11 @@ To use `mutate()` we need to use the pipe operator `%>%` which we also used in S
 
 We are going to use the pipe operator to take the `social_media` data frame and then use `mutate()` to create our new variable `likes`. Because we want the average likes, we will add `good_mood_likes` and `bad_mood_likes` together and then divide by 2. 
 
-Run the following line of code in your script to see the output.
+Because this is a new way of using code, we need to carefully design a test that tells us if our code is working as it should. **This is a very important part of coding.** In this case, the test is very easy to design. We can manually calculate the first few values of `likes` that our code should produce. Then, if our code does indeed produce those values, we know exactly what our code is doing. 
+
+> Using the console (or in your head), calculate what values you should get for the first three rows of the `likes` column, when taking the average of `bad_mood_likes` and `good_mood_likes`. Add these values as comments to your script.
+
+> Now, get the whole column of averages by running the following line of code in your script.
 
 ```{r show_mutate, eval=FALSE}
 
@@ -93,27 +102,17 @@ head(social_media_likes, 10)
 
 ```
 
-You can see that `mutate()` has created an extra column called likes. You can manually check that the first couple of values are correct, by adding the `good_mood_likes` and `bad_mood_likes` values together and dividing by 2. 
+You can see that `mutate()` has created an extra column called likes. 
+
+> Check that the values in the first three rows of the `likes` column match what you calculated and added to your comments. Talk to your tutor if they do not match. 
 
 ::: {style="border-left: 4px solid #8273e6; background-color: #c2baf5; padding: 10px; margin: 10px 0;"}
-<strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch mistakes early on.
+<strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch bugs early on.
 :::
-
-Looking at the data frame above, we can see that the first value for `good_mood_likes` is 22.8 and the first value for `bad_mood_likes` is 46.5. Lets add them together and divide by 2, to check the answer is the same as the first value for `likes`, which is 34.65.
-
-Type the below into your console and check you get the same answer:
-
-```{r manual_check}
-
-(22.8 + 46.5) / 2 
-
-```
-
-Woohoo!
 
 Now, this data frame has all we need for our analysis, and a lot more! Let's make things simpler for ourselves by only keeping the variables we need. We can do this by once again using the pipe operator, along with the `select()` function.
 
-Update the code in your script so that it looks like this:
+> Update the code in your script so that it looks **exactly** like this:
 
 ```{r, select_variable}
 
@@ -122,11 +121,15 @@ social_media_likes <- social_media %>%
   select(id, urban, likes, followers) #selects only the specified columns from the data frame
 ```
 
-Check that you got what you want by using the `head()` function again.
+> Check that the code did indeed select only the variables we want, by using the `head()` function to check what the new data frame called `social_media_likes` looks like. 
+
+If you need help, there is an example for how to use the `head()` function in Section \@ref(sec-data-view).
 
 ### Activity - Defining factors
 
-Now that we have this data frame object it is important to check that R can understand the data properly. Lets use the `str()` function that we learned about in Section \@ref(sec-data-view) to examine what R thinks about each column. Complete the code in your script and run it, to make sure you get the same results.
+Now that we have this data frame object it is important to check that R can understand the data properly. Lets use the `str()` function that we learned about in Section \@ref(sec-data-view) to examine what R thinks about each column. 
+
+> Complete the code in your script and run it, to make sure you get the same results.
 
 ```{r}
 str(social_media_likes) #provides a summary of the data structure.
@@ -135,9 +138,13 @@ str(social_media_likes) #provides a summary of the data structure.
 
 What have we learned? We can see that R thinks that `urban` contains integers (int), i.e. R thinks that `urban` is a column of real numbers containing 1s and 2s. But `urban` is not a numeric variable, it is actually a factor (categorical variable). 
 
-If you remember from the README.txt file (which you read already, right? :)), `1` stands for urban and `2` stands for rural. We need to tell R this, so that it can understand the data properly.
+If you remember from the README.txt file (which you read already, right? :)), `1` stands for urban and `2` stands for rural. We need to tell R this, so that it can understand how to work with this variable.
 
-To do this, we can use the as_factor() function, which converts a variable to a factor. We also need to tell R that `1` means `urban` and `2` means `rural`. We can do this using the `factor()` function within `mutate()`. The `mutate()` function is coming in handy today!
+To do this, we can use the `factor()` function, which converts a variable to a factor. We also need to tell R that `1` means `urban` and `2` means `rural`. 
+
+Because we need the result to apply to every single `1` and `2` in rural, we need to use the `factor()` function along with a function that says "hey, let's apply this to the whole column". Remember how we use the `mutate()` function to make a new column? We can also use the `mutate()` function to an existing column, as what ever you give it will be applied to every row of whichever column you name when using the function. The `mutate()` function is coming in handy today!
+
+> Run the line of code in your script that matches this.
 
 ```{r}
 
@@ -145,7 +152,9 @@ social_media_likes <- social_media_likes %>%
       mutate(urban = factor(urban, levels=c(1,2), labels=c('urban', 'rural'))) #changes the urban variable to a factor with levels urban and rural
 ```
 
-Now we want to test that this code did what we wanted it to do. Use the `str()` function again to check that `urban` is now a factor. 
+Now we want to test that this code did what we wanted it to do. 
+
+> Use the `str()` function again to check that `urban` is now a factor. 
 
 ```{r}
 
@@ -153,7 +162,6 @@ str(social_media_likes)
 ```
 
 Excellent! We can see that R now thinks that `urban` is a factor with 2 levels: `urban` and `rural`. Our data is now in a format that we should be able to easily visualise it and conduct our statistical tests. 90% done :)
-
 
 ```{r, echo=FALSE, out.width="60%", fig.align='center', fig.cap="What it feels like teaching this section"}
 knitr::include_graphics("images/Testing_between_groups/feels-like.gif")
@@ -167,7 +175,9 @@ Today, we are going to examine our variables using histograms. Just as we did in
 
 ### Activity - Adapting our previous code to make new histograms
 
-Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for `likes` (`x=`) using the `social_media_likes` data frame (and not the `social_media_NA` data frame). Also remember to adjust the axis labels (the `x=` and `y=` arguments for labs()`)! 
+Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for `likes` (`x=`) using the `social_media_likes` data frame (and not the `social_media_NA` data frame). Also remember to adjust the axis labels (the `x=` and `y=` arguments for `labs()`)!
+
+> Change the below code in your own script to make the histogram for `likes`.
 
 *You have to accept it. Determinism beats free will.
 
@@ -196,7 +206,9 @@ social_media_likes %>%
 
 What would you say about this data, now you have looked at the histogram? Does it look normally distributed? Are there any outliers?
 
-Now, can you make a density plot for `followers`? Copy and paste the code you used to make the histogram for `followers` and make the teeny changes required. Go on, you are a coder, and you are strong.
+> Copy and paste the code you used to make the histogram for `likes` and make the teeny changes required so that you get a histogram for `followers` instead. 
+
+Go on, you are a coder, and you are strong.
 
 ```{r, do-hist-follow, echo=FALSE, message=FALSE}
 
@@ -216,13 +228,15 @@ Indeed, the `followers` variable looks different to the `likes` variable. This i
 
 Because the `followers` variable is not normally distributed, we will need to be a bit cautious when interpreting the results of our t-test later on. But we can still proceed, as the t-test is quite robust to violations of normality. You would just make sure to mention this in your write-up, so that your readers also know.
 
-However, we would reconsider this choice if `followers` contained a massive outlier, such as if we sampled someone with 10 million followers. 
+However, we would reconsider this choice if `followers` contained a massive outlier, such as if we happened to sample someone with 10 million followers. 
 
 ## Next step: descriptive statistics
 
 Now that we know what shape our data is in, and when we should exercise caution, we can move on to generating some descriptive statistics of our key variables.
 
 In Section \@ref(sec-get-descriptive) we learned how to summarise our data to get descriptive statistics. Now you'll get to see some more of the joy of coding - once you have written a bit of code that does something you need, its very easy to adapt it to do something else you need.
+
+### Activity - Adapt the code to get the mean and standard deviations for likes and followers
 
 Here is the code we wrote last week to get descriptive statistics of the rate of likes, grouped by mood:
 
@@ -235,9 +249,9 @@ social_media_likes %>%
 
 ```
 
-### Activity - Adapt the code to get the mean and standard deviations for likes and followers
+We want to use this code as a template for ourselves, so that we can get the mean and standard deviation for `likes` and `followers`, this time grouping by `urban`. 
 
-We want to adapt this code to get the mean and standard deviation for `likes` and `followers`, this time grouping by `urban`. You will find the below code in your script. Complete it to get the descriptive statistics you need.
+> You will find the below code in your script. Complete it to get the descriptive statistics for likes and followers.
 
 ```{r social_descriptives, eval=FALSE}
 
@@ -253,7 +267,7 @@ social_media_descriptives <- social_media_likes %>% # save to new object called 
 social_media_descriptives
 ```
 
-Check that your output for `social_media_descriptives` looks like this:
+> Check that your output for `social_media_descriptives` looks like this:
 
 ```{r social_descriptives_reals, echo=FALSE}
 
@@ -269,7 +283,7 @@ social_media_descriptives <- social_media_likes %>% # save to new object called 
 social_media_descriptives
 ```
 
-Look at the mean values you have generated for urban and rural dwellers. Do they make sense to you? Do they fit with your predictions from earlier?
+> Look at the mean values you have generated for urban and rural dwellers. Are they what you expected? Do they fit with your predictions from earlier?
 
 ## Independent samples t-test
 
@@ -283,7 +297,7 @@ This is how we use the formula method in `t.test()`. The syntax is `t.test(DV ~ 
 
 Note that you don't need to set the `paired` argument to `FALSE`, as the `t.test()` function assumes this whenever you use the formula method. So never use the formula method for a paired samples t-test. That would be a disaster.
 
-Run the below line of code in your script, to check you get the same output. 
+> Run the below line of code in your script, to check you get the same output. 
 
 ```{r, independent}
 
@@ -295,14 +309,14 @@ t.test(likes~urban, data=social_media_likes) # conducts an independent samples t
 <strong>Question:</strong> Discuss the output of this independent t-test, what does it tell you about the differences between urban and rural dwellers and how they actively use social media? Is it what you expected when you formulated your hypothesis?
 :::
 
-Now complete the following line of code in your own script, to test if `followers` differ by `urban`. 
+> Now complete the following line of code in your own script, to test if `followers` differ by `urban`. 
 
 ```{r, mock_t, eval=FALSE}
 
 t.test(???~urban, data=social_media_likes) # conducts an independent samples t-test to see if followers differ by urban/rural status
 ```
 
-Check your output with what you see below to make sure you got it right. Also, make sure to interpret what the output is telling you!
+> Check your output with what you see below to make sure you got it right. Also, make sure to interpret what the output is telling you!
 
 ```{r, real_t, echo=FALSE}
 
@@ -325,11 +339,11 @@ This is how we would write up the results of an independent samples t-test.
 
 ## Bonus Activity - Visualising group differences
 
-If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences. Which you might need to do in a certain upcoming assignment.
+If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences. 
 
 Earlier, we looked at the overall histograms for `likes` and `followers`. But when presenting our findings in a results section, what the reader really wants to see is how the groups differ from each other. One effective way to do this is to make a grouped boxplot. See [here](https://www.simplypsychology.org/boxplots.html) for more details on boxplots.
 
-Let's make a boxplot together, showing the `likes` data split by `urban` and `rural` groups. We are going to use a couple of new functions here (`geom_boxplot()`, `scale_fill_manual()`), which we explain in the comments below.
+Let's make a boxplot, showing the `likes` data split by `urban` and `rural` groups. We are going to use a couple of new functions here (`geom_boxplot()`, `scale_fill_manual()`), which we explain in the comments below.
 
 ```{r, boxplotlikes}
 
@@ -345,7 +359,9 @@ social_media_likes %>%
 
 Now we return to another critical part of coding. Copying and pasting what you have, and changing just a few bits. 
 
-Now, can you change the code above to make a boxplot for `followers` instead of `likes`? You will need to change what you give for the `y` argument in `aes()`, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found [here](https://r-graph-gallery.com/42-colors-names.html).Copy and paste the original code in your script and make your changes. You should get something that looks like this:
+> Copy and paste the code above and change it to make a boxplot for `followers` instead of `likes`. 
+
+You will need to change what you give for the `y` argument in `aes()`, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found [here](https://r-graph-gallery.com/42-colors-names.html).One you have finished, you should get something that looks like this:
 
 ```{r, follow_bp, echo=FALSE}
 
@@ -357,10 +373,11 @@ social_media_likes %>%
   theme_classic() 
 ```
 
-
 Last, we often want to save our figures as image files, so that we can include them in reports or presentations. This is very easy to do using the `ggsave()` function. 
 
-First, you should save the plot you want to save to an object. You can do this by amending your boxplot code so that the output saves to an object, such as you see below.
+First, you should save the plot you want to save to an object. 
+
+> Amend your boxplot code so that the output saves to an object, such as you see below.
 
 ```{r, likes_save, eval=FALSE}
 
@@ -373,17 +390,19 @@ likes_bp <- social_media_likes %>%
 
 ```
 
-Amend your code now to save your `followers` boxplot to an object called `followers_bp`. Run the code and check the object appears in your Environment pane.
+> Also amend your code for the `followers` boxplot so that it is saved to an object called `followers_bp`. Run the code and check the new object appears in the list in your Environment pane.
 
 Then, you can use the `ggsave()` function to save the plot to a file. The syntax is `ggsave("filename.png", plot = plot_name)`. You can change the file extension to save in different formats (e.g., .jpg, .pdf). We want to be extra smart and save the file to our `Output` folder, so we will use the `here()` function to specify the path.
 
-Copy and paste this code to your script, and change it to save your `followers_bp` plot instead of the `likes_bp` plot.
+> Copy and paste this code to your script, and run it. Then check the contents of the 'Output' folder.
 
 ```{r, save_figure, eval=FALSE}
 
 ggsave(here("Output", "likes_boxplot.png"), plot = likes_bp) # saves the likes boxplot to the Output folder as a PNG file
 
 ```
+
+> Now copy and paste that, and change it so that you save your `followers_bp` plot instead of the `likes_bp` plot.
 
 ## You are Free!
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-01-08" />
+<meta name="date" content="2026-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
 <li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity--find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity -find out about packages</a></li>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity - find out about packages</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a>
 <ul>
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.3</b> Wrangling our data</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---creating-a-new-likes-variable"><i class="fa fa-check"></i><b>4.3.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#sec-new-likes"><i class="fa fa-check"></i><b>4.3.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
 <li class="chapter" data-level="4.3.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.3.2</b> Activity - Defining factors</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.4</b> Visualising our data</a>
@@ -322,8 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="correlation-analysis.html"><a href="correlation-analysis.html#conducting-correlations"><i class="fa fa-check"></i><b>5.5</b> Conducting correlations</a></li>
 <li class="chapter" data-level="5.6" data-path="correlation-analysis.html"><a href="correlation-analysis.html#writing-up-results-and-conclusions-1"><i class="fa fa-check"></i><b>5.6</b> Writing up results and conclusions</a></li>
 <li class="chapter" data-level="5.7" data-path="correlation-analysis.html"><a href="correlation-analysis.html#activity-4---exploring-the-data"><i class="fa fa-check"></i><b>5.7</b> Activity 4 - Exploring the data</a></li>
-<li class="chapter" data-level="5.8" data-path="correlation-analysis.html"><a href="correlation-analysis.html#writing-up-results-and-conclusions-2"><i class="fa fa-check"></i><b>5.8</b> Writing up results and conclusions</a></li>
-<li class="chapter" data-level="5.9" data-path="correlation-analysis.html"><a href="correlation-analysis.html#you-are-free-4"><i class="fa fa-check"></i><b>5.9</b> You are Free!</a></li>
+<li class="chapter" data-level="5.8" data-path="correlation-analysis.html"><a href="correlation-analysis.html#you-are-free-4"><i class="fa fa-check"></i><b>5.8</b> You are Free!</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -353,7 +352,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As usual we first always check and load in our required packages.</p>
 <div id="activity---load-packages-using-library" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Activity - load packages using <code>library()</code><a href="testing-for-differences-between-groups.html#activity---load-packages-using-library" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Just like in Chapter <a href="sec-testing-first-hypothesis.html#sec-testing-first-hypothesis">3</a>, your script contains the code to install the packages, if required. Add the two lines of code that use the <code>library()</code> function to load <code>here</code> and <code>tidyverse</code>. Run all the code.</p>
+<p>Just like in Chapter <a href="sec-testing-first-hypothesis.html#sec-testing-first-hypothesis">3</a>, your script contains the code to install the packages, if required.</p>
+<blockquote>
+<p>Add the two lines of code that use the <code>library()</code> function to load <code>here</code> and <code>tidyverse</code> to your own script. Run all the code.</p>
+</blockquote>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="testing-for-differences-between-groups.html#cb70-1" tabindex="-1"></a><span class="co"># Check if packages are installed, if not install.</span></span>
 <span id="cb70-2"><a href="testing-for-differences-between-groups.html#cb70-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(here)) <span class="fu">install.packages</span>(<span class="st">&#39;here&#39;</span>) <span class="co">#checks if a package is installed and installs it if required.</span></span>
 <span id="cb70-3"><a href="testing-for-differences-between-groups.html#cb70-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
@@ -366,12 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> How does where you live impact how you use social media?<a href="testing-for-differences-between-groups.html#how-does-where-you-live-impact-how-you-use-social-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In Chapter <a href="sec-testing-first-hypothesis.html#sec-testing-first-hypothesis">3</a>, we performed an analysis to learn how mood impacts active social media behaviour. However, that is not the only factor that influences social media use. For example, <a href="https://academic.oup.com/pnasnexus/article/2/11/pgad357/7442564">Sapienza et al (2023)</a> found that people in rural areas are more likely to use their smartphone for social media and gaming, whereas urban dwellers are more likely to use their phone for navigation and business.</p>
 <p>However, we do not know if people living in urban and rural areas engage with social media differently, regardless of how long they spend on their chosen platforms. Today we will address this question using the <code>urban</code>, <code>good_mood_likes</code>, <code>bad_mood_likes</code>, and <code>followers</code> variables. Remember, these variables stand for the following:</p>
-<ul>
-<li><code>urban</code> – urban (1) or rural (2) area (based on postcode density)</li>
-<li><code>good_mood_likes</code> – average number of likes made over 10 min during a good mood (from platform + diary)</li>
-<li><code>bad_mood_likes</code> – as above, but during bad mood</li>
-<li><code>followers</code> – average number of followers across platforms</li>
-</ul>
+<p><code>urban</code> – urban (1) or rural (2) area (based on postcode density)<br />
+<code>good_mood_likes</code> – average number of likes made over 10 min during a good mood (from platform + diary)<br />
+<code>bad_mood_likes</code> – as above, but during bad mood<br />
+<code>followers</code> – average number of followers across platforms</p>
 <div id="activity---formulate-your-research-question" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Activity - Formulate your research question<a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What do you think? Will urban and rural dwellers engage differently with social media? Will there be a difference in the number of likes made by people living in urban vs rural areas? Or in the number of followers people have in urban vs rural areas?</p>
@@ -385,78 +385,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="activity---load-in-data-and-check-it" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Activity - Load in data and check it<a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Today we will be averaging across mood to get the number of likes for urban and rural dwellers. This means we first need to create a new variable called <code>likes</code> which is the average of the likes in a good and bad mood.</p>
-<p>We first load in our<code>PSYC2001_social-media-data-cleaned.csv</code> dataset. Copy and paste this code
-into your script and run it to load in the data.</p>
+<p>We first load in our<code>PSYC2001_social-media-data-cleaned.csv</code> dataset.</p>
+<blockquote>
+<p>Copy and paste this code into your script and run it to load in the data.</p>
+</blockquote>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="testing-for-differences-between-groups.html#cb71-1" tabindex="-1"></a>social_media <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#reads in CSV files</span></span></code></pre></div>
-<p>Lets double check its the data we think it is by using the <code>head()</code> function. See that we’ve added in an argument to say we want to see the first 10 lines of the data. Amend your code in your script to look at the number of rows your very own eyes want to see.</p>
+<p>Lets double check its the data we think it is by using the <code>head()</code> function. See that we’ve added in an argument to say we want to see the first 10 lines of the data.</p>
+<blockquote>
+<p>Amend your code in your script to look at the number of rows your very own eyes want to see.</p>
+</blockquote>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="testing-for-differences-between-groups.html#cb72-1" tabindex="-1"></a><span class="fu">head</span>(social_media, <span class="dv">10</span>) <span class="co"># you can even say how many lines you want to see! Try changing the number, and see what happens.</span></span></code></pre></div>
-<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign polit_activism
-## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2            3.6
-## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2            2.6
-## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7            3.0
-## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3            2.6
-## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9            3.3
-## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4            3.9
-## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7            2.4            2.7
-## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6            2.2            2.6
-## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5            2.1            2.4
-## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2            3.1            3.5</code></pre>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2
+##    polit_informed polit_campaign polit_activism
+## 1             2.3            3.2            3.6
+## 2             1.6            2.2            2.6
+## 3             1.9            2.7            3.0
+## 4             1.6            2.3            2.6
+## 5             2.0            2.9            3.3
+## 6             2.4            3.4            3.9
+## 7             1.7            2.4            2.7
+## 8             1.6            2.2            2.6
+## 9             1.5            2.1            2.4
+## 10            2.2            3.1            3.5</code></pre>
 </div>
 </div>
 <div id="wrangling-our-data" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Wrangling our data<a href="testing-for-differences-between-groups.html#wrangling-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are a couple of things we need to do to get our data into shape. The first is to create our new variable <code>likes</code> which is the average of <code>good_mood_likes</code> and <code>bad_mood_likes</code>. The second is to define the urban factor correctly. More on that to come!</p>
-<div id="activity---creating-a-new-likes-variable" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Activity - Creating a new <code>likes</code> variable<a href="testing-for-differences-between-groups.html#activity---creating-a-new-likes-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sec-new-likes" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Activity - Creating a new <code>likes</code> variable<a href="testing-for-differences-between-groups.html#sec-new-likes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We need to create a new variable called <code>likes</code> which is the average of <code>good_mood_likes</code> and <code>bad_mood_likes</code>. To do this, we are going to use the <code>mutate()</code> function from the <code>tidyverse</code> package. You can think of using <code>mutate()</code> as a way to create a new column in your data frame, using information from other columns.</p>
 <p>To use <code>mutate()</code> we need to use the pipe operator <code>%&gt;%</code> which we also used in Section <a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes">3.5.1</a>. The pipe operator takes the output of one function and uses it as the input for the next function. This is very useful when we want to do multiple things to a data frame in a single line of code.</p>
 <p>We are going to use the pipe operator to take the <code>social_media</code> data frame and then use <code>mutate()</code> to create our new variable <code>likes</code>. Because we want the average likes, we will add <code>good_mood_likes</code> and <code>bad_mood_likes</code> together and then divide by 2.</p>
-<p>Run the following line of code in your script to see the output.</p>
+<p>Because this is a new way of using code, we need to carefully design a test that tells us if our code is working as it should. <strong>This is a very important part of coding.</strong> In this case, the test is very easy to design. We can manually calculate the first few values of <code>likes</code> that our code should produce. Then, if our code does indeed produce those values, we know exactly what our code is doing.</p>
+<blockquote>
+<p>Using the console (or in your head), calculate what values you should get for the first three rows of the <code>likes</code> column, when taking the average of <code>bad_mood_likes</code> and <code>good_mood_likes</code>. Add these values as comments to your script.</p>
+</blockquote>
+<blockquote>
+<p>Now, get the whole column of averages by running the following line of code in your script.</p>
+</blockquote>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="testing-for-differences-between-groups.html#cb74-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb74-2"><a href="testing-for-differences-between-groups.html#cb74-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span></code></pre></div>
-<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign polit_activism likes
-## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2            3.6 34.65
-## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2            2.6 47.15
-## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7            3.0 48.45
-## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3            2.6 29.55
-## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9            3.3 44.75
-## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4            3.9 23.55
-## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7            2.4            2.7 24.95
-## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6            2.2            2.6 30.90
-## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5            2.1            2.4  9.35
-## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2            3.1            3.5 39.25</code></pre>
-<p>You can see that <code>mutate()</code> has created an extra column called likes. You can manually check that the first couple of values are correct, by adding the <code>good_mood_likes</code> and <code>bad_mood_likes</code> values together and dividing by 2.</p>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2
+##    polit_informed polit_campaign polit_activism likes
+## 1             2.3            3.2            3.6 34.65
+## 2             1.6            2.2            2.6 47.15
+## 3             1.9            2.7            3.0 48.45
+## 4             1.6            2.3            2.6 29.55
+## 5             2.0            2.9            3.3 44.75
+## 6             2.4            3.4            3.9 23.55
+## 7             1.7            2.4            2.7 24.95
+## 8             1.6            2.2            2.6 30.90
+## 9             1.5            2.1            2.4  9.35
+## 10            2.2            3.1            3.5 39.25</code></pre>
+<p>You can see that <code>mutate()</code> has created an extra column called likes.</p>
+<blockquote>
+<p>Check that the values in the first three rows of the <code>likes</code> column match what you calculated and added to your comments. Talk to your tutor if they do not match.</p>
+</blockquote>
 <div style="border-left: 4px solid #8273e6; background-color: #c2baf5; padding: 10px; margin: 10px 0;">
-<p><strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch mistakes early on.</p>
+<p><strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch bugs early on.</p>
 </div>
-<p>Looking at the data frame above, we can see that the first value for <code>good_mood_likes</code> is 22.8 and the first value for <code>bad_mood_likes</code> is 46.5. Lets add them together and divide by 2, to check the answer is the same as the first value for <code>likes</code>, which is 34.65.</p>
-<p>Type the below into your console and check you get the same answer:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="testing-for-differences-between-groups.html#cb76-1" tabindex="-1"></a>(<span class="fl">22.8</span> <span class="sc">+</span> <span class="fl">46.5</span>) <span class="sc">/</span> <span class="dv">2</span> </span></code></pre></div>
-<pre><code>## [1] 34.65</code></pre>
-<p>Woohoo!</p>
 <p>Now, this data frame has all we need for our analysis, and a lot more! Let’s make things simpler for ourselves by only keeping the variables we need. We can do this by once again using the pipe operator, along with the <code>select()</code> function.</p>
-<p>Update the code in your script so that it looks like this:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="testing-for-differences-between-groups.html#cb78-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="testing-for-differences-between-groups.html#cb78-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="sc">%&gt;%</span> <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span>
-<span id="cb78-3"><a href="testing-for-differences-between-groups.html#cb78-3" tabindex="-1"></a>  <span class="fu">select</span>(id, urban, likes, followers) <span class="co">#selects only the specified columns from the data frame</span></span></code></pre></div>
-<p>Check that you got what you want by using the <code>head()</code> function again.</p>
+<blockquote>
+<p>Update the code in your script so that it looks <strong>exactly</strong> like this:</p>
+</blockquote>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="testing-for-differences-between-groups.html#cb76-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="testing-for-differences-between-groups.html#cb76-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="sc">%&gt;%</span> <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span>
+<span id="cb76-3"><a href="testing-for-differences-between-groups.html#cb76-3" tabindex="-1"></a>  <span class="fu">select</span>(id, urban, likes, followers) <span class="co">#selects only the specified columns from the data frame</span></span></code></pre></div>
+<blockquote>
+<p>Check that the code did indeed select only the variables we want, by using the <code>head()</code> function to check what the new data frame called <code>social_media_likes</code> looks like.</p>
+</blockquote>
+<p>If you need help, there is an example for how to use the <code>head()</code> function in Section <a href="data-wrangling-and-visualisation.html#sec-data-view">2.6.1</a>.</p>
 </div>
 <div id="activity---defining-factors" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Activity - Defining factors<a href="testing-for-differences-between-groups.html#activity---defining-factors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now that we have this data frame object it is important to check that R can understand the data properly. Lets use the <code>str()</code> function that we learned about in Section <a href="data-wrangling-and-visualisation.html#sec-data-view">2.6.1</a> to examine what R thinks about each column. Complete the code in your script and run it, to make sure you get the same results.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="testing-for-differences-between-groups.html#cb79-1" tabindex="-1"></a><span class="fu">str</span>(social_media_likes) <span class="co">#provides a summary of the data structure.</span></span></code></pre></div>
+<p>Now that we have this data frame object it is important to check that R can understand the data properly. Lets use the <code>str()</code> function that we learned about in Section <a href="data-wrangling-and-visualisation.html#sec-data-view">2.6.1</a> to examine what R thinks about each column.</p>
+<blockquote>
+<p>Complete the code in your script and run it, to make sure you get the same results.</p>
+</blockquote>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="testing-for-differences-between-groups.html#cb77-1" tabindex="-1"></a><span class="fu">str</span>(social_media_likes) <span class="co">#provides a summary of the data structure.</span></span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
 ##  $ id       : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
 ##  $ urban    : int  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ likes    : num  34.6 47.1 48.5 29.5 44.8 ...
 ##  $ followers: num  173.3 144.3 76.5 171.7 109.5 ...</code></pre>
 <p>What have we learned? We can see that R thinks that <code>urban</code> contains integers (int), i.e. R thinks that <code>urban</code> is a column of real numbers containing 1s and 2s. But <code>urban</code> is not a numeric variable, it is actually a factor (categorical variable).</p>
-<p>If you remember from the README.txt file (which you read already, right? :)), <code>1</code> stands for urban and <code>2</code> stands for rural. We need to tell R this, so that it can understand the data properly.</p>
-<p>To do this, we can use the as_factor() function, which converts a variable to a factor. We also need to tell R that <code>1</code> means <code>urban</code> and <code>2</code> means <code>rural</code>. We can do this using the <code>factor()</code> function within <code>mutate()</code>. The <code>mutate()</code> function is coming in handy today!</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="testing-for-differences-between-groups.html#cb81-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb81-2"><a href="testing-for-differences-between-groups.html#cb81-2" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">urban =</span> <span class="fu">factor</span>(urban, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&#39;urban&#39;</span>, <span class="st">&#39;rural&#39;</span>))) <span class="co">#changes the urban variable to a factor with levels urban and rural</span></span></code></pre></div>
-<p>Now we want to test that this code did what we wanted it to do. Use the <code>str()</code> function again to check that <code>urban</code> is now a factor.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="testing-for-differences-between-groups.html#cb82-1" tabindex="-1"></a><span class="fu">str</span>(social_media_likes)</span></code></pre></div>
+<p>If you remember from the README.txt file (which you read already, right? :)), <code>1</code> stands for urban and <code>2</code> stands for rural. We need to tell R this, so that it can understand how to work with this variable.</p>
+<p>To do this, we can use the <code>factor()</code> function, which converts a variable to a factor. We also need to tell R that <code>1</code> means <code>urban</code> and <code>2</code> means <code>rural</code>.</p>
+<p>Because we need the result to apply to every single <code>1</code> and <code>2</code> in rural, we need to use the <code>factor()</code> function along with a function that says “hey, let’s apply this to the whole column”. Remember how we use the <code>mutate()</code> function to make a new column? We can also use the <code>mutate()</code> function to an existing column, as what ever you give it will be applied to every row of whichever column you name when using the function. The <code>mutate()</code> function is coming in handy today!</p>
+<blockquote>
+<p>Run the line of code in your script that matches this.</p>
+</blockquote>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="testing-for-differences-between-groups.html#cb79-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a href="testing-for-differences-between-groups.html#cb79-2" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">urban =</span> <span class="fu">factor</span>(urban, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&#39;urban&#39;</span>, <span class="st">&#39;rural&#39;</span>))) <span class="co">#changes the urban variable to a factor with levels urban and rural</span></span></code></pre></div>
+<p>Now we want to test that this code did what we wanted it to do.</p>
+<blockquote>
+<p>Use the <code>str()</code> function again to check that <code>urban</code> is now a factor.</p>
+</blockquote>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="testing-for-differences-between-groups.html#cb80-1" tabindex="-1"></a><span class="fu">str</span>(social_media_likes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
 ##  $ id       : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
 ##  $ urban    : Factor w/ 2 levels &quot;urban&quot;,&quot;rural&quot;: 1 1 1 1 1 1 1 1 1 1 ...
@@ -477,56 +523,69 @@ Figure 4.1: What it feels like teaching this section
 <p>Today, we are going to examine our variables using histograms. Just as we did in Section <a href="data-wrangling-and-visualisation.html#sec-make-histogram">2.11.5</a>. We have copied the code from Section <a href="data-wrangling-and-visualisation.html#sec-make-histogram">2.11.5</a> below, and have added a few options into the <code>geom_histogram()</code> function so that you can get a nice looking histogram. This code is also in your script.</p>
 <div id="activity---adapting-our-previous-code-to-make-new-histograms" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Activity - Adapting our previous code to make new histograms<a href="testing-for-differences-between-groups.html#activity---adapting-our-previous-code-to-make-new-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for <code>likes</code> (<code>x=</code>) using the <code>social_media_likes</code> data frame (and not the <code>social_media_NA</code> data frame). Also remember to adjust the axis labels (the <code>x=</code> and <code>y=</code> arguments for labs()`)!</p>
+<p>Your challenge, should you choose to accept it*, is to change the code in your script so that you instead make a histogram for <code>likes</code> (<code>x=</code>) using the <code>social_media_likes</code> data frame (and not the <code>social_media_NA</code> data frame). Also remember to adjust the axis labels (the <code>x=</code> and <code>y=</code> arguments for <code>labs()</code>)!</p>
+<blockquote>
+<p>Change the below code in your own script to make the histogram for <code>likes</code>.</p>
+</blockquote>
 <p>*You have to accept it. Determinism beats free will.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="testing-for-differences-between-groups.html#cb84-1" tabindex="-1"></a><span class="do">## health warning. This is old code that needs to be adapted for current purposes!</span></span>
-<span id="cb84-2"><a href="testing-for-differences-between-groups.html#cb84-2" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
-<span id="cb84-3"><a href="testing-for-differences-between-groups.html#cb84-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> )) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
-<span id="cb84-4"><a href="testing-for-differences-between-groups.html#cb84-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;seagreen&quot;</span>) <span class="sc">+</span> <span class="co">#creates a histogram with blue fill, black borders, and a binwidth of 10</span></span>
-<span id="cb84-5"><a href="testing-for-differences-between-groups.html#cb84-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on social media&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> <span class="co">#short for &quot;labels&quot;, use to label the axes.</span></span>
-<span id="cb84-6"><a href="testing-for-differences-between-groups.html#cb84-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#changes the theme of the plot to a classic theme. makes it prettier!</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="testing-for-differences-between-groups.html#cb82-1" tabindex="-1"></a><span class="do">## health warning. This is old code that needs to be adapted for current purposes!</span></span>
+<span id="cb82-2"><a href="testing-for-differences-between-groups.html#cb82-2" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
+<span id="cb82-3"><a href="testing-for-differences-between-groups.html#cb82-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> )) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
+<span id="cb82-4"><a href="testing-for-differences-between-groups.html#cb82-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;seagreen&quot;</span>) <span class="sc">+</span> <span class="co">#creates a histogram with blue fill, black borders, and a binwidth of 10</span></span>
+<span id="cb82-5"><a href="testing-for-differences-between-groups.html#cb82-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on social media&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> <span class="co">#short for &quot;labels&quot;, use to label the axes.</span></span>
+<span id="cb82-6"><a href="testing-for-differences-between-groups.html#cb82-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#changes the theme of the plot to a classic theme. makes it prettier!</span></span></code></pre></div>
 <p>You should get a histogram that looks something like this:</p>
 <p><img src="_main_files/figure-html/do-hist-1.png" width="672" /></p>
 <p>What would you say about this data, now you have looked at the histogram? Does it look normally distributed? Are there any outliers?</p>
-<p>Now, can you make a density plot for <code>followers</code>? Copy and paste the code you used to make the histogram for <code>followers</code> and make the teeny changes required. Go on, you are a coder, and you are strong.</p>
+<blockquote>
+<p>Copy and paste the code you used to make the histogram for <code>likes</code> and make the teeny changes required so that you get a histogram for <code>followers</code> instead.</p>
+</blockquote>
+<p>Go on, you are a coder, and you are strong.</p>
 <p><img src="_main_files/figure-html/do-hist-follow-1.png" width="672" /></p>
 <div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Does <code>followers</code> look normally distributed to you? Why might the data be shaped how it is?</p>
 </div>
 <p>Indeed, the <code>followers</code> variable looks different to the <code>likes</code> variable. This is not too surprising. A fewer number of people in the sample have a huge number of followers, and the rest have a more modest number. Just like in real life. Random sampling works! Ahhh, science.</p>
 <p>Because the <code>followers</code> variable is not normally distributed, we will need to be a bit cautious when interpreting the results of our t-test later on. But we can still proceed, as the t-test is quite robust to violations of normality. You would just make sure to mention this in your write-up, so that your readers also know.</p>
-<p>However, we would reconsider this choice if <code>followers</code> contained a massive outlier, such as if we sampled someone with 10 million followers.</p>
+<p>However, we would reconsider this choice if <code>followers</code> contained a massive outlier, such as if we happened to sample someone with 10 million followers.</p>
 </div>
 </div>
 <div id="next-step-descriptive-statistics" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Next step: descriptive statistics<a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we know what shape our data is in, and when we should exercise caution, we can move on to generating some descriptive statistics of our key variables.</p>
 <p>In Section <a href="sec-testing-first-hypothesis.html#sec-get-descriptive">3.6.1</a> we learned how to summarise our data to get descriptive statistics. Now you’ll get to see some more of the joy of coding - once you have written a bit of code that does something you need, its very easy to adapt it to do something else you need.</p>
-<p>Here is the code we wrote last week to get descriptive statistics of the rate of likes, grouped by mood:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="testing-for-differences-between-groups.html#cb85-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb85-2"><a href="testing-for-differences-between-groups.html#cb85-2" tabindex="-1"></a>  <span class="fu">group_by</span>(mood) <span class="sc">%&gt;%</span> <span class="co">#group the data by mood</span></span>
-<span id="cb85-3"><a href="testing-for-differences-between-groups.html#cb85-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(likes),</span>
-<span id="cb85-4"><a href="testing-for-differences-between-groups.html#cb85-4" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(likes)) <span class="co">#calculate the mean number of likes</span></span></code></pre></div>
 <div id="activity---adapt-the-code-to-get-the-mean-and-standard-deviations-for-likes-and-followers" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Activity - Adapt the code to get the mean and standard deviations for likes and followers<a href="testing-for-differences-between-groups.html#activity---adapt-the-code-to-get-the-mean-and-standard-deviations-for-likes-and-followers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We want to adapt this code to get the mean and standard deviation for <code>likes</code> and <code>followers</code>, this time grouping by <code>urban</code>. You will find the below code in your script. Complete it to get the descriptive statistics you need.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="testing-for-differences-between-groups.html#cb86-1" tabindex="-1"></a>social_media_descriptives <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> <span class="co"># save to new object called social_media_descriptives</span></span>
-<span id="cb86-2"><a href="testing-for-differences-between-groups.html#cb86-2" tabindex="-1"></a>  <span class="fu">group_by</span>(???) <span class="sc">%&gt;%</span> <span class="co"># group the data by urban</span></span>
-<span id="cb86-3"><a href="testing-for-differences-between-groups.html#cb86-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb86-4"><a href="testing-for-differences-between-groups.html#cb86-4" tabindex="-1"></a>    <span class="at">mean_followers =</span> <span class="fu">mean</span>(followers), <span class="co"># calculate the mean number of followers for urban and rural groups separately</span></span>
-<span id="cb86-5"><a href="testing-for-differences-between-groups.html#cb86-5" tabindex="-1"></a>    <span class="at">mean_likes =</span> <span class="fu">mean</span>(likes), <span class="co"># same for likes</span></span>
-<span id="cb86-6"><a href="testing-for-differences-between-groups.html#cb86-6" tabindex="-1"></a>    <span class="at">sd_followers =</span> <span class="fu">sd</span>(???), <span class="co"># calculate the sd of followers</span></span>
-<span id="cb86-7"><a href="testing-for-differences-between-groups.html#cb86-7" tabindex="-1"></a>    <span class="at">sd_likes =</span> <span class="fu">sd</span>(???) <span class="co"># calculate the sd of likes</span></span>
-<span id="cb86-8"><a href="testing-for-differences-between-groups.html#cb86-8" tabindex="-1"></a>  )</span>
-<span id="cb86-9"><a href="testing-for-differences-between-groups.html#cb86-9" tabindex="-1"></a></span>
-<span id="cb86-10"><a href="testing-for-differences-between-groups.html#cb86-10" tabindex="-1"></a>social_media_descriptives</span></code></pre></div>
+<p>Here is the code we wrote last week to get descriptive statistics of the rate of likes, grouped by mood:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="testing-for-differences-between-groups.html#cb83-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="testing-for-differences-between-groups.html#cb83-2" tabindex="-1"></a>  <span class="fu">group_by</span>(mood) <span class="sc">%&gt;%</span> <span class="co">#group the data by mood</span></span>
+<span id="cb83-3"><a href="testing-for-differences-between-groups.html#cb83-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(likes),</span>
+<span id="cb83-4"><a href="testing-for-differences-between-groups.html#cb83-4" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(likes)) <span class="co">#calculate the mean number of likes</span></span></code></pre></div>
+<p>We want to use this code as a template for ourselves, so that we can get the mean and standard deviation for <code>likes</code> and <code>followers</code>, this time grouping by <code>urban</code>.</p>
+<blockquote>
+<p>You will find the below code in your script. Complete it to get the descriptive statistics for likes and followers.</p>
+</blockquote>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="testing-for-differences-between-groups.html#cb84-1" tabindex="-1"></a>social_media_descriptives <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> <span class="co"># save to new object called social_media_descriptives</span></span>
+<span id="cb84-2"><a href="testing-for-differences-between-groups.html#cb84-2" tabindex="-1"></a>  <span class="fu">group_by</span>(???) <span class="sc">%&gt;%</span> <span class="co"># group the data by urban</span></span>
+<span id="cb84-3"><a href="testing-for-differences-between-groups.html#cb84-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb84-4"><a href="testing-for-differences-between-groups.html#cb84-4" tabindex="-1"></a>    <span class="at">mean_followers =</span> <span class="fu">mean</span>(followers), <span class="co"># calculate the mean number of followers for urban and rural groups separately</span></span>
+<span id="cb84-5"><a href="testing-for-differences-between-groups.html#cb84-5" tabindex="-1"></a>    <span class="at">mean_likes =</span> <span class="fu">mean</span>(likes), <span class="co"># same for likes</span></span>
+<span id="cb84-6"><a href="testing-for-differences-between-groups.html#cb84-6" tabindex="-1"></a>    <span class="at">sd_followers =</span> <span class="fu">sd</span>(???), <span class="co"># calculate the sd of followers</span></span>
+<span id="cb84-7"><a href="testing-for-differences-between-groups.html#cb84-7" tabindex="-1"></a>    <span class="at">sd_likes =</span> <span class="fu">sd</span>(???) <span class="co"># calculate the sd of likes</span></span>
+<span id="cb84-8"><a href="testing-for-differences-between-groups.html#cb84-8" tabindex="-1"></a>  )</span>
+<span id="cb84-9"><a href="testing-for-differences-between-groups.html#cb84-9" tabindex="-1"></a></span>
+<span id="cb84-10"><a href="testing-for-differences-between-groups.html#cb84-10" tabindex="-1"></a>social_media_descriptives</span></code></pre></div>
+<blockquote>
 <p>Check that your output for <code>social_media_descriptives</code> looks like this:</p>
+</blockquote>
 <pre><code>## # A tibble: 2 × 5
 ##   urban mean_followers mean_likes sd_followers sd_likes
 ##   &lt;fct&gt;          &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 urban           144.       40.8         62.0     14.5
 ## 2 rural           106.       52.1         40.9     12.7</code></pre>
-<p>Look at the mean values you have generated for urban and rural dwellers. Do they make sense to you? Do they fit with your predictions from earlier?</p>
+<blockquote>
+<p>Look at the mean values you have generated for urban and rural dwellers. Are they what you expected? Do they fit with your predictions from earlier?</p>
+</blockquote>
 </div>
 </div>
 <div id="independent-samples-t-test" class="section level2 hasAnchor" number="4.6">
@@ -537,8 +596,10 @@ Figure 4.1: What it feels like teaching this section
 <p>In Section <a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test">3.8.1</a> we learned how to conduct a paired samples t-test. To do this, we had to deal with niggly base R demands and use the wideform data instead of our carefully wrangled longform data. Fortunately, the <code>t.test()</code> function is a bit more forgiving when it comes to independent samples t-tests, and we can use our longform data combined with a nifty thing that base R knows about, which is formulas. Huzzah.</p>
 <p>This is how we use the formula method in <code>t.test()</code>. The syntax is <code>t.test(DV ~ group, data = data frame)</code>. So, for our data, we want to test if the dependent variable (DV) <code>likes</code> differs by the groups coded in <code>urban</code> , using the <code>social_media_likes</code> data frame.</p>
 <p>Note that you don’t need to set the <code>paired</code> argument to <code>FALSE</code>, as the <code>t.test()</code> function assumes this whenever you use the formula method. So never use the formula method for a paired samples t-test. That would be a disaster.</p>
+<blockquote>
 <p>Run the below line of code in your script, to check you get the same output.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="testing-for-differences-between-groups.html#cb88-1" tabindex="-1"></a><span class="fu">t.test</span>(likes<span class="sc">~</span>urban, <span class="at">data=</span>social_media_likes) <span class="co"># conducts an independent samples t-test to see if likes differ by urban/rural status</span></span></code></pre></div>
+</blockquote>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="testing-for-differences-between-groups.html#cb86-1" tabindex="-1"></a><span class="fu">t.test</span>(likes<span class="sc">~</span>urban, <span class="at">data=</span>social_media_likes) <span class="co"># conducts an independent samples t-test to see if likes differ by urban/rural status</span></span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -553,9 +614,13 @@ Figure 4.1: What it feels like teaching this section
 <div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Discuss the output of this independent t-test, what does it tell you about the differences between urban and rural dwellers and how they actively use social media? Is it what you expected when you formulated your hypothesis?</p>
 </div>
+<blockquote>
 <p>Now complete the following line of code in your own script, to test if <code>followers</code> differ by <code>urban</code>.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="testing-for-differences-between-groups.html#cb90-1" tabindex="-1"></a><span class="fu">t.test</span>(???<span class="sc">~</span>urban, <span class="at">data=</span>social_media_likes) <span class="co"># conducts an independent samples t-test to see if followers differ by urban/rural status</span></span></code></pre></div>
+</blockquote>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="testing-for-differences-between-groups.html#cb88-1" tabindex="-1"></a><span class="fu">t.test</span>(???<span class="sc">~</span>urban, <span class="at">data=</span>social_media_likes) <span class="co"># conducts an independent samples t-test to see if followers differ by urban/rural status</span></span></code></pre></div>
+<blockquote>
 <p>Check your output with what you see below to make sure you got it right. Also, make sure to interpret what the output is telling you!</p>
+</blockquote>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -584,32 +649,45 @@ Figure 4.2: Every PSYC2001 midterm
 </div>
 <div id="bonus-activity---visualising-group-differences" class="section level2 hasAnchor" number="4.8">
 <h2><span class="header-section-number">4.8</span> Bonus Activity - Visualising group differences<a href="testing-for-differences-between-groups.html#bonus-activity---visualising-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences. Which you might need to do in a certain upcoming assignment.</p>
+<p>If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences.</p>
 <p>Earlier, we looked at the overall histograms for <code>likes</code> and <code>followers</code>. But when presenting our findings in a results section, what the reader really wants to see is how the groups differ from each other. One effective way to do this is to make a grouped boxplot. See <a href="https://www.simplypsychology.org/boxplots.html">here</a> for more details on boxplots.</p>
-<p>Let’s make a boxplot together, showing the <code>likes</code> data split by <code>urban</code> and <code>rural</code> groups. We are going to use a couple of new functions here (<code>geom_boxplot()</code>, <code>scale_fill_manual()</code>), which we explain in the comments below.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="testing-for-differences-between-groups.html#cb92-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb92-2"><a href="testing-for-differences-between-groups.html#cb92-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> <span class="co"># here we are telling ggplot that we will be putting likes</span></span>
-<span id="cb92-3"><a href="testing-for-differences-between-groups.html#cb92-3" tabindex="-1"></a>  <span class="co"># on the y axis, that we will fill in our boxplots with colour using the urban factor, and that urban will go on the x-axis</span></span>
-<span id="cb92-4"><a href="testing-for-differences-between-groups.html#cb92-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
-<span id="cb92-5"><a href="testing-for-differences-between-groups.html#cb92-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
-<span id="cb92-6"><a href="testing-for-differences-between-groups.html#cb92-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define the filled in colours of specific parts of a graph - see here for more R colours: https://r-graph-gallery.com/42-colors-names.html</span></span>
-<span id="cb92-7"><a href="testing-for-differences-between-groups.html#cb92-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p>Let’s make a boxplot, showing the <code>likes</code> data split by <code>urban</code> and <code>rural</code> groups. We are going to use a couple of new functions here (<code>geom_boxplot()</code>, <code>scale_fill_manual()</code>), which we explain in the comments below.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="testing-for-differences-between-groups.html#cb90-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb90-2"><a href="testing-for-differences-between-groups.html#cb90-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> <span class="co"># here we are telling ggplot that we will be putting likes</span></span>
+<span id="cb90-3"><a href="testing-for-differences-between-groups.html#cb90-3" tabindex="-1"></a>  <span class="co"># on the y axis, that we will fill in our boxplots with colour using the urban factor, and that urban will go on the x-axis</span></span>
+<span id="cb90-4"><a href="testing-for-differences-between-groups.html#cb90-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
+<span id="cb90-5"><a href="testing-for-differences-between-groups.html#cb90-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
+<span id="cb90-6"><a href="testing-for-differences-between-groups.html#cb90-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define the filled in colours of specific parts of a graph - see here for more R colours: https://r-graph-gallery.com/42-colors-names.html</span></span>
+<span id="cb90-7"><a href="testing-for-differences-between-groups.html#cb90-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="_main_files/figure-html/boxplotlikes-1.png" width="672" /></p>
 <p>Now we return to another critical part of coding. Copying and pasting what you have, and changing just a few bits.</p>
-<p>Now, can you change the code above to make a boxplot for <code>followers</code> instead of <code>likes</code>? You will need to change what you give for the <code>y</code> argument in <code>aes()</code>, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found <a href="https://r-graph-gallery.com/42-colors-names.html">here</a>.Copy and paste the original code in your script and make your changes. You should get something that looks like this:</p>
+<blockquote>
+<p>Copy and paste the code above and change it to make a boxplot for <code>followers</code> instead of <code>likes</code>.</p>
+</blockquote>
+<p>You will need to change what you give for the <code>y</code> argument in <code>aes()</code>, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found <a href="https://r-graph-gallery.com/42-colors-names.html">here</a>.One you have finished, you should get something that looks like this:</p>
 <p><img src="_main_files/figure-html/follow_bp-1.png" width="672" /></p>
 <p>Last, we often want to save our figures as image files, so that we can include them in reports or presentations. This is very easy to do using the <code>ggsave()</code> function.</p>
-<p>First, you should save the plot you want to save to an object. You can do this by amending your boxplot code so that the output saves to an object, such as you see below.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="testing-for-differences-between-groups.html#cb93-1" tabindex="-1"></a>likes_bp <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb93-2"><a href="testing-for-differences-between-groups.html#cb93-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> </span>
-<span id="cb93-3"><a href="testing-for-differences-between-groups.html#cb93-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
-<span id="cb93-4"><a href="testing-for-differences-between-groups.html#cb93-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
-<span id="cb93-5"><a href="testing-for-differences-between-groups.html#cb93-5" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb93-6"><a href="testing-for-differences-between-groups.html#cb93-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
-<p>Amend your code now to save your <code>followers</code> boxplot to an object called <code>followers_bp</code>. Run the code and check the object appears in your Environment pane.</p>
+<p>First, you should save the plot you want to save to an object.</p>
+<blockquote>
+<p>Amend your boxplot code so that the output saves to an object, such as you see below.</p>
+</blockquote>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="testing-for-differences-between-groups.html#cb91-1" tabindex="-1"></a>likes_bp <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb91-2"><a href="testing-for-differences-between-groups.html#cb91-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> </span>
+<span id="cb91-3"><a href="testing-for-differences-between-groups.html#cb91-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
+<span id="cb91-4"><a href="testing-for-differences-between-groups.html#cb91-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
+<span id="cb91-5"><a href="testing-for-differences-between-groups.html#cb91-5" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb91-6"><a href="testing-for-differences-between-groups.html#cb91-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<blockquote>
+<p>Also amend your code for the <code>followers</code> boxplot so that it is saved to an object called <code>followers_bp</code>. Run the code and check the new object appears in the list in your Environment pane.</p>
+</blockquote>
 <p>Then, you can use the <code>ggsave()</code> function to save the plot to a file. The syntax is <code>ggsave("filename.png", plot = plot_name)</code>. You can change the file extension to save in different formats (e.g., .jpg, .pdf). We want to be extra smart and save the file to our <code>Output</code> folder, so we will use the <code>here()</code> function to specify the path.</p>
-<p>Copy and paste this code to your script, and change it to save your <code>followers_bp</code> plot instead of the <code>likes_bp</code> plot.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="testing-for-differences-between-groups.html#cb94-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">&quot;Output&quot;</span>, <span class="st">&quot;likes_boxplot.png&quot;</span>), <span class="at">plot =</span> likes_bp) <span class="co"># saves the likes boxplot to the Output folder as a PNG file</span></span></code></pre></div>
+<blockquote>
+<p>Copy and paste this code to your script, and run it. Then check the contents of the ‘Output’ folder.</p>
+</blockquote>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="testing-for-differences-between-groups.html#cb92-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">&quot;Output&quot;</span>, <span class="st">&quot;likes_boxplot.png&quot;</span>), <span class="at">plot =</span> likes_bp) <span class="co"># saves the likes boxplot to the Output folder as a PNG file</span></span></code></pre></div>
+<blockquote>
+<p>Now copy and paste that, and change it so that you save your <code>followers_bp</code> plot instead of the <code>likes_bp</code> plot.</p>
+</blockquote>
 </div>
 <div id="you-are-free-3" class="section level2 hasAnchor" number="4.9">
 <h2><span class="header-section-number">4.9</span> You are Free!<a href="testing-for-differences-between-groups.html#you-are-free-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>

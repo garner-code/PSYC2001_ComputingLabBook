@@ -35,7 +35,7 @@ knitr::include_graphics("images/Data_wrangling_and_visualisation/Opening_an_R_pa
 
 It is always a **good idea to check the documentation** for a package before you use it. We can do this by using the **help syntax**, which is the `?`. The package we are trying to get help with is called `here`. 
 
-### Activity -find out about packages
+### Activity - find out about packages
 
 Copy and paste the below line of code to find out more about the `here` package. This will open a help page that tells us the **purpose** of the package and how it works.
 

@@ -62,7 +62,7 @@ checking-installation-and-loading-packages
 activity---load-your-packages
 what-do-packages-do
 what-do-these-packages-do
-activity--find-out-about-packages
+activity---find-out-about-packages
 organisation-and-csv-files
 activity---getting-to-know-the-data-files
 importing-your-data-in-r
@@ -110,7 +110,7 @@ how-does-where-you-live-impact-how-you-use-social-media
 activity---formulate-your-research-question
 activity---load-in-data-and-check-it
 wrangling-our-data
-activity---creating-a-new-likes-variable
+sec-new-likes
 activity---defining-factors
 visualising-our-data-1
 activity---adapting-our-previous-code-to-make-new-histograms
@@ -132,5 +132,4 @@ activity-3---looking-for-straight-lines
 conducting-correlations
 writing-up-results-and-conclusions-1
 activity-4---exploring-the-data
-writing-up-results-and-conclusions-2
 you-are-free-4

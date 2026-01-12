@@ -10,7 +10,7 @@ As usual we first always check and load in our required packages. This week, as 
 
 Today, we are not giving you the code to copy and paste. You are ready to fly, and write it yourself now you have mastery of the codeship. You are welcome to decide yourself whether you would like to check if the packages are installed before you load them.
 
-Go to your script for the week '05_Correlation-analysis.R' and write the code to load the packages `here` and `tidyverse` using the `library()` function. Write the code to check if the packages are installed if you wish.
+> Go to your script for the week '05_Correlation-analysis.R' and add the code to load the packages `here` and `tidyverse` using the `library()` function. Write the code to check if the packages are installed if you wish. Make sure to run the code.
 
 ```{r message = FALSE, warning= FALSE, echo=FALSE}
 # Check if packages are installed, if not install.
@@ -31,18 +31,22 @@ Today we will be using the `time_on_social`, `age`, `polit_informed`, `polit_cam
 
 Remember, these variables stand for the following:
 
-- age – age in years
-- time_on_social – average hours/day on social media (self-report diary)
+  `age` – age in years  
+  `time_on_social` – average hours/day on social media (self-report diary)  
 
 Political attitude subscales:
 
-- polit_informed – how politically informed they feel (e.g., read news daily)
-- polit_campaign – how much they engage in campaign-related discussion
-- polit_activism – involvement in activism (e.g., protests, petitions)
+  `polit_informed` – how politically informed they feel (e.g., read news daily)  
+  `polit_campaign` – how much they engage in campaign-related discussion  
+  `polit_activism` – involvement in activism (e.g., protests, petitions)  
 
 ### Activity - How might political attitudes relate to social media use?
 
-Before we begin we first need to load in our dataset for today. Are you able to load in the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`? Again, we will not provide the code, as you can copy and paste the required code from a previous week. Keep flying! :) 
+Before we begin we first need to load in our dataset for today. 
+
+> Copy and paste the code from a previous week that loads the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`. 
+
+> Run the code and check that the data is loaded correctly using your preferred method from Section \@ref(sec-data-view).
 
 ```{r, echo=FALSE}
 social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV file
@@ -50,15 +54,15 @@ social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.
 
 Now that you have loaded the data, take a moment to think about the relationship between political attitudes and time spent on social media. Will young adults who spend a lot of time on social media be more politically active? Or the opposite? Or neither? What are your thoughts?
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> What is a reasonable null and alternate hypothesis? Work with your tutor and class to form a hypothesis.
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> What is a reasonable null and alternate hypothesis? Write it down as a comment in your script.
 :::
 
 ## Building a composite score that measures political attitude
 
 Let's now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘political attitude’ score for each participant. Each subscale score carries a different weighting towards the total political attitude score.
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Pause for thought:</strong> Why would each subscale carry a different weighting? Think about what was discussed in the lectures about composite scores.
 :::
 
@@ -67,57 +71,56 @@ Let's now get an idea of our much political attitude these participants have. We
 The formula for calculating political attitude is:
 
 $$\mathrm{PoliticalAttitude} = 0.25 \times \mathrm{polit\_informed} + 0.35 \times \mathrm{polit\_campaign} + 0.4 \times \mathrm{polit\_activism}$$
-Now you have this formula, are you able to write the code that creates the political attitude scores? 
+Now you have this formula, let's build the code that creates the political attitude scores step by step, and test that its working properly.
 
-**Your first hint** is that you are able to take any variable (column) from a data frame and multiply all the observations it contains by a single number. Let's go through an example so you can see what we mean. To go through this example, we need to access the observations that are saved to a variable (column), so we can see what happens when we multiply them by a single number. If you remember, we accessed observations in a column, back in the day, using the `$` operator, when we performed a paired-samples t-test in Section \@ref(sec-conducting-paired-t-test).
+The first operation we need to do is to multiply each observation in `polit_informed` by 0.25. 
 
-Run the following line of code in your script, to see what is printed out into the console. Check it matches what you see below.
+> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply them each by 0.25. What are the 3 results that you get? Write them as a comment in your script.
 
-```{r, access numbers using dollar symbol}
+Now we know what answers we should get, we can write some code to multiply these observations by 0.25, and check the code works.
 
-social_media$polit_informed
+Remember, if we want to create a new variable in a data frame, then `mutate()` is a very handy function to use.
 
-```
+Here is the code from Section \@ref(sec-new-likes) that gives a good example on how to use the `mutate()` function.
 
-You can see three lines of numbers. Those are the numbers contained in the column of the data frame that is called 'polit_informed'. The numbers in square brackets at the start of each row tell you which item in the column starts the row. For example, the first number you see in a square bracket is a [1]. This tells you that the number following it is the first number in the column, or in other words, the number following it is on the first row of that column. **Count how many numbers are printed out in the first row of numbers in the console**. Then check what number is in the square brackets at the start of the second row.
+> Copy and paste this code to your script, but don't run it. We're going to change it for our current purposes.
 
-Now, we get to see one of the powerful things about R. You can compute operations on large amounts of numbers very quickly and efficiently. For example, you can multiply all the numbers in the column `polit_informed` by 2, with a single line of code. Try running the following line of code in your script:
+```{r, mutate eg, eval=FALSE}
 
-```{r, multiply polit_informed by 2}
-
-2 * social_media$polit_informed 
-
-```
-
-Compare the numbers printed in your console to the ones above. You should see that they have all been doubled with one mere line of code. Mua ha ha.
-
-
-OK, we are well on our way to having most of the ingredients we need to make our composite variable. We know now that we can multiply all the numbers in a column by a single number, and that we can add the numbers between two columns. So here is how we would start putting together our composite variable, given the equation we saw above:
-
-```{r, partial composite variable, eval=FALSE}
-
-0.25 * social_media$polit_informed + 0.35 * social_media$polit_campaign
+social_media_likes <- social_media %>% 
+  mutate(likes =(bad_mood_likes + good_mood_likes)/2 ) # creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes
 
 ```
 
-**Check yourself!** Does the output match what you would get if you did the calculation manually?
+> Amend the code that you copy and pasted in your script, so that you save the results to an object called `social_media_test`
 
-We have been using the `$` operator to access columns in the data frame, so that we can see what happens to the numbers inside the column when we apply operations such as multiplying and summing. This kind of approach is essential for working out how code works. However, what we ideally want to do (now we know what the code does) is create a new column in our existing `social_media` data frame that contains our brand new composite score called `polit_attitude`. To do this, we return to using piping, supplied to us by the wondrous `tidyverse` package. We can also use the `mutate()` function that we used in Section \@ref()
+> Now amend the code so that you make a new column called `test` (instead of `likes`) that takes the variable `polit_informed` and multiplies it by 0.25
 
-::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
-<strong>Hint:</strong> Use the mutate function !
-:::
-  
+Hint: You multiply in R using the `*` symbol.
 
-```{r Activity 4}
-social_media_attitutde <- social_media %>% 
-  mutate(attitude = 0.25*polit_informed +
-                    0.35*polit_campaign +
-                    0.4*polit_activism)
+> Run the code and then run `head(social_media_test)` to check the results. Compare the first 3 values of the variable `test()` to the results you got from your manual calculation.
+
+The next thing we need to do is multiply `polit_campaign` by 0.35, and add it to the previous result. 
+
+> Using the console, calculate yourself what values you should get if you take the first few values of `polit_campaign`, multiply them by 0.35, and add them to the first few values you got from multiplying `polit_informed` by 0.25. Write these results as a comment in your script.
+
+Now lets amend our mutate code to perform this next step. 
+
+> Using the code you just wrote, add `+ 0.35 * polit_campaign` to inside your `mutate()` function call. Check the contents of the `test` variable to make sure the first few numbers match your own calculations.
+
+Nice work! We now know that we are on the right path to completing the calculation of the composite scores for political attitude. We created the data frame `social_media_test` as a kind of scratch pad for testing. But we don't need the results of those tests to complete our analysis. So let`s remove it from our environment, in a bid to keep the environment tidy.
+
+> Run the following line of code to remove the `social_media_test` data frame
+
+```{r, test remove, eval=FALSE}
+
+rm(social_media_test) #removes the specified object from the environment
 
 ```
 
-Lets save this data so that we can use it next week: 
+Now lets properly create the political attitude scores, and save them to an object that has a useful name for our analysis.
+
+
 
 ```{r}
 write.csv(social_media_attitutde, file = here("Data", "PSYC2001-social-media-attitutde.csv"))
@@ -161,7 +164,7 @@ social_media_attitutde %>%
   theme_classic() 
 ```
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> Do the relationships look linear or non-linear? Which correlation analyses would you be more cautious about running?
 :::
   
@@ -176,7 +179,7 @@ cor.test(formula = ~time_on_social + attitude, data = social_media_attitutde, us
 ```
 
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
 :::
 
@@ -185,21 +188,16 @@ cor.test(formula = ~time_on_social + attitude, data = social_media_attitutde, us
 
 Now lets have a go at writing up the results of the correlation that we have conducted: 
 
-::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p < 0.01).
 :::
 
-Please have a go at writing the conclusion:
-
-::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
-<strong>Conclusions:</strong> Your conclusion will go here !
-:::
 
 ## Activity 4 - Exploring the data
 
 Now we can harness the power of R to perform multiple correlations all at the same time ahhhhhhhhhh !
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> First what other relationships do you think could exist between variables in this dataset ? Make two hypotheses and discuss them with your tutor.
 :::
 
@@ -231,19 +229,6 @@ cor.test(x = , y =  use = "complete.obs")
 
 ```
 
-## Writing up results and conclusions
-
-Have a go at writing up the results and conclusions for the correlations you have just conducted. Make sure to use the previous results as a guide.
-
-::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
-<strong>Results:</strong> Your results will go here !
-:::
-
-Now have a try at the conclusion. 
-
-::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
-<strong>Conclusions:</strong> Your conclusion will go here !
-:::
 
 ## You are Free!
 

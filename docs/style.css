@@ -12,3 +12,8 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+blockquote { color: #1f78b4; 
+             border-left: 4px solid #b2df8a !important; 
+             font-weight: bold;
+             padding-left: 10px; }
