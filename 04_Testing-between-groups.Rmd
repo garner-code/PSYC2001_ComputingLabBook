@@ -289,7 +289,7 @@ social_media_descriptives
 
 Now we are down to the very last few percents of our 10% of analysis efforts. Let's perform some independent samples t-tests to see if there are statistically significant differences between urban and rural dwellers in terms of their `likes` or `followers`.
 
-### Activity - Performing independent samples t-tests
+### Activity - Performing independent samples t-tests {#sec-formula-for-independence}
 
 In Section \@ref(sec-conducting-paired-t-test) we learned how to conduct a paired samples t-test. To do this, we had to deal with niggly base R demands and use the wideform data instead of our carefully wrangled longform data. Fortunately, the `t.test()` function is a bit more forgiving when it comes to independent samples t-tests, and we can use our longform data combined with a nifty thing that base R knows about, which is formulas. Huzzah.
 

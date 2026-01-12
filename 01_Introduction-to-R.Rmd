@@ -6,7 +6,7 @@ To perform data analysis in Psychology, one needs some powerful software to help
 
 For this course, you need two different bits of software, [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a programming language that you will write code in and R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad* to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn't look as good and it would be much harder without things like spell-checking and formatting. 
 
-::: {style="border-left: 4px solid #32a2a8; background-color: #cbf3f5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 If you haven't used a plain text editor, open either NotePad (Windows) or TextEdit (Mac) and do a bit of typing. Now imagine writing an assignment in it. 
 :::
 
@@ -21,13 +21,15 @@ knitr::include_graphics("images/Introduction_to_R/Basic_R.png")
 
 ### Activity - Setting up your working folder
 
-You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, by right-clicking over the file and selecting 'Extract Here' if you are on a PC, or 'Open with... Archive Utility' if you are on a Mac. Then move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
+You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. 
+
+> Unzip the folder you have downloaded, by right-clicking over the file and selecting 'Extract Here' if you are on a PC, or 'Open with... Archive Utility' if you are on a Mac. Then move the folder to somewhere sensible on the computer, e.g. from 'Downloads' to 'Documents'. Ask your tutor if you are unsure about any of those steps. 
 
 ```{r downloaded, out.width='70%', fig.cap='Download the chapter folder and right click on it to unzip the contents', echo=FALSE, fig.align='center'}
 knitr::include_graphics("images/Introduction_to_R/downloaded_crop.png")
 ```
 
-Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -
+> Once the folder is unzipped and moved, open it up to take a peek at the contents inside. You should see something like the following -
 
 ```{r folder, out.width='70%', fig.cap='Every lab folder will contain all the files you need for the session', echo=FALSE, fig.align='center'}
 knitr::include_graphics("images/Introduction_to_R/Rproj_Windows_view_crop.png")
@@ -35,11 +37,15 @@ knitr::include_graphics("images/Introduction_to_R/Rproj_Windows_view_crop.png")
 
 Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location. 
 
-Next, navigate to the folder in your file explorer, so you can see the contents. Double click on the file that is of type R Project (e.g. for this lab, it is called '1_Introduction_to_R' and in the image above you can see it is of the Type 'R Project'. This will open RStudio. Every lab will have an R Project file, and you should always open RStudio by double clicking on it.
+Next, navigate to the folder in your file explorer, so you can see the contents. 
+
+> Double click on the file that is of type R Project (e.g. for this lab, it is called '1_Introduction_to_R' and in the image above you can see it is of the Type 'R Project'. 
+
+This will open RStudio. Every lab will have an R Project file, and you should always open RStudio by double clicking on it.
 
 **Rproj** stands for **R project**. A project can be thought of as all the files that live in the same folder as the `.Rproj` file. Having a reference to where these files are (which is what the `.Rproj` file gives you) will come in very handy in the next tutorial, and beyond.
 
-::: {style="border-left: 4px solid #9d03fc; background-color: #ede0f2; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Why should I open RStudio by clicking on the `.Rproj` file?</strong> Indeed, this may seem like a strange request. An `.Rproj` file automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer in the next tutorial). This also means you get to save a lot of typing in future computing lab tutorials.
 :::
 
@@ -57,7 +63,7 @@ knitr::include_graphics("images/Introduction_to_R/rstudio-console.png")
 
 First let's get used to the console where you can try out code. You can think of the console as a very fancy calculator. You can do some impressive calculations, but like a calculator, once you close it down, everything you did is lost.
 
-Click on the Console (anywhere), and type the following:
+> Click on the Console (anywhere), and type the following:
 
 ```{r console, eval=FALSE}
 
@@ -65,7 +71,9 @@ Click on the Console (anywhere), and type the following:
 
 ```
 
-Then press enter. You should see that R has calculated the answer for you. 
+> Then press enter. 
+
+You should see that R has calculated the answer for you. 
 
 You can try other calculations, for example (you should also type this one into the console, and get the answer): 
 
@@ -83,7 +91,7 @@ The console is great for small calculations and testing code, but it isn't very 
 
 ### Activity - Getting to know scripts {#sec-run-code}
 
-* Open the script `your-first-script.R` in R Studio. You can do this by clicking on the file in the Files tab (bottom right window) or by using File > Open File... from the top menu.
+> Open the script `your-first-script.R` in R Studio. You can do this by clicking on the file in the Files tab (bottom right window) or by using File > Open File... from the top menu.
 
 You can see at the top of the script there are some comments. Comments are lines of text that start with a `#` symbol. R ignores these lines when it runs the code, but they are useful for you to write notes to yourself about what the code is doing. You should always include comments in your code to explain what it is doing. This helps you remember what you did when you come back to it later, and it helps others understand your code if you share it with them.
 
@@ -95,7 +103,9 @@ knitr::include_graphics("images/Introduction_to_R/script_ann.png")
 
 * Try typing `2 + 2` into the script, below the comment that says <span style="color:#228B22"># Type 2 + 2 here</span>. 
 
-* Now try running that bit of code in the script. You can do this by highlighting the line(s) of code you want to run and then clicking the 'Run' button at the top of the script window (see Figure 1: Run button). You should see that the answer appears in the console.
+> Now try running that bit of code in the script. You can do this by highlighting the line(s) of code you want to run and then clicking the 'Run' button at the top of the script window (see Figure 1: Run button). 
+
+You should see that the answer appears in the console.
 
 ```{r img-highlightcode, echo=FALSE, fig.align='center', fig.cap="Highlight your code and then run it.", echo=FALSE, fig.align='center'}
 
@@ -103,7 +113,7 @@ knitr::include_graphics("images/Introduction_to_R/highlight-code.png")
 
 ```
 
-::: {style="border-left: 4px solid #030ffc; background-color: #a4d3f5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Important life hack!</strong> Another way to do this is to highlight the code you want to run and then press `Ctrl + Enter` (or `Cmd + Enter` on a Mac). Try this now.
 :::
 
@@ -115,7 +125,9 @@ knitr::include_graphics("images/Introduction_to_R/result_ann.png")
 
 ```
 
-* Remember to save your script regularly by clicking the save icon (or using `Ctrl + S` or `Cmd + S` on a Mac). Save it, save it now!
+* Remember to save your script regularly by clicking the save icon (or using `Ctrl + S` or `Cmd + S` on a Mac). 
+
+> Save it, save it now!
 
 ## Functions and arguments {#sec-get-help}
 
@@ -127,7 +139,9 @@ Often in Psychology, we want to calculate the mean when we have many more than t
 
 ### Activity - using a function
 
-* Look up the help documentation for `mean()` by typing `?mean` in the console. You will see that there is a **Description** of the function, a guide to it's **Usage**, and the **Arguments** you need to make the function work.
+> Look up the help documentation for `mean()` by typing `?mean` in the console. 
+
+You will see that there is a **Description** of the function, a guide to it's **Usage**, and the **Arguments** you need to make the function work.
 
 In the **Usage** section, we see that `mean()` takes the following form:
 
@@ -139,7 +153,7 @@ mean(x, trim = 0, na.rm = FALSE, ...)
 
 In the **Arguments** section, there are explanations for each of the arguments. `x` is the set of numbers that we want to calculate the mean for. Do not worry about `trim` and `na.rm`. For now, they can remain as mythical arguments in the interest of simplicity.
 
-* Let's use the `mean` function. Highlight the following line of code in your script and run it:
+> Let's use the `mean` function. Highlight the following line of code in your script and run it:
 
 ```{r mean_exercise, eval=FALSE}
 
@@ -154,7 +168,7 @@ You'll see in the code above that we have put the numbers together in some brack
 
 You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). Its handy to keep things in vectors as it means you can work on all the things in the vector at the same time, such as adding 2 to every element using `c(1,2,3) + 2`. Try typing that into the console (and hitting enter) to see what happens.
 
-::: {style="border-left: 4px solid #2196F3; background-color: #9cd5ff; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask "What does the mean() function in R do?" and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.
 :::
 
@@ -191,7 +205,7 @@ However, the power of R is that it is extendable and open source - put simply, i
 
 ## Installing and loading packages
 
-::: {style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Info:</strong> The UNSW psychology computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine.
 :::
 
@@ -201,7 +215,7 @@ In order to use a package, you must first install it. The following code install
 
 If you are interested in learning more about tidyverse and how incredibly useful it is in R, consider going through some of the chapters and exercises in [R for Data Science](https://r4ds.hadley.nz/). It's also a great reference whenever you need help using functions from the tidyverse. If you want to learn more coding skills in R, we highly recommend working your way through this book.
 
-* If you are working on your own computer, use the below code to install the tidyverse. You can either copy this command into the console, or into your script for highlighting and running  **Do not do this if you are working on a University machine**.  
+> If you are working on your own computer, use the below code to install the tidyverse. You can either copy this command into the console, or into your script for highlighting and running.  
 
 ```{r install-packages, eval = FALSE}
 install.packages("tidyverse")
@@ -213,7 +227,7 @@ To load packages we use the function `library()`. Typically you would start any 
 
 ### Activity - Load the tidyverse
 
-* Run the below code in the console to load the tidyverse. You can do this regardless of whether you are using your own computer or a University machine.  
+> Run the below code in the console to load the tidyverse. You can do this regardless of whether you are using your own computer or a University machine.  
 
 ```{r library-load, eval = FALSE}
 library(tidyverse)
@@ -229,7 +243,9 @@ A large part of your coding for data analysis will involve creating and manipula
 
 ### Activity - Create some objects {#sec-make-objects}
 
-* Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. You should see that `name`, `age`, `today`, `new_year`, and `data` appear in the environment pane.  
+> Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. 
+
+You should see that `name`, `age`, `today`, `new_year`, and `data` appear in the environment pane.  
 
 ```{r objects}
 
@@ -250,13 +266,15 @@ knitr::include_graphics("images/Introduction_to_R/objects-enviro.png")
 
 Note that in these examples, `name`,`age`, and `new_year` would always contain the values `emily`, `33`, and the date of New Year's Day 2025, however, `today` will draw the date from the operating system. `data` has been created by randomly drawing a set of 10 values from a normal distribution with a mean of 15 and a standard deviation of 3. See `?rnorm` for more information on how this function works. You should recognise by now what has been saved to `M_values`.
 
-::: {style="border-left: 4px solid #2196F3; background-color: #8cc6f5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Warning:</strong> You may also see objects referred to as 'variables'. There is a difference between the two in programming terms, however, they are used synonymously very frequently.
 :::
 
 As a side note, if you ever have to teach programming and statistics, don't use your age as an example because everytime you have to update your teaching materials you get a reminder of the fragility of existence and your advancing age. 
 
-Importantly, objects can be involved in calculations and can interact with each other. For example, copy and paste this code into your script and run it. Check your answer matches what you see below.
+Importantly, objects can be involved in calculations and can interact with each other. 
+
+> For example, copy and paste this code into your script and run it. Check your answer matches what you see below.
 
 ```{r objects-interact}
 
@@ -264,7 +282,9 @@ age + 10
 
 ```
 
-Finally, and **importantly**, you can store the result of these operations in a new object:
+Finally, and **importantly**, you can store the result of these operations in a new object.
+
+> Run the following line of code
 
 ```{r objects-interact2}
 
@@ -272,7 +292,7 @@ decade <- age + 10
 
 ```
 
-::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Tip:</strong> You may find it helpful to read `<-` as `contains`, e.g., `name` contains the text `emily`.
 :::
 
@@ -284,7 +304,9 @@ You will constantly be creating objects throughout this course and you will lear
 
 For now, we can have a look at the datatypes of our objects using the function `typeof`. 
 
-You will see the below lines of code in your script. Run them and make sure you get the same answers as you see here.
+You will see the below lines of code in your script. 
+
+> Run them and make sure you get the same answers as you see here.
 
 ```{r}
 #These are both doubles (i.e numbers!)
@@ -297,7 +319,7 @@ typeof(name)
 
 ```
 
-::: {style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. Integers are always whole numbers, whereas objects of type double can have decimals. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
 :::
 
@@ -306,7 +328,7 @@ typeof(name)
 
 If you've been writing a lot of code you may find that the environment pane (or workspace) has become cluttered with many objects. This can make it difficult to figure out which object you need and therefore you run the risk of using the wrong data. If you're working on a new dataset, or if you've tried lots of different code before getting the final version, it is good practice to remember to clear the environment to avoid using the wrong object. You can do this in several ways.
 
-1. To remove individual objects, you can type `rm(object_name)` in the console. Complete the code in your script to remove the object `data` that we created earlier. 
+> 1. To remove individual objects, you can type `rm(object_name)` in the console. Complete the code in your script to remove the object `data` that we created earlier. 
 2. To clear all objects from the environment run `rm(list = ls())` in the console.
 3. To clear all objects from the environment you can also click the broom icon in the environment pane. Do it, do it now!
 
@@ -323,7 +345,9 @@ Now that you have cleared your Environment, you can learn the true power of scri
 
 ### Final Activity - Run the script
 
-The last activity for the day...highlight all the code in your script and run it. You should see all of the objects you created earlier reappear in the environment pane.
+> The last activity for the day...highlight all the code in your script and run it. 
+
+You should see all of the objects you created earlier reappear in the environment pane.
 
 ## You are Free!
 

@@ -73,17 +73,18 @@ The formula for calculating political attitude is:
 $$\mathrm{PoliticalAttitude} = 0.25 \times \mathrm{polit\_informed} + 0.35 \times \mathrm{polit\_campaign} + 0.4 \times \mathrm{polit\_activism}$$
 Now you have this formula, let's build the code that creates the political attitude scores step by step, and test that its working properly.
 
-The first operation we need to do is to multiply each observation in `polit_informed` by 0.25. 
+The first operation we need to do is to multiply each observation in the `polit_informed` column by 0.25. 
 
-> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply them each by 0.25. What are the 3 results that you get? Write them as a comment in your script.
+> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply them each by 0.25 (in the console, or in your head). What are the 3 results that you get? Write them as a comment in your script.
 
 Now we know what answers we should get, we can write some code to multiply these observations by 0.25, and check the code works.
 
 Remember, if we want to create a new variable in a data frame, then `mutate()` is a very handy function to use.
 
-Here is the code from Section \@ref(sec-new-likes) that gives a good example on how to use the `mutate()` function.
+Here is the code from Section \@ref(sec-new-likes) that gives a good example on how to use the `mutate()` function. This code is also in your script for this computing lab.
 
-> Copy and paste this code to your script, but don't run it. We're going to change it for our current purposes.
+> Amend the below code in your script, so that you save the data frame to an object called `social_media_test`
+
 
 ```{r, mutate eg, eval=FALSE}
 
@@ -92,25 +93,26 @@ social_media_likes <- social_media %>%
 
 ```
 
-> Amend the code that you copy and pasted in your script, so that you save the results to an object called `social_media_test`
 
-> Now amend the code so that you make a new column called `test` (instead of `likes`) that takes the variable `polit_informed` and multiplies it by 0.25
+> Now amend the code so that you make a new column called `test` (instead of `likes`) that takes the column `polit_informed` and multiplies each entry by 0.25.
 
 Hint: You multiply in R using the `*` symbol.
 
-> Run the code and then run `head(social_media_test)` to check the results. Compare the first 3 values of the variable `test()` to the results you got from your manual calculation.
+> Run your new code and then run `head(social_media_test)` to check the results. Compare the first 3 values of the variable `test` to the results you got from your manual calculation.
 
 The next thing we need to do is multiply `polit_campaign` by 0.35, and add it to the previous result. 
 
-> Using the console, calculate yourself what values you should get if you take the first few values of `polit_campaign`, multiply them by 0.35, and add them to the first few values you got from multiplying `polit_informed` by 0.25. Write these results as a comment in your script.
+> Using the console (or your mind brain), calculate yourself what values you should get if you take the first few values of `polit_campaign`, multiply each of them by 0.35. Then add these new values to those you got when multiplying `polit_informed` values by 0.25. Write these new results down as a comment in your script.
 
-Now lets amend our mutate code to perform this next step. 
+Now lets amend our code so that it can calculate these new values. 
 
-> Using the code you just wrote, add `+ 0.35 * polit_campaign` to inside your `mutate()` function call. Check the contents of the `test` variable to make sure the first few numbers match your own calculations.
+> Using the code you just wrote, add `+ 0.35 * polit_campaign` to inside your `mutate()` function call. Run your new code. Check the contents of the `test` variable to make sure the first few numbers match your own calculations.
 
-Nice work! We now know that we are on the right path to completing the calculation of the composite scores for political attitude. We created the data frame `social_media_test` as a kind of scratch pad for testing. But we don't need the results of those tests to complete our analysis. So let`s remove it from our environment, in a bid to keep the environment tidy.
+Nice work! We tested each bit of the code and we now know that we are on the right path to calculating the composite scores for political attitude. 
 
-> Run the following line of code to remove the `social_media_test` data frame
+We created the data frame `social_media_test` as a kind of scratch pad for testing. But we don't need the results of those tests to complete our analysis. So let`s remove it from our environment, in a bid to keep the environment tidy.
+
+> Run the following line of code to remove the `social_media_test` data frame from your environment
 
 ```{r, test remove, eval=FALSE}
 
@@ -118,63 +120,158 @@ rm(social_media_test) #removes the specified object from the environment
 
 ```
 
-Now lets properly create the political attitude scores, and save them to an object that has a useful name for our analysis.
+Now lets properly create the political attitude scores, and save the resulting data frame to an object that has a useful name for our analysis.
 
+> Complete the following line of code in your script
 
+```{r, Creating political attitude scores, eval=FALSE}
 
-```{r}
-write.csv(social_media_attitutde, file = here("Data", "PSYC2001-social-media-attitutde.csv"))
+social_media_attitude <- social_media %>% 
+      mutate(polit_attitude=...)
+
+```
+
+> Check the contents of the new data frame using your favourite method to check the new variable has been added
+
+See Section \@ref(sec-data-view) if you want some inspiration on methods
+
+```{r, Actually Creating political attitude scores, echo=FALSE}
+
+social_media_attitude <- social_media %>% 
+      mutate(polit_attitude = 0.25 * polit_informed + 0.35 * polit_campaign + 0.4 * polit_activism)
+
+head(social_media_attitude)
+
+```
+
+## Activity - save the results of your hard work {#sec-select-and-save}
+
+It is going to be useful for us to save the data frame that contains this new variable, as we will be using it again in the next computing tutorial. So let's save the data frame as a '.csv' file. 
+
+Our `social_media_attitude` data frame has a lot of variables that we don't need for this analysis, or the analysis we will run next week. So let's tidy up the data a bit. We'll reduce our data frame so that it only contains the columns: `id`, `time_on_social`, `polit_attitude`, `age`, and `urban`.
+
+For that, we can use the `select()` function, as we did in Section /@ref(sec-new-likes). Here is the relevant code from that section again:
+
+```{r, old select code, eval=FALSE}
+
+social_media_likes <- social_media %>% 
+  mutate(likes =(bad_mood_likes + good_mood_likes)/2 ) %>% # creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes
+  select(id, urban, likes, followers) #selects only the specified columns from the data frame
+```
+
+The key piece of code we need to add to our code and adapt is the following:  
+
+`%>%   
+select(id, urban, likes, followers)`
+
+> Copy and paste the key piece of code to the relevant place in your script, and run your code to get your refined data frame. Check the resulting data frame looks as you would expect using your preferred method.
+
+You should get a data frame whose contents look like the below:
+
+```{r, refine behind the scenes, echo = FALSE}
+
+social_media_attitude <- social_media_attitude %>% 
+  select(id, time_on_social, polit_attitude, age, urban)
+
+head(social_media_attitude)
 ```
 
 
-## Activity 3 - looking for straight lines
+Now we are ready to save our refined data frame to a '.csv' file for future use. If you remember, we did something very similar in Section \@ref(sec-save-the-data), using the following code, which you will also find in your script.
 
-Now lets visualise this in R. 
+```{r, save-the-data, eval=FALSE}
 
-We’re going to explore our data to see if it is suitable for a pearson correlation analysis. Remember, we use a pearson correlation analysis when we think a straight line is a good enough description of the relationship between our variables.
+write.csv(social_media_NA, here("Output","PSYC2001_social-media-data-cleaned.csv")) #creates a csv file from the dataframe social_media_NA
+
+```
+
+> Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001-social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
+
+Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
+
+## Activity - looking for straight lines
+
+Now let`s visualise our data!  
+
+We’re going to explore the relationships between our variables to see if it is appropriate to run a Pearson correlation analysis. Remember, we use a Pearson correlation analysis when we think a straight line is a reasonable approximation of the relationship between our variables.
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="MFW people don't visualise their data"}
 knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/No%20visualisation%20is%20bad.jpg?raw=true")
 ```
 
+Let's use `ggplot` to  make scatterplots to show the relationships between `time_on_social`, `polit_attitude`, and `age`. You can see a little bit about scatterplots and how to implement them in R [here](https://r-graph-gallery.com/scatterplot.html). 
 
-Let's use `ggplot` to  make scatter plots to show the relationships between age, time_on_social and attitude. You should wind up with 3 scatterplots.
+We have given you the code for the first scatterplot. 
 
-```{r Scatterplot of age and time_on_social, warning=FALSE}
-social_media_attitutde %>% 
-  ggplot(aes(y = age, x = time_on_social)) +
-  geom_point(colour = "orange") +
-  labs(x = "Age", y = "Time on social") +
-  theme_classic() 
-```
+> Run the code to make this scatterplot of the relationship between `time_on_social` and `attitude`. 
 
-```{r Scatterplot of age and attitude, warning=FALSE}
-social_media_attitutde %>% 
-  ggplot(aes(y = age, x = attitude)) +
-  geom_point(colour = "blue") +
-  labs(x = "Age", y = "Attitude") +
-  theme_classic() 
-```
+You should see a scatterplot that looks like the one below.
 
 ```{r Scatterplot of time_on_social and attitude, warning=FALSE}
-social_media_attitutde %>% 
-  ggplot(aes(y = time_on_social, x = attitude)) +
-  geom_point(colour = "red") +
-  labs(x = "Time on social", y = "Attitude") +
-  theme_classic() 
+
+social_media_attitude %>% 
+  ggplot(aes(x = time_on_social, y = polit_attitude)) + # set up the canvas
+  geom_point(colour = "orange") + # make a scatterplot
+  labs(x = "Time on Social", y = "Political Attitude") + # define labels
+  theme_classic() # make pretty
+
 ```
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> Do the relationships look linear or non-linear? Which correlation analyses would you be more cautious about running?
+<strong>What do you think?</strong> Would you say there is a linear relationship between `time_on_social` and `attiutude`?
 :::
-  
+
+Imagine drawing a straight line through the cloud of dots. Is there a straight line you can draw that the data points are consistently clustered around? (i.e. there is roughly the same number of data points above and below the line at every point along the x-axis).
+
+> Now, using the above code as a guide, create two more scatterplots: one of the relationship between `age` and `attitude`, and another of `time_on_social` and `attitude`age`.
+
+You know you will have completed your mission when you have produced plots that look something like the following:
+
+```{r Scatterplot of age and attitude, warning=FALSE, echo=FALSE}
+social_media_attitude %>% 
+  ggplot(aes(x = polit_attitude, y = age)) +
+  geom_point(colour = "blue") +
+  labs(x = "Political Attitude", y = "Age") +
+  theme_classic() 
+```
+
+```{r Scatterplot of age and time_on_social, warning=FALSE, echo=FALSE}
+social_media_attitude %>% 
+  ggplot(aes(x = time_on_social, y = age)) +
+  geom_point(colour = "red") +
+  labs(x = "Time on social", y = "Age") +
+  theme_classic() 
+```
+
+Remember to check you have adjusted the axis labels!
+
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> How about the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?
+:::
+
+A non-linear relationship is present when the relationship between two variables appears to follow a curve shape, rather than a straight line. Remember that we do not want to conduct a Pearson's correlation analysis when the relationship is non-linear.
+
 ## Conducting correlations
 
-Let’s find out if there is a statistically significant correlation between `time_on_social` and `attitude`. To do this we can use the `cor.test()` function. This function takes in a formula 
-of where the right hand side specifies the two numeric variables to be correlated.
+Let’s find out if there is a statistically significant correlation between the variables that appear to share a linear relationship. Let's start with `time_on_social` and `polit_attitude`. 
 
-```{r Correlations between time_on_social and attitude}
-cor.test(formula = ~time_on_social + attitude, data = social_media_attitutde, use = "complete.obs") #formula contains both numeric variables on the right hand side.
+To do this we can use the `cor.test()` function. We can use the `cor.test()` function either using the formula method, or using base R. We'll do both, so that your coding journey is imbued with liberty.
+
+### Activity - correlation using the formula method
+
+The `cor.test()` function can take in a formula where the right hand side specifies the two numeric variables to be correlated with each other. 
+
+Note that this is a little different to when we used the formula method in Section \@ref(sec-formula-for-independence), where our formula followed the syntax of `DV ~ group`. Specifically, we had a dependent variable on the left hand side, and a grouping variable on the right hand side. 
+
+This time, we have not bothered defining a DV on the left hand side. This is because we are saying we want to know the correlation as a function of our two numeric variables (`time_on_social` and `polit_attitude`). Because we are passing the formula into the correlation function, R knows what we are asking for, and so we don't need to define a DV.
+
+Knowing when you do and do not need to put a DV on the left hand side of a formula is something that comes with practice.
+
+> Run the following code in your script to run a correlation test on the relationship between time_on_social and polit_attitude.
+
+```{r Correlations between time_on_social and polit_attitude}
+
+cor.test(formula = ~ time_on_social + attitude, data = social_media_attitutde, use = "complete.obs") #formula contains both numeric variables on the right hand side.
 #use = "complete.obs" removes all NA values from the correlation. 
 ```
 
@@ -183,6 +280,24 @@ cor.test(formula = ~time_on_social + attitude, data = social_media_attitutde, us
 <strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
 :::
 
+### Activity - correlation using base R syntax
+
+The `cor.test()` function not only accepts formulas, but also base R syntax. In base R syntax, we specify the two variables to be correlated using the `x=` and `y=` arguments.
+
+To specify the `x=` and `y=` arguments, we will need to use the `$` operator as we did in Section \@ref(sec-conducting-paired-t-test).
+
+> Complete the following code in your script and run it to check you get the same output as when you ran a correlation test using the formula method. 
+
+Use the code from Section \@ref(sec-conducting-paired-t-test) as a guide, if you need.
+
+```{r, Correlations between time_on_social and polit_attitude base R, eval=FALSE}
+
+cor.test(x = social_media_attitude$..., 
+         y = social_media_attitude$..., use = "complete.obs")
+
+```
+
+**Which method should I use?** It will largely come down to your preference. You might prefer to think about the correlation in terms of your `x` variable and your `y` variable, or the formula may make more sense to you. The great thing about coding is that you can use the solution that suits you best.
 
 ## Writing up results and conclusions
 
@@ -192,53 +307,141 @@ Now lets have a go at writing up the results of the correlation that we have con
 <strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p < 0.01).
 :::
 
+Now, run the correlation analysis for the other pair of variables that shared a linear relationship. I know we haven't told you which one it is, so make a guess and ask your tutor if you are not sure.
 
-## Activity 4 - Exploring the data
-
-Now we can harness the power of R to perform multiple correlations all at the same time ahhhhhhhhhh !
-
-::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> First what other relationships do you think could exist between variables in this dataset ? Make two hypotheses and discuss them with your tutor.
-:::
-
-Create a scatterplot of the variables you have hypothesised using the code blocks below:
-
-```{r Scatterplot 1, eval = FALSE}
-social_media_attitutde %>% 
-  ggplot() +
-  geom_point() +
-  labs() +...
-```
-
-```{r Scatterplot 2, eval = FALSE}
-social_media_attitutde %>% 
-  ggplot() +
-  geom_point() +
-  labs() +...
-```
-
-Now compute correlations between these your chosen variables. 
-
-```{r Correlation 1, eval = FALSE}
-cor.test(x = , y =  use = "complete.obs")
-
-```
-
-```{r Correlation 2, eval = FALSE}
-cor.test(x = , y =  use = "complete.obs")
-
-```
-
+> Copy and paste the code you wrote earlier for the correlation analysis into your script. Amend the code so that it runs a correlation analysis on the other pair of variables that shared a linear relationship. Run your code and interpret the results.
 
 ## You are Free!
 
-Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data. 
-
+Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data, so well done you for saving your data set. 
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="It almost over (I promise)"}
 knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/Statistical%20trauma.gif?raw=true")
 ```
 
+## ⭐ Bonus exercises - Exploring Relationships with GGally
+
+Now that you’ve created your political attitude scores and explored some scatterplots, let’s take things a step further. A great way to visualise multiple relationships at once is to use a pairs plot. For this, we’ll use the package `GGally`, which extends the functionality of `ggplot()` and gives us the very handy `ggpairs()` function.
+
+### Bonus Exercise – Installing GGally and Making Your First Pairs Plot
+
+Before we begin, we need to install and load the `GGally` package.
+
+> Add the following code to the top of your script and run it.
+
+We always want to load all the packages we need at the top of our scripts. This keeps our script tidy, and makes sure that all the dependencies are clear from the beginning.
+
+```{r, install GGally, warning=FALSE}
+
+if(!require(GGally)) install.packages("GGally") 
+library(GGally)
+
+```
+
+Great — now we can make a super pairs plot!
+
+We’ll start by visualizing the key variables from today’s tutorial: `time_on_social`, `polit_attitude`, and `age`.
+
+> Copy the below code into the end of your script, and run it. Be sure to add some comments about what you think each piece of code is doing
+
+```{r, bonus pairs plot, warning=FALSE}
+
+social_media_attitude %>% 
+  select(time_on_social, polit_attitude, age) %>% 
+  ggpairs()
+
+```
+
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+<strong>Did you get a warning when you ran the above line of code?</strong> What do you think it means? If you are unsure your tutor can help you work it out.
+:::
+
+You should now see a grid of scatterplots, density plots, and correlation coefficients. This gives you a quick overview of how all three variables relate to one another. Behold, the power of coding!
+
+> Have a look at each panel in the grid of scatterplots. What does each panel tell you about the data?
+
+### Bonus exercise - choose your own adventure
+
+Now it’s your turn to explore. 
+
+> Remind yourself what columns are in the original `social_media` data frame. Pick 3 or 4 variables that you are interested in exploring the relationship between. Copy and paste the code you used to select key columns in Section \@ref(sec-select-and-save), and amend it to select the columns you are interested in from `social_media`. Note you will always have to select the column that has the participant ids (`id`). Also, make sure you include the `urban` column if you want to do the bonus exercise that comes after this one.
+
+Once you have created your new data frame, and you have checked it looks correct, you are ready to use the ggpairs function to look at all the relationships at once. Its like a polycule in a plot.
+
+> Copy and paste the below code into your script. Adapt it to produce the pairs plot of your desires!
+
+```{r, your own pairs plot, eval=FALSE}
+
+... %>% 
+  select(...) %>%  # <-- replace with your chosen variables so you don't pass the id column into the pairs plot
+  ggpairs()
+
+```
+
+How do the relationships look? Are there any non-linear ones, or are they all linear? Are the strengths of the correlations what you expected, or not?
+
+### Bonus exercise - correlations by group
+
+Sometimes we want to see whether relationships between variables differ across groups. For example, are the relationships between your chosen variables stronger for urban dwellers than for rural dwellers?
+
+`ggpairs()` allows us to colour the plots by a grouping variable using the `aes()` argument. `ggpairs()` will also tell us the correlation value by group.
+
+> Copy and paste the below code into your script, and amend it to see the relationship between your chosen variables grouped by urban and rural dwellers.
+
+You should wind up with something that looks like the below -
 
 
+```{r, your own pairs plot by group, warning=FALSE, message=FALSE}
 
+social_media %>% 
+  mutate(urban = factor(urban, levels=c(1,2), labels=c('urban', 'rural'))) %>%
+  select(time_on_social, good_mood_likes, age, urban) %>% 
+  ggpairs(aes(colour = urban))
+
+```
+
+Nice! Have a look at the `urban` column. What do the boxplots show you? 
+
+### Last bonus exercise - unleash the cats!
+
+If you thought scatterplots couldn’t get any more exciting… enter `ggcats`.  This package lets you replace your data points with tiny cartoon cats.  
+Is this scientifically necessary? No.  
+Is it delightful? Absolutely.
+
+Before we can summon the cats, we need to install and load the `ggcats` package. For more info on the `ggcats` package, see the [ggcats GitHub page](https://github.com/R-CoderDotCom/ggcats).
+
+Because `ggcats` is not on CRAN, the official directory for R packages, we need to install it from github using a package called "remotes". Luckily, the instructions are on the [ggcats GitHub page](https://github.com/R-CoderDotCom/ggcats). We have also copied the code below.
+
+> Add the following code to the top of your script and run it.
+
+```{r, install ggcats, warning=FALSE, message=FALSE}
+
+if(!require(remotes)) install.packages("remotes")
+remotes::install_github("R-CoderDotCom/ggcats@main")
+library(ggcats)
+```
+
+Note that there is a daily limit on how many people can install the `ggcats` package in a day. If you are unable to install the package then that is the universe telling you that you have done enough coding today and that you should try again tomorrow.
+
+Now let’s make a scatterplot of `time_on_social and polit_attitude`, but with cats instead of dots. Vastly improved.
+
+> Copy and paste the below code into your script and run it.
+
+You should now see the following wondrous item in your plots pane:
+
+```{r, scatterplot with cats, warning=FALSE, message=FALSE}
+
+social_media_attitude %>% 
+  ggplot(aes(x = time_on_social, y = polit_attitude)) +
+  geom_cat(aes(cat = "grumpy"), size = 4) +
+  labs(x = "Time on Social", y = "Political Attitude") +
+  theme_classic()
+```
+
+> Return to the [ggcats Github page](https://github.com/R-CoderDotCom/ggcats). You will see many different cat styles listed. Have a go at changing the cat style. Any cat style can be yours!
+
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+Paws for thought:  
+Does using cats as points improve your statistical insight? Probably not.
+Does it improve your mood? Almost certainly.
+:::

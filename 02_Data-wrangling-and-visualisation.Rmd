@@ -331,7 +331,7 @@ It would be a good idea to save this dataset for future tutorials, so that we do
 
 We can do this with the `write.csv()` function from `base R`. This function takes a dataframe in R and saves it as a .csv file on your computer. Later, we can simply read that csv back into R, and it will already be cleaned.
 
-### Activity -  Save the cleaned data
+### Activity -  Save the cleaned data {#sec-save-the-data}
 
 Copy and paste this code into your script and run it. Then open the Output folder to check that it worked. You can do this by clicking on the folder in the Files tab in the bottom right section of RStudio.
 
@@ -341,7 +341,7 @@ write.csv(social_media_NA, here("Output","PSYC2001_social-media-data-cleaned.csv
 
 ```
 
-## Data visualization using `ggplot2`
+## Data visualization using `ggplot()`
 
 Visualizing data is a crucial step in data analysis. You should never run a statistical analysis without first visualising your data. It helps us understand the distribution of our data, identify patterns, and communicate our findings effectively. It also helps us identify whether the data are suitable for the analysis we want to perform, or whether some weird values remain that could influence the result of our statistical tests, and even worse, our interpretations!
 
