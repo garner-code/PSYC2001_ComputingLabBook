@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Probing (Statistical) Relationships with Correlation Analysis | Data Analysis Skills for Psychology in R</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Probing (Statistical) Relationships with Correlation Analysis | Data Analysis Skills for Psychology in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="https://github.com/garner-code/PSYC2001_ComputingLabBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Probing (Statistical) Relationships with Correlation Analysis | Data Analysis Skills for Psychology in R" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="twitter:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
+
+<meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
+
+
+<meta name="date" content="2026-01-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="testing-for-differences-between-groups.html"/>
+<link rel="next" href="linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#bugs-are-important"><i class="fa fa-check"></i><b>0.3</b> Bugs are important</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#big-unknowns-and-little-unknowns"><i class="fa fa-check"></i><b>0.4</b> Big unknowns and little unknowns</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#setting-up-r-and-rstudio"><i class="fa fa-check"></i><b>0.5</b> Setting up R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>1.2</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---setting-up-your-working-folder"><i class="fa fa-check"></i><b>1.2.1</b> Activity - Setting up your working folder</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>1.3.1</b> Activity - Using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>1.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-run-code"><i class="fa fa-check"></i><b>1.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>1.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>1.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity - Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity - Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-make-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-data-type"><i class="fa fa-check"></i><b>1.9.1</b> Activity - Explore datatypes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity---run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity - Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---load-your-packages"><i class="fa fa-check"></i><b>2.1.1</b> Activity - Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity - find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---getting-to-know-the-data-files"><i class="fa fa-check"></i><b>2.4.1</b> Activity - getting to know the data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>2.5.1</b> Activity - Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>2.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>2.6.1</b> Activity - View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---summarise-the-data"><i class="fa fa-check"></i><b>2.7.1</b> Activity - Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---find-and-replace--999-values"><i class="fa fa-check"></i><b>2.8.1</b> Activity - Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---pipe-with-pipes"><i class="fa fa-check"></i><b>2.9.1</b> Activity - Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-save-the-data"><i class="fa fa-check"></i><b>2.10.1</b> Activity - Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot"><i class="fa fa-check"></i><b>2.11</b> Data visualization using <code>ggplot()</code></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>2.11.1</b> Activity - Starting a canvas in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---add-a-boxplot-to-the-canvas"><i class="fa fa-check"></i><b>2.11.2</b> Activity - Add a boxplot to the canvas</a></li>
+<li class="chapter" data-level="2.11.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---tidy-up-the-x-axis"><i class="fa fa-check"></i><b>2.11.3</b> Activity - tidy up the x-axis</a></li>
+<li class="chapter" data-level="2.11.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---add-some-labels"><i class="fa fa-check"></i><b>2.11.4</b> Activity - add some labels</a></li>
+<li class="chapter" data-level="2.11.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-histogram"><i class="fa fa-check"></i><b>2.11.5</b> Activity - More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---load-packages-using-the-library-function"><i class="fa fa-check"></i><b>3.1.1</b> Activity - Load packages using the <code>library()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>3.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>3.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>3.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>3.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-densities"><i class="fa fa-check"></i><b>3.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-visualised-now-what"><i class="fa fa-check"></i><b>3.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-descriptive"><i class="fa fa-check"></i><b>3.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>3.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>3.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test"><i class="fa fa-check"></i><b>3.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>3.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="3.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>3.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html"><i class="fa fa-check"></i><b>4</b> Testing for differences between groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-packages-using-library"><i class="fa fa-check"></i><b>4.1.1</b> Activity - load packages using <code>library()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#how-does-where-you-live-impact-how-you-use-social-media"><i class="fa fa-check"></i><b>4.2</b> How does where you live impact how you use social media?</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="4.2.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it"><i class="fa fa-check"></i><b>4.2.2</b> Activity - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.3</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#sec-new-likes"><i class="fa fa-check"></i><b>4.3.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.3.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.3.2</b> Activity - Defining factors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.4</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---adapting-our-previous-code-to-make-new-histograms"><i class="fa fa-check"></i><b>4.4.1</b> Activity - Adapting our previous code to make new histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics"><i class="fa fa-check"></i><b>4.5</b> Next step: descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---adapt-the-code-to-get-the-mean-and-standard-deviations-for-likes-and-followers"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Adapt the code to get the mean and standard deviations for likes and followers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>4.6</b> Independent samples t-test</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#sec-formula-for-independence"><i class="fa fa-check"></i><b>4.6.1</b> Activity - Performing independent samples t-tests</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.7</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#bonus-activity---visualising-group-differences"><i class="fa fa-check"></i><b>4.8</b> Bonus Activity - Visualising group differences</a></li>
+<li class="chapter" data-level="4.9" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>4.9</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html"><i class="fa fa-check"></i><b>5</b> Probing (Statistical) Relationships with Correlation Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#checking-installation-and-loading-packages-3"><i class="fa fa-check"></i><b>5.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---write-the-code-to-load-packages-from-the-library"><i class="fa fa-check"></i><b>5.1.1</b> Activity - write the code to load packages from the library</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>5.2</b> Investigating correlational relationships</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-some-political-attitude"><i class="fa fa-check"></i><b>5.3.1</b> Activity - Get some political attitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-select-and-save"><i class="fa fa-check"></i><b>5.4</b> Activity - save the results of your hard work</a></li>
+<li class="chapter" data-level="5.5" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-look-lines"><i class="fa fa-check"></i><b>5.5</b> Activity - looking for straight lines</a></li>
+<li class="chapter" data-level="5.6" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#conducting-correlations"><i class="fa fa-check"></i><b>5.6</b> Conducting correlations</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form"><i class="fa fa-check"></i><b>5.6.1</b> Activity - correlation using the formula method</a></li>
+<li class="chapter" data-level="5.6.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---correlation-using-base-r-syntax"><i class="fa fa-check"></i><b>5.6.2</b> Activity - correlation using base R syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#writing-up-results-and-conclusions-1"><i class="fa fa-check"></i><b>5.7</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="5.8" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#you-are-free-4"><i class="fa fa-check"></i><b>5.8</b> You are Free!</a></li>
+<li class="chapter" data-level="5.9" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercises---exploring-relationships-with-ggally"><i class="fa fa-check"></i><b>5.9</b> ⭐ Bonus exercises - Exploring Relationships with GGally</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise-installing-ggally-and-making-your-first-pairs-plot"><i class="fa fa-check"></i><b>5.9.1</b> Bonus Exercise – Installing GGally and Making Your First Pairs Plot</a></li>
+<li class="chapter" data-level="5.9.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---choose-your-own-adventure"><i class="fa fa-check"></i><b>5.9.2</b> Bonus exercise - choose your own adventure</a></li>
+<li class="chapter" data-level="5.9.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---correlations-by-group"><i class="fa fa-check"></i><b>5.9.3</b> Bonus exercise - correlations by group</a></li>
+<li class="chapter" data-level="5.9.4" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-unleash-cats"><i class="fa fa-check"></i><b>5.9.4</b> Last bonus exercise - unleash the cats!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>6</b> Making predicitions using Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="linear-regression.html"><a href="linear-regression.html#checking-installation-and-loading-packages-4"><i class="fa fa-check"></i><b>6.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="linear-regression.html"><a href="linear-regression.html#investigating-linear-regressions"><i class="fa fa-check"></i><b>6.2</b> Investigating linear regressions</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---formulate-your-prediction-about-predictions"><i class="fa fa-check"></i><b>6.2.1</b> Activity - Formulate your prediction about predictions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---loading-the-data-set"><i class="fa fa-check"></i><b>6.2.2</b> Activity - loading the data set</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="linear-regression.html"><a href="linear-regression.html#lets-get-the-data-into-shape-for-some-viz"><i class="fa fa-check"></i><b>6.3</b> Let`s get the data into shape for some viz</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---select-and-pivot-to-longform"><i class="fa fa-check"></i><b>6.3.1</b> Activity - select and pivot to longform</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-in-r"><i class="fa fa-check"></i><b>6.4</b> Linear regression in R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---fitting-a-linear-regression-model"><i class="fa fa-check"></i><b>6.4.1</b> Activity - fitting a linear regression model</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---how-good-is-our-model"><i class="fa fa-check"></i><b>6.4.2</b> Activity - how good is our model?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="linear-regression.html"><a href="linear-regression.html#writing-up-results-and-conclusions-2"><i class="fa fa-check"></i><b>6.5</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="6.6" data-path="linear-regression.html"><a href="linear-regression.html#plotting-our-results"><i class="fa fa-check"></i><b>6.6</b> Plotting our results</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---adding-a-line-of-best-fit-to-a-scatterplot"><i class="fa fa-check"></i><b>6.6.1</b> Activity - Adding a line of best fit to a scatterplot</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---level-up"><i class="fa fa-check"></i><b>6.6.2</b> Activity - level up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linear-regression.html"><a href="linear-regression.html#you-are-free-5"><i class="fa fa-check"></i><b>6.7</b> You are Free!</a></li>
+<li class="chapter" data-level="6.8" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercises---level-up-plots-with-gen-ai"><i class="fa fa-check"></i><b>6.8</b> ⭐ Bonus exercises - level up plots with Gen AI</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercise---tidy-up-the-regression-plot"><i class="fa fa-check"></i><b>6.8.1</b> Bonus exercise - Tidy up the regression plot</a></li>
+<li class="chapter" data-level="6.8.2" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercise---to-the-movies"><i class="fa fa-check"></i><b>6.8.2</b> Bonus exercise - to the movies!</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis Skills for Psychology in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probing-statistical-relationships-with-correlation-analysis" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Probing (Statistical) Relationships with Correlation Analysis<a href="probing-statistical-relationships-with-correlation-analysis.html#probing-statistical-relationships-with-correlation-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This week, we are going to explore relationships between continuous variables, using correlation. We will take a look at how to combine composite variables into a single score, as this is something we often do in the pusuit of understanding the human psyche. We will also visualise relationships between variables using scatterplots, and conduct Pearson correlation analyses in R.</p>
+<div id="checking-installation-and-loading-packages-3" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Checking installation and loading packages<a href="probing-statistical-relationships-with-correlation-analysis.html#checking-installation-and-loading-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As usual we first always check and load in our required packages. This week, as usual, we will need the packages <code>here</code> and <code>tidyverse</code>.</p>
+<div id="activity---write-the-code-to-load-packages-from-the-library" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Activity - write the code to load packages from the library<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---write-the-code-to-load-packages-from-the-library" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Today, we are not giving you the code to copy and paste. You are ready to fly, and write it yourself now you have mastery of the codeship. You are welcome to decide yourself whether you would like to check if the packages are installed before you load them.</p>
+<blockquote>
+<p>Go to your script for the week ‘05_Correlation-analysis.R’ and add the code to load the packages <code>here</code> and <code>tidyverse</code> using the <code>library()</code> function. Write the code to check if the packages are installed if you wish. Make sure to run the code.</p>
+</blockquote>
+</div>
+</div>
+<div id="investigating-correlational-relationships" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Investigating correlational relationships<a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have previously looked at how mood and location influence social media use. Now we’re going to look at the relationship between social media use, age and political activism. It has previously been shown that social media use has a positive relationship with levels of political activism in other countries such as Jordan <a href="https://www.mdpi.com/2076-0760/12/7/402">(Alodat et al, 2023)</a>. However, we don’t know if this is true for young adults in Australia. This is what we will test today.</p>
+<p>Today we will be using the <code>time_on_social</code>, <code>age</code>, <code>polit_informed</code>, <code>polit_campaign</code> and <code>polit_activism</code> variables.</p>
+<p>Remember, these variables stand for the following:</p>
+<p><code>age</code> – age in years<br />
+<code>time_on_social</code> – average hours/day on social media (self-report diary)</p>
+<p>Political attitude subscales:</p>
+<p><code>polit_informed</code> – how politically informed they feel (e.g., read news daily)<br />
+<code>polit_campaign</code> – how much they engage in campaign-related discussion<br />
+<code>polit_activism</code> – involvement in activism (e.g., protests, petitions)</p>
+<div id="activity---how-might-political-attitudes-relate-to-social-media-use" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Activity - How might political attitudes relate to social media use?<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we begin we first need to load in our dataset for today.</p>
+<blockquote>
+<p>Copy and paste the code from a previous week that loads the <code>PSYC2001_social-media-data-cleaned.csv</code> dataset into a data frame called <code>social_media</code>.</p>
+</blockquote>
+<blockquote>
+<p>Run the code and check that the data is loaded correctly using your preferred method from Section <a href="data-wrangling-and-visualisation.html#sec-data-view">2.6.1</a>.</p>
+</blockquote>
+<p>Now that you have loaded the data, take a moment to think about the relationship between political attitudes and time spent on social media. Will young adults who spend a lot of time on social media be more politically active? Or the opposite? Or neither? What are your thoughts?</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What is a reasonable null and alternate hypothesis? Write it down as a comment in your script.</p>
+</div>
+</div>
+</div>
+<div id="building-a-composite-score-that-measures-political-attitude" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Building a composite score that measures political attitude<a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘political attitude’ score for each participant. Each subscale score carries a different weighting towards the total political attitude score.</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Pause for thought:</strong> Why would each subscale carry a different weighting? Think about what was discussed in the lectures about composite scores.</p>
+</div>
+<div id="activity---get-some-political-attitude" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Activity - Get some political attitude<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-some-political-attitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The formula for calculating political attitude is:</p>
+<p><span class="math display">\[\mathrm{PoliticalAttitude} = 0.25 \times \mathrm{polit\_informed} + 0.35 \times \mathrm{polit\_campaign} + 0.4 \times \mathrm{polit\_activism}\]</span>
+Now you have this formula, let’s build the code that creates the political attitude scores step by step, and test that its working properly.</p>
+<p>The first operation we need to do is to multiply each observation in the <code>polit_informed</code> column by 0.25.</p>
+<blockquote>
+<p>Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from <code>polit_informed</code> and multiply them each by 0.25 (in the console, or in your head). What are the 3 results that you get? Write them as a comment in your script.</p>
+</blockquote>
+<p>Now we know what answers we should get, we can write some code to multiply these observations by 0.25, and check the code works.</p>
+<p>Remember, if we want to create a new variable in a data frame, then <code>mutate()</code> is a very handy function to use.</p>
+<p>Here is the code from Section <a href="testing-for-differences-between-groups.html#sec-new-likes">4.3.1</a> that gives a good example on how to use the <code>mutate()</code> function. This code is also in your script for this computing lab.</p>
+<blockquote>
+<p>Amend the below code in your script, so that you save the data frame to an object called <code>social_media_test</code></p>
+</blockquote>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb93-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb93-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span></code></pre></div>
+<blockquote>
+<p>Now amend the code so that you make a new column called <code>test</code> (instead of <code>likes</code>) that takes the column <code>polit_informed</code> and multiplies each entry by 0.25.</p>
+</blockquote>
+<p>Hint: You multiply in R using the <code>*</code> symbol.</p>
+<blockquote>
+<p>Run your new code and then run <code>head(social_media_test)</code> to check the results. Compare the first 3 values of the variable <code>test</code> to the results you got from your manual calculation.</p>
+</blockquote>
+<p>The next thing we need to do is multiply <code>polit_campaign</code> by 0.35, and add it to the previous result.</p>
+<blockquote>
+<p>Using the console (or your mind brain), calculate yourself what values you should get if you take the first few values of <code>polit_campaign</code>, multiply each of them by 0.35. Then add these new values to those you got when multiplying <code>polit_informed</code> values by 0.25. Write these new results down as a comment in your script.</p>
+</blockquote>
+<p>Now lets amend our code so that it can calculate these new values.</p>
+<blockquote>
+<p>Using the code you just wrote, add <code>+ 0.35 * polit_campaign</code> to inside your <code>mutate()</code> function call. Run your new code. Check the contents of the <code>test</code> variable to make sure the first few numbers match your own calculations.</p>
+</blockquote>
+<p>Nice work! We tested each bit of the code and we now know that we are on the right path to calculating the composite scores for political attitude.</p>
+<p>We created the data frame <code>social_media_test</code> as a kind of scratch pad for testing. But we don’t need the results of those tests to complete our analysis. So let`s remove it from our environment, in a bid to keep the environment tidy.</p>
+<blockquote>
+<p>Run the following line of code to remove the <code>social_media_test</code> data frame from your environment</p>
+</blockquote>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb94-1" tabindex="-1"></a><span class="fu">rm</span>(social_media_test) <span class="co">#removes the specified object from the environment</span></span></code></pre></div>
+<p>Now lets properly create the political attitude scores, and save the resulting data frame to an object that has a useful name for our analysis.</p>
+<blockquote>
+<p>Complete the following line of code in your script</p>
+</blockquote>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb95-1" tabindex="-1"></a>social_media_attitude <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb95-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb95-2" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">polit_attitude=</span>...)</span></code></pre></div>
+<blockquote>
+<p>Check the contents of the new data frame using your favourite method to check the new variable has been added</p>
+</blockquote>
+<p>See Section <a href="data-wrangling-and-visualisation.html#sec-data-view">2.6.1</a> if you want some inspiration on methods</p>
+<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
+## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2
+## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2
+## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7
+## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3
+## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9
+## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4
+##   polit_activism polit_attitude
+## 1            3.6          3.135
+## 2            2.6          2.210
+## 3            3.0          2.620
+## 4            2.6          2.245
+## 5            3.3          2.835
+## 6            3.9          3.350</code></pre>
+</div>
+</div>
+<div id="sec-select-and-save" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Activity - save the results of your hard work<a href="probing-statistical-relationships-with-correlation-analysis.html#sec-select-and-save" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is going to be useful for us to save the data frame that contains this new variable, as we will be using it again in the next computing tutorial. So let’s save the data frame as a ‘.csv’ file.</p>
+<p>Our <code>social_media_attitude</code> data frame has a lot of variables that we don’t need for this analysis, or the analysis we will run next week. So let’s tidy up the data a bit. We’ll reduce our data frame so that it only contains the columns: <code>id</code>, <code>time_on_social</code>, <code>polit_attitude</code>, <code>age</code>, and <code>urban</code>.</p>
+<p>For that, we can use the <code>select()</code> function, as we did in Section /<span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(sec-new-likes). Here is the relevant code from that section again:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb97-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb97-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb97-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="sc">%&gt;%</span> <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span>
+<span id="cb97-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb97-3" tabindex="-1"></a>  <span class="fu">select</span>(id, urban, likes, followers) <span class="co">#selects only the specified columns from the data frame</span></span></code></pre></div>
+<p>The key piece of code we need to add to our code and adapt is the following:</p>
+<p><code>%&gt;%    select(id, urban, likes, followers)</code></p>
+<blockquote>
+<p>Copy and paste the key piece of code to the relevant place in your script, and run your code to get your refined data frame. Check the resulting data frame looks as you would expect using your preferred method.</p>
+</blockquote>
+<p>You should get a data frame whose contents look like the below:</p>
+<pre><code>##   id time_on_social polit_attitude  age urban
+## 1 S1           3.06          3.135 15.2     1
+## 2 S2           2.18          2.210 16.0     1
+## 3 S3           1.92          2.620 16.8     1
+## 4 S4           2.61          2.245 15.6     1
+## 5 S5           3.24          2.835 17.1     1
+## 6 S6           2.44          3.350 15.7     1</code></pre>
+<p>Now we are ready to save our refined data frame to a ‘.csv’ file for future use. If you remember, we did something very similar in Section <a href="data-wrangling-and-visualisation.html#sec-save-the-data">2.10.1</a>, using the following code, which you will also find in your script.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb99-1" tabindex="-1"></a><span class="fu">write.csv</span>(social_media_NA, <span class="fu">here</span>(<span class="st">&quot;Output&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#creates a csv file from the dataframe social_media_NA</span></span></code></pre></div>
+<blockquote>
+<p>Amend the code above to save the <code>social_media_attitude</code> data frame to a file called “PSYC2001-social-media-attitude.csv” in the “Data” folder. Run your code and check the Data folder now contains the new file.</p>
+</blockquote>
+<p>Note that we previously saved the ‘.csv’ file to the “Output” folder, and this time we are saving to the “Data” folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don’t overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the “Data” folder without incurring disaster.</p>
+</div>
+<div id="sec-look-lines" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Activity - looking for straight lines<a href="probing-statistical-relationships-with-correlation-analysis.html#sec-look-lines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let`s visualise our data!</p>
+<p>We’re going to explore the relationships between our variables to see if it is appropriate to run a Pearson correlation analysis. Remember, we use a Pearson correlation analysis when we think a straight line is a reasonable approximation of the relationship between our variables.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-45"></span>
+<img src="images/Correlations_in_R/No-visualisation-is-bad.jpg" alt="MFW people don't visualise their data" width="50%" />
+<p class="caption">
+Figure 5.1: MFW people don’t visualise their data
+</p>
+</div>
+<p>Let’s use <code>ggplot</code> to make scatterplots to show the relationships between <code>time_on_social</code>, <code>polit_attitude</code>, and <code>age</code>. You can see a little bit about scatterplots and how to implement them in R <a href="https://r-graph-gallery.com/scatterplot.html">here</a>.</p>
+<p>We have given you the code for the first scatterplot.</p>
+<blockquote>
+<p>Run the code to make this scatterplot of the relationship between <code>polit_attitude</code> and <code>time_on_social</code>.</p>
+</blockquote>
+<p>You should see a scatterplot that looks like the one below.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb100-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb100-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
+<span id="cb100-4"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
+<span id="cb100-5"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20time_on_social%20and%20attitude-1.png" width="672" /></p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>What do you think?</strong> Would you say there is a linear relationship between political attitude and time spent on social media?</p>
+</div>
+<p>Imagine drawing a straight line through the cloud of dots. Is there a straight line you can draw that the data points are consistently clustered around? (i.e. there is roughly the same number of data points above and below the line at every point along the x-axis).</p>
+<blockquote>
+<p>Now, using the above code as a guide, create two more scatterplots: one of the relationship between <code>polit_attitude</code> and <code>age</code>, and another of <code>time_on_social</code> and <code>age</code>.</p>
+</blockquote>
+<p>You know you will have completed your mission when you have produced plots that look something like the following:</p>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20attitude-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20time_on_social-1.png" width="672" /></p>
+<p>Remember to check you have adjusted the axis labels!</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> How about the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?</p>
+</div>
+<p>A non-linear relationship is present when the relationship between two variables appears to follow a curve shape, rather than a straight line. Remember that we do not want to conduct a Pearson’s correlation analysis when the relationship is non-linear.</p>
+</div>
+<div id="conducting-correlations" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Conducting correlations<a href="probing-statistical-relationships-with-correlation-analysis.html#conducting-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s find out if there is a statistically significant correlation between the variables that appear to share a linear relationship. Let’s start with <code>time_on_social</code> and <code>polit_attitude</code>.</p>
+<p>To do this we can use the <code>cor.test()</code> function. We can use the <code>cor.test()</code> function either using the formula method, or using base R. We’ll do both, so that your coding journey is imbued with liberty.</p>
+<div id="sec-cor-form" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Activity - correlation using the formula method<a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>cor.test()</code> function can take in a formula where the right hand side specifies the two numeric variables to be correlated with each other.</p>
+<p>Note that this is a little different to when we used the formula method in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, where our formula followed the syntax of <code>DV ~ group</code>. Specifically, we had a dependent variable on the left hand side, and a grouping variable on the right hand side.</p>
+<p>This time, we have not bothered defining a DV on the left hand side. This is because we are saying we want to know the correlation as a function of our two numeric variables (<code>time_on_social</code> and <code>polit_attitude</code>). Because we are passing the formula into the correlation function, R knows what we are asking for, and so we don’t need to define a DV.</p>
+<p>Knowing when you do and do not need to put a DV on the left hand side of a formula is something that comes with practice.</p>
+<blockquote>
+<p>Run the following code in your script to run a correlation test on the relationship between <code>time_on_social</code> and <code>polit_attitude</code>.</p>
+</blockquote>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb101-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">formula =</span> <span class="sc">~</span> time_on_social <span class="sc">+</span> polit_attitude, <span class="at">data =</span> social_media_attitude, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>) <span class="co">#formula contains both numeric variables on the right hand side.</span></span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  time_on_social and polit_attitude
+## t = 4.4667, df = 56, p-value = 3.904e-05
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.2930241 0.6807091
+## sample estimates:
+##       cor 
+## 0.5125282</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb103-1" tabindex="-1"></a><span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation. </span></span></code></pre></div>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Have a look at the output in the console. What is the relationship between <code>time_on_social</code> and <code>attitude</code>? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?</p>
+</div>
+</div>
+<div id="activity---correlation-using-base-r-syntax" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Activity - correlation using base R syntax<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---correlation-using-base-r-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>cor.test()</code> function not only accepts formulas, but also base R syntax. In base R syntax, we specify the two variables to be correlated using the <code>x=</code> and <code>y=</code> arguments.</p>
+<p>To specify the <code>x=</code> and <code>y=</code> arguments, we will need to use the <code>$</code> operator as we did in Section <a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test">3.8.1</a>.</p>
+<blockquote>
+<p>Complete the following code in your script and run it to check you get the same output as when you ran a correlation test using the formula method.</p>
+</blockquote>
+<p>Use the code from Section <a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test">3.8.1</a> as a guide, if you need.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb104-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> social_media_attitude<span class="sc">$</span>..., </span>
+<span id="cb104-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb104-2" tabindex="-1"></a>         <span class="at">y =</span> social_media_attitude<span class="sc">$</span>..., <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<p><strong>Which method should I use?</strong> It will largely come down to your preference. You might prefer to think about the correlation in terms of your <code>x</code> variable and your <code>y</code> variable, or the formula may make more sense to you. The great thing about coding is that you can use the solution that suits you best.</p>
+</div>
+</div>
+<div id="writing-up-results-and-conclusions-1" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Writing up results and conclusions<a href="probing-statistical-relationships-with-correlation-analysis.html#writing-up-results-and-conclusions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now lets have a go at writing up the results of the correlation that we have conducted:</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p &lt; 0.01).</p>
+</div>
+<p>Now, run the correlation analysis for the other pair of variables that shared a linear relationship. I know we haven’t told you which one it is, so make a guess and ask your tutor if you are not sure.</p>
+<blockquote>
+<p>Copy and paste the code you wrote earlier for the correlation analysis into your script. Amend the code so that it runs a correlation analysis on the other pair of variables that shared a linear relationship. Run your code and interpret the results.</p>
+</blockquote>
+</div>
+<div id="you-are-free-4" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> You are Free!<a href="probing-statistical-relationships-with-correlation-analysis.html#you-are-free-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data, so well done you for saving your data set.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
+<img src="images/Correlations_in_R/Statistical-trauma.gif" alt="It almost over (I promise)" width="50%" />
+<p class="caption">
+Figure 5.2: It almost over (I promise)
+</p>
+</div>
+</div>
+<div id="bonus-exercises---exploring-relationships-with-ggally" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> ⭐ Bonus exercises - Exploring Relationships with GGally<a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercises---exploring-relationships-with-ggally" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that you’ve created your political attitude scores and explored some scatterplots, let’s take things a step further. A great way to visualise multiple relationships at once is to use a pairs plot. For this, we’ll use the package <code>GGally</code>, which extends the functionality of <code>ggplot()</code> and gives us the very handy <code>ggpairs()</code> function.</p>
+<div id="bonus-exercise-installing-ggally-and-making-your-first-pairs-plot" class="section level3 hasAnchor" number="5.9.1">
+<h3><span class="header-section-number">5.9.1</span> Bonus Exercise – Installing GGally and Making Your First Pairs Plot<a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise-installing-ggally-and-making-your-first-pairs-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we begin, we need to install and load the <code>GGally</code> package.</p>
+<blockquote>
+<p>Add the following code to the top of your script and run it.</p>
+</blockquote>
+<p>We always want to load all the packages we need at the top of our scripts. This keeps our script tidy, and makes sure that all the dependencies are clear from the beginning.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb105-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(GGally)) <span class="fu">install.packages</span>(<span class="st">&quot;GGally&quot;</span>) </span>
+<span id="cb105-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb105-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code></pre></div>
+<p>Great — now we can make a super pairs plot!</p>
+<p>We’ll start by visualizing the key variables from today’s tutorial: <code>time_on_social</code>, <code>polit_attitude</code>, and <code>age</code>.</p>
+<blockquote>
+<p>Copy the below code into the end of your script, and run it. Be sure to add some comments about what you think each piece of code is doing</p>
+</blockquote>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb106-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb106-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb106-2" tabindex="-1"></a>  <span class="fu">select</span>(time_on_social, polit_attitude, age) <span class="sc">%&gt;%</span> </span>
+<span id="cb106-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb106-3" tabindex="-1"></a>  <span class="fu">ggpairs</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/bonus%20pairs%20plot-1.png" width="672" /></p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Did you get a warning when you ran the above line of code?</strong> What do you think it means? If you are unsure your tutor can help you work it out.</p>
+</div>
+<p>You should now see a grid of scatterplots, density plots, and correlation coefficients. This gives you a quick overview of how all three variables relate to one another. Behold, the power of coding!</p>
+<blockquote>
+<p>Have a look at each panel in the grid of scatterplots. What does each panel tell you about the data?</p>
+</blockquote>
+</div>
+<div id="bonus-exercise---choose-your-own-adventure" class="section level3 hasAnchor" number="5.9.2">
+<h3><span class="header-section-number">5.9.2</span> Bonus exercise - choose your own adventure<a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---choose-your-own-adventure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now it’s your turn to explore.</p>
+<blockquote>
+<p>Remind yourself what columns are in the original <code>social_media</code> data frame. Pick 3 or 4 variables that you are interested in exploring the relationship between. Copy and paste the code you used to select key columns in Section <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-select-and-save">5.4</a>, and amend it to select the columns you are interested in from <code>social_media</code>. Note you will always have to select the column that has the participant ids (<code>id</code>). Also, make sure you include the <code>urban</code> column if you want to do the bonus exercise that comes after this one.</p>
+</blockquote>
+<p>Once you have created your new data frame, and you have checked it looks correct, you are ready to use the ggpairs function to look at all the relationships at once. Its like a polycule in a plot.</p>
+<blockquote>
+<p>Copy and paste the below code into your script. Adapt it to produce the pairs plot of your desires!</p>
+</blockquote>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb107-1" tabindex="-1"></a>... <span class="sc">%&gt;%</span> </span>
+<span id="cb107-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb107-2" tabindex="-1"></a>  <span class="fu">select</span>(...) <span class="sc">%&gt;%</span>  <span class="co"># &lt;-- replace with your chosen variables so you don&#39;t pass the id column into the pairs plot</span></span>
+<span id="cb107-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb107-3" tabindex="-1"></a>  <span class="fu">ggpairs</span>()</span></code></pre></div>
+<p>How do the relationships look? Are there any non-linear ones, or are they all linear? Are the strengths of the correlations what you expected, or not?</p>
+</div>
+<div id="bonus-exercise---correlations-by-group" class="section level3 hasAnchor" number="5.9.3">
+<h3><span class="header-section-number">5.9.3</span> Bonus exercise - correlations by group<a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---correlations-by-group" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes we want to see whether relationships between variables differ across groups. For example, are the relationships between your chosen variables stronger for urban dwellers than for rural dwellers?</p>
+<p><code>ggpairs()</code> allows us to colour the plots by a grouping variable using the <code>aes()</code> argument. <code>ggpairs()</code> will also tell us the correlation value by group.</p>
+<blockquote>
+<p>Copy and paste the below code into your script, and amend it to see the relationship between your chosen variables grouped by urban and rural dwellers.</p>
+</blockquote>
+<p>You should wind up with something that looks like the below -</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb108-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb108-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb108-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">urban =</span> <span class="fu">factor</span>(urban, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&#39;urban&#39;</span>, <span class="st">&#39;rural&#39;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb108-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb108-3" tabindex="-1"></a>  <span class="fu">select</span>(time_on_social, good_mood_likes, age, urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb108-4"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb108-4" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">colour =</span> urban))</span></code></pre></div>
+<p><img src="_main_files/figure-html/your%20own%20pairs%20plot%20by%20group-1.png" width="672" /></p>
+<p>Nice! Have a look at the <code>urban</code> column. What do the boxplots show you?</p>
+</div>
+<div id="sec-unleash-cats" class="section level3 hasAnchor" number="5.9.4">
+<h3><span class="header-section-number">5.9.4</span> Last bonus exercise - unleash the cats!<a href="probing-statistical-relationships-with-correlation-analysis.html#sec-unleash-cats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you thought scatterplots couldn’t get any more exciting… enter <code>ggcats</code>. This package lets you replace your data points with tiny cartoon cats.<br />
+Is this scientifically necessary? No.<br />
+Is it delightful? Absolutely.</p>
+<p>Before we can summon the cats, we need to install and load the <code>ggcats</code> package. For more info on the <code>ggcats</code> package, see the <a href="https://github.com/R-CoderDotCom/ggcats">ggcats GitHub page</a>.</p>
+<p>Because <code>ggcats</code> is not on CRAN, the official directory for R packages, we need to install it from github using a package called “remotes”. Luckily, the instructions are on the <a href="https://github.com/R-CoderDotCom/ggcats">ggcats GitHub page</a>. We have also copied the code below.</p>
+<blockquote>
+<p>Add the following code to the top of your script and run it.</p>
+</blockquote>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(remotes)) <span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb109-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;R-CoderDotCom/ggcats@main&quot;</span>)</span>
+<span id="cb109-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-3" tabindex="-1"></a><span class="fu">library</span>(ggcats)</span></code></pre></div>
+<p>Note that there is a daily limit on how many people can install the <code>ggcats</code> package in a day. If you are unable to install the package then that is the universe telling you that you have done enough coding today and that you should try again tomorrow.</p>
+<p>Now let’s make a scatterplot of <code>time_on_social and polit_attitude</code>, but with cats instead of dots. Vastly improved.</p>
+<blockquote>
+<p>Copy and paste the below code into your script and run it.</p>
+</blockquote>
+<p>You should now see the following wondrous item in your plots pane:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb110-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time_on_social, <span class="at">y =</span> polit_attitude)) <span class="sc">+</span></span>
+<span id="cb110-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-3" tabindex="-1"></a>  <span class="fu">geom_cat</span>(<span class="fu">aes</span>(<span class="at">cat =</span> <span class="st">&quot;grumpy&quot;</span>), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb110-4"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on Social&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Political Attitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb110-5"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/scatterplot%20with%20cats-1.png" width="672" /></p>
+<blockquote>
+<p>Return to the <a href="https://github.com/R-CoderDotCom/ggcats">ggcats Github page</a>. You will see many different cat styles listed. Have a go at changing the cat style. Any cat style can be yours!</p>
+</blockquote>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p>Paws for thought:<br />
+Does using cats as points improve your statistical insight? Probably not.
+Does it improve your mood? Almost certainly.</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="testing-for-differences-between-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_Correlation-analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

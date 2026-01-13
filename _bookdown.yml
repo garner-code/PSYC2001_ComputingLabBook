@@ -8,6 +8,7 @@ rmd_files: [
   "02_Data-wrangling-and-visualisation.Rmd",
   "03_Testing-our-first-hypothesis.Rmd",
   "04_Testing-between-groups.Rmd",
-  "05_Correlation-analysis.Rmd"
+  "05_Correlation-analysis.Rmd",
+  "06_Predictions-with-linear-regression.Rmd"
 ]
 output_dir: "docs"

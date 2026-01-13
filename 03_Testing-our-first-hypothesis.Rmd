@@ -187,7 +187,7 @@ Et voila!
 
 It takes time to get comfortable changing data from wideform to longform. For now, if you know the difference between the two, and you were able to follow the code above, then you are doing great!
 
-### Activity - start plotting
+### Activity - start plotting {#sec-densities}
 
 Now, we can have done the wrangling (90%), we can get onto visualising and analysis!
 

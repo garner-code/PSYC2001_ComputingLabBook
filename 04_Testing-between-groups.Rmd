@@ -293,7 +293,7 @@ Now we are down to the very last few percents of our 10% of analysis efforts. Le
 
 In Section \@ref(sec-conducting-paired-t-test) we learned how to conduct a paired samples t-test. To do this, we had to deal with niggly base R demands and use the wideform data instead of our carefully wrangled longform data. Fortunately, the `t.test()` function is a bit more forgiving when it comes to independent samples t-tests, and we can use our longform data combined with a nifty thing that base R knows about, which is formulas. Huzzah.
 
-This is how we use the formula method in `t.test()`. The syntax is `t.test(DV ~ group, data = data frame)`. So, for our data, we want to test if the dependent variable (DV) `likes` differs by the groups coded in `urban` , using the `social_media_likes` data frame. 
+This is how we use the formula method in `t.test()`. The syntax is `t.test(DV ~ IV, data = data frame)`. So, for our data, we want to test if the dependent variable (DV) `likes` differs by the independent variable (IV) of group that is coded in `urban`, using the `social_media_likes` data frame. 
 
 Note that you don't need to set the `paired` argument to `FALSE`, as the `t.test()` function assumes this whenever you use the formula method. So never use the formula method for a paired samples t-test. That would be a disaster.
 

@@ -1,4 +1,4 @@
-# Correlation Analysis
+# Probing (Statistical) Relationships with Correlation Analysis
 
 This week, we are going to explore relationships between continuous variables, using correlation. We will take a look at how to combine composite variables into a single score, as this is something we often do in the pusuit of understanding the human psyche. We will also visualise relationships between variables using scatterplots, and conduct Pearson correlation analyses in R.
 
@@ -185,45 +185,51 @@ write.csv(social_media_NA, here("Output","PSYC2001_social-media-data-cleaned.csv
 
 ```
 
+```{r, save-the-data-4-real, echo=FALSE}
+
+write.csv(social_media_attitude, here("Data","PSYC2001_social-media-attitude.csv")) #creates a csv file from the dataframe social_media_attitude
+
+```
+
 > Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001-social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
 
 Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
 
-## Activity - looking for straight lines
+## Activity - looking for straight lines {#sec-look-lines}
 
 Now let`s visualise our data!  
 
 We’re going to explore the relationships between our variables to see if it is appropriate to run a Pearson correlation analysis. Remember, we use a Pearson correlation analysis when we think a straight line is a reasonable approximation of the relationship between our variables.
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="MFW people don't visualise their data"}
-knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/No%20visualisation%20is%20bad.jpg?raw=true")
+knitr::include_graphics("images/Correlations_in_R/No-visualisation-is-bad.jpg")
 ```
 
 Let's use `ggplot` to  make scatterplots to show the relationships between `time_on_social`, `polit_attitude`, and `age`. You can see a little bit about scatterplots and how to implement them in R [here](https://r-graph-gallery.com/scatterplot.html). 
 
 We have given you the code for the first scatterplot. 
 
-> Run the code to make this scatterplot of the relationship between `time_on_social` and `attitude`. 
+> Run the code to make this scatterplot of the relationship between `polit_attitude` and `time_on_social`. 
 
 You should see a scatterplot that looks like the one below.
 
 ```{r Scatterplot of time_on_social and attitude, warning=FALSE}
 
 social_media_attitude %>% 
-  ggplot(aes(x = time_on_social, y = polit_attitude)) + # set up the canvas
+  ggplot(aes(x = polit_attitude, y = time_on_social)) + # set up the canvas
   geom_point(colour = "orange") + # make a scatterplot
-  labs(x = "Time on Social", y = "Political Attitude") + # define labels
+  labs(x = "Political Attitude", y = "Time on Social") + # define labels
   theme_classic() # make pretty
 
 ```
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>What do you think?</strong> Would you say there is a linear relationship between `time_on_social` and `attiutude`?
+<strong>What do you think?</strong> Would you say there is a linear relationship between political attitude and time spent on social media?
 :::
 
 Imagine drawing a straight line through the cloud of dots. Is there a straight line you can draw that the data points are consistently clustered around? (i.e. there is roughly the same number of data points above and below the line at every point along the x-axis).
 
-> Now, using the above code as a guide, create two more scatterplots: one of the relationship between `age` and `attitude`, and another of `time_on_social` and `attitude`age`.
+> Now, using the above code as a guide, create two more scatterplots: one of the relationship between `polit_attitude` and `age`, and another of `time_on_social` and `age`.
 
 You know you will have completed your mission when you have produced plots that look something like the following:
 
@@ -257,7 +263,7 @@ Let’s find out if there is a statistically significant correlation between the
 
 To do this we can use the `cor.test()` function. We can use the `cor.test()` function either using the formula method, or using base R. We'll do both, so that your coding journey is imbued with liberty.
 
-### Activity - correlation using the formula method
+### Activity - correlation using the formula method {#sec-cor-form}
 
 The `cor.test()` function can take in a formula where the right hand side specifies the two numeric variables to be correlated with each other. 
 
@@ -267,11 +273,11 @@ This time, we have not bothered defining a DV on the left hand side. This is bec
 
 Knowing when you do and do not need to put a DV on the left hand side of a formula is something that comes with practice.
 
-> Run the following code in your script to run a correlation test on the relationship between time_on_social and polit_attitude.
+> Run the following code in your script to run a correlation test on the relationship between `time_on_social` and `polit_attitude`.
 
 ```{r Correlations between time_on_social and polit_attitude}
 
-cor.test(formula = ~ time_on_social + attitude, data = social_media_attitutde, use = "complete.obs") #formula contains both numeric variables on the right hand side.
+cor.test(formula = ~ time_on_social + polit_attitude, data = social_media_attitude, use = "complete.obs") #formula contains both numeric variables on the right hand side.
 #use = "complete.obs" removes all NA values from the correlation. 
 ```
 
@@ -316,7 +322,7 @@ Now, run the correlation analysis for the other pair of variables that shared a 
 Well done guys you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data, so well done you for saving your data set. 
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="It almost over (I promise)"}
-knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Correlations_in_R/Statistical%20trauma.gif?raw=true")
+knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
 ```
 
 ## ⭐ Bonus exercises - Exploring Relationships with GGally
@@ -402,7 +408,7 @@ social_media %>%
 
 Nice! Have a look at the `urban` column. What do the boxplots show you? 
 
-### Last bonus exercise - unleash the cats!
+### Last bonus exercise - unleash the cats! {#sec-unleash-cats}
 
 If you thought scatterplots couldn’t get any more exciting… enter `ggcats`.  This package lets you replace your data points with tiny cartoon cats.  
 Is this scientifically necessary? No.  

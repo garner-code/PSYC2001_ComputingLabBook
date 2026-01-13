@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Making predicitions using Linear Regression | Data Analysis Skills for Psychology in R</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Making predicitions using Linear Regression | Data Analysis Skills for Psychology in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="https://github.com/garner-code/PSYC2001_ComputingLabBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Making predicitions using Linear Regression | Data Analysis Skills for Psychology in R" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="twitter:image" content="https://garner-code.github.io/PSYC2001_ComputingLabBook/images/cover_temp.png" />
+
+<meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
+
+
+<meta name="date" content="2026-01-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probing-statistical-relationships-with-correlation-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#bugs-are-important"><i class="fa fa-check"></i><b>0.3</b> Bugs are important</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#big-unknowns-and-little-unknowns"><i class="fa fa-check"></i><b>0.4</b> Big unknowns and little unknowns</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#setting-up-r-and-rstudio"><i class="fa fa-check"></i><b>0.5</b> Setting up R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>1.2</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---setting-up-your-working-folder"><i class="fa fa-check"></i><b>1.2.1</b> Activity - Setting up your working folder</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>1.3.1</b> Activity - Using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>1.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-run-code"><i class="fa fa-check"></i><b>1.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>1.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>1.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---install-the-tidyverse"><i class="fa fa-check"></i><b>1.7.1</b> Activity - Install the tidyverse</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---load-the-tidyverse"><i class="fa fa-check"></i><b>1.7.2</b> Activity - Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-make-objects"><i class="fa fa-check"></i><b>1.8.1</b> Activity - Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.9</b> Datatypes</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-data-type"><i class="fa fa-check"></i><b>1.9.1</b> Activity - Explore datatypes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>1.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity---run-the-script"><i class="fa fa-check"></i><b>1.11.1</b> Final Activity - Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---load-your-packages"><i class="fa fa-check"></i><b>2.1.1</b> Activity - Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---find-out-about-packages"><i class="fa fa-check"></i><b>2.3.1</b> Activity - find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.4</b> Organisation and CSV files</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---getting-to-know-the-data-files"><i class="fa fa-check"></i><b>2.4.1</b> Activity - getting to know the data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>2.5.1</b> Activity - Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>2.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>2.6.1</b> Activity - View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---summarise-the-data"><i class="fa fa-check"></i><b>2.7.1</b> Activity - Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---find-and-replace--999-values"><i class="fa fa-check"></i><b>2.8.1</b> Activity - Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---pipe-with-pipes"><i class="fa fa-check"></i><b>2.9.1</b> Activity - Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-save-the-data"><i class="fa fa-check"></i><b>2.10.1</b> Activity - Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot"><i class="fa fa-check"></i><b>2.11</b> Data visualization using <code>ggplot()</code></a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>2.11.1</b> Activity - Starting a canvas in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---add-a-boxplot-to-the-canvas"><i class="fa fa-check"></i><b>2.11.2</b> Activity - Add a boxplot to the canvas</a></li>
+<li class="chapter" data-level="2.11.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---tidy-up-the-x-axis"><i class="fa fa-check"></i><b>2.11.3</b> Activity - tidy up the x-axis</a></li>
+<li class="chapter" data-level="2.11.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity---add-some-labels"><i class="fa fa-check"></i><b>2.11.4</b> Activity - add some labels</a></li>
+<li class="chapter" data-level="2.11.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-histogram"><i class="fa fa-check"></i><b>2.11.5</b> Activity - More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>3</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---load-packages-using-the-library-function"><i class="fa fa-check"></i><b>3.1.1</b> Activity - Load packages using the <code>library()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>3.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>3.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>3.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>3.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>3.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>3.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-densities"><i class="fa fa-check"></i><b>3.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-visualised-now-what"><i class="fa fa-check"></i><b>3.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-descriptive"><i class="fa fa-check"></i><b>3.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>3.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>3.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test"><i class="fa fa-check"></i><b>3.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>3.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="3.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>3.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html"><i class="fa fa-check"></i><b>4</b> Testing for differences between groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-packages-using-library"><i class="fa fa-check"></i><b>4.1.1</b> Activity - load packages using <code>library()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#how-does-where-you-live-impact-how-you-use-social-media"><i class="fa fa-check"></i><b>4.2</b> How does where you live impact how you use social media?</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="4.2.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---load-in-data-and-check-it"><i class="fa fa-check"></i><b>4.2.2</b> Activity - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>4.3</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#sec-new-likes"><i class="fa fa-check"></i><b>4.3.1</b> Activity - Creating a new <code>likes</code> variable</a></li>
+<li class="chapter" data-level="4.3.2" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---defining-factors"><i class="fa fa-check"></i><b>4.3.2</b> Activity - Defining factors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#visualising-our-data-1"><i class="fa fa-check"></i><b>4.4</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---adapting-our-previous-code-to-make-new-histograms"><i class="fa fa-check"></i><b>4.4.1</b> Activity - Adapting our previous code to make new histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#next-step-descriptive-statistics"><i class="fa fa-check"></i><b>4.5</b> Next step: descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#activity---adapt-the-code-to-get-the-mean-and-standard-deviations-for-likes-and-followers"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Adapt the code to get the mean and standard deviations for likes and followers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>4.6</b> Independent samples t-test</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#sec-formula-for-independence"><i class="fa fa-check"></i><b>4.6.1</b> Activity - Performing independent samples t-tests</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.7</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#bonus-activity---visualising-group-differences"><i class="fa fa-check"></i><b>4.8</b> Bonus Activity - Visualising group differences</a></li>
+<li class="chapter" data-level="4.9" data-path="testing-for-differences-between-groups.html"><a href="testing-for-differences-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>4.9</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html"><i class="fa fa-check"></i><b>5</b> Probing (Statistical) Relationships with Correlation Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#checking-installation-and-loading-packages-3"><i class="fa fa-check"></i><b>5.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---write-the-code-to-load-packages-from-the-library"><i class="fa fa-check"></i><b>5.1.1</b> Activity - write the code to load packages from the library</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>5.2</b> Investigating correlational relationships</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-some-political-attitude"><i class="fa fa-check"></i><b>5.3.1</b> Activity - Get some political attitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-select-and-save"><i class="fa fa-check"></i><b>5.4</b> Activity - save the results of your hard work</a></li>
+<li class="chapter" data-level="5.5" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-look-lines"><i class="fa fa-check"></i><b>5.5</b> Activity - looking for straight lines</a></li>
+<li class="chapter" data-level="5.6" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#conducting-correlations"><i class="fa fa-check"></i><b>5.6</b> Conducting correlations</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form"><i class="fa fa-check"></i><b>5.6.1</b> Activity - correlation using the formula method</a></li>
+<li class="chapter" data-level="5.6.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---correlation-using-base-r-syntax"><i class="fa fa-check"></i><b>5.6.2</b> Activity - correlation using base R syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#writing-up-results-and-conclusions-1"><i class="fa fa-check"></i><b>5.7</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="5.8" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#you-are-free-4"><i class="fa fa-check"></i><b>5.8</b> You are Free!</a></li>
+<li class="chapter" data-level="5.9" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercises---exploring-relationships-with-ggally"><i class="fa fa-check"></i><b>5.9</b> ⭐ Bonus exercises - Exploring Relationships with GGally</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise-installing-ggally-and-making-your-first-pairs-plot"><i class="fa fa-check"></i><b>5.9.1</b> Bonus Exercise – Installing GGally and Making Your First Pairs Plot</a></li>
+<li class="chapter" data-level="5.9.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---choose-your-own-adventure"><i class="fa fa-check"></i><b>5.9.2</b> Bonus exercise - choose your own adventure</a></li>
+<li class="chapter" data-level="5.9.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-exercise---correlations-by-group"><i class="fa fa-check"></i><b>5.9.3</b> Bonus exercise - correlations by group</a></li>
+<li class="chapter" data-level="5.9.4" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#sec-unleash-cats"><i class="fa fa-check"></i><b>5.9.4</b> Last bonus exercise - unleash the cats!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>6</b> Making predicitions using Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="linear-regression.html"><a href="linear-regression.html#checking-installation-and-loading-packages-4"><i class="fa fa-check"></i><b>6.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="linear-regression.html"><a href="linear-regression.html#investigating-linear-regressions"><i class="fa fa-check"></i><b>6.2</b> Investigating linear regressions</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---formulate-your-prediction-about-predictions"><i class="fa fa-check"></i><b>6.2.1</b> Activity - Formulate your prediction about predictions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---loading-the-data-set"><i class="fa fa-check"></i><b>6.2.2</b> Activity - loading the data set</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="linear-regression.html"><a href="linear-regression.html#lets-get-the-data-into-shape-for-some-viz"><i class="fa fa-check"></i><b>6.3</b> Let`s get the data into shape for some viz</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---select-and-pivot-to-longform"><i class="fa fa-check"></i><b>6.3.1</b> Activity - select and pivot to longform</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-in-r"><i class="fa fa-check"></i><b>6.4</b> Linear regression in R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---fitting-a-linear-regression-model"><i class="fa fa-check"></i><b>6.4.1</b> Activity - fitting a linear regression model</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---how-good-is-our-model"><i class="fa fa-check"></i><b>6.4.2</b> Activity - how good is our model?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="linear-regression.html"><a href="linear-regression.html#writing-up-results-and-conclusions-2"><i class="fa fa-check"></i><b>6.5</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="6.6" data-path="linear-regression.html"><a href="linear-regression.html#plotting-our-results"><i class="fa fa-check"></i><b>6.6</b> Plotting our results</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---adding-a-line-of-best-fit-to-a-scatterplot"><i class="fa fa-check"></i><b>6.6.1</b> Activity - Adding a line of best fit to a scatterplot</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---level-up"><i class="fa fa-check"></i><b>6.6.2</b> Activity - level up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linear-regression.html"><a href="linear-regression.html#you-are-free-5"><i class="fa fa-check"></i><b>6.7</b> You are Free!</a></li>
+<li class="chapter" data-level="6.8" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercises---level-up-plots-with-gen-ai"><i class="fa fa-check"></i><b>6.8</b> ⭐ Bonus exercises - level up plots with Gen AI</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercise---tidy-up-the-regression-plot"><i class="fa fa-check"></i><b>6.8.1</b> Bonus exercise - Tidy up the regression plot</a></li>
+<li class="chapter" data-level="6.8.2" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercise---to-the-movies"><i class="fa fa-check"></i><b>6.8.2</b> Bonus exercise - to the movies!</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis Skills for Psychology in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-regression" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Making predicitions using Linear Regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This week, we are going to continue to explore relationships between continuous variables, using simple linear regression.</p>
+<div id="checking-installation-and-loading-packages-4" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Checking installation and loading packages<a href="linear-regression.html#checking-installation-and-loading-packages-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As usual we first always check and load in our required packages <code>here</code> and <code>tidyverse</code>.</p>
+<blockquote>
+<p>Find the code from a previous week that loads the packages <code>here</code> and <code>tidyverse</code>. Copy it to your script and run the code.</p>
+</blockquote>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-regression.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
+<span id="cb111-2"><a href="linear-regression.html#cb111-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="investigating-linear-regressions" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Investigating linear regressions<a href="linear-regression.html#investigating-linear-regressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Last week we looked at the correlation between social media use, age and political attitude. We created a composite score to measure overall political attitude, and we saved a data set that contains the new score.</p>
+<p>Today we will be using a simple linear regression to determine the extent to which political attitude can predict the amount of time spent on social media.</p>
+<p>Here is a recap of the variables:</p>
+<p><code>id</code> - participant ID<br />
+<code>age</code> – age in years<br />
+<code>time_on_social</code> – average hours/day on social media (self-report diary)<br />
+<code>polit_attitude</code> - political attitude score composed of a weighted sum of the subsales <code>informed</code>, <code>campaign</code> and <code>activism</code></p>
+<div id="activity---formulate-your-prediction-about-predictions" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Activity - Formulate your prediction about predictions<a href="linear-regression.html#activity---formulate-your-prediction-about-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we begin coding, let’s think about our research question. We learned last week that there is a statistical relationship between political attitude and time spent on social media. This tells us that we should be able to somewhat predict time spent on social media from political attitude.</p>
+<p>What do you think the nature of this predictive relationship will be? Will political attitude positively or negatively predict time spent on social media? How much of the variance in time spent on social media would you expect to be predicted by political attitude?</p>
+<blockquote>
+<p>Write in the comments of your code whether you expect a positive or negative relationship, and if you are feeling statistically powerful, what proportion of variance of time spent on social media you would expect to be accounted for by political attitude.</p>
+</blockquote>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What is a reasonable null and alternate hypothesis? Add this to the comments in your code.</p>
+</div>
+</div>
+<div id="activity---loading-the-data-set" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Activity - loading the data set<a href="linear-regression.html#activity---loading-the-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we need to load our data set for today. This week we will be using the <code>PSYC2001-social-media-attitude</code> data set which includes the <code>attitude</code> variable we created last week.</p>
+<blockquote>
+<p>Copy the code you have used to load the data in previous weeks, and paste it into your script. Amend the code so that you are loading the correct data set for today. Make sure you assign it to an object named <code>social_media_attitude</code>. Check the data set is as you think by running the line of code <code>head(social_media_attitude)</code>.</p>
+</blockquote>
+</div>
+</div>
+<div id="lets-get-the-data-into-shape-for-some-viz" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Let`s get the data into shape for some viz<a href="linear-regression.html#lets-get-the-data-into-shape-for-some-viz" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before fitting the regression, let’s look at the distributions of our key variables using density plots, similar to as we did in Section <a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes">3.5.1</a>. Remember, visualising first helps us spot outliers and get a feel for the data—remember: <strong>garbage in, garbage out</strong>. We’ll reuse the same tidy workflow you used back then: we will select() the columns we need, pivot_longer() into longform, then make density plots.</p>
+<div id="activity---select-and-pivot-to-longform" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Activity - select and pivot to longform<a href="linear-regression.html#activity---select-and-pivot-to-longform" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The goal: move the values from <code>time_on_social and polit_attitude</code> into one column and keep a second column that labels which variable the value came from.</p>
+<blockquote>
+<p>Run the following code in your script to see what it does to the data frame.</p>
+</blockquote>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="linear-regression.html#cb112-1" tabindex="-1"></a><span class="co"># Choose the columns, then pivot to longform</span></span>
+<span id="cb112-2"><a href="linear-regression.html#cb112-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span></span>
+<span id="cb112-3"><a href="linear-regression.html#cb112-3" tabindex="-1"></a>  <span class="fu">select</span>(id, time_on_social, polit_attitude) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
+<span id="cb112-4"><a href="linear-regression.html#cb112-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(                                   <span class="co"># go from wide -&gt; long</span></span>
+<span id="cb112-5"><a href="linear-regression.html#cb112-5" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(time_on_social, polit_attitude), <span class="co"># the two key measures</span></span>
+<span id="cb112-6"><a href="linear-regression.html#cb112-6" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">&quot;measure&quot;</span>,                    <span class="co"># which measure is this value from?</span></span>
+<span id="cb112-7"><a href="linear-regression.html#cb112-7" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>                       <span class="co"># the numeric value itself</span></span>
+<span id="cb112-8"><a href="linear-regression.html#cb112-8" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Now, we want to save this new longform data frame so that we can use it to make us some density plots</p>
+<blockquote>
+<p>Assign the new data frame to an object called <code>sma_long</code>. Check the result by running the line of code that says <code>head(sma_long)</code></p>
+</blockquote>
+<p>You should see the following:</p>
+<pre><code>## # A tibble: 6 × 3
+##   id    measure        value
+##   &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;
+## 1 S1    time_on_social  3.06
+## 2 S1    polit_attitude  3.14
+## 3 S2    time_on_social  2.18
+## 4 S2    polit_attitude  2.21
+## 5 S3    time_on_social  1.92
+## 6 S3    polit_attitude  2.62</code></pre>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p>Helpful fact: In the longform data frame, each participant now has two rows (one for <code>time_on_social</code>, one for <code>polit_attitude</code>).</p>
+</div>
+<p>Now we want to plot both the <code>polit_informed</code> and <code>time_on_social</code> variables as density plots. As we have already written code to make a density plot in Section <a href="sec-testing-first-hypothesis.html#sec-densities">3.5.2</a>, let’s take that code and adapt it for our current purposes. That code is below (which will also be found in your script).</p>
+<blockquote>
+<p>Amend the below code so that we can use it with the object <code>sma_long</code> instead of <code>social_media_likes</code>. Change the code so that <code>x =</code> takes the <code>value</code> column instead. Remove the <code>group</code> and <code>fill</code> arguments as we don’t have groups in our data right now.</p>
+</blockquote>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="linear-regression.html#cb114-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb114-2"><a href="linear-regression.html#cb114-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
+<span id="cb114-3"><a href="linear-regression.html#cb114-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
+<p>When you are done, you should have something that looks like this:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Now, this is no good, as both the <code>polit_attitude</code> and <code>age</code> values are in one plot. We need to separate them! Luckily, there is a very hand function called <code>facet_wrap()</code> that will do this for you.
+<code>facet_wrap</code> is your friend. To use the <code>facet_wrap()</code> function, we use the formula method, but we only need to put something on the right hand side, and that something is the name of the variable that we want to split up the plots by.</p>
+<blockquote>
+<p>Add the piece of code <code>+ facet_wrap(~measure)</code> to your existing code you wrote to plot the density of the data. Run the code. You will know you have succeeded when you behold the same plot as below.</p>
+</blockquote>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Excellent. We have plots.</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Would you say the variables are normally distributed? Are you happy the data have met the assumptions for the regression analysis?</p>
+</div>
+</div>
+</div>
+<div id="linear-regression-in-r" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Linear regression in R<a href="linear-regression.html#linear-regression-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The difference between a regression and correlation is that instead of looking for a statistical relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we are asking how well we can predict <span class="math inline">\(y\)</span> on the basis of <span class="math inline">\(x\)</span>. Like if we were stuck on a desert island with only <span class="math inline">\(x\)</span>, how much would we know about what <span class="math inline">\(y\)</span> is doing?</p>
+<div id="activity---fitting-a-linear-regression-model" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Activity - fitting a linear regression model<a href="linear-regression.html#activity---fitting-a-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s run a simple linear regression to determine how well political attitude predicts the amount of time spent on social media. To do this we can we can fit a linear regression model using the <code>lm()</code> function.</p>
+<blockquote>
+<p>In the console, use the <code>?</code> syntax to look up the help documentation for the <code>lm()</code> function. Write in your comments the first two arguments required for this function, and your guess as to what each argument is asking for. <strong>Hint:</strong> scrolling down to look at the examples may help you work it out.</p>
+</blockquote>
+<p>The first argument is <code>formula</code>, which is where we specify the dependent and independent variables in our regression. We have already used formulas in Sections <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a> and <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form">5.6.1</a>. In fact, the formula we need looks very similar to the one in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, except that we now have a different DV, and a continuous predictor rather than an IV.</p>
+<blockquote>
+<p>Complete the following comment in your code with the formula that you will need to predict the time spent on social media from political attitude.</p>
+</blockquote>
+<p>The second argument is <code>data</code>, which, just like in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, is where we specify the data frame that contains our variables.</p>
+<blockquote>
+<p>Complete the following line of code in your script, so that you are fitting a linear regression model that predicts <code>time_on_social</code> from <code>polit_attitude</code>, using the data frame <code>social_media_attitude</code>. The code is writted so that it assigns the output of the model to an object named <code>mod</code> (which is short for model).</p>
+</blockquote>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-regression.html#cb116-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">formula =</span> ... <span class="sc">~</span> ..., <span class="at">data =</span> ... ) <span class="co"># time_on_social is on the left side of the tilde as it is being predicted by attitude </span></span></code></pre></div>
+<p>The first thing we should do is look at what the <code>lm()</code> function passed to our object <code>model</code>.</p>
+<blockquote>
+<p>Run the following line of code in your script to see the output of the linear regression function.</p>
+</blockquote>
+<p>You will see what has been saved to the object <code>mod</code>.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="linear-regression.html#cb117-1" tabindex="-1"></a>mod</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
+## 
+## Coefficients:
+##    (Intercept)  polit_attitude  
+##         1.2853          0.4837</code></pre>
+<p>You can see that there is a documentation of how <code>lm()</code> was used (After ‘Call:’). It can be good to check this so that you can be sure you ran the correct model.</p>
+<p>After that, there are two coefficients output. The first is the Intercept (which we have referred to as <span class="math inline">\(a\)</span> in the lectures). The second is the sloped of the regression line (which we referred to as <span class="math inline">\(\mathrm{Beta}\)</span> in the lectures).</p>
+<blockquote>
+<p>Use the two co-efficients to write a regression equation that predicts time spent on social media on the basis of political attitude in the comments in your code. Is the regression co-efficient positive or negative? Is this what you expected?</p>
+</blockquote>
+</div>
+<div id="activity---how-good-is-our-model" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Activity - how good is our model?<a href="linear-regression.html#activity---how-good-is-our-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We are able to make predictions about time spent on social media using the regression equation we have just created. But we are yet to find out how good our model is at making these predictions. For this, we need to extract the <span class="math inline">\(R^2\)</span> value, and determine whether our model predicts variance to an extent that is greater than what is expected by chance.</p>
+<p>Luckily, R has a helpful <code>summary()</code> function that will take a linear regression as its input, and it will output us lots of useful information about the regression model.</p>
+<blockquote>
+<p>Run the following line of code in your script and examine the output of the <code>summary()</code> function, which appears in the console.</p>
+</blockquote>
+<p>You should see a table that looks like this:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="linear-regression.html#cb119-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.43336 -0.46974 -0.02158  0.51194  1.36644 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      1.2853     0.2932   4.384 5.19e-05 ***
+## polit_attitude   0.4837     0.1083   4.467 3.90e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.643 on 56 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.2627, Adjusted R-squared:  0.2495 
+## F-statistic: 19.95 on 1 and 56 DF,  p-value: 3.904e-05</code></pre>
+<blockquote>
+<p>Identify the <span class="math inline">\(R^2\)</span> value in the output of the <code>summary()</code> function, and write it in the comments of your code. Further, identify the F statistic, degrees of freedom and p-value associated with the overall model fit, and write these in the comments of your code too. Finish with a brief comment about whether the result is as you expected or not.</p>
+</blockquote>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> There are additional statistics that are output from the <code>lm()</code> model. We can leave them for future us at this point, but if you always need to unwrap your gifts immediately then you can read this blog <a href="https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R">here</a> to find out more.</p>
+</div>
+</div>
+</div>
+<div id="writing-up-results-and-conclusions-2" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Writing up results and conclusions<a href="linear-regression.html#writing-up-results-and-conclusions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is how you would write up the results of the linear regression we have just conducted.</p>
+<div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
+<p><strong>Results:</strong> A simple linear regression was performed to evaluate the extent that political attitude predicted the amount of time spent on social media. It was found that political attitude weakly predicted the amount of time spent on social media (F(1,56) = 19.95,p &lt; 0.01, R<sup>2</sup> = 0.26).</p>
+</div>
+</div>
+<div id="plotting-our-results" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Plotting our results<a href="linear-regression.html#plotting-our-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To show how well a simple linear regression captures the relationship between two variables you should include a straight line of ‘best fit’ on a scatterplot. This is incredibly useful at visually informing the reader of the linear predictive relationship between variables. (Un)Surprisingly, most people (including researchers) are quite bad at guessing the strength of linear relationships using scatterplots alone !</p>
+<div id="activity---adding-a-line-of-best-fit-to-a-scatterplot" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Activity - Adding a line of best fit to a scatterplot<a href="linear-regression.html#activity---adding-a-line-of-best-fit-to-a-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The line of best fit can easily be added to a <code>ggplot</code> graph by using the <code>geom_smooth</code> function. Below, we have pasted the code that plotted the scatterplot of political attitude against time spent on social media from last week, in Section <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-look-lines">5.5</a>. We have added one extra line of code that adds the line of best fit to the plot. Can you spot it?</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="linear-regression.html#cb121-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb121-2"><a href="linear-regression.html#cb121-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb121-3"><a href="linear-regression.html#cb121-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
+<span id="cb121-4"><a href="linear-regression.html#cb121-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
+<span id="cb121-5"><a href="linear-regression.html#cb121-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
+<span id="cb121-6"><a href="linear-regression.html#cb121-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<blockquote>
+<p>Use the <code>?</code> operator to look up the help documentation for <code>geom_smooth()</code>. Find out what the <code>se =</code> argument stands for, and finish the comment in your code with a description of what it does.</p>
+</blockquote>
+<blockquote>
+<p>Run the code in your script to get the below plot. Is the line where you thought it would be?</p>
+</blockquote>
+</div>
+<div id="activity---level-up" class="section level3 hasAnchor" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Activity - level up<a href="linear-regression.html#activity---level-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will also see in the help documentation that there is an argument called <code>level =</code>.</p>
+<blockquote>
+<p>Add it to the call for <code>geom_smooth()</code>, setting it to <code>level = 0.95</code>. Remember to make sure there is a comma between the last argument and this one. Run the code again. What has changed about the plot? Now change the <code>level =</code> argument to some other number (other than 0.95). Run the code again. What has changed now?</p>
+</blockquote>
+<blockquote>
+<p>Add to the comment in your code what the <code>level()</code> argument does.</p>
+</blockquote>
+</div>
+</div>
+<div id="you-are-free-5" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> You are Free!<a href="linear-regression.html#you-are-free-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Well done folks, you have survived another computing tutorial. If you are unsure about any of the contents then your friendly local tutor is here to help!</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-53"></span>
+<img src="images/Linear_regression_in_R/Done.jpg" alt="It almost over (I promise)" width="50%" />
+<p class="caption">
+Figure 6.1: It almost over (I promise)
+</p>
+</div>
+</div>
+<div id="bonus-exercises---level-up-plots-with-gen-ai" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> ⭐ Bonus exercises - level up plots with Gen AI<a href="linear-regression.html#bonus-exercises---level-up-plots-with-gen-ai" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bonus-exercise---tidy-up-the-regression-plot" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Bonus exercise - Tidy up the regression plot<a href="linear-regression.html#bonus-exercise---tidy-up-the-regression-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I don’t know about you, but the default colours for the line of best fit supplied by <code>geom_smooth()</code> are quite awful on the eye. You may have noticed from the help documentation that it’s not super clear how we would get rid of this smite on the eyes. Let’s see if a Gen AI model can help us level up our plot.</p>
+<blockquote>
+<p>Using your favourite LLM (like ChatGPT or Copilot), enter the prompt that you are using <code>geom_smooth()</code> and that you want to change the colour of the line of best fit. Can you follow what the model tells you to update your code and change the colours?</p>
+</blockquote>
+</div>
+<div id="bonus-exercise---to-the-movies" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Bonus exercise - to the movies!<a href="linear-regression.html#bonus-exercise---to-the-movies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have previously used <code>theme_classic()</code> to tidy up our plots and make them look neat. But why have your figure look neat when it can look like it came from a movie? There are a plethora of movie themes that you can use to boost your plots, using the <a href="https://github.com/MatthewBJane/ThemePark">ThemePark</a> package. Just like in Section <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-unleash-cats">5.9.4</a>, we need to install the ThemePark package using the <code>remotes</code> package.</p>
+<blockquote>
+<p>Add the following code to the top of your script and run it.</p>
+</blockquote>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="linear-regression.html#cb122-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(remotes)) <span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb122-2"><a href="linear-regression.html#cb122-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;MatthewBJane/ThemePark&quot;</span>)</span>
+<span id="cb122-3"><a href="linear-regression.html#cb122-3" tabindex="-1"></a><span class="fu">library</span>(ThemePark)</span></code></pre></div>
+<p>The below code is an example from the <a href="https://github.com/MatthewBJane/ThemePark">ThemePark Github Page</a>.</p>
+<blockquote>
+<p>Can you amend your own code for your density plot to use the movie theme of your choice(s)?</p>
+</blockquote>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="linear-regression.html#cb123-1" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">fill =</span> barbie_theme_colors[<span class="st">&quot;medium&quot;</span>]) <span class="sc">+</span></span>
+<span id="cb123-2"><a href="linear-regression.html#cb123-2" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb123-3"><a href="linear-regression.html#cb123-3" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;Density plot&quot;</span>,</span>
+<span id="cb123-4"><a href="linear-regression.html#cb123-4" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">&quot;City Mileage&quot;</span>,</span>
+<span id="cb123-5"><a href="linear-regression.html#cb123-5" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">&quot;Source: mpg&quot;</span>,</span>
+<span id="cb123-6"><a href="linear-regression.html#cb123-6" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;City Mileage&quot;</span></span>
+<span id="cb123-7"><a href="linear-regression.html#cb123-7" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb123-8"><a href="linear-regression.html#cb123-8" tabindex="-1"></a>    <span class="fu">theme_gameofthrones</span>()</span></code></pre></div>
+<p>To get something like…</p>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/do%20it-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probing-statistical-relationships-with-correlation-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_Predictions-with-linear-regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
