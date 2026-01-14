@@ -36,14 +36,16 @@ However, we do not know if people living in urban and rural areas engage with so
 
 ### Activity - Formulate your research question
 
-What do you think? Will urban and rural dwellers engage differently with social media? Will there be a difference in the number of likes made by people living in urban vs rural areas? Or in the number of followers people have in urban vs rural areas?
+What do you think? Will urban and rural dwellers engage differently with social media? Why might you go on social media if you were somewhere rural compared to urban? Will there be a difference in the number of likes made by people living in urban vs rural areas? Or in the number of followers people have in urban vs rural areas?
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> What are the null hypotheses for your research questions (you should have one for ‘likes’ and one for ‘followers’? Now, what predictions would you make about differences? 
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+<strong>Extra info:</strong> We are going to average over the effect of mood, so we do not need to include mood in our predictions about likes.
 :::
 
-::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
-<strong>Extra info:</strong> We are going to average over the effect of mood, so we do not need to include mood in our predictions about likes.
+> Write down your answers to the these questions as a comment in your script.
+
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
+<strong>Question:</strong> What are the null and alternate hypotheses for your research questions (you should have one for ‘likes’ and one for ‘followers’). Write these as a comment in your script.
 :::
 
 ### Activity - Load in data and check it
@@ -106,7 +108,7 @@ You can see that `mutate()` has created an extra column called likes.
 
 > Check that the values in the first three rows of the `likes` column match what you calculated and added to your comments. Talk to your tutor if they do not match. 
 
-::: {style="border-left: 4px solid #8273e6; background-color: #c2baf5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch bugs early on.
 :::
 
@@ -220,7 +222,7 @@ social_media_likes %>%
 ```
 
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> Does `followers` look normally distributed to you? Why might the data be shaped how it is?
 :::
 
@@ -305,9 +307,12 @@ t.test(likes~urban, data=social_media_likes) # conducts an independent samples t
 
 ```
 
-::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> Discuss the output of this independent t-test, what does it tell you about the differences between urban and rural dwellers and how they actively use social media? Is it what you expected when you formulated your hypothesis?
-:::
+
+> What does the output of the independent t-test tell you about the differences between urban and rural dwellers and how they actively use social media? Is it what you expected when you formulated your hypothesis? Write a comment in your code that interprets your result in the context of your hypothesis.
+
+> What do the 95% CIs tell you about the mean difference between urban and rural dwellers in terms of likes? Write a comment in your code that interprets this.
+
+Is there a piece of extra information you would like to know about the difference between groups that is not provided in the output for the independent t-test? If you are unsure, ask your tutor. If you are, calculate the missing piece of information and add it as a comment in your code.
 
 > Now complete the following line of code in your own script, to test if `followers` differ by `urban`. 
 
@@ -333,11 +338,11 @@ knitr::include_graphics("images/Testing_between_groups/Exams-hard.jpg")
 
 This is how we would write up the results of an independent samples t-test.
 
-::: {style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;"}
+::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Results:</strong> An independent samples t-test indicated that the number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).
 :::
 
-## Bonus Activity - Visualising group differences
+### Activity - Visualising group differences
 
 If you have made it this far with time to spare, then kudos. Here are some extra skills that will be very helpful when you need to present results relating to group differences. 
 
@@ -411,3 +416,43 @@ Well done! This computing tutorial is now over. Make sure to thank your tutor fo
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Everyone loves statistics ?"}
 knitr::include_graphics("images/Testing_between_groups/Everyone-loves-statistics.jpg")
 ```
+
+## ⭐ Bonus exercises 
+
+If that just wasn't enough, then here are some extra coding challenges to defeat...
+
+
+### Bonus Activity - new variable!
+
+> Create an extra variable called `engagement` which is the ratio of `likes` and `followers`. Then get the descriptive statistics for this new variable, grouped by `urban`. 
+
+What can you learn about the distribution of this new variable? Can you analyse it by adapting the code from this session?
+
+### Bonus Activity - Visualising group means
+
+Before, we made boxplots to show the group differences between urban and rural dwellers. Boxplots are great, because they provide a good summary of the spread of the data. However, we make inference regarding the difference between group means, rather than the medians, and it is the group medians that the boxplots show. As the mean can be different to the median when the data are skewed, it can be helpful to add a point showing each group mean on top of the boxplots.
+
+> Can you amend your code for your boxplots by using the [`stat_summary()`](https://ggplot2.tidyverse.org/reference/stat_summary.html) function?
+
+### Bonus Activity - Tracking bugs
+
+Here we will have a go at identifying when code has not worked perhaps as we thought it would. This challenge is a little fiendish, but I am sure you can do it.
+
+> Copy the following line of code into your script and run it. You should see the same data as below. Can you work out what went wrong with the `new_likes` variable?
+
+Can you write the code that proves what is wrong?
+
+```{r, surprise, eval=FALSE}
+
+social_media %>% 
+  mutate(new_likes = mean(c(good_mood_likes, bad_mood_likes)))
+
+```
+
+```{r, surprise peek, echo=FALSE}
+
+head(social_media %>% 
+  mutate(new_likes = mean(c(good_mood_likes, bad_mood_likes))), 10)
+```
+
+Bug defeated? Achievement unlocked! 

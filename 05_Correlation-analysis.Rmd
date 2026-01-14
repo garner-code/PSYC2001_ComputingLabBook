@@ -191,7 +191,7 @@ write.csv(social_media_attitude, here("Data","PSYC2001_social-media-attitude.csv
 
 ```
 
-> Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001-social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
+> Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001_social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
 
 Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
 
@@ -325,129 +325,31 @@ Well done guys you have survived another computing tutorial! Next lesson we will
 knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
 ```
 
-## ⭐ Bonus exercises - Exploring Relationships with GGally
 
-Now that you’ve created your political attitude scores and explored some scatterplots, let’s take things a step further. A great way to visualise multiple relationships at once is to use a pairs plot. For this, we’ll use the package `GGally`, which extends the functionality of `ggplot()` and gives us the very handy `ggpairs()` function.
+## ⭐ Bonus exercises 
 
-### Bonus Exercise – Installing GGally and Making Your First Pairs Plot
+### Bonus Activity - Urban vs Rural Correlations
 
-Before we begin, we need to install and load the `GGally` package.
+Would you expect the correlation between political attitude and time spent on social media to be the same for urban and rural participants?
 
-> Add the following code to the top of your script and run it.
+> Can you use the `filter()` function to create two new data frames: one for urban participants, and another for rural participants? Then run correlation analyses from this tutorial on both data frames to see if the correlations differ between the two groups.
 
-We always want to load all the packages we need at the top of our scripts. This keeps our script tidy, and makes sure that all the dependencies are clear from the beginning.
+Also, remember to visualise the data for each group!
 
-```{r, install GGally, warning=FALSE}
+### Bonus Activity - Correlation Matrix
 
-if(!require(GGally)) install.packages("GGally") 
-library(GGally)
+Sometimes it`s helpful to see all the correlations you are interested in at once. 
 
-```
+> Can you use the `select()` and [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) function to create a pipe that takes the `social_media_attitude` data frame, and that produces a [correlation matrix](https://www.displayr.com/what-is-a-correlation-matrix/) that shows the correlations between `time_on_social`, `polit_attitude`, and `age`?
 
-Great — now we can make a super pairs plot!
+This might be a tricky one. You could ask your favourite LLM for help, and then test and comment on the answer.
 
-We’ll start by visualizing the key variables from today’s tutorial: `time_on_social`, `polit_attitude`, and `age`.
+Do the correlation values match what you would expect? What else do you notice about the correlation matrix?
 
-> Copy the below code into the end of your script, and run it. Be sure to add some comments about what you think each piece of code is doing
+### Bonus Activity - Piping out a summary of correlations for Urban vs Rural groups
 
-```{r, bonus pairs plot, warning=FALSE}
+It is possible to get the correlation values for Urban vs Rural groups, by adding to the code from the previous activity.
 
-social_media_attitude %>% 
-  select(time_on_social, polit_attitude, age) %>% 
-  ggpairs()
+> Can you amend your code from the previous activity to use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation values between the `time_on_social` and `age` variables for Urban and Rural participants?
 
-```
-
-::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Did you get a warning when you ran the above line of code?</strong> What do you think it means? If you are unsure your tutor can help you work it out.
-:::
-
-You should now see a grid of scatterplots, density plots, and correlation coefficients. This gives you a quick overview of how all three variables relate to one another. Behold, the power of coding!
-
-> Have a look at each panel in the grid of scatterplots. What does each panel tell you about the data?
-
-### Bonus exercise - choose your own adventure
-
-Now it’s your turn to explore. 
-
-> Remind yourself what columns are in the original `social_media` data frame. Pick 3 or 4 variables that you are interested in exploring the relationship between. Copy and paste the code you used to select key columns in Section \@ref(sec-select-and-save), and amend it to select the columns you are interested in from `social_media`. Note you will always have to select the column that has the participant ids (`id`). Also, make sure you include the `urban` column if you want to do the bonus exercise that comes after this one.
-
-Once you have created your new data frame, and you have checked it looks correct, you are ready to use the ggpairs function to look at all the relationships at once. Its like a polycule in a plot.
-
-> Copy and paste the below code into your script. Adapt it to produce the pairs plot of your desires!
-
-```{r, your own pairs plot, eval=FALSE}
-
-... %>% 
-  select(...) %>%  # <-- replace with your chosen variables so you don't pass the id column into the pairs plot
-  ggpairs()
-
-```
-
-How do the relationships look? Are there any non-linear ones, or are they all linear? Are the strengths of the correlations what you expected, or not?
-
-### Bonus exercise - correlations by group
-
-Sometimes we want to see whether relationships between variables differ across groups. For example, are the relationships between your chosen variables stronger for urban dwellers than for rural dwellers?
-
-`ggpairs()` allows us to colour the plots by a grouping variable using the `aes()` argument. `ggpairs()` will also tell us the correlation value by group.
-
-> Copy and paste the below code into your script, and amend it to see the relationship between your chosen variables grouped by urban and rural dwellers.
-
-You should wind up with something that looks like the below -
-
-
-```{r, your own pairs plot by group, warning=FALSE, message=FALSE}
-
-social_media %>% 
-  mutate(urban = factor(urban, levels=c(1,2), labels=c('urban', 'rural'))) %>%
-  select(time_on_social, good_mood_likes, age, urban) %>% 
-  ggpairs(aes(colour = urban))
-
-```
-
-Nice! Have a look at the `urban` column. What do the boxplots show you? 
-
-### Last bonus exercise - unleash the cats! {#sec-unleash-cats}
-
-If you thought scatterplots couldn’t get any more exciting… enter `ggcats`.  This package lets you replace your data points with tiny cartoon cats.  
-Is this scientifically necessary? No.  
-Is it delightful? Absolutely.
-
-Before we can summon the cats, we need to install and load the `ggcats` package. For more info on the `ggcats` package, see the [ggcats GitHub page](https://github.com/R-CoderDotCom/ggcats).
-
-Because `ggcats` is not on CRAN, the official directory for R packages, we need to install it from github using a package called "remotes". Luckily, the instructions are on the [ggcats GitHub page](https://github.com/R-CoderDotCom/ggcats). We have also copied the code below.
-
-> Add the following code to the top of your script and run it.
-
-```{r, install ggcats, warning=FALSE, message=FALSE}
-
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("R-CoderDotCom/ggcats@main")
-library(ggcats)
-```
-
-Note that there is a daily limit on how many people can install the `ggcats` package in a day. If you are unable to install the package then that is the universe telling you that you have done enough coding today and that you should try again tomorrow.
-
-Now let’s make a scatterplot of `time_on_social and polit_attitude`, but with cats instead of dots. Vastly improved.
-
-> Copy and paste the below code into your script and run it.
-
-You should now see the following wondrous item in your plots pane:
-
-```{r, scatterplot with cats, warning=FALSE, message=FALSE}
-
-social_media_attitude %>% 
-  ggplot(aes(x = time_on_social, y = polit_attitude)) +
-  geom_cat(aes(cat = "grumpy"), size = 4) +
-  labs(x = "Time on Social", y = "Political Attitude") +
-  theme_classic()
-```
-
-> Return to the [ggcats Github page](https://github.com/R-CoderDotCom/ggcats). You will see many different cat styles listed. Have a go at changing the cat style. Any cat style can be yours!
-
-::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-Paws for thought:  
-Does using cats as points improve your statistical insight? Probably not.
-Does it improve your mood? Almost certainly.
-:::
+Check how you previously used the `summarise()` and `group_by()` functions for clues!

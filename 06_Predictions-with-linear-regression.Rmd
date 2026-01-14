@@ -258,54 +258,58 @@ Well done folks, you have survived another computing tutorial. If you are unsure
 knitr::include_graphics("images/Linear_regression_in_R/Done.jpg")
 ```
 
-## ⭐ Bonus exercises -  level up plots with Gen AI
+## ⭐ Bonus exercises 
 
-### Bonus exercise - Tidy up the regression plot
+Are you ready for the challenge of the very last bonus exercises?
 
-I don't know about you, but the default colours for the line of best fit supplied by `geom_smooth()` are quite awful on the eye. You may have noticed from the help documentation that it's not super clear how we would get rid of this smite on the eyes. Let's see if a Gen AI model can help us level up our plot.
+### Bonus Activity - Tidying up the Scatterplot
 
-> Using your favourite LLM (like ChatGPT or Copilot), enter the prompt that you are using `geom_smooth()` and that you want to change the colour of the line of best fit. Can you follow what the model tells you to update your code and change the colours?
+I don't know about you, but the default theme for the line of best fit smites my eyes.
 
-### Bonus exercise - to the movies!
+> Can you alter the colours of the line of best fit and the shaded area so that it fits better with the colour scheme of the rest of the plot? Can you find some examples of how to do this on stackoverflow.com, or can an LLM help you find the answer?
 
-We have previously used `theme_classic()` to tidy up our plots and make them look neat. But why have your figure look neat when it can look like it came from a movie? There are a plethora of movie themes that you can use to boost your plots, using the [ThemePark](https://github.com/MatthewBJane/ThemePark) package. Just like in Section \@ref(sec-unleash-cats), we need to install the ThemePark package using the `remotes` package.
+### Bonus Activity - Visualising the line of best fit for Urban and Rural participants on seperate plots
 
-> Add the following code to the top of your script and run it.
+It could be useful to know whether the predictive relationship between political attitude and time on social is comparable for Urban and Rural participants. 
 
-```{r, install ThemePark, warning=FALSE, message=FALSE, eval=FALSE}
+> Can you amend your code for the scatterplot with the line of best fit, so that the plots for Urban and Rural participants are shown on separate panels? 
 
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("MatthewBJane/ThemePark")
-library(ThemePark)
+**Hint:** You have already used the function that will do this for you earlier in this section.
+
+For an extra level up, can you change the aesthetics so that the points are coloured by `location` (Urban or Rural), and the line of best fit is also coloured by `location`?
+
+### Final Bonus Activity - Can you fix the bug to make this code work?
+
+Below is a block of code that is supposed to create a scatterplot of the Observed vs Predicted values from our linear regression model. The code has been commented so that you can understand what it is trying to do. However, there is a bug in the code that is stopping it from working.
+
+
+
+```{r, buggy code, eval=FALSE}
+
+
+# Activity – Observed vs predicted plot
+social_media_attitude %>% # take the data frame 
+  mutate(predicted = predict(mod)) %>% # create a new column that contains the predicted value for each participant
+  ggplot(aes(x = predicted, y = time_on_social)) + # set up the canvas
+  geom_point(alpha = 0.6) + # make a scatterplot, and make the dots kinda seethrough
+  geom_abline(slope = 1, intercept = 0, colour = "red", linetype = "dashed") + # add a 45 degree reference line. If predictions were perfect, all points would fall on this line
+  labs(x = "Predicted", y = "Observed") +  # define labels
+  theme_classic() # make pretty
 ```
 
-The below code is an example from the [ThemePark Github Page](https://github.com/MatthewBJane/ThemePark). 
 
-> Can you amend your own code for your density plot to use the movie theme of your choice(s)?
+If you run this code you should get the following error message. The important part for working out this bug is highlighted for you.
 
-```{r, example, eval=FALSE}
-
-ggplot(mpg, aes(cty)) + geom_density(fill = barbie_theme_colors["medium"]) +
-    labs(
-        title = "Density plot",
-        subtitle = "City Mileage",
-        caption = "Source: mpg",
-        x = "City Mileage"
-    ) +
-    theme_gameofthrones()
-
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="The fiendish bug lies therein"}
+knitr::include_graphics("images/Linear_regression_in_R/bug.png")
 ```
 
-To get something like...
+The other clue I will give you is that you can check how many rows are in a data frame by using the `nrow()` function. For example, if you run the line of code `nrow(social_media_attitude)`, you will see how many rows are in that data frame.
 
-```{r, do it, echo = FALSE, message=FALSE}
+The very last clue is in Section \@ref(sec-pipey).
 
-sma_long %>%
-  ggplot(aes(x=value)) + # set the aesthetics
-  geom_density() + # do the density plot 
-  facet_wrap(~measure) + # make a separate plot for each measure
-  theme_gameofthrones()
+OK, the last last clue is that there is a `tidyverse` function that will help you.
 
+Good luck!
 
-```
 
