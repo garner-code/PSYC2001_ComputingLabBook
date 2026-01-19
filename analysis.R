@@ -72,8 +72,8 @@ social_media_attitude %>%
        title = "Relationship between Political Attitude and Social Media Use") # add labels
 
 # Correlation analysis
-cor.test(social_media_attitude$time_on_social, 
-         social_media_attitude$polit_attitude) # performs Pearson correlation test
+cor.test(x = social_media_attitude$time_on_social, 
+         y = social_media_attitude$polit_attitude) # performs Pearson correlation test
 
 # Linear regression analysis
 model <- lm(time_on_social ~ polit_attitude, 
