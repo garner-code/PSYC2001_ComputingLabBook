@@ -51,9 +51,18 @@ But you should know this, because you read the README.txt file already, right? :
 <strong>Question:</strong> Discuss this with your neighbour and your tutor. Make sure you have clearly defined your hypotheses as a comment in your code before moving forward.
 :::
 
-## Visualising our data
+## Loading our data ready for visualisation and analysis
 
-We may have mentioned before that it's incredibly important to visualise your data before running any statistical tests. This is because visualising your data can help you understand the underlying distribution of the data, identify any potential outliers or anomalies, and ensure that the assumptions of the statistical test you plan to use are met. Remember, it protects against "garbage in, garbage out"!
+Every analysis you run will typically follow the same basic steps.
+1. Load the data.  
+2. Visualise the distributions to check the data look ok (not ok data has strange outliers, strange values, or strange distributions).  
+3. Get descriptive statistics and check they make sense.
+4. Perform the inferential test.  
+5. Create a figure that provides a visual summary of the key statistical result.  
+
+Although you will always perform steps 1 through 5, you will typically only report steps 3, 4 and 5 in your write-ups.
+
+So let's get started.  
 
 ### Activity - Loading in the data
 
@@ -84,7 +93,7 @@ If you don't remember how to do this, then you can check what happened in Sectio
 
 ## Visualising is important
 
-Before we conduct any kind of statistical test it is a good idea to see how it looks. This will give us an understanding about the underlying data that is driving the results of our statistical test. 
+We may have mentioned before that it's incredibly important to visualise your data before running any statistical tests. This is because visualising your data can help you understand the underlying distribution of the data, identify any potential outliers or anomalies, and ensure that the assumptions of the statistical test you plan to use are met. Remember, it protects against "garbage in, garbage out"! 
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Warning:</strong> It is generally **bad practice** to go straight from the raw data to the results of a statistical test without first visualising the data.
@@ -96,7 +105,7 @@ knitr::include_graphics("images/Testing_our_first_hypothesis/Statistics_professo
 ```
 
 
-## Density plots are useful (and pretty)
+#### Density plots are useful (and pretty)
 
 One great way to look at the distribution of your variables is by using a density plot. A density plot is a smoothed version of a histogram which allows us to understand what the full distribution might look like if we had all the data in the world. More information on that [is here](https://www.data-to-viz.com/graph/density.html) if you are interested.
 

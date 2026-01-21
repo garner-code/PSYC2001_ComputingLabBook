@@ -75,7 +75,7 @@ Now you have this formula, let's build the code that creates the political attit
 
 The first operation we need to do is to multiply each observation in the `polit_informed` column by 0.25. 
 
-> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply them each by 0.25 (in the console, or in your head). What are the 3 results that you get? Write them as a comment in your script.
+> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply each of them by 0.25 (in the console, or in your head). What are the 3 results that you get? Write them as a comment in your script.
 
 Now we know what answers we should get, we can write some code to multiply these observations by 0.25, and check the code works.
 
@@ -102,7 +102,7 @@ Hint: You multiply in R using the `*` symbol.
 
 The next thing we need to do is multiply `polit_campaign` by 0.35, and add it to the previous result. 
 
-> Using the console (or your mind brain), calculate yourself what values you should get if you take the first few values of `polit_campaign`, multiply each of them by 0.35. Then add these new values to those you got when multiplying `polit_informed` values by 0.25. Write these new results down as a comment in your script.
+> Using the console (or your mind brain), calculate yourself what values you should get if you take the first few values of `polit_campaign` and multiply each of them by 0.35. Then add these new values to those you got when multiplying `polit_informed` values by 0.25. Write these new results down as a comment in your script.
 
 Now lets amend our code so that it can calculate these new values. 
 
@@ -267,9 +267,11 @@ To do this we can use the `cor.test()` function. We can use the `cor.test()` fun
 
 The `cor.test()` function can take in a formula where the right hand side specifies the two numeric variables to be correlated with each other. 
 
-Note that this is a little different to when we used the formula method in Section \@ref(sec-formula-for-independence), where our formula followed the syntax of `DV ~ group`. Specifically, we had a dependent variable on the left hand side, and a grouping variable on the right hand side. 
+Note that this is a little different to when we used the formula method in Section \@ref(sec-formula-for-independence), where our formula followed the syntax of `DV ~ group`. Specifically, we had a dependent variable on the left hand side, and a grouping variable on the right hand side. Thus, this formula says that we want to know how the DV changes as a function of group.
 
-This time, we have not bothered defining a DV on the left hand side. This is because we are saying we want to know the correlation as a function of our two numeric variables (`time_on_social` and `polit_attitude`). Because we are passing the formula into the correlation function, R knows what we are asking for, and so we don't need to define a DV.
+With a correlation analysis, we instead have two observed variables (i.e. we did not manipulate anything but just observed time spent on social media and political attitudes as they occurred in the wild), and we want to know what the correlation value is, as a function of those two variables.
+
+So, this time, we have not bothered defining a DV on the left hand side. This is because we are saying we want to know the correlation as a function of our two numeric variables (`time_on_social` and `polit_attitude`). And because we are passing the formula into the correlation function, R knows what we are asking for, and so we don't need to define a DV.
 
 Knowing when you do and do not need to put a DV on the left hand side of a formula is something that comes with practice.
 
