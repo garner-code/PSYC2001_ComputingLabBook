@@ -166,7 +166,9 @@ The output in the console should match the answer you got when you calculated (5
 
 You'll see in the code above that we have put the numbers together in some brackets preceded by the letter c `c()`. You can think of `c` as standing for concatenate. `c()` is actually a function, that combines the numbers into something called a vector. 
 
-You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). Its handy to keep things in vectors as it means you can work on all the things in the vector at the same time, such as adding 2 to every element using `c(1,2,3) + 2`. Try typing that into the console (and hitting enter) to see what happens.
+You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). Its handy to keep things in vectors as it means you can work on all the things in the vector at the same time, such as adding 2 to every element using `c(1,2,3) + 2`. 
+
+> Try typing `c(1,2,3) + 2` into the console (and hitting enter) to see what happens.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask "What does the mean() function in R do?" and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.
@@ -243,7 +245,7 @@ A large part of your coding for data analysis will involve creating and manipula
 
 ### Activity - Create some objects {#sec-make-objects}
 
-> Copy and paste the following code into the console, change the code so that it uses your own name and age and run it. 
+> Copy and paste the following code into the script editor, change the code so that it uses your own name and age and run it. 
 
 You should see that `name`, `age`, `today`, `new_year`, and `data` appear in the environment pane.  
 
@@ -293,7 +295,7 @@ decade <- age + 10
 ```
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Tip:</strong> You may find it helpful to read `<-` as `contains`, e.g., `name` contains the text `emily`.
+<strong>Tip:</strong> You may find it helpful to read `<-` as an instruction to make an object, e.g., make an object called `name` and put the text `emily` in that object.
 :::
 
 ## Datatypes
@@ -320,7 +322,7 @@ typeof(name)
 ```
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. Integers are always whole numbers, whereas objects of type double can have decimals. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
+<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. Integers are always whole numbers, whereas objects of type double can have decimals. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
 :::
 
 
@@ -347,7 +349,7 @@ Now that you have cleared your Environment, you can learn the true power of scri
 
 > The last activity for the day...highlight all the code in your script and run it. 
 
-You should see all of the objects you created earlier reappear in the environment pane.
+You should see all of the objects you created earlier magically reappear in the environment pane.
 
 ## You are Free!
 

@@ -23,7 +23,7 @@ library(here) #loads in the specified package
 library(tidyverse)
 ```
 
-Note that in the code above, we've added a fancy `if()` statement to check if the packages are installed. `if()` will check the statement inside it1s brackets. If that statement returns a value of `TRUE`, then the code that comes after the brackets will be executed (e.g. it will install the package `here`).
+Note that in the code above, we've added a fancy `if()` statement to check if the packages are installed. `if()` will check the statement inside its brackets. If that statement returns a value of `TRUE`, then the code that comes after the brackets will be executed (e.g. it will install the package `here`).
 
 The way we have used the `if()` function is a little tricksy, but worth thinking about, because the mindset we used is very important for coding. `require()` is a function that will return a `TRUE` value if the named package (e.g. `here`) is already installed, and a `FALSE` if it is not. The `!` operator negates what is returned - i.e. if `here` is not installed, then `require()` will return the value `FALSE`. However, we want to turn this into the value `TRUE`, so that `if()` will run the next bit of code to install the package `here` if required. So `!` turns the answer `FALSE` into `not FALSE`, which means `TRUE`.
 
@@ -167,7 +167,7 @@ The next 3 columns are political attitude subscales:
   `campaign` – how much they engage in campaign-related discussion  
   `activism` – involvement in activism (e.g., protests, petitions)  
 
-We should now check that we have **imported into Rstudio matches this description (and what we saw when we opened it in excel)**.  There are a couple of ways to do this.
+We should now check that we have **imported into Rstudio matches this description (and what we saw when we opened it in Excel)**.  There are a couple of ways to do this.
 
 ### Activity -  View the data. Always, always, view the data. {#sec-data-view}
 
@@ -293,9 +293,7 @@ count(social_media_filtered) #count the number of rows in the filtered dataframe
 
 ## Introducing Piping
 
-A short aside to introduce a **very special operation called a 'pipe'** or `%>%`. This operation is part of the `tidyverse` package and allows you to pass the result from one function to the next seamlessly in a sort of assembly-line like fashion. Imagine your data is Mario, and each pipe is a, well, a pipe. You change your data somehow, like filtering out some rows (or getting a power-up, if you are Mario), and then you pass your filtered data (or a powered-up Mario) through the pipe to the next function (or level).
-
-
+A short aside to introduce a **very special operation called a 'pipe'** or `%>%`. This operation is part of the `tidyverse` package and allows you to pass the result from one function to the next seamlessly in a sort of assembly-line like fashion. You can think of it as saying "take the output from the last function and then do the next thing I tell you to that output".
 
 **Throughout the rest of the course we will be using 'piping' as it is easier to follow and code**. To begin our piping journey, let`s repeat what we just did above but with pipes instead. 
 
@@ -330,7 +328,7 @@ The answer should be satisfyingly the same as before. When coding, it is often a
 
 Now lets use a piping method to clean this data up by replacing `-999` values  with more R readable `NA` values. As mentioned, `NA` stands for 'Not Available' and is the standard way to represent missing data in R. We can replace the `-999` values using the `mutate()` and `na_if()` functions from the `tidyverse` package. The `mutate()` function is used to alter or make new columns in a dataframe based on the conditions we specify and `na_if()` is used to replace given values with `NA` in a data frame (i.e. `na_if()` will look in each row to see if there is the value we have entered (-999). If it is `TRUE` that there is a -999, it `na_if()` will replace -999 with `NA`).
 
-We acknowledge that `mutate()` sounds quite dramatic, but all it really means is 'take a column (or some columns), and do a thing to them and put the result in the column that's named on the left hand of the equals sign'.
+We acknowledge that `mutate()` sounds quite dramatic, but all it really means is 'take a column (or some columns), and do a thing to them and put the result in the column and give it the name listed on the left hand of the equals sign'.
 
 > Copy and paste the below code into your script and run it.
 
@@ -453,7 +451,7 @@ social_media_NA %>%
 There, that's much better!
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Warning:</strong> We receive a warning here because `ggplot()` is able to recognise and remove 'NA' values. Be **careful** as not all R functions are able to do this.
+<strong>Warning:</strong> We receive a warning here (rather than an error) because `ggplot()` is able to recognise and remove 'NA' values. Be **careful** as not all R functions are able to do this.
 :::
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}

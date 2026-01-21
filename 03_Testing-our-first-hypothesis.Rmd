@@ -256,7 +256,8 @@ We visualised the data so we could check the following things before running our
 1. Are the distributions of likes in each mood roughly normal?  
 2. Are there any obvious outliers that might affect the results of our statistical test?  
 
-What do you think? Make a comment in your code in answer to both these questions. Discuss your comments with your tutor if you are unsure.
+What do you think? 
+> Make a comment in your code in answer to both these questions. Discuss your comments with your tutor if you are unsure.
 
 ## Descriptive statistics
 
@@ -415,10 +416,6 @@ Now that we have correctly calculated and saved our difference score we can use 
 
 t.test(x=social_media_diff$likes_diff) # putting in only an x argument makes this a one-sample t-test
 ```
-
-::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> Compare the output of the one-sample t-test and the paired t-test. Are they the same?
-:::
 
 Ahhhh, its so beautiful when you get consistent results!
 

@@ -45,7 +45,7 @@ What do you think? Will urban and rural dwellers engage differently with social 
 > Write down your answers to the these questions as a comment in your script.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> What are the null and alternate hypotheses for your research questions (you should have one for ‘likes’ and one for ‘followers’). Write these as a comment in your script.
+<strong>Question:</strong> What are the null and alternate hypothesis for your research questions (you should have one for ‘likes’ and one for ‘followers’). Write these as a comment in your script.
 :::
 
 ### Activity - Load in data and check it
@@ -104,7 +104,7 @@ head(social_media_likes, 10)
 
 ```
 
-You can see that `mutate()` has created an extra column called likes. 
+You can see that `mutate()` has created an extra column called `likes`. 
 
 > Check that the values in the first three rows of the `likes` column match what you calculated and added to your comments. Talk to your tutor if they do not match. 
 
@@ -120,7 +120,7 @@ Now, this data frame has all we need for our analysis, and a lot more! Let's mak
 
 social_media_likes <- social_media %>% 
   mutate(likes =(bad_mood_likes + good_mood_likes)/2 ) %>% # creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes
-  select(id, urban, likes, followers) #selects only the specified columns from the data frame
+  select(id, urban, likes, followers) # selects only the specified columns from the data frame
 ```
 
 > Check that the code did indeed select only the variables we want, by using the `head()` function to check what the new data frame called `social_media_likes` looks like. 
@@ -144,7 +144,7 @@ If you remember from the README.txt file (which you read already, right? :)), `1
 
 To do this, we can use the `factor()` function, which converts a variable to a factor. We also need to tell R that `1` means `urban` and `2` means `rural`. 
 
-Because we need the result to apply to every single `1` and `2` in rural, we need to use the `factor()` function along with a function that says "hey, let's apply this to the whole column". Remember how we use the `mutate()` function to make a new column? We can also use the `mutate()` function to an existing column, as what ever you give it will be applied to every row of whichever column you name when using the function. The `mutate()` function is coming in handy today!
+Because we need the result to apply to every single `1` and `2` in rural, we need to use the `factor()` function along with a function that says "hey, let's apply this to the whole column". Remember how we use the `mutate()` function to make a new column? We can also apply the `mutate()` function to an existing column, as what ever you give it will be applied to every row of whichever column you name when using the function. The `mutate()` function is coming in handy today!
 
 > Run the line of code in your script that matches this.
 
@@ -339,7 +339,7 @@ knitr::include_graphics("images/Testing_between_groups/Exams-hard.jpg")
 This is how we would write up the results of an independent samples t-test.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Results:</strong> An independent samples t-test indicated that the number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).
+<strong>Results:</strong> An independent samples t-test indicated that the mean number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the mean number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).
 :::
 
 ### Activity - Visualising group differences
