@@ -159,7 +159,7 @@ social_media_likes <- social_media %>%
   select(id, urban, likes, followers) #selects only the specified columns from the data frame
 ```
 
-The key piece of code we need to add to our code and adapt is the following:  
+The key piece of code we need to add to our code and adapt so that we select only the relevant variables we want to keep (`id`, `time_on_social`,`polit_attitude`,`age`, `urban`) is the following:  
 
 `%>%   
 select(id, urban, likes, followers)`
