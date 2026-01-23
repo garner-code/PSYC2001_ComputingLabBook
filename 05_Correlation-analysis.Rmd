@@ -261,11 +261,29 @@ A non-linear relationship is present when the relationship between two variables
 
 ## Conducting correlations
 
-Let’s find out if there is a statistically significant correlation between the variables that appear to share a linear relationship. Let's start with `time_on_social` and `polit_attitude`. 
+First, let's calculate the correlation coefficient between the variables that appear to share a linear relationship. Let's start with `time_on_social` and `polit_attitude`. If you remember from your lecture, the correlation coefficient is a number that tells us the strength and direction of the linear relationship between two variables.
 
-To do this we can use the `cor.test()` function. We can use the `cor.test()` function either using the formula method, or using base R. We'll do both, so that your coding journey is imbued with liberty.
+### Calculate the correlation coefficient
+
+Instead of calculating the correlation coefficient by hand, we can use a handy function called `cor` to do it for us. Even more handy, `cor` can be used in a pipe. So calculation the correlation coefficient between `time_on_social` and `polit_attitude` is as simple as:
+
+
+```{r}
+
+social_media_attitude %>% 
+  summarise(r = cor(time_on_social, polit_attitude, use = "complete.obs")) #use = "complete.obs" removes all NA values from the correlation.
+
+```
+
+This tells us that there is a positive linear relationship between time spent on social media and political attitude, with a correlation coefficient of approximately 0.51. This suggests that as time spent on social media increases, political attitude also tends to increase. Given that correlation co-efficients range from -1 to +1, a value of 0.51 indicates a moderate positive correlation.
+
+## Testing the statistical significance of the correlation coefficient
+
+However, we don't stop once we have calculated the correlation coefficient ($r$). We need to know if this value of $r$ is larger than we would expect to get by chance. Enter our hypothesis test for $\mathrm{H_o}$!  
 
 ### Activity - correlation using the formula method {#sec-cor-form}
+
+We can use the `cor.test()` function to test $\mathrm{H_o}$. We can use the `cor.test()` function either using the formula method, or using base R. We'll do both, so that your coding journey is imbued with liberty.
 
 The `cor.test()` function can take in a formula where the right hand side specifies the two numeric variables to be correlated with each other. 
 
@@ -321,7 +339,7 @@ Now lets have a go at writing up the results of the correlation that we have con
 
 Now, run the correlation analysis for the other pair of variables that shared a linear relationship. I know we haven't told you which one it is, so make a guess and ask your tutor if you are not sure.
 
-> Copy and paste the code you wrote earlier for the correlation analysis into your script. Amend the code so that it runs a correlation analysis on the other pair of variables that shared a linear relationship. Run your code and interpret the results.
+> Copy and paste the code you wrote earlier for the correlation analysis into your script, from first using the `cor()` function, up to performing the statistical test of $\mathrm{H_o}$. Amend the code so that it runs a correlation analysis on the other pair of variables that shared a linear relationship. Run your code and interpret the results.
 
 ## You are Free!
 
@@ -338,9 +356,17 @@ knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
 
 Would you expect the correlation between political attitude and time spent on social media to be the same for urban and rural participants?
 
-> Can you use the `filter()` function to create two new data frames: one for urban participants, and another for rural participants? Then run correlation analyses from this tutorial on both data frames to see if the correlations differ between the two groups.
+> Can you use the `filter()` function to create two new data frames: one containing only urban participants, and containing only rural participants? Then run correlation analyses from this tutorial, using your new data frames, to see if the correlation coefficients differ between the two groups.
 
 Also, remember to visualise the data for each group!
+
+### Bonus Activity - Piping out a summary of correlations for Urban vs Rural groups
+
+It is possible to get the correlation values for Urban vs Rural groups, by adding to the code from the previous activity.
+
+> Can you amend your code from the previous activity to use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation coefficient values between the `time_on_social` and `age` variables for Urban and Rural participants?
+
+Check how you previously used the `summarise()` and `group_by()` functions for clues!
 
 ### Bonus Activity - Correlation Matrix
 
@@ -351,11 +377,3 @@ Sometimes it`s helpful to see all the correlations you are interested in at once
 This might be a tricky one. You could ask your favourite LLM for help, and then test and comment on the answer.
 
 Do the correlation values match what you would expect? What else do you notice about the correlation matrix?
-
-### Bonus Activity - Piping out a summary of correlations for Urban vs Rural groups
-
-It is possible to get the correlation values for Urban vs Rural groups, by adding to the code from the previous activity.
-
-> Can you amend your code from the previous activity to use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation values between the `time_on_social` and `age` variables for Urban and Rural participants?
-
-Check how you previously used the `summarise()` and `group_by()` functions for clues!
