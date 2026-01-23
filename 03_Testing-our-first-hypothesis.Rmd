@@ -267,6 +267,7 @@ We visualised the data so we could check the following things before running our
 2. Are there any obvious outliers that might affect the results of our statistical test?  
 
 What do you think? 
+
 > Make a comment in your code in answer to both these questions. Discuss your comments with your tutor if you are unsure.
 
 ## Descriptive statistics

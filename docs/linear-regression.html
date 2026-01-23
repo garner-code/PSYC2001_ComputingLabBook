@@ -491,14 +491,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb113-2"><a href="linear-regression.html#cb113-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
 <span id="cb113-3"><a href="linear-regression.html#cb113-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
 <p>When you are done, you should have something that looks like this:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Now, this is no good, as both the <code>polit_attitude</code> and <code>age</code> values are in one plot. We need to separate them! Luckily, there is a very hand function called <code>facet_wrap()</code> that will do this for you.
 <code>facet_wrap</code> is your friend. To use the <code>facet_wrap()</code> function, we use the formula method, but we only need to put something on the right hand side, and that something is the name of the variable that we want to split up the plots by.</p>
 <blockquote>
 <p>Add the piece of code <code>+ facet_wrap(~measure)</code> to your existing code you wrote to plot the density of the data. Run the code. You will know you have succeeded when you behold the same plot as below.</p>
 </blockquote>
-<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_density()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>Excellent. We have plots.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Would you say the variables are normally distributed? Are you happy the data have met the assumptions for the regression analysis?</p>
@@ -597,7 +598,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb120-4"><a href="linear-regression.html#cb120-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
 <span id="cb120-5"><a href="linear-regression.html#cb120-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
 <span id="cb120-6"><a href="linear-regression.html#cb120-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <blockquote>
 <p>Use the <code>?</code> operator to look up the help documentation for <code>geom_smooth()</code>. Find out what the <code>se =</code> argument stands for, and finish the comment in your code with a description of what it does.</p>
 </blockquote>
@@ -619,7 +620,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="you-are-free-5" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> You are Free!<a href="linear-regression.html#you-are-free-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Well done folks, you have survived another computing tutorial. If you are unsure about any of the contents then your friendly local tutor is here to help!</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-56"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-54"></span>
 <img src="images/Linear_regression_in_R/Done.jpg" alt="It almost over (I promise)" width="50%" />
 <p class="caption">
 Figure 6.1: It almost over (I promise)
@@ -657,7 +658,7 @@ Figure 6.1: It almost over (I promise)
 <span id="cb121-7"><a href="linear-regression.html#cb121-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Observed&quot;</span>) <span class="sc">+</span>  <span class="co"># define labels</span></span>
 <span id="cb121-8"><a href="linear-regression.html#cb121-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <p>If you run this code you should get the following error message. The important part for working out this bug is highlighted for you.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-57"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-55"></span>
 <img src="images/Linear_regression_in_R/bug.png" alt="The fiendish bug lies therein" width="50%" />
 <p class="caption">
 Figure 6.2: The fiendish bug lies therein

@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-do-packages-do" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> What do packages do?<a href="data-wrangling-and-visualisation.html#what-do-packages-do" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You should be able to see that we have installed and loaded <strong>2 different packages</strong>. Let’s first go over the basics of what a package is. In its simplest terms, a <strong>package is a toolbox</strong> that someone has created for us in R that <strong>makes our life easier</strong>. These packages build on the basic code that comes with the R programming language (what <strong>RStudio</strong> uses to run), called <code>base R</code>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="images/Data_wrangling_and_visualisation/Opening_an_R_package.gif" alt="The equivalent of loading an R package" width="50%" />
 <p class="caption">
 Figure 2.1: The equivalent of loading an R package
@@ -471,7 +471,7 @@ Figure 2.1: The equivalent of loading an R package
 <li>A sub-folder called <strong>Output</strong>, which is where all your output will go. Note that R sees both sub-folders (and their contents) as being in your working directory - aka as part of your R project.</li>
 </ul>
 <p>These are the <strong>key ingredients needed to organise all projects in R</strong>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="images/Data_wrangling_and_visualisation/folder-structure.png" alt="Project Organisation" width="100%" />
 <p class="caption">
 Figure 2.2: Project Organisation
@@ -495,7 +495,7 @@ Figure 2.2: Project Organisation
 <p>Try double clicking on the <code>.csv</code> file now to see what happens.</p>
 </blockquote>
 <p>You’ll see that Excel offers to open it for you. Click ok to open the file in Excel and take a look at how the data looks. Then say ‘that’s very kind of you Excel, but we are more powerful than you. We R.’</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="images/Data_wrangling_and_visualisation/Data_in_excel.jpg" alt="Social Media Data in Excel" width="80%" />
 <p class="caption">
 Figure 2.3: Social Media Data in Excel
@@ -504,14 +504,14 @@ Figure 2.3: Social Media Data in Excel
 <blockquote>
 <p>Next, click again on the ‘Data’ folder in the Files pane in RStudio, and click on the link to the <code>.csv</code> file. You will see an option to view the file. Click on it and see what happens.</p>
 </blockquote>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="images/Data_wrangling_and_visualisation/view-file.png" alt="Option to view the file contents within RStudio" width="60%" />
 <p class="caption">
 Figure 2.4: Option to view the file contents within RStudio
 </p>
 </div>
 <p>The data file opens in the viewer of RStudio. Like this. Here it is. csv data in the raw.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="images/Data_wrangling_and_visualisation/csv-raw.png" alt=".csv data, pure and unadulterated" width="60%" />
 <p class="caption">
 Figure 2.5: .csv data, pure and unadulterated
@@ -578,7 +578,7 @@ Figure 2.5: .csv data, pure and unadulterated
 <li>Make sure that this new tab looks similar to what you saw when you opened Excel file.</li>
 </ol>
 </blockquote>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="images/Data_wrangling_and_visualisation/Directing_students_to_view_data_in_R.gif" alt="Navigating to dataset. Note that the person who made this fancy gif had their R Studio in dark mode, so the colours are different. Both your screen, and your RStudio, are working perfectly fine." width="200%" />
 <p class="caption">
 Figure 2.6: Navigating to dataset. Note that the person who made this fancy gif had their R Studio in dark mode, so the colours are different. Both your screen, and your RStudio, are working perfectly fine.
@@ -604,20 +604,20 @@ Figure 2.6: Navigating to dataset. Note that the person who made this fancy gif 
 </blockquote>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-wrangling-and-visualisation.html#cb25-1" tabindex="-1"></a><span class="co"># Method 3 - Use the head function</span></span>
 <span id="cb25-2"><a href="data-wrangling-and-visualisation.html#cb25-2" tabindex="-1"></a><span class="fu">head</span>(social_media) <span class="co">#head displays the first 6 rows of each variable.</span></span></code></pre></div>
-<pre><code>##   id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
-## 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2
-## 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2
-## 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7
-## 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3
-## 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9
-## 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4
-##   polit_activism
-## 1            3.6
-## 2            2.6
-## 3            3.0
-## 4            2.6
-## 5            3.3
-## 6            3.9</code></pre>
+<pre><code>##   id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1 S1 15.2           3.06     1            22.8           46.5     173.3
+## 2 S2 16.0           2.18     1            46.0           48.3     144.3
+## 3 S3 16.8           1.92     1            50.8           46.1      76.5
+## 4 S4 15.6           2.61     1            29.9           29.2     171.7
+## 5 S5 17.1           3.24     1            37.1           52.4     109.5
+## 6 S6 15.7           2.44     1            26.9           20.2     157.5
+##   polit_informed polit_campaign polit_activism
+## 1            2.3            3.2            3.6
+## 2            1.6            2.2            2.6
+## 3            1.9            2.7            3.0
+## 4            1.6            2.3            2.6
+## 5            2.0            2.9            3.3
+## 6            2.4            3.4            3.9</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-wrangling-and-visualisation.html#cb27-1" tabindex="-1"></a><span class="co"># Method 4 - Use the str function</span></span>
 <span id="cb27-2"><a href="data-wrangling-and-visualisation.html#cb27-2" tabindex="-1"></a><span class="fu">str</span>(social_media) <span class="co">#displays an overall summary of the object and variable structure.</span></span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  10 variables:
@@ -643,7 +643,7 @@ Figure 2.6: Navigating to dataset. Note that the person who made this fancy gif 
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Please discuss with your deskmate and tutor what you think <strong>chr</strong> and <strong>num</strong> mean.</p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
 <img src="images/Data_wrangling_and_visualisation/Students_thinking.gif" alt="You thinking" width="50%" />
 <p class="caption">
 Figure 2.7: You thinking
@@ -660,20 +660,27 @@ Figure 2.7: You thinking
 <p>Copy and paste the below line of code into your script and run it.</p>
 </blockquote>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling-and-visualisation.html#cb29-1" tabindex="-1"></a><span class="fu">summary</span>(social_media) <span class="co">#summary provides a quick overview of the data in each variable. </span></span></code></pre></div>
-<pre><code>##       id                 age        time_on_social         urban     good_mood_likes bad_mood_likes 
-##  Length:60          Min.   :13.90   Min.   :-999.000   Min.   :1.0   Min.   : 6.50   Min.   :12.20  
-##  Class :character   1st Qu.:15.70   1st Qu.:   1.920   1st Qu.:1.0   1st Qu.:31.60   1st Qu.:39.08  
-##  Mode  :character   Median :16.50   Median :   2.365   Median :1.5   Median :45.90   Median :49.30  
-##                     Mean   :16.87   Mean   : -30.845   Mean   :1.5   Mean   :43.04   Mean   :49.84  
-##                     3rd Qu.:17.43   3rd Qu.:   3.042   3rd Qu.:2.0   3rd Qu.:53.40   3rd Qu.:58.75  
-##                     Max.   :23.00   Max.   :   4.320   Max.   :2.0   Max.   :89.20   Max.   :91.20  
-##    followers      polit_informed  polit_campaign  polit_activism 
-##  Min.   : 61.40   Min.   :0.600   Min.   :0.800   Min.   :0.900  
-##  1st Qu.: 76.47   1st Qu.:1.500   1st Qu.:2.100   1st Qu.:2.400  
-##  Median :116.30   Median :1.800   Median :2.550   Median :2.900  
-##  Mean   :124.76   Mean   :1.858   Mean   :2.602   Mean   :2.977  
-##  3rd Qu.:153.75   3rd Qu.:2.200   3rd Qu.:3.100   3rd Qu.:3.500  
-##  Max.   :336.50   Max.   :3.400   Max.   :4.800   Max.   :5.500</code></pre>
+<pre><code>##       id                 age        time_on_social         urban    
+##  Length:60          Min.   :13.90   Min.   :-999.000   Min.   :1.0  
+##  Class :character   1st Qu.:15.70   1st Qu.:   1.920   1st Qu.:1.0  
+##  Mode  :character   Median :16.50   Median :   2.365   Median :1.5  
+##                     Mean   :16.87   Mean   : -30.845   Mean   :1.5  
+##                     3rd Qu.:17.43   3rd Qu.:   3.042   3rd Qu.:2.0  
+##                     Max.   :23.00   Max.   :   4.320   Max.   :2.0  
+##  good_mood_likes bad_mood_likes    followers      polit_informed 
+##  Min.   : 6.50   Min.   :12.20   Min.   : 61.40   Min.   :0.600  
+##  1st Qu.:31.60   1st Qu.:39.08   1st Qu.: 76.47   1st Qu.:1.500  
+##  Median :45.90   Median :49.30   Median :116.30   Median :1.800  
+##  Mean   :43.04   Mean   :49.84   Mean   :124.76   Mean   :1.858  
+##  3rd Qu.:53.40   3rd Qu.:58.75   3rd Qu.:153.75   3rd Qu.:2.200  
+##  Max.   :89.20   Max.   :91.20   Max.   :336.50   Max.   :3.400  
+##  polit_campaign  polit_activism 
+##  Min.   :0.800   Min.   :0.900  
+##  1st Qu.:2.100   1st Qu.:2.400  
+##  Median :2.550   Median :2.900  
+##  Mean   :2.602   Mean   :2.977  
+##  3rd Qu.:3.100   3rd Qu.:3.500  
+##  Max.   :4.800   Max.   :5.500</code></pre>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Do you notice anything unusual in the output of this data ? Discuss with your neighbour and tutor.</p>
 </div>
@@ -685,7 +692,7 @@ Figure 2.7: You thinking
 <div id="cleaning-the-data" class="section level2 hasAnchor" number="2.8">
 <h2><span class="header-section-number">2.8</span> Cleaning the data<a href="data-wrangling-and-visualisation.html#cleaning-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It should now be clear that these data are unusual because it has a <strong>minimum value</strong> of <code>-999</code> in the <code>time_on_social</code> variable which is measured in hours (we can’t have negative time!).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
 <img src="images/Data_wrangling_and_visualisation/Back_To_The_Future.gif" alt="Negative time would be back to the future!" width="50%" />
 <p class="caption">
 Figure 2.8: Negative time would be back to the future!
@@ -726,12 +733,12 @@ Figure 2.8: Negative time would be back to the future!
 </blockquote>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-wrangling-and-visualisation.html#cb34-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> <span class="co">#pass the values from social_media to the filter function</span></span>
 <span id="cb34-2"><a href="data-wrangling-and-visualisation.html#cb34-2" tabindex="-1"></a>  <span class="fu">filter</span>(time_on_social <span class="sc">==</span> <span class="sc">-</span><span class="dv">999</span>) <span class="co">#keep all rows that are equal to -999 </span></span></code></pre></div>
-<pre><code>##    id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
-## 1 S24 14.4           -999     1            33.5           54.6     207.3            1.2            1.7
-## 2 S25 16.4           -999     1            13.5           41.3     190.0            1.3            1.9
-##   polit_activism
-## 1            2.0
-## 2            2.2</code></pre>
+<pre><code>##    id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1 S24 14.4           -999     1            33.5           54.6     207.3
+## 2 S25 16.4           -999     1            13.5           41.3     190.0
+##   polit_informed polit_campaign polit_activism
+## 1            1.2            1.7            2.0
+## 2            1.3            1.9            2.2</code></pre>
 <p>Great. That was our first pipe! Now what we want to do is pass the result of the filtering to the <code>count()</code> function, so that we can find out how many rows of the data frame had missing data for the <code>time_on_social</code> variable.</p>
 <blockquote>
 <p>Update your code in your script so that it matches what you see in the code block below, and check you get the same result.</p>
@@ -793,7 +800,7 @@ To make the basic canvas <code>ggplot()</code> requires two things:</p>
 <span id="cb41-2"><a href="data-wrangling-and-visualisation.html#cb41-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="co">#ggplot uses aesthetic (aes()) to understand what</span></span>
 <span id="cb41-3"><a href="data-wrangling-and-visualisation.html#cb41-3" tabindex="-1"></a><span class="co"># should be on the x and y axis</span></span></code></pre></div>
 <p>You should now see a blank canvas with only the y-axis labelled. This will pop up in the ‘Plots’ pane, which is the same place as where you viewed the ‘Files’ pane. The canvas is blank because we have not added any layers to the canvas yet.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
 <img src="images/Data_wrangling_and_visualisation/blank_canvas.png" alt="A blank canvas awaits our data-viz artistry" width="50%" />
 <p class="caption">
 Figure 2.9: A blank canvas awaits our data-viz artistry
@@ -811,7 +818,8 @@ Figure 2.9: A blank canvas awaits our data-viz artistry
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-wrangling-and-visualisation.html#cb42-1" tabindex="-1"></a>social_media_NA <span class="sc">%&gt;%</span></span>
 <span id="cb42-2"><a href="data-wrangling-and-visualisation.html#cb42-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
 <span id="cb42-3"><a href="data-wrangling-and-visualisation.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co"># adds a boxplot layer to the canvas</span></span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
 <p><img src="_main_files/figure-html/boxplot_ugly-1.png" width="672" /></p>
 </div>
 <div id="activity---tidy-up-the-x-axis" class="section level3 hasAnchor" number="2.11.3">
@@ -824,8 +832,9 @@ Figure 2.9: A blank canvas awaits our data-viz artistry
 <span id="cb44-2"><a href="data-wrangling-and-visualisation.html#cb44-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co">#ggplot uses aesthetic (aes()) to map axes. </span></span>
 <span id="cb44-3"><a href="data-wrangling-and-visualisation.html#cb44-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co">#creates a boxplot</span></span>
 <span id="cb44-4"><a href="data-wrangling-and-visualisation.html#cb44-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>() <span class="co">#this tells ggplot that the x-axis is categorical.</span></span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Ok, that is starting to look better. But let’s do one more thing. We can add labels to the axes using the <code>labs()</code> function.</p>
 </div>
 <div id="activity---add-some-labels" class="section level3 hasAnchor" number="2.11.4">
@@ -838,7 +847,8 @@ Figure 2.9: A blank canvas awaits our data-viz artistry
 <span id="cb46-3"><a href="data-wrangling-and-visualisation.html#cb46-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co">#creates a boxplot</span></span>
 <span id="cb46-4"><a href="data-wrangling-and-visualisation.html#cb46-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>() <span class="sc">+</span> <span class="co">#this tells ggplot that the x-axis is categorical.</span></span>
 <span id="cb46-5"><a href="data-wrangling-and-visualisation.html#cb46-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Time on social media (hours)&quot;</span>) <span class="co">#adds a y-axis label</span></span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
 <p><img src="_main_files/figure-html/boxplot_better-1.png" width="672" /></p>
 <p>There, that’s much better!</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
@@ -875,7 +885,7 @@ Figure 2.9: A blank canvas awaits our data-viz artistry
 <h2><span class="header-section-number">2.12</span> You are Free!<a href="data-wrangling-and-visualisation.html#you-are-free-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Well done! You have completed everything you need to for this week. If you have finished in a record time please consult with your tutor about what to do next. Otherwise we will see you next lab!</p>
 <p>Also, make sure to save your script when you’re done. This is your record of what you’ve done today, and you can refer back to it later. (One more hint for the road: you will refer back to it in future labs).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
 <img src="images/Data_wrangling_and_visualisation/Ight_Imma_Head_Out.jpg" alt="Students' reaction to this information." width="50%" />
 <p class="caption">
 Figure 2.10: Students’ reaction to this information.

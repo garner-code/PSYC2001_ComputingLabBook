@@ -494,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Warning:</strong> It is generally <strong>bad practice</strong> to go straight from the raw data to the results of a statistical test without first visualising the data.</p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
 <img src="images/Testing_our_first_hypothesis/Statistics_professors_reaction.gif" alt="Professors' reaction when you don't visualise data" width="50%" />
 <p class="caption">
 Figure 3.1: Professors’ reaction when you don’t visualise data
@@ -624,8 +624,10 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <p>We visualised the data so we could check the following things before running our statistical test:<br />
 1. Are the distributions of likes in each mood roughly normal?<br />
 2. Are there any obvious outliers that might affect the results of our statistical test?</p>
-<p>What do you think?
-&gt; Make a comment in your code in answer to both these questions. Discuss your comments with your tutor if you are unsure.</p>
+<p>What do you think?</p>
+<blockquote>
+<p>Make a comment in your code in answer to both these questions. Discuss your comments with your tutor if you are unsure.</p>
+</blockquote>
 </div>
 </div>
 <div id="descriptive-statistics" class="section level2 hasAnchor" number="3.5">
@@ -659,14 +661,14 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <div id="testing-hypotheses-manually" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Testing hypotheses manually<a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have had a look at the structure and descriptive statistics of our data we can have a go at using a t-test to compare the number of likes participants made in a good and bad mood. We could of course do this manually, by hand (as we have in the statistics tutorials). We have shown this below using the first 10 values for good and bad mood likes.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
 <img src="images/Testing_our_first_hypothesis/Manual_t-test_table.jpg" alt="t-test table" width="75%" />
 <p class="caption">
 Figure 3.2: t-test table
 </p>
 </div>
 <p>Thankfully, we have long since past the stone (pen) age so it is no longer necessary to do this by hand. We can get computers to do this for us!</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
 <img src="images/Testing_our_first_hypothesis/Space_odyssey.gif" alt="Handwritten statistiscs be like" width="50%" />
 <p class="caption">
 Figure 3.3: Handwritten statistiscs be like
@@ -680,7 +682,7 @@ Figure 3.3: Handwritten statistiscs be like
 <p>Have a look at the help for this function using the <code>?</code> syntax, much as you did in Section <a href="introduction-to-r.html#sec-get-help">1.5</a>.</p>
 </blockquote>
 <p>We recommend you type your request for t.test help info directly into the console. You should now see some helpful information in the Help pane.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
 <img src="images/Testing_our_first_hypothesis/t-test_help.png" alt="Handy t-test help" width="80%" />
 <p class="caption">
 Figure 3.4: Handy t-test help
@@ -732,7 +734,7 @@ Figure 3.4: Handy t-test help
 <div id="you-are-free-2" class="section level2 hasAnchor" number="3.8">
 <h2><span class="header-section-number">3.8</span> You are Free!<a href="sec-testing-first-hypothesis.html#you-are-free-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Well done you have finished for this week! Once you finish, please confirm with your tutor that you understand all the things.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
 <img src="images/Testing_our_first_hypothesis/Students_leaving.gif" alt="Students leaving evil statistics classes" width="50%" />
 <p class="caption">
 Figure 3.5: Students leaving evil statistics classes
@@ -753,20 +755,20 @@ Figure 3.5: Students leaving evil statistics classes
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-testing-first-hypothesis.html#cb66-1" tabindex="-1"></a>social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb66-2"><a href="sec-testing-first-hypothesis.html#cb66-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes_diff =</span> good_mood_likes <span class="sc">-</span> bad_mood_likes) <span class="co">#create a new column which is the difference between</span></span>
 <span id="cb66-3"><a href="sec-testing-first-hypothesis.html#cb66-3" tabindex="-1"></a><span class="co"># good and bad mood likes</span></span></code></pre></div>
-<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign
-## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2
-## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2
-## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7
-## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3
-## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9
-## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4
-##   polit_activism likes_diff
-## 1            3.6      -23.7
-## 2            2.6       -2.3
-## 3            3.0        4.7
-## 4            2.6        0.7
-## 5            3.3      -15.3
-## 6            3.9        6.7</code></pre>
+<pre><code>##   X id  age time_on_social urban good_mood_likes bad_mood_likes followers
+## 1 1 S1 15.2           3.06     1            22.8           46.5     173.3
+## 2 2 S2 16.0           2.18     1            46.0           48.3     144.3
+## 3 3 S3 16.8           1.92     1            50.8           46.1      76.5
+## 4 4 S4 15.6           2.61     1            29.9           29.2     171.7
+## 5 5 S5 17.1           3.24     1            37.1           52.4     109.5
+## 6 6 S6 15.7           2.44     1            26.9           20.2     157.5
+##   polit_informed polit_campaign polit_activism likes_diff
+## 1            2.3            3.2            3.6      -23.7
+## 2            1.6            2.2            2.6       -2.3
+## 3            1.9            2.7            3.0        4.7
+## 4            1.6            2.3            2.6        0.7
+## 5            2.0            2.9            3.3      -15.3
+## 6            2.4            3.4            3.9        6.7</code></pre>
 <p>Now, we’re going to need to save that dataframe to an object called social_media_diff, so that we can use it in the
 <code>t.test()</code> function.</p>
 <blockquote>
