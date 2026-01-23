@@ -195,7 +195,7 @@ write.csv(social_media_attitude, here("Data","PSYC2001_social-media-attitude.csv
 
 Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
 
-Looking for lines {#sec-look-lines}
+## Looking for lines {#sec-import-data}
 
 Now let`s visualise our data!  
 
@@ -308,6 +308,8 @@ cor.test(formula = ~ time_on_social + polit_attitude, data = social_media_attitu
 <strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
 :::
 
+> Add your answers to the questions above as a comment to your code.
+
 ### Activity - correlation using base R syntax
 
 The `cor.test()` function not only accepts formulas, but also base R syntax. In base R syntax, we specify the two variables to be correlated using the `x=` and `y=` arguments.
@@ -354,17 +356,9 @@ knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
 
 ### Bonus Activity - Urban vs Rural Correlations
 
-Would you expect the correlation between political attitude and time spent on social media to be the same for urban and rural participants?
+Would you expect the correlation between political attitude and time spent on social media to be the same for urban and rural participants? We can answer that!
 
-> Can you use the `filter()` function to create two new data frames: one containing only urban participants, and containing only rural participants? Then run correlation analyses from this tutorial, using your new data frames, to see if the correlation coefficients differ between the two groups.
-
-Also, remember to visualise the data for each group!
-
-### Bonus Activity - Piping out a summary of correlations for Urban vs Rural groups
-
-It is possible to get the correlation values for Urban vs Rural groups, by adding to the code from the previous activity.
-
-> Can you amend your code from the previous activity to use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation coefficient values between the `time_on_social` and `age` variables for Urban and Rural participants?
+> Can you take the `social_media_attitude` use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation coefficient values ($r$) between the `time_on_social` and `age` variables for Urban and Rural participants?
 
 Check how you previously used the `summarise()` and `group_by()` functions for clues!
 
@@ -372,7 +366,9 @@ Check how you previously used the `summarise()` and `group_by()` functions for c
 
 Sometimes it`s helpful to see all the correlations you are interested in at once. 
 
-> Can you use the `select()` and [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) function to create a pipe that takes the `social_media_attitude` data frame, and that produces a [correlation matrix](https://www.displayr.com/what-is-a-correlation-matrix/) that shows the correlations between `time_on_social`, `polit_attitude`, and `age`?
+> Can you use the `select()` and [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) function to create a pipe that takes the `social_media_attitude` data frame, and that produces a [correlation matrix](https://www.displayr.com/what-is-a-correlation-matrix/) that shows the correlations between all the variables you are interested in?
+
+**Important info** make sure to only pick continuous variables, if not you will likely wind up down a garden path of nefarious errors.
 
 This might be a tricky one. You could ask your favourite LLM for help, and then test and comment on the answer.
 

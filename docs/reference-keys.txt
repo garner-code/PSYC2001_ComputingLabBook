@@ -152,7 +152,6 @@ activity---correlation-for-the-other-pair-of-variables
 you-are-free-4
 bonus-exercises-3
 bonus-activity---urban-vs-rural-correlations
-bonus-activity---piping-out-a-summary-of-correlations-for-urban-vs-rural-groups
 bonus-activity---correlation-matrix
 linear-regression
 checking-installation-and-loading-packages-4
