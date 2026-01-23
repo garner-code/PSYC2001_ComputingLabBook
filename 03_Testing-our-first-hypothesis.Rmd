@@ -53,10 +53,11 @@ But you should know this, because you read the README.txt file already, right? :
 
 ## Loading our data ready for visualisation and analysis
 
-Every analysis you run will typically follow the same basic steps.
+Every analysis you run will typically follow the same basic steps.  
+
 1. Load the data.  
 2. Visualise the distributions to check the data look ok (not ok data has strange outliers, strange values, or strange distributions).  
-3. Get descriptive statistics and check they make sense.
+3. Get descriptive statistics and check they make sense.  
 4. Perform the inferential test.  
 5. Create a figure that provides a visual summary of the key statistical result.  
 
