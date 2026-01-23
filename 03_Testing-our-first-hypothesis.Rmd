@@ -53,7 +53,7 @@ But you should know this, because you read the README.txt file already, right? :
 
 ## Loading our data ready for visualisation and analysis
 
-Every analysis you run will typically follow the same basic steps.  
+When performing an analysis for an assignment, thesis, or publication, you will typically always follow the same basic steps. You will:  
 
 1. Load the data.  
 2. Visualise the distributions to check the data look ok (not ok data has strange outliers, strange values, or strange distributions).  
