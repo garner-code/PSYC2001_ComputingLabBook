@@ -424,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Find the code from a previous week that loads the packages <code>here</code> and <code>tidyverse</code>. Copy it to your script and run the code.</p>
 </blockquote>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="linear-regression.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
-<span id="cb110-2"><a href="linear-regression.html#cb110-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-regression.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
+<span id="cb111-2"><a href="linear-regression.html#cb111-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="investigating-linear-regressions" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Investigating linear regressions<a href="linear-regression.html#investigating-linear-regressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -464,14 +464,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Run the following code in your script to see what it does to the data frame.</p>
 </blockquote>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-regression.html#cb111-1" tabindex="-1"></a><span class="co"># Choose the columns, then pivot to longform</span></span>
-<span id="cb111-2"><a href="linear-regression.html#cb111-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span></span>
-<span id="cb111-3"><a href="linear-regression.html#cb111-3" tabindex="-1"></a>  <span class="fu">select</span>(id, time_on_social, polit_attitude) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
-<span id="cb111-4"><a href="linear-regression.html#cb111-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(                                   <span class="co"># go from wide -&gt; long</span></span>
-<span id="cb111-5"><a href="linear-regression.html#cb111-5" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(time_on_social, polit_attitude), <span class="co"># the two key measures</span></span>
-<span id="cb111-6"><a href="linear-regression.html#cb111-6" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">&quot;measure&quot;</span>,                    <span class="co"># which measure is this value from?</span></span>
-<span id="cb111-7"><a href="linear-regression.html#cb111-7" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>                       <span class="co"># the numeric value itself</span></span>
-<span id="cb111-8"><a href="linear-regression.html#cb111-8" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="linear-regression.html#cb112-1" tabindex="-1"></a><span class="co"># Choose the columns, then pivot to longform</span></span>
+<span id="cb112-2"><a href="linear-regression.html#cb112-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span></span>
+<span id="cb112-3"><a href="linear-regression.html#cb112-3" tabindex="-1"></a>  <span class="fu">select</span>(id, time_on_social, polit_attitude) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
+<span id="cb112-4"><a href="linear-regression.html#cb112-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(                                   <span class="co"># go from wide -&gt; long</span></span>
+<span id="cb112-5"><a href="linear-regression.html#cb112-5" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(time_on_social, polit_attitude), <span class="co"># the two key measures</span></span>
+<span id="cb112-6"><a href="linear-regression.html#cb112-6" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">&quot;measure&quot;</span>,                    <span class="co"># which measure is this value from?</span></span>
+<span id="cb112-7"><a href="linear-regression.html#cb112-7" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>                       <span class="co"># the numeric value itself</span></span>
+<span id="cb112-8"><a href="linear-regression.html#cb112-8" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now, we want to save this new longform data frame so that we can use it to make us some density plots</p>
 <blockquote>
 <p>Assign the new data frame to an object called <code>sma_long</code>. Check the result by running the line of code that says <code>head(sma_long)</code></p>
@@ -493,9 +493,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Amend the below code so that we can use it with the object <code>sma_long</code> instead of <code>social_media_likes</code>. Change the code so that <code>x =</code> takes the <code>value</code> column instead. Remove the <code>group</code> and <code>fill</code> arguments as we don’t have groups in our data right now.</p>
 </blockquote>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="linear-regression.html#cb113-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb113-2"><a href="linear-regression.html#cb113-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
-<span id="cb113-3"><a href="linear-regression.html#cb113-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="linear-regression.html#cb114-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb114-2"><a href="linear-regression.html#cb114-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
+<span id="cb114-3"><a href="linear-regression.html#cb114-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
 <p>When you are done, you should have something that looks like this:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Now, this is no good, as both the <code>polit_attitude</code> and <code>age</code> values are in one plot. We need to separate them! Luckily, there is a very hand function called <code>facet_wrap()</code> that will do this for you.
@@ -529,13 +529,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Complete the following line of code in your script, so that you are fitting a linear regression model that predicts <code>time_on_social</code> from <code>polit_attitude</code>, using the data frame <code>social_media_attitude</code>. The code is writted so that it assigns the output of the model to an object named <code>mod</code> (which is short for model).</p>
 </blockquote>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="linear-regression.html#cb115-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">formula =</span> ... <span class="sc">~</span> ..., <span class="at">data =</span> ... ) <span class="co"># time_on_social is on the left side of the tilde as it is being predicted by attitude </span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-regression.html#cb116-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">formula =</span> ... <span class="sc">~</span> ..., <span class="at">data =</span> ... ) <span class="co"># time_on_social is on the left side of the tilde as it is being predicted by attitude </span></span></code></pre></div>
 <p>The first thing we should do is look at what the <code>lm()</code> function passed to our object <code>model</code>.</p>
 <blockquote>
 <p>Run the following line of code in your script to see the output of the linear regression function.</p>
 </blockquote>
 <p>You will see what has been saved to the object <code>mod</code>.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-regression.html#cb116-1" tabindex="-1"></a>mod</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="linear-regression.html#cb117-1" tabindex="-1"></a>mod</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
@@ -557,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Run the following line of code in your script and examine the output of the <code>summary()</code> function, which appears in the console.</p>
 </blockquote>
 <p>You should see a table that looks like this:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="linear-regression.html#cb118-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="linear-regression.html#cb119-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
@@ -598,12 +598,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="activity---adding-a-line-of-best-fit-to-a-scatterplot" class="section level3 hasAnchor" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Activity - Adding a line of best fit to a scatterplot<a href="linear-regression.html#activity---adding-a-line-of-best-fit-to-a-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The line of best fit can easily be added to a <code>ggplot</code> graph by using the <code>geom_smooth</code> function. Below, we have pasted the code that plotted the scatterplot of political attitude against time spent on social media from last week, in Section <a href="#sec-look-lines"><strong>??</strong></a>. We have added one extra line of code that adds the line of best fit to the plot. Can you spot it?</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="linear-regression.html#cb120-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
-<span id="cb120-2"><a href="linear-regression.html#cb120-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
-<span id="cb120-3"><a href="linear-regression.html#cb120-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
-<span id="cb120-4"><a href="linear-regression.html#cb120-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
-<span id="cb120-5"><a href="linear-regression.html#cb120-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
-<span id="cb120-6"><a href="linear-regression.html#cb120-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="linear-regression.html#cb121-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb121-2"><a href="linear-regression.html#cb121-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb121-3"><a href="linear-regression.html#cb121-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
+<span id="cb121-4"><a href="linear-regression.html#cb121-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
+<span id="cb121-5"><a href="linear-regression.html#cb121-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
+<span id="cb121-6"><a href="linear-regression.html#cb121-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <blockquote>
 <p>Use the <code>?</code> operator to look up the help documentation for <code>geom_smooth()</code>. Find out what the <code>se =</code> argument stands for, and finish the comment in your code with a description of what it does.</p>
@@ -655,14 +655,14 @@ Figure 6.1: It almost over (I promise)
 <div id="final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work" class="section level3 hasAnchor" number="6.8.3">
 <h3><span class="header-section-number">6.8.3</span> Final Bonus Activity - Can you fix the bug to make this code work?<a href="linear-regression.html#final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is a block of code that is supposed to create a scatterplot of the Observed vs Predicted values from our linear regression model. The code has been commented so that you can understand what it is trying to do. However, there is a bug in the code that is stopping it from working.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="linear-regression.html#cb121-1" tabindex="-1"></a><span class="co"># Activity – Observed vs predicted plot</span></span>
-<span id="cb121-2"><a href="linear-regression.html#cb121-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> <span class="co"># take the data frame </span></span>
-<span id="cb121-3"><a href="linear-regression.html#cb121-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(mod)) <span class="sc">%&gt;%</span> <span class="co"># create a new column that contains the predicted value for each participant</span></span>
-<span id="cb121-4"><a href="linear-regression.html#cb121-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> predicted, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
-<span id="cb121-5"><a href="linear-regression.html#cb121-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># make a scatterplot, and make the dots kinda seethrough</span></span>
-<span id="cb121-6"><a href="linear-regression.html#cb121-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co"># add a 45 degree reference line. If predictions were perfect, all points would fall on this line</span></span>
-<span id="cb121-7"><a href="linear-regression.html#cb121-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Observed&quot;</span>) <span class="sc">+</span>  <span class="co"># define labels</span></span>
-<span id="cb121-8"><a href="linear-regression.html#cb121-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="linear-regression.html#cb122-1" tabindex="-1"></a><span class="co"># Activity – Observed vs predicted plot</span></span>
+<span id="cb122-2"><a href="linear-regression.html#cb122-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> <span class="co"># take the data frame </span></span>
+<span id="cb122-3"><a href="linear-regression.html#cb122-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(mod)) <span class="sc">%&gt;%</span> <span class="co"># create a new column that contains the predicted value for each participant</span></span>
+<span id="cb122-4"><a href="linear-regression.html#cb122-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> predicted, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb122-5"><a href="linear-regression.html#cb122-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># make a scatterplot, and make the dots kinda seethrough</span></span>
+<span id="cb122-6"><a href="linear-regression.html#cb122-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co"># add a 45 degree reference line. If predictions were perfect, all points would fall on this line</span></span>
+<span id="cb122-7"><a href="linear-regression.html#cb122-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Observed&quot;</span>) <span class="sc">+</span>  <span class="co"># define labels</span></span>
+<span id="cb122-8"><a href="linear-regression.html#cb122-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <p>If you run this code you should get the following error message. The important part for working out this bug is highlighted for you.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-55"></span>
 <img src="images/Linear_regression_in_R/bug.png" alt="The fiendish bug lies therein" width="50%" />

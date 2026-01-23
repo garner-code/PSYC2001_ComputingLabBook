@@ -531,7 +531,7 @@ Now you have this formula, let’s build the code that creates the political att
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
 <span id="cb100-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="sc">%&gt;%</span> <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span>
 <span id="cb100-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb100-3" tabindex="-1"></a>  <span class="fu">select</span>(id, urban, likes, followers) <span class="co">#selects only the specified columns from the data frame</span></span></code></pre></div>
-<p>The key piece of code we need to add to our code and adapt is the following:</p>
+<p>The key piece of code we need to add to our code and adapt so that we select only the relevant variables we want to keep (<code>id</code>, <code>time_on_social</code>,<code>polit_attitude</code>,<code>age</code>, <code>urban</code>) is the following:</p>
 <p><code>%&gt;%    select(id, urban, likes, followers)</code></p>
 <blockquote>
 <p>Copy and paste the key piece of code to the relevant place in your script, and run your code to get your refined data frame. Check the resulting data frame looks as you would expect using your preferred method.</p>
@@ -586,7 +586,10 @@ Figure 5.1: MFW people don’t visualise their data
 <span id="cb103-3"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb103-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
 <span id="cb103-4"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb103-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
 <span id="cb103-5"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb103-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="_main_files/figure-html/Scatterplot%20of%20time_on_social%20and%20attitude-1.png" width="672" /></p>
+<p><strong>Note:</strong> we get a warning message. The message is telling us that there are 2 rows containing missing values. That’s ok. We know this, because we turned the -999s in the <code>time_on_social</code> variable into NAs in Section <a href="data-wrangling-and-visualisation.html#sec-pipey">2.9.1</a>. We also learned then that there were 2 participants with missing data for <code>time_on_social</code>. So we can safely ignore this warning message. It is always a good idea to check, when getting a warning message, that you understand what is causing it.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>What do you think?</strong> Would you say there is a linear relationship between political attitude and time spent on social media?</p>
 </div>
@@ -610,8 +613,8 @@ Figure 5.1: MFW people don’t visualise their data
 <div id="calculate-the-correlation-coefficient" class="section level3 hasAnchor" number="5.6.1">
 <h3><span class="header-section-number">5.6.1</span> Calculate the correlation coefficient<a href="probing-statistical-relationships-with-correlation-analysis.html#calculate-the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Instead of calculating the correlation coefficient by hand, we can use a handy function called <code>cor</code> to do it for us. Even more handy, <code>cor</code> can be used in a pipe. So calculation the correlation coefficient between <code>time_on_social</code> and <code>polit_attitude</code> is as simple as:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb104-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
-<span id="cb104-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb104-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r =</span> <span class="fu">cor</span>(time_on_social, polit_attitude, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)) <span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation.</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb105-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb105-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb105-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r =</span> <span class="fu">cor</span>(time_on_social, polit_attitude, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)) <span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation.</span></span></code></pre></div>
 <pre><code>##           r
 ## 1 0.5125282</code></pre>
 <p>This tells us that there is a positive linear relationship between time spent on social media and political attitude, with a correlation coefficient of approximately 0.51. This suggests that as time spent on social media increases, political attitude also tends to increase. Given that correlation co-efficients range from -1 to +1, a value of 0.51 indicates a moderate positive correlation.</p>
@@ -631,7 +634,7 @@ Figure 5.1: MFW people don’t visualise their data
 <blockquote>
 <p>Run the following code in your script to run a correlation test on the relationship between <code>time_on_social</code> and <code>polit_attitude</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb106-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">formula =</span> <span class="sc">~</span> time_on_social <span class="sc">+</span> polit_attitude, <span class="at">data =</span> social_media_attitude, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>) <span class="co">#formula contains both numeric variables on the right hand side.</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb107-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">formula =</span> <span class="sc">~</span> time_on_social <span class="sc">+</span> polit_attitude, <span class="at">data =</span> social_media_attitude, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>) <span class="co">#formula contains both numeric variables on the right hand side.</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -643,7 +646,7 @@ Figure 5.1: MFW people don’t visualise their data
 ## sample estimates:
 ##       cor 
 ## 0.5125282</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb108-1" tabindex="-1"></a><span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation. </span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-1" tabindex="-1"></a><span class="co">#use = &quot;complete.obs&quot; removes all NA values from the correlation. </span></span></code></pre></div>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Have a look at the output in the console. What is the relationship between <code>time_on_social</code> and <code>attitude</code>? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?</p>
 </div>
@@ -659,8 +662,8 @@ Figure 5.1: MFW people don’t visualise their data
 <p>Complete the following code in your script and run it to check you get the same output as when you ran a correlation test using the formula method.</p>
 </blockquote>
 <p>Use the code from Section <a href="sec-testing-first-hypothesis.html#sec-conducting-paired-t-test">3.7.1</a> as a guide, if you need.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> social_media_attitude<span class="sc">$</span>..., </span>
-<span id="cb109-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb109-2" tabindex="-1"></a>         <span class="at">y =</span> social_media_attitude<span class="sc">$</span>..., <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-1" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> social_media_attitude<span class="sc">$</span>..., </span>
+<span id="cb110-2"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb110-2" tabindex="-1"></a>         <span class="at">y =</span> social_media_attitude<span class="sc">$</span>..., <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
 <p><strong>Which method should I use?</strong> It will largely come down to your preference. You might prefer to think about the correlation in terms of your <code>x</code> variable and your <code>y</code> variable, or the formula may make more sense to you. The great thing about coding is that you can use the solution that suits you best.</p>
 </div>
 </div>

@@ -225,7 +225,7 @@ We have given you the code for the first scatterplot.
 
 You should see a scatterplot that looks like the one below.
 
-```{r Scatterplot of time_on_social and attitude, warning=FALSE}
+```{r Scatterplot of time_on_social and attitude}
 
 social_media_attitude %>% 
   ggplot(aes(x = polit_attitude, y = time_on_social)) + # set up the canvas
@@ -234,6 +234,8 @@ social_media_attitude %>%
   theme_classic() # make pretty
 
 ```
+
+**Note:** we get a warning message. The message is telling us that there are 2 rows containing missing values. That's ok. We know this, because we turned the -999s in the `time_on_social` variable into NAs in Section \@ref(sec-pipey). We also learned then that there were 2 participants with missing data for `time_on_social`. So we can safely ignore this warning message. It is always a good idea to check, when getting a warning message, that you understand what is causing it.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>What do you think?</strong> Would you say there is a linear relationship between political attitude and time spent on social media?
