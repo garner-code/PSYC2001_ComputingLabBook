@@ -375,6 +375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="linear-regression.html"><a href="linear-regression.html#lets-get-the-data-into-shape-for-some-viz"><i class="fa fa-check"></i><b>6.3</b> Let`s get the data into shape for some viz</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="linear-regression.html"><a href="linear-regression.html#activity---select-and-pivot-to-longform"><i class="fa fa-check"></i><b>6.3.1</b> Activity - select and pivot to longform</a></li>
+<li class="chapter" data-level="6.3.2" data-path="linear-regression.html"><a href="linear-regression.html#activity---examining-distributions-with-density-plots"><i class="fa fa-check"></i><b>6.3.2</b> Activity - examining distributions with density plots</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-in-r"><i class="fa fa-check"></i><b>6.4</b> Linear regression in R</a>
 <ul>
@@ -391,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="linear-regression.html"><a href="linear-regression.html#bonus-exercises-4"><i class="fa fa-check"></i><b>6.8</b> ⭐ Bonus exercises</a>
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="linear-regression.html"><a href="linear-regression.html#bonus-activity---tidying-up-the-scatterplot"><i class="fa fa-check"></i><b>6.8.1</b> Bonus Activity - Tidying up the Scatterplot</a></li>
-<li class="chapter" data-level="6.8.2" data-path="linear-regression.html"><a href="linear-regression.html#bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-seperate-plots"><i class="fa fa-check"></i><b>6.8.2</b> Bonus Activity - Visualising the line of best fit for Urban and Rural participants on seperate plots</a></li>
+<li class="chapter" data-level="6.8.2" data-path="linear-regression.html"><a href="linear-regression.html#bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-separate-plots"><i class="fa fa-check"></i><b>6.8.2</b> Bonus Activity - Visualising the line of best fit for Urban and Rural participants on separate plots</a></li>
 <li class="chapter" data-level="6.8.3" data-path="linear-regression.html"><a href="linear-regression.html#final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work"><i class="fa fa-check"></i><b>6.8.3</b> Final Bonus Activity - Can you fix the bug to make this code work?</a></li>
 </ul></li>
 </ul></li>
@@ -420,12 +421,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This week, we are going to continue to explore relationships between continuous variables, using simple linear regression.</p>
 <div id="checking-installation-and-loading-packages-4" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Checking installation and loading packages<a href="linear-regression.html#checking-installation-and-loading-packages-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As usual we first always check and load in our required packages <code>here</code> and <code>tidyverse</code>.</p>
+<p>As usual we first always load in our required packages <code>here</code> and <code>tidyverse</code>.</p>
 <blockquote>
 <p>Find the code from a previous week that loads the packages <code>here</code> and <code>tidyverse</code>. Copy it to your script and run the code.</p>
 </blockquote>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-regression.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
-<span id="cb111-2"><a href="linear-regression.html#cb111-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="investigating-linear-regressions" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Investigating linear regressions<a href="linear-regression.html#investigating-linear-regressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -438,10 +437,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>polit_attitude</code> - political attitude score composed of a weighted sum of the subsales <code>informed</code>, <code>campaign</code> and <code>activism</code></p>
 <div id="activity---formulate-your-prediction-about-predictions" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Activity - Formulate your prediction about predictions<a href="linear-regression.html#activity---formulate-your-prediction-about-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before we begin coding, let’s think about our research question. We learned last week that there is a statistical relationship between political attitude and time spent on social media. This tells us that we should be able to somewhat predict time spent on social media from political attitude.</p>
+<p>Before we begin coding, let’s think about our research question. We learned last week that there is a statistically significant correlation between political attitude and time spent on social media. This tells us that we should be able to somewhat predict time spent on social media from political attitude.</p>
 <p>What do you think the nature of this predictive relationship will be? Will political attitude positively or negatively predict time spent on social media? How much of the variance in time spent on social media would you expect to be predicted by political attitude?</p>
 <blockquote>
-<p>Write in the comments of your code whether you expect a positive or negative relationship, and if you are feeling statistically powerful, what proportion of variance of time spent on social media you would expect to be accounted for by political attitude.</p>
+<p>Write in the comments of your code whether you expect a positive or negative relationship, and if you are feeling statistically empowered, what proportion of variance of time spent on social media you would expect to be accounted for by political attitude.</p>
 </blockquote>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> What is a reasonable null and alternate hypothesis? Add this to the comments in your code.</p>
@@ -449,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="activity---loading-the-data-set" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Activity - loading the data set<a href="linear-regression.html#activity---loading-the-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First, we need to load our data set for today. This week we will be using the <code>PSYC2001-social-media-attitude</code> data set which includes the <code>attitude</code> variable we created last week.</p>
+<p>First, we need to load our data set for today. This week we will be using the <code>PSYC2001_social-media-attitude.csv</code> data set which includes the <code>attitude</code> variable we created last week.</p>
 <blockquote>
 <p>Copy the code you have used to load the data in previous weeks, and paste it into your script. Amend the code so that you are loading the correct data set for today. Make sure you assign it to an object named <code>social_media_attitude</code>. Check the data set is as you think by running the line of code <code>head(social_media_attitude)</code>.</p>
 </blockquote>
@@ -460,22 +459,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Before fitting the regression, let’s look at the distributions of our key variables using density plots, similar to as we did in Section <a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes">3.4.1</a>. Remember, visualising first helps us spot outliers and get a feel for the data—remember: <strong>garbage in, garbage out</strong>. We’ll reuse the same tidy workflow you used back then: we will select() the columns we need, pivot_longer() into longform, then make density plots.</p>
 <div id="activity---select-and-pivot-to-longform" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Activity - select and pivot to longform<a href="linear-regression.html#activity---select-and-pivot-to-longform" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The goal: move the values from <code>time_on_social and polit_attitude</code> into one column and keep a second column that labels which variable the value came from.</p>
+<p>The goal: move the values from <code>time_on_social</code> and <code>polit_attitude</code> into one column and keep a second column that labels which variable the value came from.</p>
 <blockquote>
 <p>Run the following code in your script to see what it does to the data frame.</p>
 </blockquote>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="linear-regression.html#cb112-1" tabindex="-1"></a><span class="co"># Choose the columns, then pivot to longform</span></span>
-<span id="cb112-2"><a href="linear-regression.html#cb112-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span></span>
-<span id="cb112-3"><a href="linear-regression.html#cb112-3" tabindex="-1"></a>  <span class="fu">select</span>(id, time_on_social, polit_attitude) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
-<span id="cb112-4"><a href="linear-regression.html#cb112-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(                                   <span class="co"># go from wide -&gt; long</span></span>
-<span id="cb112-5"><a href="linear-regression.html#cb112-5" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(time_on_social, polit_attitude), <span class="co"># the two key measures</span></span>
-<span id="cb112-6"><a href="linear-regression.html#cb112-6" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">&quot;measure&quot;</span>,                    <span class="co"># which measure is this value from?</span></span>
-<span id="cb112-7"><a href="linear-regression.html#cb112-7" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>                       <span class="co"># the numeric value itself</span></span>
-<span id="cb112-8"><a href="linear-regression.html#cb112-8" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-regression.html#cb111-1" tabindex="-1"></a><span class="co"># Choose the columns, then pivot to longform</span></span>
+<span id="cb111-2"><a href="linear-regression.html#cb111-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span></span>
+<span id="cb111-3"><a href="linear-regression.html#cb111-3" tabindex="-1"></a>  <span class="fu">select</span>(id, time_on_social, polit_attitude) <span class="sc">%&gt;%</span> <span class="co"># choose columns</span></span>
+<span id="cb111-4"><a href="linear-regression.html#cb111-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(                                   <span class="co"># go from wide -&gt; long</span></span>
+<span id="cb111-5"><a href="linear-regression.html#cb111-5" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(time_on_social, polit_attitude), <span class="co"># the two key measures</span></span>
+<span id="cb111-6"><a href="linear-regression.html#cb111-6" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">&quot;measure&quot;</span>,                    <span class="co"># which measure is this value from?</span></span>
+<span id="cb111-7"><a href="linear-regression.html#cb111-7" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>                       <span class="co"># the numeric value itself</span></span>
+<span id="cb111-8"><a href="linear-regression.html#cb111-8" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now, we want to save this new longform data frame so that we can use it to make us some density plots</p>
 <blockquote>
 <p>Assign the new data frame to an object called <code>sma_long</code>. Check the result by running the line of code that says <code>head(sma_long)</code></p>
 </blockquote>
+<p>Here, ‘sma’ stands for ‘social_media_attitude’. We shortened the name in a meaningful way to make it easier to type, and to make it easier to follow the code. (The shortening is meaningful because we can still tell what the object is about when it is called <code>sma_</code>!)</p>
 <p>You should see the following:</p>
 <pre><code>## # A tibble: 6 × 3
 ##   id    measure        value
@@ -489,17 +489,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p>Helpful fact: In the longform data frame, each participant now has two rows (one for <code>time_on_social</code>, one for <code>polit_attitude</code>).</p>
 </div>
+<p>The eagle-eyed among you will have noticed that R is calling your new data frame a ‘tibble’. Tibbles are a special type of data frame that are part of the <code>tidyverse</code> package. They have some nice features that make them easier to work with than regular data frames, such as better printing and subsetting. Don’t worry too much about tibbles for now, but just know that they are bascially a data frame, and that everything you know about data frames applies to tibbles.</p>
+</div>
+<div id="activity---examining-distributions-with-density-plots" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Activity - examining distributions with density plots<a href="linear-regression.html#activity---examining-distributions-with-density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we want to plot both the <code>polit_informed</code> and <code>time_on_social</code> variables as density plots. As we have already written code to make a density plot in Section <a href="sec-testing-first-hypothesis.html#sec-densities">3.4.2</a>, let’s take that code and adapt it for our current purposes. That code is below (which will also be found in your script).</p>
 <blockquote>
 <p>Amend the below code so that we can use it with the object <code>sma_long</code> instead of <code>social_media_likes</code>. Change the code so that <code>x =</code> takes the <code>value</code> column instead. Remove the <code>group</code> and <code>fill</code> arguments as we don’t have groups in our data right now.</p>
 </blockquote>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="linear-regression.html#cb114-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
-<span id="cb114-2"><a href="linear-regression.html#cb114-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
-<span id="cb114-3"><a href="linear-regression.html#cb114-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="linear-regression.html#cb113-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb113-2"><a href="linear-regression.html#cb113-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
+<span id="cb113-3"><a href="linear-regression.html#cb113-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
 <p>When you are done, you should have something that looks like this:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
-<p>Now, this is no good, as both the <code>polit_attitude</code> and <code>age</code> values are in one plot. We need to separate them! Luckily, there is a very hand function called <code>facet_wrap()</code> that will do this for you.
-<code>facet_wrap</code> is your friend. To use the <code>facet_wrap()</code> function, we use the formula method, but we only need to put something on the right hand side, and that something is the name of the variable that we want to split up the plots by.</p>
+<p>Now, this is no good, as we have a density plot of the variable <code>value</code> which contains the rows for both the <code>polit_attitude</code> and <code>age</code> values. And we want separate density plots, one for <code>polit_attitude</code> and one for <code>age</code>. We need to tell <code>ggplot</code> to separate them!</p>
+<p>Luckily, there is a very handy function called <code>facet_wrap()</code> that will do this for you.</p>
+<p><code>facet_wrap</code> is your friend. To use the <code>facet_wrap()</code> function, we use the formula method, but we only need to put something on the right hand side, and that something is the name of the variable that we want to split up the plots by.</p>
 <blockquote>
 <p>Add the piece of code <code>+ facet_wrap(~measure)</code> to your existing code you wrote to plot the density of the data. Run the code. You will know you have succeeded when you behold the same plot as below.</p>
 </blockquote>
@@ -508,34 +513,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>Excellent. We have plots.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
-<p><strong>Question:</strong> Would you say the variables are normally distributed? Are you happy the data have met the assumptions for the regression analysis?</p>
+<p><strong>Question:</strong> Would you say the variables are normally distributed? What values for <code>polit_attitude</code> and <code>time_on_social</code> are more likely and which are less likely? Do these values seem sensible, given the scales for political attitude (0-7), and your experiences with social media?</p>
 </div>
 </div>
 </div>
 <div id="linear-regression-in-r" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Linear regression in R<a href="linear-regression.html#linear-regression-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The difference between a regression and correlation is that instead of looking for a statistical relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we are asking how well we can predict <span class="math inline">\(y\)</span> on the basis of <span class="math inline">\(x\)</span>. Like if we were stuck on a desert island with only <span class="math inline">\(x\)</span>, how much would we know about what <span class="math inline">\(y\)</span> is doing?</p>
+<p>The difference between a regression and correlation is that instead of looking for a statistical relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we are asking how well we can predict <span class="math inline">\(y\)</span> on the basis of <span class="math inline">\(x\)</span>. <span class="math inline">\(x\)</span> is our predictor variable, and <span class="math inline">\(y\)</span> is what is being predicted, which we refer to as our criterion variable or our dependent variable (DV). Running a regression is like asking “if we were stuck on a desert island with only <span class="math inline">\(x\)</span>, how much would we know about what <span class="math inline">\(y\)</span> is doing?”</p>
 <div id="activity---fitting-a-linear-regression-model" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Activity - fitting a linear regression model<a href="linear-regression.html#activity---fitting-a-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s run a simple linear regression to determine how well political attitude predicts the amount of time spent on social media. To do this we can we can fit a linear regression model using the <code>lm()</code> function.</p>
 <blockquote>
 <p>In the console, use the <code>?</code> syntax to look up the help documentation for the <code>lm()</code> function. Write in your comments the first two arguments required for this function, and your guess as to what each argument is asking for. <strong>Hint:</strong> scrolling down to look at the examples may help you work it out.</p>
 </blockquote>
-<p>The first argument is <code>formula</code>, which is where we specify the dependent and independent variables in our regression. We have already used formulas in Sections <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a> and <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form">5.7.1</a>. In fact, the formula we need looks very similar to the one in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, except that we now have a different DV, and a continuous predictor rather than an IV.</p>
+<p>You need to complete the unfinished comment in your code that looks like this:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="linear-regression.html#cb115-1" tabindex="-1"></a><span class="co"># 1. the first two arguments for lm() are...</span></span></code></pre></div>
+<p>The first argument is <code>formula</code>, which is where we specify the dependent and independent variables in our regression. We have already used formulas in Sections <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a> and <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-cor-form">5.7.1</a>. In fact, the formula we need looks very similar to the one in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, except that we now have a different DV (or criterion), and a continuous predictor rather than a categorical IV.</p>
 <blockquote>
-<p>Complete the following comment in your code with the formula that you will need to predict the time spent on social media from political attitude.</p>
+<p>Write in the comments of your code the formula that you will need to predict the time spent on social media from political attitude scores.</p>
 </blockquote>
+<p>Complete the unfinished comment in your code that looks like this:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-regression.html#cb116-1" tabindex="-1"></a><span class="co"># 2. the formula I need to use is ... </span></span></code></pre></div>
 <p>The second argument is <code>data</code>, which, just like in Section <a href="testing-for-differences-between-groups.html#sec-formula-for-independence">4.6.1</a>, is where we specify the data frame that contains our variables.</p>
 <blockquote>
 <p>Complete the following line of code in your script, so that you are fitting a linear regression model that predicts <code>time_on_social</code> from <code>polit_attitude</code>, using the data frame <code>social_media_attitude</code>. The code is writted so that it assigns the output of the model to an object named <code>mod</code> (which is short for model).</p>
 </blockquote>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-regression.html#cb116-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">formula =</span> ... <span class="sc">~</span> ..., <span class="at">data =</span> ... ) <span class="co"># time_on_social is on the left side of the tilde as it is being predicted by attitude </span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="linear-regression.html#cb117-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">formula =</span> ... <span class="sc">~</span> ..., <span class="at">data =</span> ... ) </span></code></pre></div>
 <p>The first thing we should do is look at what the <code>lm()</code> function passed to our object <code>model</code>.</p>
 <blockquote>
-<p>Run the following line of code in your script to see the output of the linear regression function.</p>
+<p>Run the following line of code in your script to see what was saved to the object <code>mod</code> by the <code>lm()</code> function.</p>
 </blockquote>
 <p>You will see what has been saved to the object <code>mod</code>.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="linear-regression.html#cb117-1" tabindex="-1"></a>mod</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="linear-regression.html#cb118-1" tabindex="-1"></a>mod</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
@@ -544,9 +553,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    (Intercept)  polit_attitude  
 ##         1.2853          0.4837</code></pre>
 <p>You can see that there is a documentation of how <code>lm()</code> was used (After ‘Call:’). It can be good to check this so that you can be sure you ran the correct model.</p>
-<p>After that, there are two coefficients output. The first is the Intercept (which we have referred to as <span class="math inline">\(a\)</span> in the lectures). The second is the sloped of the regression line (which we referred to as <span class="math inline">\(\mathrm{Beta}\)</span> in the lectures).</p>
+<p>After that, there are two coefficients output. The first is the Intercept (which we have referred to as <span class="math inline">\(a\)</span> in the lectures). The second is the slope of the regression line (which we referred to as <span class="math inline">\(\mathrm{Beta}\)</span> in the lectures).</p>
 <blockquote>
-<p>Use the two co-efficients to write a regression equation that predicts time spent on social media on the basis of political attitude in the comments in your code. Is the regression co-efficient positive or negative? Is this what you expected?</p>
+<p>Use the two coefficients to write a regression equation that predicts time spent on social media on the basis of political attitude in the comments in your code. Is the regression coefficient positive or negative? Is this what you expected?</p>
 </blockquote>
 </div>
 <div id="activity---how-good-is-our-model" class="section level3 hasAnchor" number="6.4.2">
@@ -557,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Run the following line of code in your script and examine the output of the <code>summary()</code> function, which appears in the console.</p>
 </blockquote>
 <p>You should see a table that looks like this:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="linear-regression.html#cb119-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="linear-regression.html#cb120-1" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = time_on_social ~ polit_attitude, data = social_media_attitude)
@@ -580,6 +589,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Identify the <span class="math inline">\(R^2\)</span> value in the output of the <code>summary()</code> function, and write it in the comments of your code. Further, identify the F statistic, degrees of freedom and p-value associated with the overall model fit, and write these in the comments of your code too. Finish with a brief comment about whether the result is as you expected or not.</p>
 </blockquote>
+<p><strong>Note</strong>: R refers to the <span class="math inline">\(R^2\)</span> value as ‘Multiple R-squared’ which is not the technically correct name when there is only one predictor in the model (the technically correct name is ‘R-squared’). R is just covering its bases here, assuming that one day you will have multiple predictors (PSYC3371, anyone?) and thus using the term ‘Multiple R-squared’ covers all the cases there might be, including the particular case of R-squared.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Info:</strong> There are additional statistics that are output from the <code>lm()</code> model. We can leave them for future us at this point, but if you always need to unwrap your gifts immediately then you can read this blog <a href="https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R">here</a> to find out more.</p>
 </div>
@@ -589,7 +599,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> Writing up results and conclusions<a href="linear-regression.html#writing-up-results-and-conclusions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is how you would write up the results of the linear regression we have just conducted.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
-<p><strong>Results:</strong> A simple linear regression was performed to evaluate the extent that political attitude predicted the amount of time spent on social media. It was found that political attitude weakly predicted the amount of time spent on social media (F(1,56) = 19.95,p &lt; 0.01, R<sup>2</sup> = 0.26).</p>
+<p><strong>Results:</strong> A simple linear regression was performed to evaluate the extent that political attitude predicted the amount of time spent on social media. It was found that political attitude predicted the amount of time spent on social media to an extent that was statistically significant (<span class="math inline">\(F\)</span>(1,56) = 19.95, <span class="math inline">\(p\)</span> &lt; .01, <span class="math inline">\(\mathrm{R}^2\)</span> = 0.26).</p>
 </div>
 </div>
 <div id="plotting-our-results" class="section level2 hasAnchor" number="6.6">
@@ -597,13 +607,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To show how well a simple linear regression captures the relationship between two variables you should include a straight line of ‘best fit’ on a scatterplot. This is incredibly useful at visually informing the reader of the linear predictive relationship between variables. (Un)Surprisingly, most people (including researchers) are quite bad at guessing the strength of linear relationships using scatterplots alone !</p>
 <div id="activity---adding-a-line-of-best-fit-to-a-scatterplot" class="section level3 hasAnchor" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Activity - Adding a line of best fit to a scatterplot<a href="linear-regression.html#activity---adding-a-line-of-best-fit-to-a-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The line of best fit can easily be added to a <code>ggplot</code> graph by using the <code>geom_smooth</code> function. Below, we have pasted the code that plotted the scatterplot of political attitude against time spent on social media from last week, in Section <a href="#sec-look-lines"><strong>??</strong></a>. We have added one extra line of code that adds the line of best fit to the plot. Can you spot it?</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="linear-regression.html#cb121-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
-<span id="cb121-2"><a href="linear-regression.html#cb121-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
-<span id="cb121-3"><a href="linear-regression.html#cb121-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
-<span id="cb121-4"><a href="linear-regression.html#cb121-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
-<span id="cb121-5"><a href="linear-regression.html#cb121-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define labels</span></span>
-<span id="cb121-6"><a href="linear-regression.html#cb121-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<p>The line of best fit can easily be added to a <code>ggplot</code> graph by using the <code>geom_smooth</code> function. Below, we have pasted the code that plotted the scatterplot of political attitude against time spent on social media from last week, in Section <a href="probing-statistical-relationships-with-correlation-analysis.html#sec-scatterplots">5.5.1</a>. We have added one extra line of code that adds the line of best fit to the plot. Can you spot it?</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="linear-regression.html#cb122-1" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> </span>
+<span id="cb122-2"><a href="linear-regression.html#cb122-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> polit_attitude, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb122-3"><a href="linear-regression.html#cb122-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span> <span class="co"># make a scatterplot</span></span>
+<span id="cb122-4"><a href="linear-regression.html#cb122-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
+<span id="cb122-5"><a href="linear-regression.html#cb122-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define axis labels</span></span>
+<span id="cb122-6"><a href="linear-regression.html#cb122-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <blockquote>
 <p>Use the <code>?</code> operator to look up the help documentation for <code>geom_smooth()</code>. Find out what the <code>se =</code> argument stands for, and finish the comment in your code with a description of what it does.</p>
@@ -643,26 +653,26 @@ Figure 6.1: It almost over (I promise)
 <p>Can you alter the colours of the line of best fit and the shaded area so that it fits better with the colour scheme of the rest of the plot? Can you find some examples of how to do this on stackoverflow.com, or can an LLM help you find the answer?</p>
 </blockquote>
 </div>
-<div id="bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-seperate-plots" class="section level3 hasAnchor" number="6.8.2">
-<h3><span class="header-section-number">6.8.2</span> Bonus Activity - Visualising the line of best fit for Urban and Rural participants on seperate plots<a href="linear-regression.html#bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-seperate-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-separate-plots" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Bonus Activity - Visualising the line of best fit for Urban and Rural participants on separate plots<a href="linear-regression.html#bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-separate-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It could be useful to know whether the predictive relationship between political attitude and time on social is comparable for Urban and Rural participants.</p>
 <blockquote>
 <p>Can you amend your code for the scatterplot with the line of best fit, so that the plots for Urban and Rural participants are shown on separate panels?</p>
 </blockquote>
 <p><strong>Hint:</strong> You have already used the function that will do this for you earlier in this section.</p>
-<p>For an extra level up, can you change the aesthetics so that the points are coloured by <code>location</code> (Urban or Rural), and the line of best fit is also coloured by <code>location</code>?</p>
+<p>For an extra level up, can you change the aesthetics so that the points are coloured by <code>urban</code> (Urban or Rural), and the line of best fit is also coloured by <code>urban</code>?</p>
 </div>
 <div id="final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work" class="section level3 hasAnchor" number="6.8.3">
 <h3><span class="header-section-number">6.8.3</span> Final Bonus Activity - Can you fix the bug to make this code work?<a href="linear-regression.html#final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Below is a block of code that is supposed to create a scatterplot of the Observed vs Predicted values from our linear regression model. The code has been commented so that you can understand what it is trying to do. However, there is a bug in the code that is stopping it from working.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="linear-regression.html#cb122-1" tabindex="-1"></a><span class="co"># Activity – Observed vs predicted plot</span></span>
-<span id="cb122-2"><a href="linear-regression.html#cb122-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> <span class="co"># take the data frame </span></span>
-<span id="cb122-3"><a href="linear-regression.html#cb122-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(mod)) <span class="sc">%&gt;%</span> <span class="co"># create a new column that contains the predicted value for each participant</span></span>
-<span id="cb122-4"><a href="linear-regression.html#cb122-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> predicted, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
-<span id="cb122-5"><a href="linear-regression.html#cb122-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># make a scatterplot, and make the dots kinda seethrough</span></span>
-<span id="cb122-6"><a href="linear-regression.html#cb122-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co"># add a 45 degree reference line. If predictions were perfect, all points would fall on this line</span></span>
-<span id="cb122-7"><a href="linear-regression.html#cb122-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Observed&quot;</span>) <span class="sc">+</span>  <span class="co"># define labels</span></span>
-<span id="cb122-8"><a href="linear-regression.html#cb122-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
+<p>This one is fiendish! Below is a block of code that is supposed to create a scatterplot of the Observed vs Predicted values from our linear regression model. The code has been commented so that you can understand what it is trying to do. However, there is a bug in the code that is stopping it from working.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="linear-regression.html#cb123-1" tabindex="-1"></a><span class="co"># Activity – Observed vs predicted plot</span></span>
+<span id="cb123-2"><a href="linear-regression.html#cb123-2" tabindex="-1"></a>social_media_attitude <span class="sc">%&gt;%</span> <span class="co"># take the data frame </span></span>
+<span id="cb123-3"><a href="linear-regression.html#cb123-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(mod)) <span class="sc">%&gt;%</span> <span class="co"># create a new column that contains the predicted value for each participant</span></span>
+<span id="cb123-4"><a href="linear-regression.html#cb123-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> predicted, <span class="at">y =</span> time_on_social)) <span class="sc">+</span> <span class="co"># set up the canvas</span></span>
+<span id="cb123-5"><a href="linear-regression.html#cb123-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># make a scatterplot, and make the dots kinda seethrough</span></span>
+<span id="cb123-6"><a href="linear-regression.html#cb123-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co"># add a 45 degree reference line. If predictions were perfect, all points would fall on this line</span></span>
+<span id="cb123-7"><a href="linear-regression.html#cb123-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Observed&quot;</span>) <span class="sc">+</span>  <span class="co"># define labels</span></span>
+<span id="cb123-8"><a href="linear-regression.html#cb123-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <p>If you run this code you should get the following error message. The important part for working out this bug is highlighted for you.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-55"></span>
 <img src="images/Linear_regression_in_R/bug.png" alt="The fiendish bug lies therein" width="50%" />
@@ -670,7 +680,7 @@ Figure 6.1: It almost over (I promise)
 Figure 6.2: The fiendish bug lies therein
 </p>
 </div>
-<p>The other clue I will give you is that you can check how many rows are in a data frame by using the <code>nrow()</code> function. For example, if you run the line of code <code>nrow(social_media_attitude)</code>, you will see how many rows are in that data frame.</p>
+<p>The other clue I will give you is that you can check how many rows are in a data frame by using the <code>nrow()</code> function. For example, if you run the line of code <code>nrow(social_media_attitude)</code>, you will see how many rows are in that data frame. (You can also look at <code>social_media_attitude</code> in the Environment pane in RStudio to see how many rows it has).</p>
 <p>The very last clue is in Section <a href="data-wrangling-and-visualisation.html#sec-pipey">2.9.1</a>.</p>
 <p>OK, the last last clue is that there is a <code>tidyverse</code> function that will help you.</p>
 <p>Good luck!</p>

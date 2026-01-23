@@ -162,6 +162,7 @@ activity---formulate-your-prediction-about-predictions
 activity---loading-the-data-set
 lets-get-the-data-into-shape-for-some-viz
 activity---select-and-pivot-to-longform
+activity---examining-distributions-with-density-plots
 linear-regression-in-r
 activity---fitting-a-linear-regression-model
 activity---how-good-is-our-model
@@ -172,5 +173,5 @@ activity---level-up
 you-are-free-5
 bonus-exercises-4
 bonus-activity---tidying-up-the-scatterplot
-bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-seperate-plots
+bonus-activity---visualising-the-line-of-best-fit-for-urban-and-rural-participants-on-separate-plots
 final-bonus-activity---can-you-fix-the-bug-to-make-this-code-work
