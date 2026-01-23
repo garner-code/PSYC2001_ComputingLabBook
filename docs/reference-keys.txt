@@ -94,7 +94,7 @@ checking-installation-and-loading-packages-1
 activity---load-packages-using-the-library-function
 developing-our-hypotheses
 activity---defining-our-hypotheses
-visualising-our-data
+loading-our-data-ready-for-visualisation-and-analysis
 activity---loading-in-the-data
 visualising-is-important
 density-plots-are-useful-and-pretty
@@ -119,7 +119,7 @@ activity---load-in-data-and-check-it
 wrangling-our-data
 sec-new-likes
 activity---defining-factors
-visualising-our-data-1
+visualising-our-data
 activity---adapting-our-previous-code-to-make-new-histograms
 next-step-descriptive-statistics
 activity---adapt-the-code-to-get-the-mean-and-standard-deviations-for-likes-and-followers
