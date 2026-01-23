@@ -150,7 +150,7 @@ It is going to be useful for us to save the data frame that contains this new va
 
 Our `social_media_attitude` data frame has a lot of variables that we don't need for this analysis, or the analysis we will run next week. So let's tidy up the data a bit. We'll reduce our data frame so that it only contains the columns: `id`, `time_on_social`, `polit_attitude`, `age`, and `urban`.
 
-For that, we can use the `select()` function, as we did in Section /@ref(sec-new-likes). Here is the relevant code from that section again:
+For that, we can use the `select()` function, as we did in Section \@ref(sec-new-likes). Here is the relevant code from that section again:
 
 ```{r, old select code, eval=FALSE}
 
