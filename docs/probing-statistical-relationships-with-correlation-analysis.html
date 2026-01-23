@@ -602,9 +602,9 @@ Figure 5.1: MFW people don’t visualise their data
 <p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20time_on_social-1.png" width="672" /></p>
 <p>Remember to check you have adjusted the axis labels!</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
-<p><strong>Question:</strong> How about the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?</p>
+<p><strong>Question:</strong> Take a look at the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?</p>
 </div>
-<p>A non-linear relationship is present when the relationship between two variables appears to follow a curve shape, rather than a straight line. Remember that we do not want to conduct a Pearson’s correlation analysis when the relationship is non-linear.</p>
+<p>A non-linear relationship is present when the relationship between two variables does not appears to roughly follow a straight line. One example is when there is a curve shape. Remember that we do not want to conduct a Pearson’s correlation analysis when the relationship is non-linear.</p>
 </div>
 </div>
 <div id="conducting-correlations" class="section level2 hasAnchor" number="5.6">
@@ -671,7 +671,7 @@ Figure 5.1: MFW people don’t visualise their data
 <h2><span class="header-section-number">5.8</span> Writing up results and conclusions<a href="probing-statistical-relationships-with-correlation-analysis.html#writing-up-results-and-conclusions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now lets have a go at writing up the results of the correlation that we have conducted:</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
-<p><strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p &lt; 0.01).</p>
+<p><strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (<span class="math inline">\(r\)</span>(56) = .51, <span class="math inline">\(p\)</span> &lt; .01).</p>
 </div>
 <div id="activity---correlation-for-the-other-pair-of-variables" class="section level3 hasAnchor" number="5.8.1">
 <h3><span class="header-section-number">5.8.1</span> Activity - Correlation for the other pair of variables<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---correlation-for-the-other-pair-of-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -711,7 +711,7 @@ Figure 5.2: It almost over (I promise)
 </div>
 <div id="bonus-activity---correlation-matrix" class="section level3 hasAnchor" number="5.10.3">
 <h3><span class="header-section-number">5.10.3</span> Bonus Activity - Correlation Matrix<a href="probing-statistical-relationships-with-correlation-analysis.html#bonus-activity---correlation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes it`s helpful to see all the correlations you are interested in at once.</p>
+<p>Sometimes it`s helpful to see all the correlation coefficients for all the variables that you are interested in at once.</p>
 <blockquote>
 <p>Can you use the <code>select()</code> and <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor"><code>cor()</code></a> function to create a pipe that takes the <code>social_media_attitude</code> data frame, and that produces a <a href="https://www.displayr.com/what-is-a-correlation-matrix/">correlation matrix</a> that shows the correlations between all the variables you are interested in?</p>
 </blockquote>

@@ -266,10 +266,10 @@ social_media_attitude %>%
 Remember to check you have adjusted the axis labels!
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> How about the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?
+<strong>Question:</strong> Take a look at the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?
 :::
 
-A non-linear relationship is present when the relationship between two variables appears to follow a curve shape, rather than a straight line. Remember that we do not want to conduct a Pearson's correlation analysis when the relationship is non-linear.
+A non-linear relationship is present when the relationship between two variables does not appears to roughly follow a straight line. One example is when there is a curve shape. Remember that we do not want to conduct a Pearson's correlation analysis when the relationship is non-linear.
 
 ## Conducting correlations
 
@@ -346,7 +346,7 @@ cor.test(x = social_media_attitude$...,
 Now lets have a go at writing up the results of the correlation that we have conducted: 
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media (r(56) = 0.51, p < 0.01).
+<strong>Results:</strong> A pearson correlation was performed to evaluate the relationship between political attitude and time spent on social media. It was found that there was a strong positive correlation between political attitude and time spent on social media ($r$(56) = .51, $p$ < .01).
 :::
 
 ### Activity - Correlation for the other pair of variables
@@ -384,7 +384,7 @@ Check how you previously used the `summarise()` and `group_by()` functions for c
 
 ### Bonus Activity - Correlation Matrix
 
-Sometimes it`s helpful to see all the correlations you are interested in at once. 
+Sometimes it`s helpful to see all the correlation coefficients for all the variables that you are interested in at once. 
 
 > Can you use the `select()` and [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) function to create a pipe that takes the `social_media_attitude` data frame, and that produces a [correlation matrix](https://www.displayr.com/what-is-a-correlation-matrix/) that shows the correlations between all the variables you are interested in?
 
