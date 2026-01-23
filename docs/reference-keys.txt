@@ -137,10 +137,11 @@ checking-installation-and-loading-packages-3
 activity---write-the-code-to-load-packages-from-the-library
 investigating-correlational-relationships
 activity---how-might-political-attitudes-relate-to-social-media-use-get-data
-activity---noting-down-your-hypotheses
 building-a-composite-score-that-measures-political-attitude
 activity---get-some-political-attitude
 sec-select-and-save
+how-would-political-attitudes-relate-to-social-media-use
+activity---noting-down-your-hypotheses
 sec-scatterplots
 conducting-correlations
 calculate-the-correlation-coefficient
@@ -151,6 +152,7 @@ writing-up-results-and-conclusions-1
 activity---correlation-for-the-other-pair-of-variables
 you-are-free-4
 bonus-exercises-3
+bonus-activity---a-closer-look-at-subscales
 bonus-activity---urban-vs-rural-correlations
 bonus-activity---correlation-matrix
 linear-regression

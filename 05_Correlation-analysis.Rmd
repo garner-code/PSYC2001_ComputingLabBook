@@ -29,7 +29,7 @@ We have previously looked at how mood and location influence social media use. N
 
 Today we will be using the `time_on_social`, `age`, `polit_informed`, `polit_campaign` and `polit_activism` variables.
 
-Remember, these variables stand for the following:
+The details of these variables are in the README.txt file, so you will already know what these variables stand for. However, let's recap - these variables stand for the following:
 
   `age` – age in years  
   `time_on_social` – average hours/day on social media (self-report diary)  
@@ -39,12 +39,16 @@ Political attitude subscales:
   `polit_informed` – how politically informed they feel (e.g., read news daily)  
   `polit_campaign` – how much they engage in campaign-related discussion  
   `polit_activism` – involvement in activism (e.g., protests, petitions)  
+  
+`polit_informed`, `polit_campaign` and `polit_activism` are subscales of a political attitudes questionnaire. Each subscale is scored out of 7, with higher scores indicating greater political attitude in that domain.
 
 ### Activity - How might political attitudes relate to social media use? Get Data
 
 Before we begin we first need to load in our dataset for today. 
 
-> Copy and paste the code from a previous week that loads the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`. 
+> Load the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`. 
+
+**HINT:** If you are stuck, you can copy and paste this code from a previous week.
 
 > Run the code and check that the data is loaded correctly using your preferred method from Section \@ref(sec-data-view).
 
@@ -52,15 +56,11 @@ Before we begin we first need to load in our dataset for today.
 social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV file
 ```
 
-### Activity - Noting down your hypotheses
-
-Now that you have loaded the data, take a moment to think about the relationship between political attitudes and time spent on social media. Will young adults who spend a lot of time on social media be more politically active? Or the opposite? Or neither? What are your thoughts?
-
-> What is a reasonable null and alternate hypothesis? Write it down as a comment in your script.
-
 ## Building a composite score that measures political attitude
 
 Let's now get an idea of our much political attitude these participants have. We have scores from 3 subscales of a political-attitudes questionnaire. We need to combine them into a single ‘political attitude’ score for each participant. Each subscale score carries a different weighting towards the total political attitude score.
+
+Weighting refers to the amount (proportion) that each subscale contributes to the single overall `political attitude` score, e.g. if a subscale has a weighting of 0.25, then it contributes one quarter (25%) of the total score.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Pause for thought:</strong> Why would each subscale carry a different weighting? Think about what was discussed in the lectures about composite scores.
@@ -75,7 +75,7 @@ Now you have this formula, let's build the code that creates the political attit
 
 The first operation we need to do is to multiply each observation in the `polit_informed` column by 0.25. 
 
-> Examine the data frame using the head() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply each of them by 0.25 (in the console, or in your head). What are the 3 results that you get? Write them as a comment in your script.
+> Examine the data frame using the View() function (or using another method if you prefer). Take the first 3 observations from `polit_informed` and multiply each of them by 0.25 (in the console, on a calculator, or in your head). What are the 3 results that you get? Write them as a comment in your script.
 
 Now we know what answers we should get, we can write some code to multiply these observations by 0.25, and check the code works.
 
@@ -98,7 +98,7 @@ social_media_likes <- social_media %>%
 
 Hint: You multiply in R using the `*` symbol.
 
-> Run your new code and then run `head(social_media_test)` to check the results. Compare the first 3 values of the variable `test` to the results you got from your manual calculation.
+> Run your new code and then run `View(social_media_test)` to check the results. Compare the first 3 values of the variable `test` to the results you got from your manual calculation.
 
 The next thing we need to do is multiply `polit_campaign` by 0.35, and add it to the previous result. 
 
@@ -133,7 +133,7 @@ social_media_attitude <- social_media %>%
 
 > Check the contents of the new data frame using your favourite method to check the new variable has been added
 
-See Section \@ref(sec-data-view) if you want some inspiration on methods
+See Section \@ref(sec-data-view) if you want some inspiration on methods.
 
 ```{r, Actually Creating political attitude scores, echo=FALSE}
 
@@ -194,6 +194,16 @@ write.csv(social_media_attitude, here("Data","PSYC2001_social-media-attitude.csv
 > Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001_social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
 
 Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
+
+## How would political attitudes relate to social media use?
+
+Now that we have a single composite score that reflects an individual's political attitude, take a moment to think about how political attitudes may relate to time spent on social media.
+
+### Activity - Noting down your hypotheses
+
+It's time to define our hypothesis. Will young adults who spend a lot of time on social media have stronger political attitudes? Or the opposite? Or neither? What are your thoughts?
+
+> What is a reasonable null and alternate hypothesis? Write it down as a comment in your script.
 
 ## Looking for lines {#sec-import-data}
 
@@ -353,6 +363,14 @@ knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
 
 
 ## ⭐ Bonus exercises 
+
+### Bonus Activity - A closer look at subscales
+
+We created a composite score for political attitude by combining 3 subscales. But what do we know about each of the subscales?
+
+> Can you take the `social_media_attitude` data frame and plot the data for each of the 3 subscales: `polit_informed`, `polit_campaign` and `polit_activism`?
+
+There is always inspiration available at the [R Graph Gallery](https://r-graph-gallery.com/).
 
 ### Bonus Activity - Urban vs Rural Correlations
 
