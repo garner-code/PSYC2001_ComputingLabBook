@@ -14,7 +14,7 @@ link-citations: yes
 github-repo: https://github.com/garner-code/PSYC2001_ComputingLabBook # KG change this
 ---
 
-# Course Information {-}
+# Computing Labs Information {-}
 
 ## The purpose of this coursebook
 
