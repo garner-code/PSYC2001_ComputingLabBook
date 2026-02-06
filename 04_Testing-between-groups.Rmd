@@ -165,8 +165,8 @@ str(social_media_likes)
 
 Excellent! We can see that R now thinks that `urban` is a factor with 2 levels: `urban` and `rural`. Our data is now in a format that we should be able to easily visualise it and conduct our statistical tests. 90% done :)
 
-```{r, echo=FALSE, out.width="60%", fig.align='center', fig.cap="What it feels like teaching this section"}
-knitr::include_graphics("images/Testing_between_groups/feels-like.gif")
+```{r, echo=FALSE, out.width="60%", fig.align='center', fig.cap="The math checks out. We promise."}
+knitr::include_graphics("images/Testing_between_groups/90_percent.jpg")
 ```
 
 ## Visualising our data
@@ -329,7 +329,7 @@ t.test(followers ~ urban, data = social_media_likes)
 ```
 
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Every PSYC2001 midterm"}
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="We have all been there."}
 knitr::include_graphics("images/Testing_between_groups/Exams-hard.jpg")
 ```
 
@@ -411,10 +411,10 @@ ggsave(here("Output", "likes_boxplot.png"), plot = likes_bp) # saves the likes b
 
 ## You are Free!
 
-Well done! This computing tutorial is now over. Make sure to thank your tutor for another amazing class full of wonderful statistics and learning!
+Well done! This computing tutorial is now over. You have done your research.
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Everyone loves statistics ?"}
-knitr::include_graphics("images/Testing_between_groups/Everyone-loves-statistics.jpg")
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="You can. You are a scientist now."}
+knitr::include_graphics("images/Testing_between_groups/do_your_research.gif")
 ```
 
 ## ⭐ Bonus exercises 

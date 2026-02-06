@@ -377,8 +377,8 @@ Now we have some answers! Use your new found knowledge of t-tests to interpret t
 
 Well done you have finished for this week! Once you finish, please confirm with your tutor that you understand all the things.
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Students leaving evil statistics classes"}
-knitr::include_graphics("images/Testing_our_first_hypothesis/Students_leaving.gif")
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Admit it, that was some good hypothesis work"}
+knitr::include_graphics("images/Testing_our_first_hypothesis/fascinating_hypothesis.gif")
 ```
 
 ## ⭐ Bonus exercises 

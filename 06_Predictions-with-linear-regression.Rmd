@@ -285,8 +285,8 @@ You will also see in the help documentation that there is an argument called `le
   
 Well done folks, you have survived another computing tutorial. If you are unsure about any of the contents then your friendly local tutor is here to help!
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="It almost over (I promise)"}
-knitr::include_graphics("images/Linear_regression_in_R/Done.jpg")
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Done. We are all friendly neighbourhood statisticians now"}
+knitr::include_graphics("images/Linear_regression_in_R/we_are_all_friendly.jpg")
 ```
 
 ## ⭐ Bonus exercises 

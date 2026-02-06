@@ -353,9 +353,9 @@ You should see all of the objects you created earlier magically reappear in the 
 
 Congratulations you have survived the first coding lab for this course. We look forward to seeing you next week for more coding fun. 
 
-```{r  echo=FALSE, fig.align='center', fig.cap="We know how you really feel", echo=FALSE, fig.align='center'}
+```{r  echo=FALSE, fig.align='center', fig.cap="Bring It", echo=FALSE, fig.align='center'}
 
-knitr::include_graphics("images/Introduction_to_R/Psychology_student_reaction.jpg")
+knitr::include_graphics("images/Introduction_to_R/Figure_1_10.jpg")
 
 ```
 

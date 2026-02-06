@@ -89,6 +89,7 @@ you-are-free-1
 bonus-exercises
 bonus-exercise---a-bit-more-wrangling
 bonus-exercise---getting-to-grips-with-graphs
+extra-notes-for-the-curious
 sec-testing-first-hypothesis
 checking-installation-and-loading-packages-1
 activity---load-packages-using-the-library-function

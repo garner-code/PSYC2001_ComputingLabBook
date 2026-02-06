@@ -25,8 +25,6 @@ library(tidyverse)
 
 Note that in the code above, we've added a fancy `if()` statement to check if the packages are installed. `if()` will check the statement inside its brackets. If that statement returns a value of `TRUE`, then the code that comes after the brackets will be executed (e.g. it will install the package `here`).
 
-The way we have used the `if()` function is a little tricksy, but worth thinking about, because the mindset we used is very important for coding. `require()` is a function that will return a `TRUE` value if the named package (e.g. `here`) is already installed, and a `FALSE` if it is not. The `!` operator negates what is returned - i.e. if `here` is not installed, then `require()` will return the value `FALSE`. However, we want to turn this into the value `TRUE`, so that `if()` will run the next bit of code to install the package `here` if required. So `!` turns the answer `FALSE` into `not FALSE`, which means `TRUE`.
-
 Checking packages are installed in your script is good practice as it ensures that your code runs smoothly on any computer without needing to manually install packages. Particularly if you are using the computers in the School of Psychology (UNSW), where we have already installed the packages you need (and we ask you not to install any more!).
 
 ## What do packages do?
@@ -139,7 +137,7 @@ social_media <- read.csv(file = here("Data","PSYC2001_social-media-data.csv")) #
 
 If you are still unsure what we mean by 'file path' then please google it, google it now.
 
-**Now that we have read in our data, we have saved our data to an object called `social_media`.** You can see this in the Environment tab in the top right section of your screen. Importantly, this particular object is a **dataframe**. A dataframe is a special type of object in R that is used to store data tables. It is similar to an Excel spreadsheet, or a data frame in Python's pandas library. Dataframes are very useful for data analysis because they allow us to easily manipulate and analyze data.
+**Now that we have read in our data, we have saved our data to an object called `social_media`.** You can see this in the Environment tab in the top right section of your screen. Importantly, this particular object is a **dataframe**. A dataframe is a special type of object in R that is used to store data tables. It is similar to an Excel spreadsheet. Dataframes are very useful for data analysis because they allow us to easily manipulate and analyze data.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Warning:</strong> If you have an error, that's all part of coding! But do make sure you ask your tutor for help :)
@@ -271,7 +269,7 @@ Sometimes when collecting data, we can’t get a response from every participant
 
 ### Activity -  Find and replace `-999` values
 
-Lets first have a look at how many `-999` values are present in the data. We can do this by using the `filter()` function from the `tidyverse` package which is used to keep (or remove) rows based on certain conditions. `filter()` requires two arguments, the first is the data that you want to filter rows out of, and the second is the logical condition you want to use to tell R exactly which rows to filter down to (e.g. which rows are marked with a `TRUE` so that `filter()` knows which rows to return).
+Lets first have a look at how many `-999` values are present in the data. We can do this by using the `filter()` function from the `tidyverse` package which is used to keep (or remove) rows based on certain conditions. `filter()` requires two arguments, the first is the data that you want to filter rows out of, and the second is the logical condition you want to use to tell R exactly which rows to filter down to (i.e. this is basically a true or false game where you tell R which rows in the data frame are the `TRUE` ones you want, so that `filter()` knows which rows to return).
 
 Here we want to tell R to give us the rows where time_on_social is equal to `-999`, so we use a very important operator, which is `==`. A double equals sign means 'is equal to'. So here we ask R to filter the `social_media` data frame down to only the rows where the value for `time_on_social` is equal to `-999`. 
 
@@ -494,7 +492,7 @@ Well done! You have completed everything you need to for this week. If you have 
 
 Also, make sure to save your script when you're done. This is your record of what you've done today, and you can refer back to it later. (One more hint for the road: you will refer back to it in future labs).
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Students' reaction to this information."}
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Good work. You are done. Take a break."}
 knitr::include_graphics("images/Data_wrangling_and_visualisation/Ight_Imma_Head_Out.jpg")
 ```
 
@@ -541,5 +539,7 @@ And a final, extra challenge!
 Question: What new aesthetic choices did you learn?
 
 
+### Extra notes for the curious
 
+The way we used the `if()` function to check packages are loaded (at the start of this script) is a little tricksy, but worth thinking about, because the mindset we used is very important for coding. `require()` is a function that will return a `TRUE` value if the named package (e.g. `here`) is already installed, and a `FALSE` if it is not. The `!` operator negates what is returned - i.e. if `here` is not installed, then `require()` will return the value `FALSE`. However, we want to turn this into the value `TRUE`, so that `if()` will run the next bit of code to install the package `here` if required. So `!` turns the answer `FALSE` into `not FALSE`, which means `TRUE`.
 

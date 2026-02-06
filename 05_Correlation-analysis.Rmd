@@ -359,8 +359,8 @@ Now, run the correlation analysis for the other pair of variables that shared a 
 
 Well done folks, you have survived another computing tutorial! Next lesson we will be conducting linear regression on this data, so well done you for saving your data set. 
 
-```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="It almost over (I promise)"}
-knitr::include_graphics("images/Correlations_in_R/Statistical-trauma.gif")
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="This is you now"}
+knitr::include_graphics("images/Correlations_in_R/your_skills.jpg")
 ```
 
 
