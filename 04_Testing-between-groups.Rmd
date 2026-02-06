@@ -456,3 +456,11 @@ head(social_media %>%
 ```
 
 Bug defeated? Achievement unlocked! 
+
+### Bonus Activity - Build a script from scratch
+
+We sneaked an extra file into your Data folder called `Tutorial_4_exercise_1.csv`. It contains the data from your stats tutorial, where you calculated a t-test by hand.
+
+Can you make a new script that loads the data, checks it, and performs an independent samples t-test on the data? Match the values from the output `t.test()` to the values you calculated by hand.
+
+Extra smugness is available if you can also make a boxplot showing the group differences, and save the figure to your Output folder.

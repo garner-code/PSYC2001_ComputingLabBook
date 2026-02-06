@@ -133,6 +133,7 @@ bonus-exercises-2
 bonus-activity---new-variable
 bonus-activity---visualising-group-means
 bonus-activity---tracking-bugs
+bonus-activity---build-a-script-from-scratch
 probing-statistical-relationships-with-correlation-analysis
 checking-installation-and-loading-packages-3
 activity---write-the-code-to-load-packages-from-the-library
