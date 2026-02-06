@@ -136,7 +136,9 @@ probing-statistical-relationships-with-correlation-analysis
 checking-installation-and-loading-packages-3
 activity---write-the-code-to-load-packages-from-the-library
 investigating-correlational-relationships
-activity---how-might-political-attitudes-relate-to-social-media-use-get-data
+activity---how-might-political-attitudes-relate-to-social-media-use
+now-lets-get-the-data
+activity---get-the-data
 building-a-composite-score-that-measures-political-attitude
 activity---get-some-political-attitude
 sec-select-and-save

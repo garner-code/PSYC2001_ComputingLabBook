@@ -286,7 +286,7 @@ age + 10
 
 Finally, and **importantly**, you can store the result of these operations in a new object.
 
-> Run the following line of code
+> Now copy and paste this code into your script, and run it
 
 ```{r objects-interact2}
 
@@ -311,11 +311,9 @@ You will see the below lines of code in your script.
 > Run them and make sure you get the same answers as you see here.
 
 ```{r}
-#These are both doubles (i.e numbers!)
+
 typeof(age)
 typeof(new_year)
-
-#This is a chr (i.e contains letters!)
 typeof(name)
 
 

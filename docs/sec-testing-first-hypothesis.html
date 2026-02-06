@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Testing our first hypothesis | Data Analysis Skills for Psychology in R</title>
   <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Testing our first hypothesis | Data Analysis Skills for Psychology in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-01-28" />
+<meta name="date" content="2026-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>5.2</b> Investigating correlational relationships</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use-get-data"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use? Get Data</a></li>
+<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#now-lets-get-the-data"><i class="fa fa-check"></i><b>5.2.2</b> Now let’s get the data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Activity - Get the data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
 <ul>
@@ -607,7 +609,7 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="sec-testing-first-hypothesis.html#cb57-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
 <span id="cb57-2"><a href="sec-testing-first-hypothesis.html#cb57-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
 <span id="cb57-3"><a href="sec-testing-first-hypothesis.html#cb57-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
-<p><img src="_main_files/figure-html/ugly%20density-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/ugly%20density-1.png" alt="" width="672" /></p>
 <p>So…this is OK. But some things are left to be desired. It would be nice if good_mood_likes didn’t occlude bad_mood_likes, because we want to see how both distributions look.</p>
 <blockquote>
 <p>Amend your code so that the density plots are semi-transparent. You can do this by adding an <code>alpha</code> argument inside the <code>geom_density()</code> function. You can think of <code>alpha</code> as a value that tells you how transparent something should be. Set <code>alpha = 0.5</code> to make the plots 50% transparent.</p>
@@ -616,14 +618,20 @@ Figure 3.1: Professors’ reaction when you don’t visualise data
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sec-testing-first-hypothesis.html#cb58-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
 <span id="cb58-2"><a href="sec-testing-first-hypothesis.html#cb58-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics</span></span>
 <span id="cb58-3"><a href="sec-testing-first-hypothesis.html#cb58-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="co"># use the data to draw a density plot and make it 50% transparent</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/semi-transparent%20density-1.png" width="672" /></p>
-<p>Ahhh, that’s better! Then the last step, if you are striving for data viz beauty, is to add the classic theme (or <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">another</a>, if that’s your jam) to your code. For example:</p>
+<p><img src="_main_files/figure-html/semi-transparent%20density-1.png" alt="" width="672" /></p>
+<p>Ahhh, that’s better! Then the last step, if you are striving for data viz beauty, is to add the classic theme (or <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">another</a>, if that’s your jam) to your code.</p>
+<blockquote>
+<p>Add the <code>theme_classic()</code> function to your code to give it a classic theme. Run the code to see the results.</p>
+</blockquote>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sec-testing-first-hypothesis.html#cb59-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
 <span id="cb59-2"><a href="sec-testing-first-hypothesis.html#cb59-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span></span>
 <span id="cb59-3"><a href="sec-testing-first-hypothesis.html#cb59-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb59-4"><a href="sec-testing-first-hypothesis.html#cb59-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#themes can be provided to ggplot which give it a bunch of aesthetics to change. One of these is theme_classic</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/Create%20a%20density%20plot-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/Create%20a%20density%20plot-1.png" alt="" width="672" /></p>
 <p>For future you: a whole world of glorious movie inspired themes await you <a href="https://github.com/MatthewBJane/ThemePark">here</a>.</p>
+<blockquote>
+<p>Now save your figure to your Output folder, by using the Export button on the Plots Pane.</p>
+</blockquote>
 </div>
 <div id="sec-visualised-now-what" class="section level3 hasAnchor" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Activity - So you’ve visualised your data, now what?<a href="sec-testing-first-hypothesis.html#sec-visualised-now-what" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -807,7 +815,7 @@ Figure 3.5: Students leaving evil statistics classes
 <span id="cb70-2"><a href="sec-testing-first-hypothesis.html#cb70-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>mood, <span class="at">y =</span> likes, <span class="at">group=</span>id)) <span class="sc">+</span> </span>
 <span id="cb70-3"><a href="sec-testing-first-hypothesis.html#cb70-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb70-4"><a href="sec-testing-first-hypothesis.html#cb70-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/spag%20basic-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/spag%20basic-1.png" alt="" width="672" /></p>
 <blockquote>
 <p>Copy the code to your script and run it. Can you write a comment in your code interpreting what each line of the code is doing?</p>
 </blockquote>
@@ -844,43 +852,43 @@ Figure 3.5: Students leaving evil statistics classes
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03_Testing-our-first-hypothesis.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03_Testing-our-first-hypothesis.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
 });
 });
 </script>

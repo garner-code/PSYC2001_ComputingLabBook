@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Probing (Statistical) Relationships with Correlation Analysis | Data Analysis Skills for Psychology in R</title>
   <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Probing (Statistical) Relationships with Correlation Analysis | Data Analysis Skills for Psychology in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-01-28" />
+<meta name="date" content="2026-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>5.2</b> Investigating correlational relationships</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use-get-data"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use? Get Data</a></li>
+<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#now-lets-get-the-data"><i class="fa fa-check"></i><b>5.2.2</b> Now let’s get the data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Activity - Get the data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
 <ul>
@@ -442,9 +444,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>polit_campaign</code> – how much they engage in campaign-related discussion<br />
 <code>polit_activism</code> – involvement in activism (e.g., protests, petitions)</p>
 <p><code>polit_informed</code>, <code>polit_campaign</code> and <code>polit_activism</code> are subscales of a political attitudes questionnaire. Each subscale is scored out of 7, with higher scores indicating greater political attitude in that domain.</p>
-<div id="activity---how-might-political-attitudes-relate-to-social-media-use-get-data" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Activity - How might political attitudes relate to social media use? Get Data<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use-get-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before we begin we first need to load in our dataset for today.</p>
+<div id="activity---how-might-political-attitudes-relate-to-social-media-use" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Activity - How might political attitudes relate to social media use?<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="now-lets-get-the-data" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Now let’s get the data<a href="probing-statistical-relationships-with-correlation-analysis.html#now-lets-get-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now we have an idea what we are looking for in our data, we can load our data and find out the truth! (Or, a sample of the truth).</p>
+</div>
+<div id="activity---get-the-data" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Activity - Get the data<a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p>Load the <code>PSYC2001_social-media-data-cleaned.csv</code> dataset into a data frame called <code>social_media</code>.</p>
 </blockquote>
@@ -589,7 +597,7 @@ Figure 5.1: MFW people don’t visualise their data
 <span id="cb103-5"><a href="probing-statistical-relationships-with-correlation-analysis.html#cb103-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
 ## (`geom_point()`).</code></pre>
-<p><img src="_main_files/figure-html/Scatterplot%20of%20time_on_social%20and%20attitude-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20time_on_social%20and%20attitude-1.png" alt="" width="672" /></p>
 <p><strong>Note:</strong> we get a warning message. The message is telling us that there are 2 rows containing missing values. That’s ok. We know this, because we turned the -999s in the <code>time_on_social</code> variable into NAs in Section <a href="data-wrangling-and-visualisation.html#sec-pipey">2.9.1</a>. We also learned then that there were 2 participants with missing data for <code>time_on_social</code>. So we can safely ignore this warning message. It is always a good idea to check, when getting a warning message, that you understand what is causing it.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>What do you think?</strong> Would you say there is a linear relationship between political attitude and time spent on social media?</p>
@@ -599,8 +607,8 @@ Figure 5.1: MFW people don’t visualise their data
 <p>Now, using the above code as a guide, create two more scatterplots: one of the relationship between <code>polit_attitude</code> and <code>age</code>, and another of <code>time_on_social</code> and <code>age</code>.</p>
 </blockquote>
 <p>You know you will have completed your mission when you have produced plots that look something like the following:</p>
-<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20attitude-1.png" width="672" /></p>
-<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20time_on_social-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20attitude-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/Scatterplot%20of%20age%20and%20time_on_social-1.png" alt="" width="672" /></p>
 <p>Remember to check you have adjusted the axis labels!</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Take a look at the relationships depicted in these latter two scatterplots? Hint: one of them shows a non-linear relationship. Which one is it?</p>
@@ -743,43 +751,43 @@ Figure 5.2: It almost over (I promise)
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_Correlation-analysis.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_Correlation-analysis.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
 });
 });
 </script>

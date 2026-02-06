@@ -245,7 +245,9 @@ social_media_likes %>%
 
 ```
 
-Ahhh, that's better! Then the last step, if you are striving for data viz beauty, is to add the classic theme (or [another](https://ggplot2.tidyverse.org/reference/ggtheme.html), if that's your jam) to your code. For example:
+Ahhh, that's better! Then the last step, if you are striving for data viz beauty, is to add the classic theme (or [another](https://ggplot2.tidyverse.org/reference/ggtheme.html), if that's your jam) to your code. 
+
+> Add the `theme_classic()` function to your code to give it a classic theme. Run the code to see the results.
 
 ```{r Create a density plot, message = FALSE}
 
@@ -256,6 +258,8 @@ ggplot(aes(x = likes, group = mood, fill = mood)) +
 ```
 
 For future you: a whole world of glorious movie inspired themes await you [here](https://github.com/MatthewBJane/ThemePark). 
+
+> Now save your figure to your Output folder, by using the Export button on the Plots Pane.
 
 
 ### Activity - So you've visualised your data, now what? {#sec-visualised-now-what}

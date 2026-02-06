@@ -8,11 +8,11 @@ Data analysis in Psychology and any other discipline is 90% data wrangling and 1
 
 Before we can **begin** any script we first need to make sure that the **required packages are installed** in our version of RStudio. Next, we can **load the required packages** to be used in the script, using the `library()` function. 
 
-> Copy and paste the code block below into your script in RStudio and try running it. If you need a reminder on how to run a piece of code then check back to Section \@ref(sec-run-code).
-
 R Coders always start their scripts by loading all the packages need to run all the code contained within the script.
 
 ### Activity -  Load your packages
+
+> Copy and paste the code block below into your script in RStudio and try running it. If you need a reminder on how to run a piece of code then check back to Section \@ref(sec-run-code).
 
 ```{r  message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -205,7 +205,7 @@ View(social_media) #view automatically displays the dataset in a tab.
 
 Sometimes, you only want to get a sense of what the data looks like, without printing the whole thing to the console or opening a new tab. The next two methods do just that.
 
-> Copy and paste both of the below lines of code into your script and run them.
+> Now complete the next lines in your script so that they match the below lines of code, and run each line, one at a time.
 
 ```{r}
 # Method 3 - Use the head function

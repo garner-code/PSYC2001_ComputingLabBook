@@ -42,9 +42,15 @@ Political attitude subscales:
   
 `polit_informed`, `polit_campaign` and `polit_activism` are subscales of a political attitudes questionnaire. Each subscale is scored out of 7, with higher scores indicating greater political attitude in that domain.
 
-### Activity - How might political attitudes relate to social media use? Get Data
+### Activity - How might political attitudes relate to social media use? 
 
-Before we begin we first need to load in our dataset for today. 
+
+
+### Now let's get the data
+
+Now we have an idea what we are looking for in our data, we can load our data and find out the truth! (Or, a sample of the truth).
+
+### Activity - Get the data
 
 > Load the `PSYC2001_social-media-data-cleaned.csv` dataset into a data frame called `social_media`. 
 

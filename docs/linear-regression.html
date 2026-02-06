@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Making predicitions using Linear Regression | Data Analysis Skills for Psychology in R</title>
   <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Making predicitions using Linear Regression | Data Analysis Skills for Psychology in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-01-28" />
+<meta name="date" content="2026-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>5.2</b> Investigating correlational relationships</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use-get-data"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use? Get Data</a></li>
+<li class="chapter" data-level="5.2.1" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---how-might-political-attitudes-relate-to-social-media-use"><i class="fa fa-check"></i><b>5.2.1</b> Activity - How might political attitudes relate to social media use?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#now-lets-get-the-data"><i class="fa fa-check"></i><b>5.2.2</b> Now let’s get the data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#activity---get-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Activity - Get the data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="probing-statistical-relationships-with-correlation-analysis.html"><a href="probing-statistical-relationships-with-correlation-analysis.html#building-a-composite-score-that-measures-political-attitude"><i class="fa fa-check"></i><b>5.3</b> Building a composite score that measures political attitude</a>
 <ul>
@@ -501,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb113-2"><a href="linear-regression.html#cb113-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">group =</span> mood, <span class="at">fill =</span> mood)) <span class="sc">+</span> <span class="co"># set canvas aesthetics </span></span>
 <span id="cb113-3"><a href="linear-regression.html#cb113-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="co"># use the data to draw a density plot </span></span></code></pre></div>
 <p>When you are done, you should have something that looks like this:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" /></p>
 <p>Now, this is no good, as we have a density plot of the variable <code>value</code> which contains the rows for both the <code>polit_attitude</code> and <code>age</code> values. And we want separate density plots, one for <code>polit_attitude</code> and one for <code>age</code>. We need to tell <code>ggplot</code> to separate them!</p>
 <p>Luckily, there is a very handy function called <code>facet_wrap()</code> that will do this for you.</p>
 <p><code>facet_wrap</code> is your friend. To use the <code>facet_wrap()</code> function, we use the formula method, but we only need to put something on the right hand side, and that something is the name of the variable that we want to split up the plots by.</p>
@@ -509,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Add the piece of code <code>+ facet_wrap(~measure)</code> to your existing code you wrote to plot the density of the data. Run the code. You will know you have succeeded when you behold the same plot as below.</p>
 </blockquote>
 <pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range (`stat_density()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
 <p>Excellent. We have plots.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Would you say the variables are normally distributed? What values for <code>polit_attitude</code> and <code>time_on_social</code> are more likely and which are less likely? Do these values seem sensible, given the scales for political attitude (0-7), and your experiences with social media?</p>
@@ -613,7 +615,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb122-4"><a href="linear-regression.html#cb122-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># add line of best fit and ...</span></span>
 <span id="cb122-5"><a href="linear-regression.html#cb122-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Political Attitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Time on Social&quot;</span>) <span class="sc">+</span> <span class="co"># define axis labels</span></span>
 <span id="cb122-6"><a href="linear-regression.html#cb122-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># make pretty</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
 <blockquote>
 <p>Use the <code>?</code> operator to look up the help documentation for <code>geom_smooth()</code>. Find out what the <code>se =</code> argument stands for, and finish the comment in your code with a description of what it does.</p>
 </blockquote>
@@ -707,43 +709,43 @@ Figure 6.2: The fiendish bug lies therein
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_Predictions-with-linear-regression.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_Predictions-with-linear-regression.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
 });
 });
 </script>
