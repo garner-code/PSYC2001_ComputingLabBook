@@ -153,6 +153,8 @@ Excellent. We have plots.
 <strong>Question:</strong> Would you say the variables are normally distributed? What values for `polit_attitude` and `time_on_social` are more likely and which are less likely? Do these values seem sensible, given the scales for political attitude (0-7), and your experiences with social media?
 :::
 
+> Write your answer to the questions above as a comment in your code
+
 ## Linear regression in R 
 
 The difference between a regression and correlation is that instead of looking for a statistical relationship between $x$ and $y$, we are asking how well we can predict $y$ on the basis of $x$. $x$ is our predictor variable, and $y$ is what is being predicted, which we refer to as our criterion variable or our dependent variable (DV). Running a regression is like asking "if we were stuck on a desert island with only $x$, how much would we know about what $y$ is doing?" 
