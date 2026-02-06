@@ -6,6 +6,8 @@ This week, we are going to continue to explore relationships between continuous 
 
 As usual we first always load in our required packages `here` and `tidyverse`.
 
+### Activity - load the packages!
+
 > Find the code from a previous week that loads the packages `here` and `tidyverse`. Copy it to your script and run the code.
 
 ```{r message = FALSE, echo=FALSE, warning= FALSE}

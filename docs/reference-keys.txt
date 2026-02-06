@@ -157,6 +157,7 @@ bonus-activity---urban-vs-rural-correlations
 bonus-activity---correlation-matrix
 linear-regression
 checking-installation-and-loading-packages-4
+activity---load-the-packages
 investigating-linear-regressions
 activity---formulate-your-prediction-about-predictions
 activity---loading-the-data-set
