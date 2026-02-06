@@ -44,7 +44,9 @@ Political attitude subscales:
 
 ### Activity - How might political attitudes relate to social media use? 
 
+Before we get into the data, let's take a moment to think about what we expect to find. Do you think that young adults who spend more time on social media will have stronger political attitudes? Or do you think there will be no relationship? Or perhaps the opposite relationship?
 
+> Write your prediction as a comment in your script. What is your null hypothesis? What is your alternate hypothesis?
 
 ### Now let's get the data
 
