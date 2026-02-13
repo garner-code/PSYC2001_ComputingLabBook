@@ -504,7 +504,7 @@ Coding is just like solving logical puzzles, like Sudoku or Hexcells. If you lik
 
 **Create a new variable**
 
-> Use the `mutate()` function to calculate the difference between `good_mood_likes` and 'bad_mood_likes` for each participant.
+> Use the `mutate()` function to calculate the difference between `good_mood_likes` and `bad_mood_likes` for each participant.
 
 What does a positive vs negative value indicate?
 
