@@ -225,7 +225,7 @@ You will also notice that the last function, `str()`, displays a **summary** of 
 - The **object type** (a **dataframe**)
 - The **number of observations/rows** (60)
 - The **number of variables/columns** (10)
-- The **datatype**: **chr** for **`id`**, and **num** for all other variables
+- The **datatype**: **chr** for **`id`**, **int** for **urban**, and **num** for all other variables
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
 <strong>Question:</strong> Please discuss with your deskmate and tutor what you think **chr** and **num** mean.
