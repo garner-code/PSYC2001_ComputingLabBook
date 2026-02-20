@@ -217,7 +217,7 @@ Go on, you are a coder, and you are strong.
 social_media_likes %>%
   ggplot(aes(x = followers)) + #ggplot uses aesthetic (aes()) to map axes. 
   geom_histogram(binwidth=10, col="black", fill="seagreen") + #creates a histogram
-  labs(x = "Average Number of Followers", y = "Density") + #short for "labels", use to label axes and titles.
+  labs(x = "Number of Followers", y = "Density") + #short for "labels", use to label axes and titles.
   theme_classic() #changes the theme of the plot to a classic theme. makes it prettier!
 ```
 
@@ -356,7 +356,7 @@ social_media_likes %>%
   ggplot(aes(y = likes, group=urban, fill = urban, x = urban)) + # here we are telling ggplot that we will be putting likes
   # on the y axis, that we will fill in our boxplots with colour using the urban factor, and that urban will go on the x-axis
   geom_boxplot() + # this function creates a boxplot
-  labs(x = "Living Area", y = "Average Rate of Likes") + # here we use labs() to label our axes.
+  labs(x = "Living Area", y = "Rate of Likes") + # here we use labs() to label our axes.
   scale_fill_manual(values = c(rural = "plum", urban = "cyan2")) + #manually define the filled in colours of specific parts of a graph - see here for more R colours: https://r-graph-gallery.com/42-colors-names.html
   theme_classic() 
 
@@ -373,7 +373,7 @@ You will need to change what you give for the `y` argument in `aes()`, and the y
 social_media_likes %>% 
   ggplot(aes(y = followers, group=urban, fill = urban, x = urban)) + 
   geom_boxplot() + # this function creates a boxplot
-  labs(x = "Living Area", y = "Average Followers") + 
+  labs(x = "Living Area", y = "Followers") + 
   scale_fill_manual(values = c(rural = "magenta4", urban = "aquamarine4")) + 
   theme_classic() 
 ```
@@ -389,7 +389,7 @@ First, you should save the plot you want to save to an object.
 likes_bp <- social_media_likes %>% 
   ggplot(aes(y = likes, group=urban, fill = urban, x = urban)) + 
   geom_boxplot() + # this function creates a boxplot
-  labs(x = "Living Area", y = "Average Rate of Likes") + # here we use labs() to label our axes.
+  labs(x = "Living Area", y = "Rate of Likes") + # here we use labs() to label our axes.
   scale_fill_manual(values = c(rural = "plum", urban = "cyan2")) + 
   theme_classic() 
 
