@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Testing for differences between groups | Data Analysis Skills for Psychology in R</title>
   <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Testing for differences between groups | Data Analysis Skills for Psychology in R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kelly G. Garner, Bart Cooley, Marios Panayi, Peter Lovibond" />
 
 
-<meta name="date" content="2026-02-13" />
+<meta name="date" content="2026-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -637,13 +637,13 @@ Figure 4.1: The math checks out. We promise.
 <span id="cb83-5"><a href="testing-for-differences-between-groups.html#cb83-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time on social media&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> <span class="co">#short for &quot;labels&quot;, use to label the axes.</span></span>
 <span id="cb83-6"><a href="testing-for-differences-between-groups.html#cb83-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co">#changes the theme of the plot to a classic theme. makes it prettier!</span></span></code></pre></div>
 <p>You should get a histogram that looks something like this:</p>
-<p><img src="_main_files/figure-html/do-hist-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/do-hist-1.png" width="672" /></p>
 <p>What would you say about this data, now you have looked at the histogram? Does it look normally distributed? Are there any outliers?</p>
 <blockquote>
 <p>Copy and paste the code you used to make the histogram for <code>likes</code> and make the teeny changes required so that you get a histogram for <code>followers</code> instead.</p>
 </blockquote>
 <p>Go on, you are a coder, and you are strong.</p>
-<p><img src="_main_files/figure-html/do-hist-follow-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/do-hist-follow-1.png" width="672" /></p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
 <p><strong>Question:</strong> Does <code>followers</code> look normally distributed to you? Why might the data be shaped how it is?</p>
 </div>
@@ -750,7 +750,7 @@ Figure 4.2: We have all been there.
 <h2><span class="header-section-number">4.7</span> Writing up results and conclusions<a href="testing-for-differences-between-groups.html#writing-up-results-and-conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is how we would write up the results of an independent samples t-test.</p>
 <div style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;">
-<p><strong>Results:</strong> An independent samples t-test indicated that the mean number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the mean number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).</p>
+<p><strong>Results:</strong> An independent samples t-test indicated that the mean number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(57) = -3.22, <i>p</i> = 0.002). Conversely, the mean number of followers was greater for urban (<i>M</i> = 144, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 106, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(50.2) = 2.82, <i>p</i> = 0.007).</p>
 </div>
 <div id="activity---visualising-group-differences" class="section level3 hasAnchor" number="4.7.1">
 <h3><span class="header-section-number">4.7.1</span> Activity - Visualising group differences<a href="testing-for-differences-between-groups.html#activity---visualising-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -761,16 +761,16 @@ Figure 4.2: We have all been there.
 <span id="cb91-2"><a href="testing-for-differences-between-groups.html#cb91-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> <span class="co"># here we are telling ggplot that we will be putting likes</span></span>
 <span id="cb91-3"><a href="testing-for-differences-between-groups.html#cb91-3" tabindex="-1"></a>  <span class="co"># on the y axis, that we will fill in our boxplots with colour using the urban factor, and that urban will go on the x-axis</span></span>
 <span id="cb91-4"><a href="testing-for-differences-between-groups.html#cb91-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
-<span id="cb91-5"><a href="testing-for-differences-between-groups.html#cb91-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
+<span id="cb91-5"><a href="testing-for-differences-between-groups.html#cb91-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
 <span id="cb91-6"><a href="testing-for-differences-between-groups.html#cb91-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define the filled in colours of specific parts of a graph - see here for more R colours: https://r-graph-gallery.com/42-colors-names.html</span></span>
 <span id="cb91-7"><a href="testing-for-differences-between-groups.html#cb91-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
-<p><img src="_main_files/figure-html/boxplotlikes-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/boxplotlikes-1.png" width="672" /></p>
 <p>Now we return to another critical part of coding. Copying and pasting what you have, and changing just a few bits.</p>
 <blockquote>
 <p>Copy and paste the code above and change it to make a boxplot for <code>followers</code> instead of <code>likes</code>.</p>
 </blockquote>
 <p>You will need to change what you give for the <code>y</code> argument in <code>aes()</code>, and the y-axis label. You can also change the colours if you want to. A list of colours that can be used can be found <a href="https://r-graph-gallery.com/42-colors-names.html">here</a>.One you have finished, you should get something that looks like this:</p>
-<p><img src="_main_files/figure-html/follow_bp-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/follow_bp-1.png" width="672" /></p>
 <p>Last, we often want to save our figures as image files, so that we can include them in reports or presentations. This is very easy to do using the <code>ggsave()</code> function.</p>
 <p>First, you should save the plot you want to save to an object.</p>
 <blockquote>
@@ -779,7 +779,7 @@ Figure 4.2: We have all been there.
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="testing-for-differences-between-groups.html#cb92-1" tabindex="-1"></a>likes_bp <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
 <span id="cb92-2"><a href="testing-for-differences-between-groups.html#cb92-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">group=</span>urban, <span class="at">fill =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span> </span>
 <span id="cb92-3"><a href="testing-for-differences-between-groups.html#cb92-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="co"># this function creates a boxplot</span></span>
-<span id="cb92-4"><a href="testing-for-differences-between-groups.html#cb92-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
+<span id="cb92-4"><a href="testing-for-differences-between-groups.html#cb92-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Living Area&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Rate of Likes&quot;</span>) <span class="sc">+</span> <span class="co"># here we use labs() to label our axes.</span></span>
 <span id="cb92-5"><a href="testing-for-differences-between-groups.html#cb92-5" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;plum&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;cyan2&quot;</span>)) <span class="sc">+</span> </span>
 <span id="cb92-6"><a href="testing-for-differences-between-groups.html#cb92-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
 <blockquote>
@@ -895,43 +895,43 @@ Figure 4.3: You can. You are a scientist now.
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
-  "fontsettings": {
-    "theme": "white",
-    "family": "sans",
-    "size": 2
-  },
-  "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/04_Testing-between-groups.Rmd",
-    "text": "Edit"
-  },
-  "history": {
-    "link": null,
-    "text": null
-  },
-  "view": {
-    "link": null,
-    "text": null
-  },
-  "download": ["_main.pdf", "_main.epub"],
-  "search": {
-    "engine": "fuse",
-    "options": null
-  },
-  "toc": {
-    "collapse": "section",
-    "scroll_highlight": true
-  }
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04_Testing-between-groups.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
 });
 });
 </script>

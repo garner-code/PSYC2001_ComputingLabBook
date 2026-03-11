@@ -339,7 +339,7 @@ knitr::include_graphics("images/Testing_between_groups/Exams-hard.jpg")
 This is how we would write up the results of an independent samples t-test.
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Results:</strong> An independent samples t-test indicated that the mean number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(58) = 3.22, <i>p</i> = 0.002). Conversely, the mean number of followers was greater for urban (<i>M</i> = 143.9, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 105.6, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(58) = 2.82, <i>p</i> = 0.007).
+<strong>Results:</strong> An independent samples t-test indicated that the mean number of likes was greater for rural (<i>M</i> = 52.1 , <i>SD</i> = 12.7) compared to urban dwellers  (<i>M</i> = 40.8 , <i>SD</i> = 14.5) and this difference was statistically significant (<i>t</i>(57) = -3.22, <i>p</i> = 0.002). Conversely, the mean number of followers was greater for urban (<i>M</i> = 144, <i>SD</i> = 62.0) than for urban dwellers (<i>M</i> = 106, <i>SD</i> = 40.9) which was statistically significant (<i>t</i>(50.2) = 2.82, <i>p</i> = 0.007).
 :::
 
 ### Activity - Visualising group differences
