@@ -159,12 +159,12 @@ social_media_likes <- social_media %>%
   select(id, urban, likes, followers) #selects only the specified columns from the data frame
 ```
 
-The key piece of code we need to add to our code and adapt so that we select only the relevant variables we want to keep (`id`, `time_on_social`,`polit_attitude`,`age`, `urban`) is the following:  
+The key piece of code we need to add to our code and adapt so that we select only the relevant variables we want to keep (which are `id`, `time_on_social`,`polit_attitude`,`age`, and `urban`) is the following:  
 
 `%>%   
 select(id, urban, likes, followers)`
 
-> Copy and paste the key piece of code to the relevant place in your script, and run your code to get your refined data frame. Check the resulting data frame looks as you would expect using your preferred method.
+> Copy and paste the key piece of code to the relevant place in your script, and amend it so that you instead select the variables `id`, `time_on_social`,`polit_attitude`,`age`, and `urban`. Run your code to get your refined data frame. Check the resulting data frame looks as you would expect using your preferred method.
 
 You should get a data frame whose contents look like the below:
 
@@ -177,7 +177,9 @@ head(social_media_attitude)
 ```
 
 
-Now we are ready to save our refined data frame to a '.csv' file for future use. If you remember, we did something very similar in Section \@ref(sec-save-the-data), using the following code, which you will also find in your script.
+Now we are ready to save our refined data frame to a '.csv' file for future use. If you remember, we did something very similar in Section \@ref(sec-save-the-data), using the following code below, which you will also find in your script.
+
+> Amend the code below to save the `social_media_attitude` data frame to a file called "PSYC2001_social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
 
 ```{r, save-the-data, eval=FALSE}
 
@@ -191,7 +193,6 @@ write.csv(social_media_attitude, here("Data","PSYC2001_social-media-attitude.csv
 
 ```
 
-> Amend the code above to save the `social_media_attitude` data frame to a file called "PSYC2001_social-media-attitude.csv" in the "Data" folder. Run your code and check the Data folder now contains the new file.
 
 Note that we previously saved the '.csv' file to the "Output" folder, and this time we are saving to the "Data" folder. It can be a good idea to be careful about what you save to the Data folder when you first start out coding, because you want to make very, very sure you don't overwrite the original data. But now we have grown and learned and we feel more confident saving something straight to the "Data" folder without incurring disaster.
 
