@@ -318,7 +318,7 @@ cor.test(formula = ~ time_on_social + polit_attitude, data = social_media_attitu
 
 
 ::: {style="border-left: 4px solid #33a02c; background-color: #a6cee3; padding: 10px; margin: 10px 0;"}
-<strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
+<strong>Question:</strong> Have a look at the output in the console. What is the relationship between `time_on_social` and `polit_attitude`? Can you reject the null hypothesis? Was your hypothesis supported? What does the ‘df’ value tell you about the sample size? Why is it that number?
 :::
 
 > Add your answers to the questions above as a comment to your code.
@@ -379,7 +379,7 @@ There is always inspiration available at the [R Graph Gallery](https://r-graph-g
 
 Would you expect the correlation between political attitude and time spent on social media to be the same for urban and rural participants? We can answer that!
 
-> Can you take the `social_media_attitude` use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation coefficient values ($r$) between the `time_on_social` and `age` variables for Urban and Rural participants?
+> Can you take the `social_media_attitude` use the `group_by()` and `summarise()` functions to build a set of pipes where you take the `social_media_attitude` data frame, and the result is separate correlation coefficient values ($r$) between the `time_on_social` and `polit_attitude` variables for Urban and Rural participants?
 
 Check how you previously used the `summarise()` and `group_by()` functions for clues!
 
